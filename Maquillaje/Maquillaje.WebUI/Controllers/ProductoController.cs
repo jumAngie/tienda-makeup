@@ -35,5 +35,17 @@ namespace Maquillaje.WebUI.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        public IActionResult Create(ProductosViewModel productosView)
+        {
+            if (ModelState.IsValid)
+            {
+                var productos = _mapper.Map<ProductosViewModel>(productosView);
+                //_generalesService.Create(productos);
+                return RedirectToAction(nameof(Index));
+            }
+            return View(productosView);
+        }
     }
 }
