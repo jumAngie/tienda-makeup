@@ -35,8 +35,8 @@ namespace Maquillaje.WebUI.Controllers
 
         public IActionResult Create()
         {
-            //ViewBag.cat_Id = new SelectList(db.Vw_Maqui_tbCategorias_DDL, "cat_Id", "cat_Descripcion");
-            //ViewBag.pro_Proveedor = new SelectList(db.Vw_Maqui_tbProveedores_DDL, "prv_ID", "prv_NombreCompañia");
+            ViewBag.cli_EstadoCivil = new SelectList(db.Vw_Gral_tbEstadosCiviles_DDL, "est_ID", "est_Descripcion");
+            ViewBag.depto = new SelectList(db.Vw_Gral_tbDepartamentos_DDL, "dep_ID", "dep_Descripcion");
             return View();
         }
     }

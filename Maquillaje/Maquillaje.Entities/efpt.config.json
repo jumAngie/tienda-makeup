@@ -74,11 +74,19 @@
          "ObjectType": 3
       },
       {
+         "Name": "[dbo].[Vw_Gral_tbDepartamentos_DDL]",
+         "ObjectType": 3
+      },
+      {
          "Name": "[dbo].[Vw_Gral_tbDepartamentos_LIST]",
          "ObjectType": 3
       },
       {
          "Name": "[dbo].[Vw_Gral_tbEmpleados_LIST]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[dbo].[Vw_Gral_tbEstadosCiviles_DDL]",
          "ObjectType": 3
       },
       {

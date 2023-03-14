@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.OData.Edm;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -20,13 +21,13 @@ namespace Maquillaje.WebUI.Models
 
         [Display(Name = "F. Nacimiento")]
 
-        public DateTime cli_FechaNacimiento { get; set; }
+        public Date cli_FechaNacimiento { get; set; }
 
         [Display(Name = "Sexo")]
 
         public string cli_sexo { get; set; }
 
-        [Display(Name = "Telèfono")]
+        [Display(Name = "Teléfono")]
 
         public string cli_Telefono { get; set; }
 
@@ -37,5 +38,10 @@ namespace Maquillaje.WebUI.Models
         [Display(Name = "Estado Civil")]
 
         public string cli_EstadoCivil { get; set; }
+
+        [Display(Name = "Apellido")]
+        public string cli_Apellido { get; set; }
+        [Display(Name = "Sexo")]
+        public string cli_Sexo { get; set; }
     }
 }

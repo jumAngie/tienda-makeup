@@ -1526,3 +1526,5 @@ C:\Users\LAB02\Documents\GitHub\tienda-makeup\Maquillaje\Maquillaje.WebUI\obj\De
 C:\Users\LAB02\Documents\GitHub\tienda-makeup\Maquillaje\Maquillaje.WebUI\obj\Debug\netcoreapp3.1\Razor\Views\Sucursal\Index.cshtml.g.cs
 C:\Users\LAB02\Documents\GitHub\tienda-makeup\Maquillaje\Maquillaje.WebUI\obj\Debug\netcoreapp3.1\Razor\Views\Usuarios\Index.cshtml.g.cs
 C:\Users\LAB02\Documents\GitHub\tienda-makeup\Maquillaje\Maquillaje.WebUI\obj\Debug\netcoreapp3.1\Razor\Views\Ventas\Index.cshtml.g.cs
+C:\Users\LAB02\Documents\GitHub\tienda-makeup\Maquillaje\Maquillaje.WebUI\bin\Debug\netcoreapp3.1\Microsoft.OData.Edm.dll
+C:\Users\LAB02\Documents\GitHub\tienda-makeup\Maquillaje\Maquillaje.WebUI\bin\Debug\netcoreapp3.1\System.Text.Encodings.Web.dll

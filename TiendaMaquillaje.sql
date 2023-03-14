@@ -1576,13 +1576,21 @@ SELECT cat_Id, cat_Descripcion FROM Maqui.tbCategorias
 
 --************************************************************************************************************
 GO
-CREATE OR ALTER VIEW Vw_Maqui_tbEstas_DDL
+CREATE OR ALTER VIEW Vw_Gral_tbEstadosCiviles_DDL
 AS
 
 
-SELECT '0' AS 'cat_Id', ' ---Seleccione una opción---' AS 'cat_Descripcion'
+SELECT '0' AS 'est_ID', ' ---Seleccione una opción---' AS 'est_Descripcion'
 UNION ALL
-SELECT cat_Id, cat_Descripcion FROM Maqui.tbCategorias
+SELECT est_ID, est_Descripcion FROM Gral.tbEstadosCiviles
 
 
 --************************************************************************************************************
+GO
+CREATE OR ALTER VIEW Vw_Gral_tbDepartamentos_DDL
+AS
+
+
+SELECT '0' AS 'dep_ID', ' ---Seleccione una opción---' AS 'dep_Descripcion'
+UNION ALL
+SELECT dep_ID, dep_Descripcion FROM Gral.tbDepartamentos

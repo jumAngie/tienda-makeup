@@ -20,8 +20,10 @@ namespace Maquillaje.DataAccess.Context
         }
 
         public virtual DbSet<Vw_Gral_tbClientes_LIST> Vw_Gral_tbClientes_LIST { get; set; }
+        public virtual DbSet<Vw_Gral_tbDepartamentos_DDL> Vw_Gral_tbDepartamentos_DDL { get; set; }
         public virtual DbSet<Vw_Gral_tbDepartamentos_LIST> Vw_Gral_tbDepartamentos_LIST { get; set; }
         public virtual DbSet<Vw_Gral_tbEmpleados_LIST> Vw_Gral_tbEmpleados_LIST { get; set; }
+        public virtual DbSet<Vw_Gral_tbEstadosCiviles_DDL> Vw_Gral_tbEstadosCiviles_DDL { get; set; }
         public virtual DbSet<Vw_Gral_tbEstadosCiviles_LIST> Vw_Gral_tbEstadosCiviles_LIST { get; set; }
         public virtual DbSet<Vw_Gral_tbMunicipios_LIST> Vw_Gral_tbMunicipios_LIST { get; set; }
         public virtual DbSet<Vw_Gral_tbSucursales_LIST> Vw_Gral_tbSucursales_LIST { get; set; }
@@ -90,6 +92,17 @@ namespace Maquillaje.DataAccess.Context
                     .IsUnicode(false);
             });
 
+            modelBuilder.Entity<Vw_Gral_tbDepartamentos_DDL>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToView("Vw_Gral_tbDepartamentos_DDL");
+
+                entity.Property(e => e.dep_Descripcion)
+                    .IsRequired()
+                    .HasMaxLength(250);
+            });
+
             modelBuilder.Entity<Vw_Gral_tbDepartamentos_LIST>(entity =>
             {
                 entity.HasNoKey();
@@ -144,6 +157,17 @@ namespace Maquillaje.DataAccess.Context
                 entity.Property(e => e.emp_Telefono)
                     .IsRequired()
                     .HasMaxLength(100);
+            });
+
+            modelBuilder.Entity<Vw_Gral_tbEstadosCiviles_DDL>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToView("Vw_Gral_tbEstadosCiviles_DDL");
+
+                entity.Property(e => e.est_Descripcion)
+                    .IsRequired()
+                    .HasMaxLength(250);
             });
 
             modelBuilder.Entity<Vw_Gral_tbEstadosCiviles_LIST>(entity =>
