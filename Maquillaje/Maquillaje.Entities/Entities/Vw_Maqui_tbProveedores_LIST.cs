@@ -8,6 +8,7 @@ namespace Maquillaje.Entities.Entities
 {
     public partial class Vw_Maqui_tbProveedores_LIST
     {
+        public int prv_ID { get; set; }
         public string prv_NombreCompañia { get; set; }
         public string prv_NombreContacto { get; set; }
         public string prv_TelefonoContacto { get; set; }

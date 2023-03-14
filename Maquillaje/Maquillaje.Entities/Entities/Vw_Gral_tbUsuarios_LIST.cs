@@ -11,5 +11,6 @@ namespace Maquillaje.Entities.Entities
         public int usu_ID { get; set; }
         public string usu_Usuario { get; set; }
         public string Empleado { get; set; }
+        public bool usu_EsAdmin { get; set; }
     }
 }
