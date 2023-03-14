@@ -35,7 +35,7 @@ namespace Maquillaje.WebUI.Models
 
         [Display(Name = "Municipio")]
 
-        public int emp_Municipio { get; set; }
+        public string emp_Municipio { get; set; }
 
         [Display(Name = "Correo")]
 
@@ -43,10 +43,10 @@ namespace Maquillaje.WebUI.Models
 
         [Display(Name = "Estados Civiles")]
 
-        public int emp_EstadoCivil { get; set; }
+        public string emp_EstadoCivil { get; set; }
 
         [Display(Name = "Sucursal")]
 
-        public int emp_Sucursal { get; set; }
+        public string emp_Sucursal { get; set; }
     }
 }

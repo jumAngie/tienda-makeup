@@ -1,0 +1,90 @@
+﻿@model IEnumerable<Maquillaje.WebUI.Models.EmpleadosViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.emp_ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.emp_Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.emp_DNI)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.emp_FechaNacimiento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.emp_Sexo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.emp_Telefono)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.emp_Correo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.emp_Municipio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.emp_EstadoCivil)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.emp_Sucursal)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.emp_ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.emp_Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.emp_DNI)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.emp_FechaNacimiento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.emp_Sexo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.emp_Telefono)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.emp_Correo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.emp_Municipio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.emp_EstadoCivil)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.emp_Sucursal)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.emp_ID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.emp_ID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.emp_ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

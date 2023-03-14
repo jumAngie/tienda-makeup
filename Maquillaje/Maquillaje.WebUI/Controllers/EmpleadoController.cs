@@ -14,6 +14,8 @@ namespace Maquillaje.WebUI.Controllers
         private readonly GeneralesService _generalesService;
         private readonly IMapper _mapper;
 
+
+
         public EmpleadoController(GeneralesService generalesService, IMapper mapper)
         {
             _generalesService = generalesService;
@@ -23,9 +25,12 @@ namespace Maquillaje.WebUI.Controllers
         [HttpGet("/Empleado/Listado")]
         public IActionResult Index()
         {
-            var listado = _generalesService.ListadoClientes();
+            var listado = _generalesService.ListadoEmpleados();
             var ListadoMapeado = _mapper.Map<IEnumerable<EmpleadosViewModel>>(listado);
             return View(ListadoMapeado);
         }
+
+
+
     }
 }

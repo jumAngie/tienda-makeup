@@ -1513,3 +1513,4 @@ C:\Users\LAB02\Desktop\tienda-makeup\Maquillaje\Maquillaje.WebUI\obj\Debug\netco
 C:\Users\LAB02\Desktop\tienda-makeup\Maquillaje\Maquillaje.WebUI\obj\Debug\netcoreapp3.1\Maquillaje.WebUI.csproj.CopyComplete
 C:\Users\LAB02\Desktop\tienda-makeup\Maquillaje\Maquillaje.WebUI\obj\Debug\netcoreapp3.1\Maquillaje.WebUI.genruntimeconfig.cache
 C:\Users\LAB02\Desktop\tienda-makeup\Maquillaje\Maquillaje.WebUI\obj\Debug\netcoreapp3.1\Razor\Views\Cliente\Index.cshtml.g.cs
+C:\Users\LAB02\Desktop\tienda-makeup\Maquillaje\Maquillaje.WebUI\obj\Debug\netcoreapp3.1\Razor\Views\Empleado\Index.cshtml.g.cs
