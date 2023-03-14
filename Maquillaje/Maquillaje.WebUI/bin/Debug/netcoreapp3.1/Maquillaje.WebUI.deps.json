@@ -39,7 +39,6 @@
           "Microsoft.EntityFrameworkCore.Design": "5.0.0",
           "Microsoft.EntityFrameworkCore.SqlServer": "5.0.0",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "3.1.5",
-          "bootstrap": "5.0.1",
           "Microsoft.AspNetCore.Antiforgery": "3.1.0.0",
           "Microsoft.AspNetCore.Authentication.Abstractions.Reference": "3.1.0.0",
           "Microsoft.AspNetCore.Authentication.Cookies": "3.1.0.0",
@@ -344,7 +343,6 @@
           "lib/netstandard2.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll": {}
         }
       },
-      "bootstrap/5.0.1": {},
       "Dapper/2.0.123": {
         "dependencies": {
           "System.Reflection.Emit.Lightweight": "4.7.0"
@@ -4112,13 +4110,6 @@
       "sha512": "sha512-szI4yeRIM7GWe9JyekW0dKYehPB0t6M+I55fPeCebN6PhS7zQZa0eG3bgOnOx+eP3caSNoE7KEJs2rk7MLsh8w==",
       "path": "automapper.extensions.microsoft.dependencyinjection/7.0.0",
       "hashPath": "automapper.extensions.microsoft.dependencyinjection.7.0.0.nupkg.sha512"
-    },
-    "bootstrap/5.0.1": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-Pynev+4iZ5wOhOnN6nnx2Q+GuGUXg+GksQHU2FqdWKFAX66w7IxYchoiAIJBzdnoNrBRZkMJjoL09UK1+13VEA==",
-      "path": "bootstrap/5.0.1",
-      "hashPath": "bootstrap.5.0.1.nupkg.sha512"
     },
     "Dapper/2.0.123": {
       "type": "package",
