@@ -15,6 +15,7 @@ namespace Maquillaje.WebUI.Extensions
             CreateMap<CategoriaViewModel, Vw_Maqui_tbCategorias_LIST>().ReverseMap();
             CreateMap<ProductosViewModel, Vw_Maqui_tbProductos_LIST>().ReverseMap();
             CreateMap<InventarioViewModel, Vw_Maqui_tbInventario_LIST>().ReverseMap();
+            CreateMap<ClientesViewModel, Vw_Gral_tbClientes_LIST>().ReverseMap();
         }
     }
 }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "3QdUkowLbIgj/o2eIzFSXpt4lAFEWj98JmtuG9XymQfsVv9WhYI8x7GDECWxrlUeQoKKh61kNHDJSR9O+G6qKw==",
+  "dgSpecHash": "Ni2HBKQFiysWON6L+dl1Iun9njjzbELG/2Q5o3VibOs8aCHEJONhvyFj0tepGzmCKTY5MdGT7csF1fXNCD4NUA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\LAB02\\Documents\\GitHub\\tienda-makeup\\Maquillaje\\Maquillaje.DataAccess\\Maquillaje.DataAccess.csproj",
+  "projectFilePath": "C:\\Users\\LAB02\\Desktop\\tienda-makeup\\Maquillaje\\Maquillaje.DataAccess\\Maquillaje.DataAccess.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\LAB02\\.nuget\\packages\\dapper\\2.0.123\\dapper.2.0.123.nupkg.sha512",
     "C:\\Users\\LAB02\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",

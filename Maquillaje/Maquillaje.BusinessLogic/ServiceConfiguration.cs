@@ -1,6 +1,7 @@
 ﻿using Maquillaje.BusinessLogic.Services;
 using Maquillaje.DataAccess;
 using Maquillaje.DataAccess.Repositories;
+using Maquillaje.DataAccess.Repositories.Gral;
 using Maquillaje.DataAccess.Repositories.Maqui;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -16,6 +17,8 @@ namespace Maquillaje.BusinessLogic
             services.AddScoped<CategoriaRepository>();
             services.AddScoped<ProductosRepository>();
             services.AddScoped<InventarioRepository>();
+            services.AddScoped<ClientesRepository>();
+
             TiendaContext.BuildConnectionString(connection);
         }
 

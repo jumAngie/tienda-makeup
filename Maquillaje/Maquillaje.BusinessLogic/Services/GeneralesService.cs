@@ -1,4 +1,5 @@
 ﻿using Maquillaje.DataAccess.Repositories;
+using Maquillaje.DataAccess.Repositories.Gral;
 using Maquillaje.DataAccess.Repositories.Maqui;
 using Maquillaje.Entities.Entities;
 using System;
@@ -14,12 +15,14 @@ namespace Maquillaje.BusinessLogic.Services
         private readonly CategoriaRepository _categoriaRepository;
         private readonly ProductosRepository _productosRepository;
         private readonly InventarioRepository _inventarioRepository;
+        private readonly ClientesRepository _clientesRepository;
 
-        public GeneralesService(CategoriaRepository categoriaRepository, ProductosRepository productosRepository, InventarioRepository inventarioRepository)
+        public GeneralesService(CategoriaRepository categoriaRepository, ProductosRepository productosRepository, InventarioRepository inventarioRepository, ClientesRepository clientesRepository)
         {
             _categoriaRepository = categoriaRepository;
             _productosRepository = productosRepository;
             _inventarioRepository = inventarioRepository;
+            _clientesRepository = clientesRepository;
         }
 
         #region Categorias
@@ -75,5 +78,24 @@ namespace Maquillaje.BusinessLogic.Services
         }
 
         #endregion
+
+
+        #region Clientes
+        public IEnumerable<Vw_Gral_tbClientes_LIST> ListadoClientes()
+        {
+            try
+            {
+                var result = _clientesRepository.List();
+                return result;
+            }
+            catch (Exception)
+            {
+
+                return Enumerable.Empty<Vw_Gral_tbClientes_LIST>();
+            }
+        }
+
+        #endregion
+
     }
 }

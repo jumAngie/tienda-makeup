@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "fv7jdLv784RzTvaaf1RwRI/cUEyLTOYOPeogMUFE0PcsQljeL05jKsm6empvnALWyR/X3GdKN2UVxVFySSWCYQ==",
+  "dgSpecHash": "Kivvh1WvjKehLZ6dOFcg1L7NKdizKPWJZTqaiCYY7CRctQ0qFgr5BscDtCesDb0dA0y1sX52zIef6vgqTvpfSA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\LAB02\\Documents\\GitHub\\tienda-makeup\\Maquillaje\\Maquillaje.BusinessLogic\\Maquillaje.BusinessLogic.csproj",
+  "projectFilePath": "C:\\Users\\LAB02\\Desktop\\tienda-makeup\\Maquillaje\\Maquillaje.BusinessLogic\\Maquillaje.BusinessLogic.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\LAB02\\.nuget\\packages\\dapper\\2.0.123\\dapper.2.0.123.nupkg.sha512",
     "C:\\Users\\LAB02\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",

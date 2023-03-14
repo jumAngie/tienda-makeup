@@ -16,8 +16,4 @@
     <ProjectReference Include="..\Maquillaje.Entities\Maquillaje.Entities.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Repositories\Gral\" />
-  </ItemGroup>
-
 </Project>
