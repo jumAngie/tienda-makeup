@@ -37,7 +37,6 @@ C:\Users\LAB01\OneDrive\Escritorio\Proyecto_Final\sistema-maquillaje\Maquillaje\
 C:\Users\LAB01\OneDrive\Escritorio\Proyecto_Final\sistema-maquillaje\Maquillaje\Maquillaje.DataAccess\obj\Debug\netcoreapp3.1\Maquillaje.DataAccess.csproj.CopyComplete
 C:\Users\LAB01\OneDrive\Escritorio\Proyecto_Final\sistema-maquillaje\Maquillaje\Maquillaje.DataAccess\obj\Debug\netcoreapp3.1\Maquillaje.DataAccess.dll
 C:\Users\LAB01\OneDrive\Escritorio\Proyecto_Final\sistema-maquillaje\Maquillaje\Maquillaje.DataAccess\obj\Debug\netcoreapp3.1\Maquillaje.DataAccess.pdb
-<<<<<<< HEAD
 C:\Users\LAB02\Desktop\sistema-maquillaje\Maquillaje\Maquillaje.DataAccess\bin\Debug\netcoreapp3.1\Maquillaje.DataAccess.deps.json
 C:\Users\LAB02\Desktop\sistema-maquillaje\Maquillaje\Maquillaje.DataAccess\bin\Debug\netcoreapp3.1\Maquillaje.DataAccess.dll
 C:\Users\LAB02\Desktop\sistema-maquillaje\Maquillaje\Maquillaje.DataAccess\bin\Debug\netcoreapp3.1\Maquillaje.DataAccess.pdb
@@ -51,7 +50,6 @@ C:\Users\LAB02\Desktop\sistema-maquillaje\Maquillaje\Maquillaje.DataAccess\obj\D
 C:\Users\LAB02\Desktop\sistema-maquillaje\Maquillaje\Maquillaje.DataAccess\obj\Debug\netcoreapp3.1\Maquillaje.DataAccess.csproj.CopyComplete
 C:\Users\LAB02\Desktop\sistema-maquillaje\Maquillaje\Maquillaje.DataAccess\obj\Debug\netcoreapp3.1\Maquillaje.DataAccess.dll
 C:\Users\LAB02\Desktop\sistema-maquillaje\Maquillaje\Maquillaje.DataAccess\obj\Debug\netcoreapp3.1\Maquillaje.DataAccess.pdb
-=======
 C:\Users\LAB01\OneDrive\Escritorio\sistema-maquillaje\Maquillaje\Maquillaje.DataAccess\bin\Debug\netcoreapp3.1\Maquillaje.DataAccess.deps.json
 C:\Users\LAB01\OneDrive\Escritorio\sistema-maquillaje\Maquillaje\Maquillaje.DataAccess\bin\Debug\netcoreapp3.1\Maquillaje.DataAccess.dll
 C:\Users\LAB01\OneDrive\Escritorio\sistema-maquillaje\Maquillaje\Maquillaje.DataAccess\bin\Debug\netcoreapp3.1\Maquillaje.DataAccess.pdb
@@ -65,4 +63,16 @@ C:\Users\LAB01\OneDrive\Escritorio\sistema-maquillaje\Maquillaje\Maquillaje.Data
 C:\Users\LAB01\OneDrive\Escritorio\sistema-maquillaje\Maquillaje\Maquillaje.DataAccess\obj\Debug\netcoreapp3.1\Maquillaje.DataAccess.csproj.CopyComplete
 C:\Users\LAB01\OneDrive\Escritorio\sistema-maquillaje\Maquillaje\Maquillaje.DataAccess\obj\Debug\netcoreapp3.1\Maquillaje.DataAccess.dll
 C:\Users\LAB01\OneDrive\Escritorio\sistema-maquillaje\Maquillaje\Maquillaje.DataAccess\obj\Debug\netcoreapp3.1\Maquillaje.DataAccess.pdb
->>>>>>> 45e3f989dd7242ad777325fee6b39cdb1bcabada
+C:\Users\Usuario\Documents\GitHub\tienda-makeup\Maquillaje\Maquillaje.DataAccess\bin\Debug\netcoreapp3.1\Maquillaje.DataAccess.deps.json
+C:\Users\Usuario\Documents\GitHub\tienda-makeup\Maquillaje\Maquillaje.DataAccess\bin\Debug\netcoreapp3.1\Maquillaje.DataAccess.dll
+C:\Users\Usuario\Documents\GitHub\tienda-makeup\Maquillaje\Maquillaje.DataAccess\bin\Debug\netcoreapp3.1\Maquillaje.DataAccess.pdb
+C:\Users\Usuario\Documents\GitHub\tienda-makeup\Maquillaje\Maquillaje.DataAccess\bin\Debug\netcoreapp3.1\Maquillaje.Entities.dll
+C:\Users\Usuario\Documents\GitHub\tienda-makeup\Maquillaje\Maquillaje.DataAccess\bin\Debug\netcoreapp3.1\Maquillaje.Entities.pdb
+C:\Users\Usuario\Documents\GitHub\tienda-makeup\Maquillaje\Maquillaje.DataAccess\obj\Debug\netcoreapp3.1\Maquillaje.DataAccess.csproj.AssemblyReference.cache
+C:\Users\Usuario\Documents\GitHub\tienda-makeup\Maquillaje\Maquillaje.DataAccess\obj\Debug\netcoreapp3.1\Maquillaje.DataAccess.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Usuario\Documents\GitHub\tienda-makeup\Maquillaje\Maquillaje.DataAccess\obj\Debug\netcoreapp3.1\Maquillaje.DataAccess.AssemblyInfoInputs.cache
+C:\Users\Usuario\Documents\GitHub\tienda-makeup\Maquillaje\Maquillaje.DataAccess\obj\Debug\netcoreapp3.1\Maquillaje.DataAccess.AssemblyInfo.cs
+C:\Users\Usuario\Documents\GitHub\tienda-makeup\Maquillaje\Maquillaje.DataAccess\obj\Debug\netcoreapp3.1\Maquillaje.DataAccess.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\Documents\GitHub\tienda-makeup\Maquillaje\Maquillaje.DataAccess\obj\Debug\netcoreapp3.1\Maquillaje.DataAccess.csproj.CopyComplete
+C:\Users\Usuario\Documents\GitHub\tienda-makeup\Maquillaje\Maquillaje.DataAccess\obj\Debug\netcoreapp3.1\Maquillaje.DataAccess.dll
+C:\Users\Usuario\Documents\GitHub\tienda-makeup\Maquillaje\Maquillaje.DataAccess\obj\Debug\netcoreapp3.1\Maquillaje.DataAccess.pdb

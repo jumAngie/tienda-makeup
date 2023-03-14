@@ -28,7 +28,6 @@ C:\Users\LAB01\OneDrive\Escritorio\Proyecto_Final\sistema-maquillaje\Maquillaje\
 C:\Users\LAB01\OneDrive\Escritorio\Proyecto_Final\sistema-maquillaje\Maquillaje\Maquillaje.Entities\obj\Debug\netcoreapp3.1\Maquillaje.Entities.csproj.CoreCompileInputs.cache
 C:\Users\LAB01\OneDrive\Escritorio\Proyecto_Final\sistema-maquillaje\Maquillaje\Maquillaje.Entities\obj\Debug\netcoreapp3.1\Maquillaje.Entities.dll
 C:\Users\LAB01\OneDrive\Escritorio\Proyecto_Final\sistema-maquillaje\Maquillaje\Maquillaje.Entities\obj\Debug\netcoreapp3.1\Maquillaje.Entities.pdb
-<<<<<<< HEAD
 C:\Users\LAB02\Desktop\sistema-maquillaje\Maquillaje\Maquillaje.Entities\bin\Debug\netcoreapp3.1\Maquillaje.Entities.deps.json
 C:\Users\LAB02\Desktop\sistema-maquillaje\Maquillaje\Maquillaje.Entities\bin\Debug\netcoreapp3.1\Maquillaje.Entities.dll
 C:\Users\LAB02\Desktop\sistema-maquillaje\Maquillaje\Maquillaje.Entities\bin\Debug\netcoreapp3.1\Maquillaje.Entities.pdb
@@ -39,7 +38,6 @@ C:\Users\LAB02\Desktop\sistema-maquillaje\Maquillaje\Maquillaje.Entities\obj\Deb
 C:\Users\LAB02\Desktop\sistema-maquillaje\Maquillaje\Maquillaje.Entities\obj\Debug\netcoreapp3.1\Maquillaje.Entities.csproj.CoreCompileInputs.cache
 C:\Users\LAB02\Desktop\sistema-maquillaje\Maquillaje\Maquillaje.Entities\obj\Debug\netcoreapp3.1\Maquillaje.Entities.dll
 C:\Users\LAB02\Desktop\sistema-maquillaje\Maquillaje\Maquillaje.Entities\obj\Debug\netcoreapp3.1\Maquillaje.Entities.pdb
-=======
 C:\Users\LAB01\OneDrive\Escritorio\sistema-maquillaje\Maquillaje\Maquillaje.Entities\bin\Debug\netcoreapp3.1\Maquillaje.Entities.deps.json
 C:\Users\LAB01\OneDrive\Escritorio\sistema-maquillaje\Maquillaje\Maquillaje.Entities\bin\Debug\netcoreapp3.1\Maquillaje.Entities.dll
 C:\Users\LAB01\OneDrive\Escritorio\sistema-maquillaje\Maquillaje\Maquillaje.Entities\bin\Debug\netcoreapp3.1\Maquillaje.Entities.pdb
@@ -50,4 +48,13 @@ C:\Users\LAB01\OneDrive\Escritorio\sistema-maquillaje\Maquillaje\Maquillaje.Enti
 C:\Users\LAB01\OneDrive\Escritorio\sistema-maquillaje\Maquillaje\Maquillaje.Entities\obj\Debug\netcoreapp3.1\Maquillaje.Entities.csproj.CoreCompileInputs.cache
 C:\Users\LAB01\OneDrive\Escritorio\sistema-maquillaje\Maquillaje\Maquillaje.Entities\obj\Debug\netcoreapp3.1\Maquillaje.Entities.dll
 C:\Users\LAB01\OneDrive\Escritorio\sistema-maquillaje\Maquillaje\Maquillaje.Entities\obj\Debug\netcoreapp3.1\Maquillaje.Entities.pdb
->>>>>>> 45e3f989dd7242ad777325fee6b39cdb1bcabada
+C:\Users\Usuario\Documents\GitHub\tienda-makeup\Maquillaje\Maquillaje.Entities\bin\Debug\netcoreapp3.1\Maquillaje.Entities.deps.json
+C:\Users\Usuario\Documents\GitHub\tienda-makeup\Maquillaje\Maquillaje.Entities\bin\Debug\netcoreapp3.1\Maquillaje.Entities.dll
+C:\Users\Usuario\Documents\GitHub\tienda-makeup\Maquillaje\Maquillaje.Entities\bin\Debug\netcoreapp3.1\Maquillaje.Entities.pdb
+C:\Users\Usuario\Documents\GitHub\tienda-makeup\Maquillaje\Maquillaje.Entities\obj\Debug\netcoreapp3.1\Maquillaje.Entities.csproj.AssemblyReference.cache
+C:\Users\Usuario\Documents\GitHub\tienda-makeup\Maquillaje\Maquillaje.Entities\obj\Debug\netcoreapp3.1\Maquillaje.Entities.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Usuario\Documents\GitHub\tienda-makeup\Maquillaje\Maquillaje.Entities\obj\Debug\netcoreapp3.1\Maquillaje.Entities.AssemblyInfoInputs.cache
+C:\Users\Usuario\Documents\GitHub\tienda-makeup\Maquillaje\Maquillaje.Entities\obj\Debug\netcoreapp3.1\Maquillaje.Entities.AssemblyInfo.cs
+C:\Users\Usuario\Documents\GitHub\tienda-makeup\Maquillaje\Maquillaje.Entities\obj\Debug\netcoreapp3.1\Maquillaje.Entities.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\Documents\GitHub\tienda-makeup\Maquillaje\Maquillaje.Entities\obj\Debug\netcoreapp3.1\Maquillaje.Entities.dll
+C:\Users\Usuario\Documents\GitHub\tienda-makeup\Maquillaje\Maquillaje.Entities\obj\Debug\netcoreapp3.1\Maquillaje.Entities.pdb
