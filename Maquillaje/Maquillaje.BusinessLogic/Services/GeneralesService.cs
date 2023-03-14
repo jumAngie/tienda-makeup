@@ -16,13 +16,16 @@ namespace Maquillaje.BusinessLogic.Services
         private readonly ProductosRepository _productosRepository;
         private readonly InventarioRepository _inventarioRepository;
         private readonly ClientesRepository _clientesRepository;
+        private readonly EmpleadosRepository _empleadosRepository;
 
-        public GeneralesService(CategoriaRepository categoriaRepository, ProductosRepository productosRepository, InventarioRepository inventarioRepository, ClientesRepository clientesRepository)
+
+        public GeneralesService(CategoriaRepository categoriaRepository, ProductosRepository productosRepository, InventarioRepository inventarioRepository, ClientesRepository clientesRepository, EmpleadosRepository empleadosRepository)
         {
             _categoriaRepository = categoriaRepository;
             _productosRepository = productosRepository;
             _inventarioRepository = inventarioRepository;
             _clientesRepository = clientesRepository;
+            _empleadosRepository = empleadosRepository;
         }
 
         #region Categorias
@@ -92,6 +95,26 @@ namespace Maquillaje.BusinessLogic.Services
             {
 
                 return Enumerable.Empty<Vw_Gral_tbClientes_LIST>();
+            }
+        }
+
+        #endregion
+
+
+
+        #region Empleados
+
+        public IEnumerable<Vw_Gral_tbEmpleados_LIST> ListadoEmpleados()
+        {
+            try
+            {
+                var result = _empleadosRepository.List();
+                return result;
+            }
+            catch (Exception)
+            {
+
+                return Enumerable.Empty<Vw_Gral_tbEmpleados_LIST>();
             }
         }
 
