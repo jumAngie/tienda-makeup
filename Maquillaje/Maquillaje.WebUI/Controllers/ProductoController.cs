@@ -28,5 +28,12 @@ namespace Maquillaje.WebUI.Controllers
             var listadoMapeado = _mapper.Map<IEnumerable<ProductosViewModel>>(listado);
             return View(listadoMapeado);
         }
+
+        [HttpGet("/Producto/Create")]
+
+        public IActionResult Create()
+        {
+            return View();
+        }
     }
 }
