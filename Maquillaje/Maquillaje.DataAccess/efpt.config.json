@@ -98,6 +98,10 @@
          "ObjectType": 3
       },
       {
+         "Name": "[dbo].[Vw_Maqui_tbCategorias_DDL]",
+         "ObjectType": 3
+      },
+      {
          "Name": "[dbo].[Vw_Maqui_tbCategorias_LIST]",
          "ObjectType": 3
       },
@@ -110,7 +114,15 @@
          "ObjectType": 3
       },
       {
+         "Name": "[dbo].[Vw_Maqui_tbProductos_DDL]",
+         "ObjectType": 3
+      },
+      {
          "Name": "[dbo].[Vw_Maqui_tbProductos_LIST]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[dbo].[Vw_Maqui_tbProveedores_DDL]",
          "ObjectType": 3
       },
       {

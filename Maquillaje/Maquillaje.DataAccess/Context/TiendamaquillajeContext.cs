@@ -26,10 +26,13 @@ namespace Maquillaje.DataAccess.Context
         public virtual DbSet<Vw_Gral_tbMunicipios_LIST> Vw_Gral_tbMunicipios_LIST { get; set; }
         public virtual DbSet<Vw_Gral_tbSucursales_LIST> Vw_Gral_tbSucursales_LIST { get; set; }
         public virtual DbSet<Vw_Gral_tbUsuarios_LIST> Vw_Gral_tbUsuarios_LIST { get; set; }
+        public virtual DbSet<Vw_Maqui_tbCategorias_DDL> Vw_Maqui_tbCategorias_DDL { get; set; }
         public virtual DbSet<Vw_Maqui_tbCategorias_LIST> Vw_Maqui_tbCategorias_LIST { get; set; }
         public virtual DbSet<Vw_Maqui_tbInventario_LIST> Vw_Maqui_tbInventario_LIST { get; set; }
         public virtual DbSet<Vw_Maqui_tbMetodoPago_LIST> Vw_Maqui_tbMetodoPago_LIST { get; set; }
+        public virtual DbSet<Vw_Maqui_tbProductos_DDL> Vw_Maqui_tbProductos_DDL { get; set; }
         public virtual DbSet<Vw_Maqui_tbProductos_LIST> Vw_Maqui_tbProductos_LIST { get; set; }
+        public virtual DbSet<Vw_Maqui_tbProveedores_DDL> Vw_Maqui_tbProveedores_DDL { get; set; }
         public virtual DbSet<Vw_Maqui_tbProveedores_LIST> Vw_Maqui_tbProveedores_LIST { get; set; }
         public virtual DbSet<Vw_Maqui_tbVentasDetalle_LIST> Vw_Maqui_tbVentasDetalle_LIST { get; set; }
         public virtual DbSet<Vw_Maqui_tbVentas_LIST> Vw_Maqui_tbVentas_LIST { get; set; }
@@ -201,6 +204,17 @@ namespace Maquillaje.DataAccess.Context
                     .HasMaxLength(100);
             });
 
+            modelBuilder.Entity<Vw_Maqui_tbCategorias_DDL>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToView("Vw_Maqui_tbCategorias_DDL");
+
+                entity.Property(e => e.cat_Descripcion)
+                    .IsRequired()
+                    .HasMaxLength(100);
+            });
+
             modelBuilder.Entity<Vw_Maqui_tbCategorias_LIST>(entity =>
             {
                 entity.HasNoKey();
@@ -238,6 +252,17 @@ namespace Maquillaje.DataAccess.Context
                 entity.Property(e => e.met_Id).ValueGeneratedOnAdd();
             });
 
+            modelBuilder.Entity<Vw_Maqui_tbProductos_DDL>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToView("Vw_Maqui_tbProductos_DDL");
+
+                entity.Property(e => e.pro_Nombre)
+                    .IsRequired()
+                    .HasMaxLength(100);
+            });
+
             modelBuilder.Entity<Vw_Maqui_tbProductos_LIST>(entity =>
             {
                 entity.HasNoKey();
@@ -265,6 +290,17 @@ namespace Maquillaje.DataAccess.Context
                 entity.Property(e => e.pro_StockInicial)
                     .IsRequired()
                     .HasMaxLength(100);
+
+                entity.Property(e => e.prv_NombreCompañia)
+                    .IsRequired()
+                    .HasMaxLength(250);
+            });
+
+            modelBuilder.Entity<Vw_Maqui_tbProveedores_DDL>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToView("Vw_Maqui_tbProveedores_DDL");
 
                 entity.Property(e => e.prv_NombreCompañia)
                     .IsRequired()
