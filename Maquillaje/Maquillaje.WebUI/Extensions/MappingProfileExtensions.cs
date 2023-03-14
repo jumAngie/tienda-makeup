@@ -1,0 +1,20 @@
+﻿using AutoMapper;
+using Maquillaje.Entities.Entities;
+using Maquillaje.WebUI.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace Maquillaje.WebUI.Extensions
+{
+    public class MappingProfileExtensions : Profile
+    {
+        public MappingProfileExtensions()
+        {
+            CreateMap<CategoriaViewModel, tbCategorias>().ReverseMap();
+            CreateMap<ProductosViewModel, Vw_Maqui_tbProductos_LIST>().ReverseMap();
+            CreateMap<InventarioViewModel, Vw_Maqui_tbInventario_LIST>().ReverseMap();
+        }
+    }
+}

@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "8/RKlymbwYgJJeZBZpbqU/ZJddLmYHaVYhz6BktubpsqXn7mEwOTL2dwH303SBxXrQAX+f0KbPvDiX30sZdZHw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\LAB02\\Desktop\\sistema-maquillaje\\Maquillaje\\Maquillaje.Entities\\Maquillaje.Entities.csproj",
+  "expectedPackageFiles": [],
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problema al leer el archivo de caché C:\\Users\\LAB02\\Desktop\\sistema-maquillaje\\Maquillaje\\Maquillaje.Entities\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
+}
