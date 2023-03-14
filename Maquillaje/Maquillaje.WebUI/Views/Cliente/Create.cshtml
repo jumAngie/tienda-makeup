@@ -1,0 +1,72 @@
+﻿@model Maquillaje.Entities.Entities.tbClientes
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="card">
+    <div class="card-header">
+        <h1>Create</h1>
+
+        <h4>tbClientes</h4>
+    </div>
+    <form asp-action="Create">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="cli_Nombre" class="control-label"></label>
+                        <input asp-for="cli_Nombre" class="form-control" />
+                        <span asp-validation-for="cli_Nombre" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="cli_Apellido" class="control-label"></label>
+                        <input asp-for="cli_Apellido" class="form-control" />
+                        <span asp-validation-for="cli_Apellido" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="cli_DNI" class="control-label"></label>
+                        <input asp-for="cli_DNI" class="form-control" />
+                        <span asp-validation-for="cli_DNI" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="cli_FechaNacimiento" class="control-label"></label>
+                        <input asp-for="cli_FechaNacimiento" class="form-control" />
+                        <span asp-validation-for="cli_FechaNacimiento" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="cli_Sexo" class="control-label"></label>
+                        <input asp-for="cli_Sexo" class="form-control" />
+                        <span asp-validation-for="cli_Sexo" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="cli_Telefono" class="control-label"></label>
+                        <input asp-for="cli_Telefono" class="form-control" />
+                        <span asp-validation-for="cli_Telefono" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="cli_Municipio" class="control-label"></label>
+                        <select asp-for="cli_Municipio" class="form-control" asp-items="ViewBag.cli_Municipio"></select>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="cli_EstadoCivil" class="control-label"></label>
+                        <select asp-for="cli_EstadoCivil" class="form-control" asp-items="ViewBag.cli_EstadoCivil"></select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <div class="text-center">
+                <input class="btn btn-primary" type="submit" value="Guardar" />
+                <a class="btn btn-dark" asp-action="Index">Back to List</a>
+            </div>
+        </div>
+    </form>
+</div>
+
+

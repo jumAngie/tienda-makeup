@@ -1059,7 +1059,11 @@ AS
 SELECT
 		usu.usu_ID,
 		usu.usu_Usuario,
-		emple.emp_Nombre + ' ' + emple.emp_Apellido AS 'Empleado'
+		emple.emp_Nombre + ' ' + emple.emp_Apellido AS 'Empleado',
+		CASE usu.usu_EsAdmin
+		WHEN 1 THEN 'Sí'
+		WHEN 0 THEN 'No'
+		END AS 'Es Admin'
 		FROM Gral.tbUsuarios usu INNER JOIN Gral.tbEmpleados emple 
 		ON	 usu.usu_empID = emple.emp_ID
 		WHERE usu.usu_Estado = 1
