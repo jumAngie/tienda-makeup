@@ -17,15 +17,30 @@ namespace Maquillaje.BusinessLogic.Services
         private readonly InventarioRepository _inventarioRepository;
         private readonly ClientesRepository _clientesRepository;
         private readonly EmpleadosRepository _empleadosRepository;
+        private readonly SucursalesRepository _sucursalesRepository;
+        private readonly MunicipioRepository _municipiosRepository;
+        private readonly DepartamentosRepository _departamentosRepository;
+        private readonly EstadosCivilesRepository _estadosCivilesRepository;
+        private readonly MetodoPagoRepository _metodoPagoRepository;
+        private readonly ProveedoresRepository _proveedoresRepository;
+        private readonly VentasRepository _ventasRepository;
+        private readonly UsuariosRepository _usuariosRepository;
 
-
-        public GeneralesService(CategoriaRepository categoriaRepository, ProductosRepository productosRepository, InventarioRepository inventarioRepository, ClientesRepository clientesRepository, EmpleadosRepository empleadosRepository)
+        public GeneralesService(CategoriaRepository categoriaRepository, ProductosRepository productosRepository, InventarioRepository inventarioRepository, ClientesRepository clientesRepository, EmpleadosRepository empleadosRepository, SucursalesRepository sucursalesRepository, MunicipioRepository municipioRepository, DepartamentosRepository departamentosRepository, EstadosCivilesRepository estadosCivilesRepository, MetodoPagoRepository metodoPagoRepository, ProveedoresRepository proveedoresRepository, VentasRepository ventasRepository, UsuariosRepository usuariosRepository) 
         {
             _categoriaRepository = categoriaRepository;
             _productosRepository = productosRepository;
             _inventarioRepository = inventarioRepository;
             _clientesRepository = clientesRepository;
             _empleadosRepository = empleadosRepository;
+            _sucursalesRepository = sucursalesRepository;
+            _municipiosRepository = municipioRepository;
+            _departamentosRepository = departamentosRepository;
+            _estadosCivilesRepository = estadosCivilesRepository;
+            _metodoPagoRepository = metodoPagoRepository;
+            _proveedoresRepository = proveedoresRepository;
+            _ventasRepository = ventasRepository;
+            _usuariosRepository = usuariosRepository;
         }
 
         #region Categorias
@@ -58,7 +73,6 @@ namespace Maquillaje.BusinessLogic.Services
         }
 
         #endregion
-
 
         #region Productos
 
@@ -109,7 +123,6 @@ namespace Maquillaje.BusinessLogic.Services
 
         #endregion
 
-
         #region Clientes
         public IEnumerable<Vw_Gral_tbClientes_LIST> ListadoClientes()
         {
@@ -126,8 +139,6 @@ namespace Maquillaje.BusinessLogic.Services
         }
 
         #endregion
-
-
 
         #region Empleados
 
@@ -147,5 +158,149 @@ namespace Maquillaje.BusinessLogic.Services
 
         #endregion
 
+        #region Sucursales
+
+        public IEnumerable<Vw_Gral_tbSucursales_LIST> ListadoSucursales()
+        {
+            try
+            {
+                var result = _sucursalesRepository.List();
+                return result;
+            }
+            catch (Exception)
+            {
+
+                return Enumerable.Empty<Vw_Gral_tbSucursales_LIST>();
+            }
+        }
+
+        #endregion
+
+        #region Municipio
+
+        public IEnumerable<Vw_Gral_tbMunicipios_LIST> ListadoMunicipios()
+        {
+            try
+            {
+                var result = _municipiosRepository.List();
+                return result;
+            }
+            catch (Exception)
+            {
+
+                return Enumerable.Empty<Vw_Gral_tbMunicipios_LIST>();
+            }
+        }
+
+        #endregion
+
+        #region Departamentos
+
+        public IEnumerable<Vw_Gral_tbDepartamentos_LIST> ListadoDepartamentos()
+        {
+            try
+            {
+                var result = _departamentosRepository.List();
+                return result;
+            }
+            catch (Exception)
+            {
+
+                return Enumerable.Empty<Vw_Gral_tbDepartamentos_LIST>();
+            }
+        }
+
+        #endregion
+
+        #region EstadosCiviles
+
+        public IEnumerable<Vw_Gral_tbEstadosCiviles_LIST> ListadoEstadosCiviles()
+        {
+            try
+            {
+                var result = _estadosCivilesRepository.List();
+                return result;
+            }
+            catch (Exception)
+            {
+
+                return Enumerable.Empty<Vw_Gral_tbEstadosCiviles_LIST>();
+            }
+        }
+
+        #endregion
+
+        #region MetodoPago
+
+        public IEnumerable<Vw_Maqui_tbMetodoPago_LIST> ListadoMetodoPago()
+        {
+            try
+            {
+                var result = _metodoPagoRepository.List();
+                return result;
+            }
+            catch (Exception)
+            {
+
+                return Enumerable.Empty<Vw_Maqui_tbMetodoPago_LIST>();
+            }
+        }
+
+        #endregion
+
+        #region Proveedores
+
+        public IEnumerable<Vw_Maqui_tbProveedores_LIST> ListadoProveedores()
+        {
+            try
+            {
+                var result = _proveedoresRepository.List();
+                return result;
+            }
+            catch (Exception)
+            {
+
+                return Enumerable.Empty<Vw_Maqui_tbProveedores_LIST>();
+            }
+        }
+
+        #endregion
+
+        #region Ventas
+
+        public IEnumerable<Vw_Maqui_tbVentas_LIST> ListadoVentas()
+        {
+            try
+            {
+                var result = _ventasRepository.List();
+                return result;
+            }
+            catch (Exception)
+            {
+
+                return Enumerable.Empty<Vw_Maqui_tbVentas_LIST>();
+            }
+        }
+
+        #endregion
+
+        #region Usuarios
+
+        public IEnumerable<Vw_Gral_tbUsuarios_LIST> ListadoUsuarios()
+        {
+            try
+            {
+                var result = _usuariosRepository.List();
+                return result;
+            }
+            catch (Exception)
+            {
+
+                return Enumerable.Empty<Vw_Gral_tbUsuarios_LIST>();
+            }
+        }
+
+        #endregion
     }
 }
+

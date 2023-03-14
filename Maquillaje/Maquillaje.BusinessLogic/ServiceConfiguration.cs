@@ -19,6 +19,15 @@ namespace Maquillaje.BusinessLogic
             services.AddScoped<InventarioRepository>();
             services.AddScoped<ClientesRepository>();
             services.AddScoped<EmpleadosRepository>();
+            services.AddScoped<SucursalesRepository>();
+            services.AddScoped<MunicipioRepository>();
+            services.AddScoped<DepartamentosRepository>();
+            services.AddScoped<EstadosCivilesRepository>();
+            services.AddScoped<MetodoPagoRepository>();
+            services.AddScoped<ProveedoresRepository>();
+            services.AddScoped<VentasRepository>();
+            services.AddScoped<UsuariosRepository>();
+
 
             TiendaContext.BuildConnectionString(connection);
         }
