@@ -8,6 +8,7 @@ namespace Maquillaje.Entities.Entities
 {
     public partial class Vw_Maqui_tbProductos_LIST
     {
+        public int pro_Id { get; set; }
         public string pro_Codigo { get; set; }
         public string pro_Nombre { get; set; }
         public string pro_StockInicial { get; set; }
