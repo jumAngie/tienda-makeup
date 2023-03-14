@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "3QdUkowLbIgj/o2eIzFSXpt4lAFEWj98JmtuG9XymQfsVv9WhYI8x7GDECWxrlUeQoKKh61kNHDJSR9O+G6qKw==",
+  "dgSpecHash": "u7+4SP6A2f2jt9v9FqGkxOoDrkNYSjAvkptoO5NPfVKfiMWqpKsi+rXZSBnlXzpGcqULJmiLHw3/7y17pAP4pg==",
   "success": true,
   "projectFilePath": "C:\\Users\\LAB02\\Documents\\GitHub\\tienda-makeup\\Maquillaje\\Maquillaje.DataAccess\\Maquillaje.DataAccess.csproj",
   "expectedPackageFiles": [
@@ -68,6 +68,7 @@
     "C:\\Users\\LAB02\\.nuget\\packages\\system.componentmodel.primitives\\4.3.0\\system.componentmodel.primitives.4.3.0.nupkg.sha512",
     "C:\\Users\\LAB02\\.nuget\\packages\\system.componentmodel.typeconverter\\4.3.0\\system.componentmodel.typeconverter.4.3.0.nupkg.sha512",
     "C:\\Users\\LAB02\\.nuget\\packages\\system.configuration.configurationmanager\\4.7.0\\system.configuration.configurationmanager.4.7.0.nupkg.sha512",
+    "C:\\Users\\LAB02\\.nuget\\packages\\system.data.common\\4.3.0\\system.data.common.4.3.0.nupkg.sha512",
     "C:\\Users\\LAB02\\.nuget\\packages\\system.diagnostics.debug\\4.3.0\\system.diagnostics.debug.4.3.0.nupkg.sha512",
     "C:\\Users\\LAB02\\.nuget\\packages\\system.diagnostics.diagnosticsource\\5.0.0\\system.diagnostics.diagnosticsource.5.0.0.nupkg.sha512",
     "C:\\Users\\LAB02\\.nuget\\packages\\system.diagnostics.tools\\4.3.0\\system.diagnostics.tools.4.3.0.nupkg.sha512",

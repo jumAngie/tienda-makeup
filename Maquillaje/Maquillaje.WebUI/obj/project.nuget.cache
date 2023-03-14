@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "b1aFwmQ8w5zKYp+DeumByyaPf2HNyakt4b0M40bvo9TicDRSgun4l8UCFfQU/oMX8GEDjyuian35aaD9jurtag==",
+  "dgSpecHash": "yUVdgia/N3aMrRAn7g51xAo425mwJPbv124DBCTs4DfTXRFOQo0y38RLVa1b3N0xJuQAZZ3cOGmdsGSf31sX0A==",
   "success": true,
   "projectFilePath": "C:\\Users\\LAB02\\Documents\\GitHub\\tienda-makeup\\Maquillaje\\Maquillaje.WebUI\\Maquillaje.WebUI.csproj",
   "expectedPackageFiles": [
@@ -116,6 +116,7 @@
     "C:\\Users\\LAB02\\.nuget\\packages\\system.composition.typedparts\\1.0.31\\system.composition.typedparts.1.0.31.nupkg.sha512",
     "C:\\Users\\LAB02\\.nuget\\packages\\system.configuration.configurationmanager\\4.7.0\\system.configuration.configurationmanager.4.7.0.nupkg.sha512",
     "C:\\Users\\LAB02\\.nuget\\packages\\system.console\\4.3.0\\system.console.4.3.0.nupkg.sha512",
+    "C:\\Users\\LAB02\\.nuget\\packages\\system.data.common\\4.3.0\\system.data.common.4.3.0.nupkg.sha512",
     "C:\\Users\\LAB02\\.nuget\\packages\\system.diagnostics.debug\\4.3.0\\system.diagnostics.debug.4.3.0.nupkg.sha512",
     "C:\\Users\\LAB02\\.nuget\\packages\\system.diagnostics.diagnosticsource\\5.0.0\\system.diagnostics.diagnosticsource.5.0.0.nupkg.sha512",
     "C:\\Users\\LAB02\\.nuget\\packages\\system.diagnostics.tools\\4.3.0\\system.diagnostics.tools.4.3.0.nupkg.sha512",

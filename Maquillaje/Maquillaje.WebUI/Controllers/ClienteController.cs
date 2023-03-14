@@ -39,5 +39,15 @@ namespace Maquillaje.WebUI.Controllers
             ViewBag.depto = new SelectList(db.Vw_Gral_tbDepartamentos_DDL, "dep_ID", "dep_Descripcion");
             return View();
         }
+
+        //[HttpPost("/Cliente/Create")]
+
+        //public IActionResult Create(ClientesViewModel item)
+        //{
+        //    string m = item.cli_Apellido;
+        //    string v = item.cli_DNI;
+
+        //    return View();
+        //}
     }
 }
