@@ -35,11 +35,12 @@ namespace Maquillaje.DataAccess.Repositories
             return item.cat_Id;
         }
 
-        public IEnumerable<tbCategorias> List()
+        public IEnumerable<Vw_Maqui_tbCategorias_LIST> List()
         {
-            
             using var db = new SqlConnection(TiendaContext.ConnectionString);
-            return db.Query<tbCategorias>(ScriptsDataBase.CategoriasList, null, commandType: CommandType.StoredProcedure);
+            TiendaContext dbc = new TiendaContext();
+            var Listado = dbc.Vw_Maqui_tbCategorias_LIST.ToList();
+            return Listado;
         }
 
         public int Update(tbCategorias item)
@@ -49,6 +50,11 @@ namespace Maquillaje.DataAccess.Repositories
             db.SaveChanges();
 
             return item.cat_Id;
+        }
+
+        IEnumerable<tbCategorias> IRepository<tbCategorias>.List()
+        {
+            throw new NotImplementedException();
         }
     }
 }

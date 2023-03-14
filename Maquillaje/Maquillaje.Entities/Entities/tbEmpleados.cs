@@ -31,6 +31,7 @@ namespace Maquillaje.Entities.Entities
         public DateTime? emp_FechaModi { get; set; }
         public bool? emp_Estado { get; set; }
 
+        public virtual tbEstadosCiviles emp_EstadoCivilNavigation { get; set; }
         public virtual tbMunicipios emp_MunicipioNavigation { get; set; }
         public virtual tbSucursales emp_SucursalNavigation { get; set; }
         public virtual tbUsuarios emp_UsuarioCreaNavigation { get; set; }

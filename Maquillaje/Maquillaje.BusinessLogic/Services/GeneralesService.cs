@@ -23,7 +23,7 @@ namespace Maquillaje.BusinessLogic.Services
         }
 
         #region Categorias
-        public IEnumerable<tbCategorias> ListadoCategorias()
+        public IEnumerable<Vw_Maqui_tbCategorias_LIST> ListadoCategorias()
         {
             try
             {
@@ -33,7 +33,7 @@ namespace Maquillaje.BusinessLogic.Services
             catch (Exception)
             {
 
-                return Enumerable.Empty<tbCategorias>();
+                return Enumerable.Empty<Vw_Maqui_tbCategorias_LIST>();
             }
         }
 

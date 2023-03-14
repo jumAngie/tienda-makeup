@@ -26,6 +26,10 @@
          "ObjectType": 0
       },
       {
+         "Name": "[Gral].[tbEstadosCiviles]",
+         "ObjectType": 0
+      },
+      {
          "Name": "[Gral].[tbMunicipios]",
          "ObjectType": 0
       },
@@ -66,10 +70,6 @@
          "ObjectType": 0
       },
       {
-         "Name": "[dbo].[Vw_Gral_tb_Municipios_LIST]",
-         "ObjectType": 3
-      },
-      {
          "Name": "[dbo].[Vw_Gral_tbClientes_LIST]",
          "ObjectType": 3
       },
@@ -83,6 +83,10 @@
       },
       {
          "Name": "[dbo].[Vw_Gral_tbEstadosCiviles_LIST]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[dbo].[Vw_Gral_tbMunicipios_LIST]",
          "ObjectType": 3
       },
       {
@@ -122,7 +126,7 @@
          "ObjectType": 3
       }
    ],
-   "UiHint": "DESKTOP-QEULE6U\\SQLEXPRESSLOCAL.TiendaMaquillaje",
+   "UiHint": "PC-ANGIE\\SQLEXPRESS.TiendaMaquillaje",
    "UseBoolPropertiesWithoutDefaultSql": false,
    "UseDatabaseNames": true,
    "UseDbContextSplitting": false,

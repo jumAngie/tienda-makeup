@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Maquillaje.Entities.Entities
 {
-    public partial class Vw_Gral_tb_Municipios_LIST
+    public partial class Vw_Gral_tbMunicipios_LIST
     {
         public int mun_ID { get; set; }
         public string mun_depID { get; set; }

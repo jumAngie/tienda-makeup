@@ -13,10 +13,5 @@ namespace Maquillaje.WebUI.Models
 
         [Display(Name = "Descripción")]
         public string cat_Descripcion { get; set; }
-        public int? cat_UsuCrea { get; set; }
-        public DateTime? cat_FechaCrea { get; set; }
-        public int? cat_UsuModi { get; set; }
-        public DateTime? cat_FechaModi { get; set; }
-        public bool? cat_Estado { get; set; }
     }
 }

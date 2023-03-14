@@ -18,6 +18,8 @@ namespace Maquillaje.Entities.Entities
             tbDepartamentosdep_UsuarioModiNavigation = new HashSet<tbDepartamentos>();
             tbEmpleadosemp_UsuarioCreaNavigation = new HashSet<tbEmpleados>();
             tbEmpleadosemp_UsuarioModiNavigation = new HashSet<tbEmpleados>();
+            tbEstadosCivilesest_UsuarioCreaNavigation = new HashSet<tbEstadosCiviles>();
+            tbEstadosCivilesest_UsuarioModiNavigation = new HashSet<tbEstadosCiviles>();
             tbInventarioinv_UsuCreaNavigation = new HashSet<tbInventario>();
             tbInventarioinv_usuModiNavigation = new HashSet<tbInventario>();
             tbMetodoPagomet_UsuCreaNavigation = new HashSet<tbMetodoPago>();
@@ -56,6 +58,8 @@ namespace Maquillaje.Entities.Entities
         public virtual ICollection<tbDepartamentos> tbDepartamentosdep_UsuarioModiNavigation { get; set; }
         public virtual ICollection<tbEmpleados> tbEmpleadosemp_UsuarioCreaNavigation { get; set; }
         public virtual ICollection<tbEmpleados> tbEmpleadosemp_UsuarioModiNavigation { get; set; }
+        public virtual ICollection<tbEstadosCiviles> tbEstadosCivilesest_UsuarioCreaNavigation { get; set; }
+        public virtual ICollection<tbEstadosCiviles> tbEstadosCivilesest_UsuarioModiNavigation { get; set; }
         public virtual ICollection<tbInventario> tbInventarioinv_UsuCreaNavigation { get; set; }
         public virtual ICollection<tbInventario> tbInventarioinv_usuModiNavigation { get; set; }
         public virtual ICollection<tbMetodoPago> tbMetodoPagomet_UsuCreaNavigation { get; set; }
