@@ -1060,10 +1060,7 @@ SELECT
 		usu.usu_ID,
 		usu.usu_Usuario,
 		emple.emp_Nombre + ' ' + emple.emp_Apellido AS 'Empleado',
-		CASE usu.usu_EsAdmin
-		WHEN 1 THEN 'Sí'
-		WHEN 0 THEN 'No'
-		END AS 'Es Admin'
+		usu_EsAdmin
 		FROM Gral.tbUsuarios usu INNER JOIN Gral.tbEmpleados emple 
 		ON	 usu.usu_empID = emple.emp_ID
 		WHERE usu.usu_Estado = 1
@@ -1569,6 +1566,17 @@ SELECT prv_ID, prv_NombreCompañia FROM Maqui.tbProveedores
 --************************************************************************************************************
 GO
 CREATE OR ALTER VIEW Vw_Maqui_tbCategorias_DDL
+AS
+
+
+SELECT '0' AS 'cat_Id', ' ---Seleccione una opción---' AS 'cat_Descripcion'
+UNION ALL
+SELECT cat_Id, cat_Descripcion FROM Maqui.tbCategorias
+
+
+--************************************************************************************************************
+GO
+CREATE OR ALTER VIEW Vw_Maqui_tbEstas_DDL
 AS
 
 
