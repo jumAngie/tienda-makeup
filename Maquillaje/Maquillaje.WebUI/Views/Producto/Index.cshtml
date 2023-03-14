@@ -5,74 +5,80 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<div class="container-xxl flex-grow-1 container-p-y">
+    <div class="row">
+        <div class="col-lg-12 order-0">
+            <div class="card">
+                <div class="d-flex align-items-end row">
+                    <div class="col-sm-12">
+                        <div class="card-header">
+                            <a class="btn btn-primary" asp-action="Create">Create New</a>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.pro_Id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.pro_Codigo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.pro_Nombre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.pro_StockInicial)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.pro_PrecioUnitario)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.cat_Descripcion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.prv_NombreCompañia)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.pro_Proveedor)
-            </th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.pro_Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.pro_Codigo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.pro_Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.pro_StockInicial)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.pro_PrecioUnitario)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.cat_Descripcion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.prv_NombreCompañia)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.pro_Proveedor)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.pro_Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.pro_Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.pro_Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+                        </div>
+                        <div class="card-body">
+
+
+                            <table class="table" id="mytable">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.pro_Id)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.pro_Codigo)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.pro_Nombre)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.pro_PrecioUnitario)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.cat_Descripcion)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.pro_Proveedor)
+                                        </th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.pro_Id)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.pro_Codigo)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.pro_Nombre)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.pro_PrecioUnitario)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.cat_Descripcion)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.pro_Proveedor)
+                                            </td>
+                                            <td>
+                                                <a class="btn btn-outline-info" asp-action="Edit" asp-route-id="@item.pro_Id">Edit</a> |
+                                                <a class="btn btn-outline-success" asp-action="Details" asp-route-id="@item.pro_Id">Details</a> |
+                                                <a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@item.pro_Id">Delete</a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

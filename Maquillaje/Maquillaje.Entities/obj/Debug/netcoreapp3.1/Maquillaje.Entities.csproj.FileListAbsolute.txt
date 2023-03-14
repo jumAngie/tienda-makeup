@@ -58,3 +58,13 @@ C:\Users\Usuario\Documents\GitHub\tienda-makeup\Maquillaje\Maquillaje.Entities\o
 C:\Users\Usuario\Documents\GitHub\tienda-makeup\Maquillaje\Maquillaje.Entities\obj\Debug\netcoreapp3.1\Maquillaje.Entities.csproj.CoreCompileInputs.cache
 C:\Users\Usuario\Documents\GitHub\tienda-makeup\Maquillaje\Maquillaje.Entities\obj\Debug\netcoreapp3.1\Maquillaje.Entities.dll
 C:\Users\Usuario\Documents\GitHub\tienda-makeup\Maquillaje\Maquillaje.Entities\obj\Debug\netcoreapp3.1\Maquillaje.Entities.pdb
+C:\Users\Juan David\Desktop\tienda-makeup\Maquillaje\Maquillaje.Entities\bin\Debug\netcoreapp3.1\Maquillaje.Entities.deps.json
+C:\Users\Juan David\Desktop\tienda-makeup\Maquillaje\Maquillaje.Entities\bin\Debug\netcoreapp3.1\Maquillaje.Entities.dll
+C:\Users\Juan David\Desktop\tienda-makeup\Maquillaje\Maquillaje.Entities\bin\Debug\netcoreapp3.1\Maquillaje.Entities.pdb
+C:\Users\Juan David\Desktop\tienda-makeup\Maquillaje\Maquillaje.Entities\obj\Debug\netcoreapp3.1\Maquillaje.Entities.csproj.AssemblyReference.cache
+C:\Users\Juan David\Desktop\tienda-makeup\Maquillaje\Maquillaje.Entities\obj\Debug\netcoreapp3.1\Maquillaje.Entities.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Juan David\Desktop\tienda-makeup\Maquillaje\Maquillaje.Entities\obj\Debug\netcoreapp3.1\Maquillaje.Entities.AssemblyInfoInputs.cache
+C:\Users\Juan David\Desktop\tienda-makeup\Maquillaje\Maquillaje.Entities\obj\Debug\netcoreapp3.1\Maquillaje.Entities.AssemblyInfo.cs
+C:\Users\Juan David\Desktop\tienda-makeup\Maquillaje\Maquillaje.Entities\obj\Debug\netcoreapp3.1\Maquillaje.Entities.csproj.CoreCompileInputs.cache
+C:\Users\Juan David\Desktop\tienda-makeup\Maquillaje\Maquillaje.Entities\obj\Debug\netcoreapp3.1\Maquillaje.Entities.dll
+C:\Users\Juan David\Desktop\tienda-makeup\Maquillaje\Maquillaje.Entities\obj\Debug\netcoreapp3.1\Maquillaje.Entities.pdb
