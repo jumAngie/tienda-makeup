@@ -1,7 +1,10 @@
 ﻿using AutoMapper;
 using Maquillaje.BusinessLogic.Services;
+using Maquillaje.DataAccess;
+using Maquillaje.Entities.Entities;
 using Maquillaje.WebUI.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +14,7 @@ namespace Maquillaje.WebUI.Controllers
 {
     public class ProductoController : Controller
     {
+        private TiendaContext db = new TiendaContext();
         private readonly GeneralesService _generalesService;
         private readonly IMapper _mapper;
 
@@ -33,6 +37,8 @@ namespace Maquillaje.WebUI.Controllers
 
         public IActionResult Create()
         {
+            
+            ViewBag.cat_Id = new SelectList(db.tbCategorias, "cat_Id", "cat_Descripcion");
             return View();
         }
 
