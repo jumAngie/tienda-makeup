@@ -43,9 +43,23 @@ namespace Maquillaje.BusinessLogic.Services
             }
         }
 
+        public void CreateCategorias(tbCategorias categorias)
+        {
+            try
+            {
+                _categoriaRepository.Insert(categorias);
+
+            }
+            catch (Exception)
+            {
+
+
+            }
+        }
+
         #endregion
 
-        
+
         #region Productos
 
         public IEnumerable<Vw_Maqui_tbProductos_LIST> ListadoProductos()
@@ -59,6 +73,19 @@ namespace Maquillaje.BusinessLogic.Services
             {
 
                 return Enumerable.Empty<Vw_Maqui_tbProductos_LIST>();
+            }
+        }
+        public void CreateProductos(tbProductos productos)
+        {
+            try
+            {
+                _productosRepository.Insert(productos);
+
+            }
+            catch (Exception)
+            {
+
+
             }
         }
 
