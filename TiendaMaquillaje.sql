@@ -1059,7 +1059,11 @@ AS
 SELECT
 		usu.usu_ID,
 		usu.usu_Usuario,
-		emple.emp_Nombre + ' ' + emple.emp_Apellido AS 'Empleado'
+		emple.emp_Nombre + ' ' + emple.emp_Apellido AS 'Empleado',
+		CASE usu.usu_EsAdmin
+		WHEN 1 THEN 'Sí'
+		WHEN 0 THEN 'No'
+		END AS 'Es Admin'
 		FROM Gral.tbUsuarios usu INNER JOIN Gral.tbEmpleados emple 
 		ON	 usu.usu_empID = emple.emp_ID
 		WHERE usu.usu_Estado = 1
@@ -1117,7 +1121,9 @@ GO
 CREATE OR ALTER VIEW Vw_Maqui_tbProductos_LIST
 AS 
 
-SELECT pro_Codigo, 
+SELECT 
+	   pro_Id,
+	   pro_Codigo, 
 	   pro_Nombre, 
 	   pro_StockInicial, 
 	   pro_PrecioUnitario,
@@ -1140,7 +1146,8 @@ GO
 CREATE OR ALTER VIEW Vw_Maqui_tbProveedores_LIST
 AS
 
-SELECT prv_NombreCompañia, 
+SELECT prv_ID,
+	   prv_NombreCompañia, 
 	   prv_NombreContacto, 
 	   prv_TelefonoContacto, 
 	   prv_Municipio = mun_Descripcion, 
@@ -1540,3 +1547,34 @@ BEGIN
 				 NULL,         NULL,		@vde_Estado)
 END
 GO
+--********************************************D D L s--***************************************************************
+--********************************************************************************************************************
+go
+CREATE OR ALTER VIEW Vw_Maqui_tbProductos_DDL
+AS
+
+SELECT '0' AS 'pro_Id', ' ---Seleccione una opción---' AS 'pro_Nombre'
+UNION ALL
+SELECT pro_Id, pro_Nombre FROM Maqui.tbProductos
+--************************************************************************************************************
+GO
+CREATE OR ALTER VIEW Vw_Maqui_tbProveedores_DDL
+AS
+
+SELECT '0' AS 'prv_ID', ' ---Seleccione una opción---' AS 'prv_NombreCompañia'
+UNION ALL
+SELECT prv_ID, prv_NombreCompañia FROM Maqui.tbProveedores
+
+
+--************************************************************************************************************
+GO
+CREATE OR ALTER VIEW Vw_Maqui_tbCategorias_DDL
+AS
+
+
+SELECT '0' AS 'cat_Id', ' ---Seleccione una opción---' AS 'cat_Descripcion'
+UNION ALL
+SELECT cat_Id, cat_Descripcion FROM Maqui.tbCategorias
+
+
+--************************************************************************************************************

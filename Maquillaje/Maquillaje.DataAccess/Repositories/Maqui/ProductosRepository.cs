@@ -18,12 +18,19 @@ namespace Maquillaje.DataAccess.Repositories
 
         public tbProductos Find(int? id)
         {
-            throw new NotImplementedException();
+            using var db = new TiendaContext();
+            var result = db.tbProductos.Find(id);
+
+            return result;
         }
 
         public int Insert(tbProductos item)
         {
-            throw new NotImplementedException();
+            using var db = new TiendaContext();
+
+            db.tbProductos.Add(item);
+            db.SaveChanges();
+            return item.pro_Id;
         }
 
         public IEnumerable<Vw_Maqui_tbProductos_LIST> List()
