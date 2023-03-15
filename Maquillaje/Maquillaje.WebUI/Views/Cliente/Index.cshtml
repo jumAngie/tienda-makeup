@@ -5,75 +5,80 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<h1>Clientes</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.cli_ID)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.cli_Nombre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.cli_DNI)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.cli_FechaNacimiento)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.cli_sexo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.cli_Telefono)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.cli_Municipio)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.cli_EstadoCivil)
-            </th>
+<div class="col-lg-12 mb-0 order-0">
+    <div class="card" style="background-color: white">
+        <div class="d-flex align-items-end row">
+            <div class="col-sm-12">
+                <div class="card-header">
+                    <a class="btn btn-primary btn-icon-text" asp-action="Create">
+                    <i class="mdi mdi-file-check btn-icon-prepend"></i>Nuevo
+                    </a>
 
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.cli_ID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.cli_Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.cli_DNI)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.cli_FechaNacimiento)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.cli_sexo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.cli_Telefono)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.cli_Municipio)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.cli_EstadoCivil)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.cli_ID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.cli_ID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.cli_ID">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+                </div>
+                <div class="card-body">
+                    <table class="table table-responsive-sm table-light" id="DataTable">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.cli_ID)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.cli_Nombre)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.cli_DNI)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.cli_sexo)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.cli_Municipio)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.cli_EstadoCivil)
+                                </th>
+
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.cli_ID)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.cli_Nombre)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.cli_DNI)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.cli_sexo)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.cli_Municipio)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.cli_EstadoCivil)
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-warning btn-icon-text" asp-action="Edit" asp-route-id="@item.cli_ID">
+                                            <i class="mdi mdi-reload btn-icon-prepend"></i>Editar</a> |
+                                        <a class="btn  btn-success" asp-action="Details" asp-route-id="@item.cli_ID">Detalles</a> |
+                                        <a class="btn btn-danger btn-icon-text"  asp-action="Delete" asp-route-id="@item.cli_ID">
+                                            <i class="mdi mdi-alert btn-icon-prepend"></i>Eliminar</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

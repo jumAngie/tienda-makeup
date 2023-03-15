@@ -5,74 +5,75 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<h1>Proveedores</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.prv_ID)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.prv_NombreCompañia)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.prv_NombreContacto)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.prv_TelefonoContacto)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.prv_DireccionEmpresa)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.prv_DireccionContacto)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.prv_Municipio)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.prv_SexoContacto)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.prv_ID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.prv_NombreCompañia)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.prv_NombreContacto)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.prv_TelefonoContacto)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.prv_DireccionEmpresa)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.prv_DireccionContacto)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.prv_Municipio)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.prv_SexoContacto)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.prv_ID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.prv_ID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.prv_ID">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<div class="col-lg-12 mb-0 order-0">
+    <div class="card" style="background-color: white">
+        <div class="d-flex align-items-end row">
+            <div class="col-sm-12">
+                <div class="card-header">
+                    <a class="btn btn-primary btn-icon-text" asp-action="Create">
+                        <i class="mdi mdi-file-check btn-icon-prepend"></i>Nuevo
+                    </a>
+
+                </div>
+                <div class="card-body">
+                    <table class="table table-responsive-sm table-light" id="DataTable">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.prv_ID)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.prv_NombreCompañia)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.prv_NombreContacto)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.prv_TelefonoContacto)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.prv_DireccionEmpresa)
+                                </th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.prv_ID)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.prv_NombreCompañia)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.prv_NombreContacto)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.prv_TelefonoContacto)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.prv_DireccionContacto)
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-warning btn-icon-text" asp-action="Edit" asp-route-id="@item.prv_ID">
+                                            <i class="mdi mdi-reload btn-icon-prepend"></i>Editar
+                                        </a> |
+                                        <a class="btn  btn-success" asp-action="Details" asp-route-id="@item.prv_ID">Detalles</a> |
+                                        <a class="btn btn-danger btn-icon-text" asp-action="Delete" asp-route-id="@item.prv_ID">
+                                            <i class="mdi mdi-alert btn-icon-prepend"></i>Eliminar
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
