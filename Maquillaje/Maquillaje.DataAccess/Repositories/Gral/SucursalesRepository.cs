@@ -14,6 +14,11 @@ namespace Maquillaje.DataAccess.Repositories.Gral
             throw new NotImplementedException();
         }
 
+        public int Delete(tbSucursales item)
+        {
+            throw new NotImplementedException();
+        }
+
         public tbSucursales Find(int? id)
         {
             throw new NotImplementedException();

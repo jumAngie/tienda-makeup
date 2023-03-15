@@ -14,6 +14,11 @@ namespace Maquillaje.DataAccess.Repositories.Gral
             throw new NotImplementedException();
         }
 
+        public int Delete(tbMunicipios item)
+        {
+            throw new NotImplementedException();
+        }
+
         public tbMunicipios Find(int? id)
         {
             throw new NotImplementedException();

@@ -14,6 +14,11 @@ namespace Maquillaje.DataAccess.Repositories.Maqui
             throw new NotImplementedException();
         }
 
+        public int Delete(tbMetodoPago item)
+        {
+            throw new NotImplementedException();
+        }
+
         public tbMetodoPago Find(int? id)
         {
             throw new NotImplementedException();

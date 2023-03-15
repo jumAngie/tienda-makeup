@@ -11,7 +11,8 @@ namespace Maquillaje.DataAccess.Repositories.Gral
 {
     public class ClientesRepository : IRepository<tbClientes>
     {
-        public int Delete(int? id)
+
+        public int Delete(tbClientes item)
         {
             throw new NotImplementedException();
         }

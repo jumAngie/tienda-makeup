@@ -12,7 +12,7 @@
                 <div class="d-flex align-items-end row">
                     <div class="col-sm-12">
                         <div class="card-header">
-                            <a class="btn btn-primary" asp-action="Create">Nuevo</a>
+                            <a class="btn btn-primary" data-toggle="modal" data-target="#CreateCate">Nuevo</a>
 
                         </div>
                         <div class="card-body">
@@ -43,9 +43,9 @@
                                                 @Html.DisplayFor(modelItem => item.cat_Descripcion)
                                             </td>
                                             <td>
-                                                <a class="btn  btn-sm  btn-warning" asp-action="Edit" asp-route-id="@item.cat_Id">Editar</a> |
+                                                <button type="button" id="btnEditar" class="btn btn-warning" onclick="Editar('@item.cat_Id,@item.cat_Descripcion')">Editar</button> |
                                                 <a class="btn  btn-sm  btn-success" asp-action="Details" asp-route-id="@item.cat_Id">Detalles</a> |
-                                                <a class="btn  btn-sm  btn-danger" asp-action="Delete" asp-route-id="@item.cat_Id">Eliminar</a>
+                                                <a class="btn-delete btn btn-danger" data-id="'@item.cat_Id'">Eliminar</a>
                                             </td>
                                         </tr>
                                     }
@@ -59,3 +59,10 @@
         </div>
     </div>
 </div>
+
+
+
+@Html.Partial("_Create")
+@Html.Partial("_Edit")
+@Html.Partial("_Delete")
+

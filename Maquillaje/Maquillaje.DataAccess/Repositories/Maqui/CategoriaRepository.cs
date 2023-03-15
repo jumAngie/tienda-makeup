@@ -12,11 +12,21 @@ namespace Maquillaje.DataAccess.Repositories
 {
     public class CategoriaRepository : IRepository<tbCategorias>
     {
-        public int Delete(int? id)
+        public int Delete(tbCategorias item)
         {
-            //investigar
-            throw new NotImplementedException();
+            using var db = new SqlConnection(TiendaContext.ConnectionString);
+            var parametros = new DynamicParameters();
+            parametros.Add("@cat_Id", item.cat_Id, DbType.Int32, ParameterDirection.Input);
+
+
+            db.Query<tbCategorias>(ScriptsDataBase.CategoriasEliminar, parametros, commandType: System.Data.CommandType.StoredProcedure);
+
+            int resultado = parametros.Get<int>("@cat_Id");
+
+            return resultado;
         }
+
+
 
         public tbCategorias Find(int? id)
         {
@@ -28,11 +38,12 @@ namespace Maquillaje.DataAccess.Repositories
 
         public int Insert(tbCategorias item)
         {
-            using var db = new TiendaContext();
+            using var db = new SqlConnection(TiendaContext.ConnectionString);
+            var parametros = new DynamicParameters();
+            parametros.Add("@cat_Descripcion", item.cat_Descripcion, DbType.String, ParameterDirection.Input);
+            parametros.Add("@cat_UsuCrea", item.cat_UsuCrea, DbType.Int32, ParameterDirection.Input);
 
-            db.tbCategorias.Add(item);
-            db.SaveChanges();
-            return item.cat_Id;
+            return db.QueryFirst<int>(ScriptsDataBase.CategoriasCrear, parametros, commandType: CommandType.StoredProcedure);
         }
 
         public IEnumerable<Vw_Maqui_tbCategorias_LIST> List()
@@ -45,11 +56,18 @@ namespace Maquillaje.DataAccess.Repositories
 
         public int Update(tbCategorias item)
         {
-            using var db = new TiendaContext();
-            db.Entry(item).State = EntityState.Modified;
-            db.SaveChanges();
+            using var db = new SqlConnection(TiendaContext.ConnectionString);
+            var parametros = new DynamicParameters();
+            parametros.Add("@cat_Id", item.cat_Id, DbType.Int32, ParameterDirection.Input);
+            parametros.Add("@cat_Descripcion", item.cat_Descripcion, DbType.String, ParameterDirection.Input);
+            parametros.Add("@cat_UsuModi", item.cat_UsuModi, DbType.Int32, ParameterDirection.Input);
 
-            return item.cat_Id;
+
+            db.Execute(ScriptsDataBase.CategoriasEditar, parametros, commandType: System.Data.CommandType.StoredProcedure);
+
+            int resultado = parametros.Get<int>("@cat_Id");
+
+            return resultado;
         }
 
         IEnumerable<tbCategorias> IRepository<tbCategorias>.List()

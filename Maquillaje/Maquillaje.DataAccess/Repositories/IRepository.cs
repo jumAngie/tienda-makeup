@@ -12,7 +12,7 @@ namespace Maquillaje.DataAccess.Repositories
 
         public int Update(T item);
 
-        public int Delete(int? id);
+        public int Delete(T item);
 
         public T Find(int? id);
     }

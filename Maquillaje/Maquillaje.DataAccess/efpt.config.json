@@ -144,9 +144,13 @@
       {
          "Name": "[dbo].[Vw_Maqui_tbVentasDetalle_LIST]",
          "ObjectType": 3
+      },
+      {
+         "Name": "[dbo].[UDP_Maqui_tbCategorias_EDITAR]",
+         "ObjectType": 1
       }
    ],
-   "UiHint": "DESKTOP-KKVKH2B\\SQLEXPRESSLOCAL.TiendaMaquillaje",
+   "UiHint": "LAPTOP-4UJ5657P\\SQLEXPRESS.TiendaMaquillaje",
    "UseBoolPropertiesWithoutDefaultSql": false,
    "UseDatabaseNames": true,
    "UseDbContextSplitting": false,

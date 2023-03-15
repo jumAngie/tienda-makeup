@@ -58,17 +58,46 @@ namespace Maquillaje.BusinessLogic.Services
             }
         }
 
-        public void CreateCategorias(tbCategorias categorias)
+        public int CreateCategorias(tbCategorias categorias)
         {
             try
             {
-                _categoriaRepository.Insert(categorias);
+                return _categoriaRepository.Insert(categorias);
 
             }
             catch (Exception)
             {
+                return 0;
 
 
+            }
+        }
+
+
+        public int EditCategoria(tbCategorias categorias)
+        {
+   
+                return _categoriaRepository.Update(categorias);
+
+      
+        }
+
+        public tbCategorias BuscarCategoria(int? id)
+        {
+            return _categoriaRepository.Find(id);
+        }
+
+
+        //ELIMINAR
+        public int DeleteCategoria(tbCategorias categoria)
+        {
+            try
+            {
+                return _categoriaRepository.Delete(categoria);
+            }
+            catch
+            {
+                return 1;
             }
         }
 

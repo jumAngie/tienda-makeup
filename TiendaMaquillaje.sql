@@ -1594,3 +1594,30 @@ AS
 SELECT '0' AS 'dep_ID', ' ---Seleccione una opción---' AS 'dep_Descripcion'
 UNION ALL
 SELECT dep_ID, dep_Descripcion FROM Gral.tbDepartamentos
+GO
+
+
+
+
+CREATE OR ALTER PROC UDP_Maqui_tbCategorias_EDITAR(
+@cat_Id INT,
+@cat_Descripcion NVARCHAR(100),
+@cat_UsuModi INT)
+AS BEGIN
+
+UPDATE Maqui.tbCategorias SET cat_Descripcion = @cat_Descripcion,
+							  cat_UsuModi = @cat_UsuModi
+							  WHERE cat_Id = @cat_Id
+
+END
+GO
+
+
+CREATE OR ALTER PROC UDP_Maqui_tbCategorias_ELIMINAR
+(@cat_Id INT)
+AS BEGIN
+
+UPDATE Maqui.tbCategorias SET cat_Estado = 0
+WHERE cat_Id = @cat_Id
+
+END

@@ -7,7 +7,10 @@ namespace Maquillaje.DataAccess.Repositories
     public class ScriptsDataBase
     {
         #region Categorias
-        public static string CategoriasCrear = "UDP_Gral_tbClientes_CREAR";
+        public static string CategoriasCrear = "UDP_Maqui_tbCategorias_CREAR";
+        public static string CategoriasEditar = "UDP_Maqui_tbCategorias_EDITAR";
+        public static string CategoriasEliminar = "UDP_Maqui_tbCategorias_ELIMINAR";
+
         #endregion
 
         #region Productos

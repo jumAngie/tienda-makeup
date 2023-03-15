@@ -88,21 +88,6 @@ C:\Users\Usuario\Documents\GitHub\tienda-makeup\Maquillaje\Maquillaje.BusinessLo
 C:\Users\Usuario\Documents\GitHub\tienda-makeup\Maquillaje\Maquillaje.BusinessLogic\obj\Debug\netcoreapp3.1\Maquillaje.BusinessLogic.csproj.CopyComplete
 C:\Users\Usuario\Documents\GitHub\tienda-makeup\Maquillaje\Maquillaje.BusinessLogic\obj\Debug\netcoreapp3.1\Maquillaje.BusinessLogic.dll
 C:\Users\Usuario\Documents\GitHub\tienda-makeup\Maquillaje\Maquillaje.BusinessLogic\obj\Debug\netcoreapp3.1\Maquillaje.BusinessLogic.pdb
-C:\Users\Juan David\Desktop\tienda-makeup\Maquillaje\Maquillaje.BusinessLogic\bin\Debug\netcoreapp3.1\Maquillaje.BusinessLogic.deps.json
-C:\Users\Juan David\Desktop\tienda-makeup\Maquillaje\Maquillaje.BusinessLogic\bin\Debug\netcoreapp3.1\Maquillaje.BusinessLogic.dll
-C:\Users\Juan David\Desktop\tienda-makeup\Maquillaje\Maquillaje.BusinessLogic\bin\Debug\netcoreapp3.1\Maquillaje.BusinessLogic.pdb
-C:\Users\Juan David\Desktop\tienda-makeup\Maquillaje\Maquillaje.BusinessLogic\bin\Debug\netcoreapp3.1\Maquillaje.DataAccess.dll
-C:\Users\Juan David\Desktop\tienda-makeup\Maquillaje\Maquillaje.BusinessLogic\bin\Debug\netcoreapp3.1\Maquillaje.Entities.dll
-C:\Users\Juan David\Desktop\tienda-makeup\Maquillaje\Maquillaje.BusinessLogic\bin\Debug\netcoreapp3.1\Maquillaje.DataAccess.pdb
-C:\Users\Juan David\Desktop\tienda-makeup\Maquillaje\Maquillaje.BusinessLogic\bin\Debug\netcoreapp3.1\Maquillaje.Entities.pdb
-C:\Users\Juan David\Desktop\tienda-makeup\Maquillaje\Maquillaje.BusinessLogic\obj\Debug\netcoreapp3.1\Maquillaje.BusinessLogic.csproj.AssemblyReference.cache
-C:\Users\Juan David\Desktop\tienda-makeup\Maquillaje\Maquillaje.BusinessLogic\obj\Debug\netcoreapp3.1\Maquillaje.BusinessLogic.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Juan David\Desktop\tienda-makeup\Maquillaje\Maquillaje.BusinessLogic\obj\Debug\netcoreapp3.1\Maquillaje.BusinessLogic.AssemblyInfoInputs.cache
-C:\Users\Juan David\Desktop\tienda-makeup\Maquillaje\Maquillaje.BusinessLogic\obj\Debug\netcoreapp3.1\Maquillaje.BusinessLogic.AssemblyInfo.cs
-C:\Users\Juan David\Desktop\tienda-makeup\Maquillaje\Maquillaje.BusinessLogic\obj\Debug\netcoreapp3.1\Maquillaje.BusinessLogic.csproj.CoreCompileInputs.cache
-C:\Users\Juan David\Desktop\tienda-makeup\Maquillaje\Maquillaje.BusinessLogic\obj\Debug\netcoreapp3.1\Maquillaje.BusinessLogic.csproj.CopyComplete
-C:\Users\Juan David\Desktop\tienda-makeup\Maquillaje\Maquillaje.BusinessLogic\obj\Debug\netcoreapp3.1\Maquillaje.BusinessLogic.dll
-C:\Users\Juan David\Desktop\tienda-makeup\Maquillaje\Maquillaje.BusinessLogic\obj\Debug\netcoreapp3.1\Maquillaje.BusinessLogic.pdb
 C:\Users\LAB02\Documents\GitHub\tienda-makeup\Maquillaje\Maquillaje.BusinessLogic\bin\Debug\netcoreapp3.1\Maquillaje.BusinessLogic.deps.json
 C:\Users\LAB02\Documents\GitHub\tienda-makeup\Maquillaje\Maquillaje.BusinessLogic\bin\Debug\netcoreapp3.1\Maquillaje.BusinessLogic.dll
 C:\Users\LAB02\Documents\GitHub\tienda-makeup\Maquillaje\Maquillaje.BusinessLogic\bin\Debug\netcoreapp3.1\Maquillaje.BusinessLogic.pdb
@@ -133,3 +118,18 @@ C:\Users\LAB02\Desktop\tienda-makeup\Maquillaje\Maquillaje.BusinessLogic\bin\Deb
 C:\Users\LAB02\Desktop\tienda-makeup\Maquillaje\Maquillaje.BusinessLogic\bin\Debug\netcoreapp3.1\Maquillaje.DataAccess.pdb
 C:\Users\LAB02\Desktop\tienda-makeup\Maquillaje\Maquillaje.BusinessLogic\bin\Debug\netcoreapp3.1\Maquillaje.Entities.pdb
 C:\Users\LAB02\Desktop\tienda-makeup\Maquillaje\Maquillaje.BusinessLogic\obj\Debug\netcoreapp3.1\Maquillaje.BusinessLogic.csproj.CopyComplete
+C:\Users\Juan David\Desktop\tienda-makeup\Maquillaje\Maquillaje.BusinessLogic\bin\Debug\netcoreapp3.1\Maquillaje.BusinessLogic.deps.json
+C:\Users\Juan David\Desktop\tienda-makeup\Maquillaje\Maquillaje.BusinessLogic\bin\Debug\netcoreapp3.1\Maquillaje.BusinessLogic.dll
+C:\Users\Juan David\Desktop\tienda-makeup\Maquillaje\Maquillaje.BusinessLogic\bin\Debug\netcoreapp3.1\Maquillaje.BusinessLogic.pdb
+C:\Users\Juan David\Desktop\tienda-makeup\Maquillaje\Maquillaje.BusinessLogic\bin\Debug\netcoreapp3.1\Maquillaje.DataAccess.dll
+C:\Users\Juan David\Desktop\tienda-makeup\Maquillaje\Maquillaje.BusinessLogic\bin\Debug\netcoreapp3.1\Maquillaje.Entities.dll
+C:\Users\Juan David\Desktop\tienda-makeup\Maquillaje\Maquillaje.BusinessLogic\bin\Debug\netcoreapp3.1\Maquillaje.DataAccess.pdb
+C:\Users\Juan David\Desktop\tienda-makeup\Maquillaje\Maquillaje.BusinessLogic\bin\Debug\netcoreapp3.1\Maquillaje.Entities.pdb
+C:\Users\Juan David\Desktop\tienda-makeup\Maquillaje\Maquillaje.BusinessLogic\obj\Debug\netcoreapp3.1\Maquillaje.BusinessLogic.csproj.AssemblyReference.cache
+C:\Users\Juan David\Desktop\tienda-makeup\Maquillaje\Maquillaje.BusinessLogic\obj\Debug\netcoreapp3.1\Maquillaje.BusinessLogic.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Juan David\Desktop\tienda-makeup\Maquillaje\Maquillaje.BusinessLogic\obj\Debug\netcoreapp3.1\Maquillaje.BusinessLogic.AssemblyInfoInputs.cache
+C:\Users\Juan David\Desktop\tienda-makeup\Maquillaje\Maquillaje.BusinessLogic\obj\Debug\netcoreapp3.1\Maquillaje.BusinessLogic.AssemblyInfo.cs
+C:\Users\Juan David\Desktop\tienda-makeup\Maquillaje\Maquillaje.BusinessLogic\obj\Debug\netcoreapp3.1\Maquillaje.BusinessLogic.csproj.CoreCompileInputs.cache
+C:\Users\Juan David\Desktop\tienda-makeup\Maquillaje\Maquillaje.BusinessLogic\obj\Debug\netcoreapp3.1\Maquillaje.BusinessLogic.csproj.CopyComplete
+C:\Users\Juan David\Desktop\tienda-makeup\Maquillaje\Maquillaje.BusinessLogic\obj\Debug\netcoreapp3.1\Maquillaje.BusinessLogic.dll
+C:\Users\Juan David\Desktop\tienda-makeup\Maquillaje\Maquillaje.BusinessLogic\obj\Debug\netcoreapp3.1\Maquillaje.BusinessLogic.pdb

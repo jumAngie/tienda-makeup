@@ -1,0 +1,44 @@
+﻿<!-- Elimar Categorias -->
+<form action="@Url.Action("Delete","Categoria")" method="post">
+    <div class="modal inmodal" id="confirmar-eliminacion" tabindex="-1" role="dialog" aria-labelledby="confirm-delete-modal-label" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content animated bounceInRight">
+                <div class="modal-header">
+                    <button type="button" class="close" aria-label="Cerrar" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <i class="fa fa-laptop modal-icon"></i>
+                    <h4 class="modal-title">Confirme la acción</h4>
+                </div>
+                <div class="modal-body">
+                    <center>¿Está seguro de que desea eliminar el elemento?</center>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+                    <a href="#" id="confirmar" class="btn btn-danger" onclick="Modal()">Eliminar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</form>
+
+
+<script>
+
+    
+
+        @* Eliminar *@
+    type = "text/javascript" > function Modal() {
+        $('#confirmar-eliminacion').modal({ backdrop: 'static', keyboard: false })
+    }
+
+    $(function () {
+        $('.btn-outline-danger').click(function () {
+            var id = $(this).data('id');
+            $('#confirmar').attr('href', '/Categoria/Eliminar/' + id);
+            $('#confirmar-eliminacion').modal('show');
+        });
+    });
+</script>

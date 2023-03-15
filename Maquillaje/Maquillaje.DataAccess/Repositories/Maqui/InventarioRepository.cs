@@ -14,6 +14,11 @@ namespace Maquillaje.DataAccess.Repositories.Maqui
             throw new NotImplementedException();
         }
 
+        public int Delete(tbInventario item)
+        {
+            throw new NotImplementedException();
+        }
+
         public tbInventario Find(int? id)
         {
             throw new NotImplementedException();

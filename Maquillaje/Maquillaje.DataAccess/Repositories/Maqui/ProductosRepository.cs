@@ -16,6 +16,11 @@ namespace Maquillaje.DataAccess.Repositories
             throw new NotImplementedException();
         }
 
+        public int Delete(tbProductos item)
+        {
+            throw new NotImplementedException();
+        }
+
         public tbProductos Find(int? id)
         {
             using var db = new TiendaContext();
