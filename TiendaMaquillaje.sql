@@ -1595,9 +1595,16 @@ SELECT '0' AS 'dep_ID', ' ---Seleccione una opción---' AS 'dep_Descripcion'
 UNION ALL
 SELECT dep_ID, dep_Descripcion FROM Gral.tbDepartamentos
 GO
+--************************************************************************************************************
+CREATE OR ALTER VIEW Vw_Gral_tbClientes_DDL
+AS
 
 
-
+SELECT '0' AS 'cli_ID', ' ---Seleccione una opción---' AS 'cli_Nombre'
+UNION ALL
+SELECT cli_ID, cli_Nombre + ' ' + cli_Apellido FROM Gral.tbClientes
+GO
+--************************************************************************************************************
 
 CREATE OR ALTER PROC UDP_Maqui_tbCategorias_EDITAR(
 @cat_Id INT,
