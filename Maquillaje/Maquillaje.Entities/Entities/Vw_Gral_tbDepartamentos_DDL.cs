@@ -8,7 +8,7 @@ namespace Maquillaje.Entities.Entities
 {
     public partial class Vw_Gral_tbDepartamentos_DDL
     {
-        public int dep_ID { get; set; }
+        public int depto { get; set; }
         public string dep_Descripcion { get; set; }
     }
 }

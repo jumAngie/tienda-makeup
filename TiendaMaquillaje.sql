@@ -1605,7 +1605,7 @@ UNION ALL
 SELECT cli_ID, cli_Nombre + ' ' + cli_Apellido FROM Gral.tbClientes
 GO
 --************************************************************************************************************
-CREATE OR ALTER FUNCTION UDF_Gral_tbMunicipio_DDL(@depto varchar(3))
+CREATE OR ALTER FUNCTION UDF_Gral_tbMunicipio_DDL(@depto INT)
 RETURNS TABLE
 AS
 RETURN

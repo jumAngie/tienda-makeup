@@ -148,6 +148,10 @@
       {
          "Name": "[dbo].[Vw_Maqui_tbVentasDetalle_LIST]",
          "ObjectType": 3
+      },
+      {
+         "Name": "[dbo].[UDF_Gral_tbMunicipio_DDL]",
+         "ObjectType": 2
       }
    ],
    "UiHint": "DESKTOP-KKVKH2B\\SQLEXPRESSLOCAL.TiendaMaquillaje",

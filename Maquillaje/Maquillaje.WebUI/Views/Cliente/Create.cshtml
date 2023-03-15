@@ -34,29 +34,40 @@
                     </div>
                     <div class="form-group">
                         <label asp-for="cli_FechaNacimiento" class="control-label"></label>
-                        <input asp-for="cli_FechaNacimiento" class="form-control" />
+                        <input type="date" asp-for="cli_FechaNacimiento" class="form-control" />
                         <span asp-validation-for="cli_FechaNacimiento" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="cli_Sexo" class="control-label"></label>
-                        <input asp-for="cli_Sexo" class="form-control" />
                         <span asp-validation-for="cli_Sexo" class="text-danger"></span>
+                        <label asp-for="cli_Sexo" class="control-label"></label>
+                        <div class="row">
+                            <div class="col-sm-1"></div>
+                            <label>F</label>
+                            <input type="radio" value="F" asp-for="cli_Sexo" class="form-check-inline" />
+                            <label>M</label>
+                            <input type="radio" value="M" asp-for="cli_Sexo" class="form-check-inline" />
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
+                        <span asp-validation-for="cli_Telefono" class="text-danger"></span>
                         <label asp-for="cli_Telefono" class="control-label"></label>
                         <input asp-for="cli_Telefono" class="form-control" />
-                        <span asp-validation-for="cli_Telefono" class="text-danger"></span>
+
                     </div>
                     <div class="form-group">
-                        <label  class="control-label">Departamento</label>
+                        <span asp-validation-for="depto" class="text-danger"></span>
+                        <label asp-for="depto" class="control-label"></label>
                         <select id="depto" name="depto" class="form-control" asp-items="ViewBag.depto"></select>
-                   
-                        <label asp-for="cli_Municipio" class="control-label"></label>
-                        <select asp-for="cli_Municipio" class="form-control" asp-items="ViewBag.cli_Municipio"></select>
                     </div>
                     <div class="form-group">
+                        <span asp-validation-for="cli_Municipio" class="text-danger"></span>
+                        <label asp-for="cli_Municipio" class="control-label"></label>
+                        <select id="cli_Municipio" name="cli_Municipio" asp-for="cli_Municipio" class="form-control"></select>
+                    </div>
+                    <div class="form-group">
+
                         <label asp-for="cli_EstadoCivil" class="control-label"></label>
                         <select asp-for="cli_EstadoCivil" class="form-control" asp-items="ViewBag.cli_EstadoCivil"></select>
                     </div>
@@ -71,5 +82,8 @@
         </div>
     </form>
 </div>
+
+<script src="~/js/Clientes.js/CargarMunicipios.js"></script>
+
 
 

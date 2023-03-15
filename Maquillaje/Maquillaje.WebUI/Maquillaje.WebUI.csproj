@@ -5,6 +5,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\js\App\**" />
+    <Compile Remove="wwwroot\js\General\**" />
+    <Content Remove="wwwroot\js\App\**" />
+    <Content Remove="wwwroot\js\General\**" />
+    <EmbeddedResource Remove="wwwroot\js\App\**" />
+    <EmbeddedResource Remove="wwwroot\js\General\**" />
+    <None Remove="wwwroot\js\App\**" />
+    <None Remove="wwwroot\js\General\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="11.0.0" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.0" />
@@ -20,11 +31,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Maquillaje.BusinessLogic\Maquillaje.BusinessLogic.csproj" />
     <ProjectReference Include="..\Maquillaje.Entities\Maquillaje.Entities.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="wwwroot\js\App\" />
-    <Folder Include="wwwroot\js\General\" />
   </ItemGroup>
 
 </Project>

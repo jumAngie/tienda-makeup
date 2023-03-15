@@ -15,7 +15,7 @@ namespace Maquillaje.WebUI.Controllers
     {
         private readonly GeneralesService _generalesService;
         private readonly IMapper _mapper;
-        private TiendaContext db = new TiendaContext();
+        public TiendaContext db = new TiendaContext();
 
         public ClienteController(GeneralesService generalesService, IMapper mapper)
         {
@@ -36,18 +36,49 @@ namespace Maquillaje.WebUI.Controllers
         public IActionResult Create()
         {
             ViewBag.cli_EstadoCivil = new SelectList(db.Vw_Gral_tbEstadosCiviles_DDL, "est_ID", "est_Descripcion");
-            ViewBag.depto = new SelectList(db.Vw_Gral_tbDepartamentos_DDL, "dep_ID", "dep_Descripcion");
+            ViewBag.depto = new SelectList(db.Vw_Gral_tbDepartamentos_DDL, "depto", "dep_Descripcion");
             return View();
         }
 
-        //[HttpPost("/Cliente/Create")]
+        [HttpPost("/Cliente/Create")]
 
-        //public IActionResult Create(ClientesViewModel item)
-        //{
-        //    string m = item.cli_Apellido;
-        //    string v = item.cli_DNI;
+        public IActionResult Create(ClientesViewModel item)
+        {
+            
+            string Depto = item.depto;
+            if (ModelState.IsValid)
+            {
+                string fecha = item.cli_FechaNacimiento.ToString();
+                string[] f = fecha.Split('/');
+                string[] año = f[2].Split(' ');
+                string FechaValida = año[0] + "/" + f[1] + "/" + f[0];
 
-        //    return View();
-        //}
+               
+                string Nombre = item.cli_Nombre;
+                string Sexo = item.cli_Sexo;
+                string Municipio = item.cli_Municipio;
+                string Telefono = item.cli_Telefono;
+                string Apellido = item.cli_Apellido;
+                string DNI = item.cli_DNI;
+                string Civil = item.cli_EstadoCivil;
+            }
+            
+
+            return View();
+        }
+
+
+
+
+
+        [HttpGet("/Cliente/CargarMunicipios/{depto}")]
+        public JsonResult CargarMunicipios(int depto)
+        {
+            
+            var ddl = db.UDF_Gral_tbMunicipio_DDL(depto).ToList();
+
+            return Json(ddl);
+
+        }
     }
 }

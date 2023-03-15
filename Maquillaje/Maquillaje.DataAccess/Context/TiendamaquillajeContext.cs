@@ -1014,6 +1014,7 @@ namespace Maquillaje.DataAccess.Context
                     .HasConstraintName("FK_Maqui_tbVentas_MaquiDetalles_tbVentasDetalle_VD_VentaId");
             });
 
+            OnModelCreatingGeneratedFunctions(modelBuilder);
             OnModelCreatingPartial(modelBuilder);
         }
 
