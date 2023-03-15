@@ -1591,7 +1591,7 @@ CREATE OR ALTER VIEW Vw_Gral_tbDepartamentos_DDL
 AS
 
 
-SELECT '0' AS 'dep_ID', ' ---Seleccione una opción---' AS 'dep_Descripcion'
+SELECT '0' AS 'depto', ' ---Seleccione una opción---' AS 'dep_Descripcion'
 UNION ALL
 SELECT dep_ID, dep_Descripcion FROM Gral.tbDepartamentos
 GO
@@ -1605,7 +1605,23 @@ UNION ALL
 SELECT cli_ID, cli_Nombre + ' ' + cli_Apellido FROM Gral.tbClientes
 GO
 --************************************************************************************************************
+CREATE OR ALTER FUNCTION UDF_Gral_tbMunicipio_DDL(@depto varchar(3))
+RETURNS TABLE
+AS
+RETURN
+(
+SELECT mun_ID, mun_Descripcion FROM Gral.tbMunicipios
+WHERE mun_depID = @depto
+)
+GO
 
+SELECT * FROM dbo.UDF_Gral_tbMunicipio_DDL(5)
+
+SELECT '0' AS 'cli_ID', ' ---Seleccione una opción---' AS 'cli_Nombre'
+UNION ALL
+SELECT cli_ID, cli_Nombre + ' ' + cli_Apellido FROM Gral.tbClientes
+
+go
 CREATE OR ALTER PROC UDP_Maqui_tbCategorias_EDITAR(
 @cat_Id INT,
 @cat_Descripcion NVARCHAR(100),
