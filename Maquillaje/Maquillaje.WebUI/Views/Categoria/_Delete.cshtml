@@ -1,6 +1,6 @@
 ﻿<!-- Elimar Categorias -->
-<form action="@Url.Action("Delete","Categoria")" method="post">
-    <div class="modal inmodal" id="confirmar-eliminacion" tabindex="-1" role="dialog" aria-labelledby="confirm-delete-modal-label" aria-hidden="true">
+<form action="@Url.Action("Delete","Categoria")" method="post" id="deleteform">
+    <div class="modal inmodal" id="DeleteCat" tabindex="-1" role="dialog" aria-labelledby="confirm-delete-modal-label" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content animated bounceInRight">
                 <div class="modal-header">
@@ -9,12 +9,13 @@
                     <h4 class="modal-title">Confirme la acción</h4>
                 </div>
                 <div class="modal-body">
+                    <input type="hidden" id="txt_CatId" name="cat_Id" />
                     <center>¿Está seguro de que desea eliminar el elemento?</center>
 
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
-                    <a href="#" id="confirmar" class="btn btn-danger" onclick="Modal()">Eliminar</a>
+                    <button type="submit" id="confirmar" class="btn btn-danger" >Eliminar</button>
                 </div>
             </div>
         </div>
@@ -27,18 +28,22 @@
 
 <script>
 
-    
-
-        @* Eliminar *@
-    type = "text/javascript" > function Modal() {
-        $('#confirmar-eliminacion').modal({ backdrop: 'static', keyboard: false })
-    }
-
-    $(function () {
-        $('.btn-outline-danger').click(function () {
-            var id = $(this).data('id');
-            $('#confirmar').attr('href', '/Categoria/Eliminar/' + id);
-            $('#confirmar-eliminacion').modal('show');
+    function ShowModal(txt_CatId) {
+        $('#DeleteCat').modal('show');
+        $("#confirmar").click(function () {
+            var id = txt_CatId;
+            
+            $.ajax({
+                url: "/Categoria/Eliminar",
+                type: "POST",
+                data: { cat_Id: id },
+                success: function () {
+                    window.location.href = "/Categorias/Listado";
+                },
+                error: function () {
+                    alert("Error al eliminar el registro.");
+                }
+            });
         });
-    });
+    };
 </script>
