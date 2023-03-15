@@ -1,0 +1,73 @@
+﻿@model Maquillaje.Entities.Entities.tbProveedores
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Create</h1>
+
+<h4>tbProveedores</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="prv_NombreCompañia" class="control-label"></label>
+                <input asp-for="prv_NombreCompañia" class="form-control" />
+                <span asp-validation-for="prv_NombreCompañia" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="prv_NombreContacto" class="control-label"></label>
+                <input asp-for="prv_NombreContacto" class="form-control" />
+                <span asp-validation-for="prv_NombreContacto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="prv_TelefonoContacto" class="control-label"></label>
+                <input asp-for="prv_TelefonoContacto" class="form-control" />
+                <span asp-validation-for="prv_TelefonoContacto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="prv_Municipio" class="control-label"></label>
+                <select asp-for="prv_Municipio" class ="form-control" asp-items="ViewBag.prv_Municipio"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="prv_DireccionEmpresa" class="control-label"></label>
+                <input asp-for="prv_DireccionEmpresa" class="form-control" />
+                <span asp-validation-for="prv_DireccionEmpresa" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="prv_DireccionContacto" class="control-label"></label>
+                <input asp-for="prv_DireccionContacto" class="form-control" />
+                <span asp-validation-for="prv_DireccionContacto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="prv_SexoContacto" class="control-label"></label>
+                <input asp-for="prv_SexoContacto" class="form-control" />
+                <span asp-validation-for="prv_SexoContacto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="prv_UsuarioCrea" class="control-label"></label>
+                <select asp-for="prv_UsuarioCrea" class ="form-control" asp-items="ViewBag.prv_UsuarioCrea"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="prv_UsuarioModi" class="control-label"></label>
+                <select asp-for="prv_UsuarioModi" class ="form-control" asp-items="ViewBag.prv_UsuarioModi"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="prv_FechaModi" class="control-label"></label>
+                <input asp-for="prv_FechaModi" class="form-control" />
+                <span asp-validation-for="prv_FechaModi" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
