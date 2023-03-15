@@ -12,18 +12,16 @@ namespace Maquillaje.DataAccess.Repositories
 {
     public class CategoriaRepository : IRepository<tbCategorias>
     {
+
         public int Delete(tbCategorias item)
         {
             using var db = new SqlConnection(TiendaContext.ConnectionString);
             var parametros = new DynamicParameters();
             parametros.Add("@cat_Id", item.cat_Id, DbType.Int32, ParameterDirection.Input);
 
+            return db.Execute(ScriptsDataBase.CategoriasEliminar, parametros, commandType: CommandType.StoredProcedure);
 
-            db.Query<tbCategorias>(ScriptsDataBase.CategoriasEliminar, parametros, commandType: System.Data.CommandType.StoredProcedure);
 
-            int resultado = parametros.Get<int>("@cat_Id");
-
-            return resultado;
         }
 
 

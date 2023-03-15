@@ -87,7 +87,6 @@ namespace Maquillaje.BusinessLogic.Services
             return _categoriaRepository.Find(id);
         }
 
-
         //ELIMINAR
         public int DeleteCategoria(tbCategorias categoria)
         {

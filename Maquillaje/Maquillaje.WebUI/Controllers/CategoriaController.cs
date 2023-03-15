@@ -67,16 +67,23 @@ namespace Maquillaje.WebUI.Controllers
 
 
 
+
+
         [HttpPost("/Categoria/Eliminar/")]
         public IActionResult Delete(int cat_Id)
         {
 
             tbCategorias cat = new tbCategorias();
             cat.cat_Id = cat_Id;
+
+
             var categoria = _mapper.Map<tbCategorias>(cat);
             var result = _generalesService.DeleteCategoria(categoria);
+
+
             return RedirectToAction("Index");
         }
+
 
 
 
