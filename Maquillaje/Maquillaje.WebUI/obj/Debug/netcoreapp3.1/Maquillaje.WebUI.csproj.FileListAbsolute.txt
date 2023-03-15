@@ -1546,3 +1546,6 @@ C:\Users\Juan David\Desktop\tienda-makeup\Maquillaje\Maquillaje.WebUI\obj\Debug\
 C:\Users\Juan David\Desktop\tienda-makeup\Maquillaje\Maquillaje.WebUI\obj\Debug\netcoreapp3.1\Maquillaje.WebUI.dll
 C:\Users\Juan David\Desktop\tienda-makeup\Maquillaje\Maquillaje.WebUI\obj\Debug\netcoreapp3.1\Maquillaje.WebUI.pdb
 C:\Users\Juan David\Desktop\tienda-makeup\Maquillaje\Maquillaje.WebUI\obj\Debug\netcoreapp3.1\Maquillaje.WebUI.genruntimeconfig.cache
+C:\Users\LAB02\Documents\GitHub\tienda-makeup\Maquillaje\Maquillaje.WebUI\obj\Debug\netcoreapp3.1\Razor\Views\Categoria\_Create.cshtml.g.cs
+C:\Users\LAB02\Documents\GitHub\tienda-makeup\Maquillaje\Maquillaje.WebUI\obj\Debug\netcoreapp3.1\Razor\Views\Categoria\_Delete.cshtml.g.cs
+C:\Users\LAB02\Documents\GitHub\tienda-makeup\Maquillaje\Maquillaje.WebUI\obj\Debug\netcoreapp3.1\Razor\Views\Categoria\_Edit.cshtml.g.cs

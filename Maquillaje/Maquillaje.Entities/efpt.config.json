@@ -70,6 +70,10 @@
          "ObjectType": 0
       },
       {
+         "Name": "[dbo].[Vw_Gral_tbClientes_DDL]",
+         "ObjectType": 3
+      },
+      {
          "Name": "[dbo].[Vw_Gral_tbClientes_LIST]",
          "ObjectType": 3
       },
@@ -144,69 +148,9 @@
       {
          "Name": "[dbo].[Vw_Maqui_tbVentasDetalle_LIST]",
          "ObjectType": 3
-      },
-      {
-         "Name": "[dbo].[UDP_Gral_tbClientes_CREAR]",
-         "ObjectType": 1
-      },
-      {
-         "Name": "[dbo].[UDP_Gral_tbDepartamentos_CREAR]",
-         "ObjectType": 1
-      },
-      {
-         "Name": "[dbo].[UDP_Gral_tbEmpleados_CREAR]",
-         "ObjectType": 1
-      },
-      {
-         "Name": "[dbo].[UDP_Gral_tbEstadosCiviles_CREAR]",
-         "ObjectType": 1
-      },
-      {
-         "Name": "[dbo].[UDP_Gral_tbMunicipios_CREAR]",
-         "ObjectType": 1
-      },
-      {
-         "Name": "[dbo].[UDP_Gral_tbSucursales_CREAR]",
-         "ObjectType": 1
-      },
-      {
-         "Name": "[dbo].[UDP_Gral_tbUsuarios_CREAR]",
-         "ObjectType": 1
-      },
-      {
-         "Name": "[dbo].[UDP_Maqui_tbCategorias_CREAR]",
-         "ObjectType": 1
-      },
-      {
-         "Name": "[dbo].[UDP_Maqui_tbCategorias_EDITAR]",
-         "ObjectType": 1
-      },
-      {
-         "Name": "[dbo].[UDP_Maqui_tbInventario_CREAR]",
-         "ObjectType": 1
-      },
-      {
-         "Name": "[dbo].[UDP_Maqui_tbMetodoPago_CREAR]",
-         "ObjectType": 1
-      },
-      {
-         "Name": "[dbo].[UDP_Maqui_tbProductos_CREAR]",
-         "ObjectType": 1
-      },
-      {
-         "Name": "[dbo].[UDP_Maqui_tbProveedores_CREAR]",
-         "ObjectType": 1
-      },
-      {
-         "Name": "[dbo].[UDP_Maqui_tbVentas_CREAR]",
-         "ObjectType": 1
-      },
-      {
-         "Name": "[dbo].[UDP_Maqui_tbVentasDetalle_CREAR]",
-         "ObjectType": 1
       }
    ],
-   "UiHint": "LAPTOP-4UJ5657P\\SQLEXPRESS.TiendaMaquillaje",
+   "UiHint": "DESKTOP-KKVKH2B\\SQLEXPRESSLOCAL.TiendaMaquillaje",
    "UseBoolPropertiesWithoutDefaultSql": false,
    "UseDatabaseNames": true,
    "UseDbContextSplitting": false,
