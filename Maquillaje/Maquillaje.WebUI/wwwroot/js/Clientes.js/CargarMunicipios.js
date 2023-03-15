@@ -1,7 +1,7 @@
 ﻿$("#depto").change(function () {
 
     var depto = $("#depto").val();
-    alert(depto);
+   
 
     $.ajax({
         url: "/Cliente/CargarMunicipios/" + depto,

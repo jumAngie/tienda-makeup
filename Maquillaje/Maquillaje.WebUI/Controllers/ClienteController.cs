@@ -44,27 +44,53 @@ namespace Maquillaje.WebUI.Controllers
 
         public IActionResult Create(ClientesViewModel item)
         {
-            
-            string Depto = item.depto;
+            var fechas = item.cli_FechaNacimiento.ToString();
+
+
             if (ModelState.IsValid)
             {
-                string fecha = item.cli_FechaNacimiento.ToString();
-                string[] f = fecha.Split('/');
-                string[] año = f[2].Split(' ');
-                string FechaValida = año[0] + "/" + f[1] + "/" + f[0];
+                if( item.cli_Nombre != null && item.cli_Apellido != null && item.cli_DNI != null && item.cli_EstadoCivil != "0" && 
+                    fechas != "01/01/0001 0:00:00" && item.cli_Sexo != null && item.cli_Telefono != null && item.depto != "0" &&
+                   (item.cli_Municipio != null && item.cli_Municipio != "0"))
+                {
+                    
+                    string[] f = fechas.Split('/');
+                    string[] año = f[2].Split(' ');
+                    string FechaValida = año[0] + "/" + f[1] + "/" + f[0];
 
-               
-                string Nombre = item.cli_Nombre;
-                string Sexo = item.cli_Sexo;
-                string Municipio = item.cli_Municipio;
-                string Telefono = item.cli_Telefono;
-                string Apellido = item.cli_Apellido;
-                string DNI = item.cli_DNI;
-                string Civil = item.cli_EstadoCivil;
+                    string Nombre = item.cli_Nombre;
+                    string Sexo = item.cli_Sexo;
+                    string Municipio = item.cli_Municipio;
+                    string Telefono = item.cli_Telefono;
+                    string Apellido = item.cli_Apellido;
+                    string DNI = item.cli_DNI;
+                    string Civil = item.cli_EstadoCivil;
+
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    if (item.depto == "0")              { ModelState.AddModelError("ValidarDep", "*"); }
+                    if (item.cli_EstadoCivil == "0" )   { ModelState.AddModelError("ValidarCivil", "*"); }
+                    ViewBag.cli_EstadoCivil = new SelectList(db.Vw_Gral_tbEstadosCiviles_DDL, "est_ID", "est_Descripcion");
+                    ViewBag.depto = new SelectList(db.Vw_Gral_tbDepartamentos_DDL, "depto", "dep_Descripcion");
+                    return View(item);
+                }
+                
+                
             }
+            else
+            {
+                if (item.depto == "0") { ModelState.AddModelError("ValidarDep", "*"); }
+                if (item.cli_EstadoCivil == "0") { ModelState.AddModelError("ValidarCivil", "*"); }
+                if (fechas == "01/01/0001 0:00:00") { ModelState.AddModelError("ValidarFecha", "*"); }
+                ViewBag.cli_EstadoCivil = new SelectList(db.Vw_Gral_tbEstadosCiviles_DDL, "est_ID", "est_Descripcion");
+                ViewBag.depto = new SelectList(db.Vw_Gral_tbDepartamentos_DDL, "depto", "dep_Descripcion");
+                return View(item);
+            }
+
             
 
-            return View();
         }
 
 
