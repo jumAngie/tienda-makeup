@@ -22,21 +22,29 @@ namespace Maquillaje.DataAccess.Repositories.Gral
             throw new NotImplementedException();
         }
 
-        public int Insert(tbClientes item)
+        public int Insertar(string cli_Nombre, string cli_Apellido, string cli_DNI, string cli_FechaNacimiento, string cli_Sexo, string cli_Telefono
+                          ,int cli_Municipio, int cli_EstadoCivil, int cli_UsuarioCrea)
         {
+            cli_UsuarioCrea = 1;
             using var db = new SqlConnection(TiendaContext.ConnectionString);
             var parametros = new DynamicParameters();
-            parametros.Add("@cli_Nombre",           item.cli_Nombre,            DbType.String,  ParameterDirection.Input);
-            parametros.Add("@cli_Apellido",         item.cli_Apellido,          DbType.String,  ParameterDirection.Input);
-            parametros.Add("@cli_DNI",              item.cli_DNI,               DbType.String,  ParameterDirection.Input);
-            parametros.Add("@cli_FechaNacimiento",  item.cli_FechaNacimiento,   DbType.Date,    ParameterDirection.Input);
-            parametros.Add("@cli_Sexo",             item.cli_Sexo,              DbType.String,  ParameterDirection.Input);
-            parametros.Add("@cli_Municipio",        item.cli_Municipio,         DbType.Int32,   ParameterDirection.Input);
-            parametros.Add("@cli_EstadoCivil",      item.cli_EstadoCivil,       DbType.Int32,   ParameterDirection.Input);
-            parametros.Add("@cli_UsuarioCrea",      item.cli_UsuarioCrea,       DbType.Int32,   ParameterDirection.Input);
+            parametros.Add("@cli_Nombre",           cli_Nombre,            DbType.String,  ParameterDirection.Input);
+            parametros.Add("@cli_Apellido",         cli_Apellido,          DbType.String,  ParameterDirection.Input);
+            parametros.Add("@cli_DNI",              cli_DNI,               DbType.String,  ParameterDirection.Input);
+            parametros.Add("@cli_FechaNacimiento",  cli_FechaNacimiento,   DbType.String,    ParameterDirection.Input);
+            parametros.Add("@cli_Sexo",             cli_Sexo,              DbType.String,  ParameterDirection.Input);
+            parametros.Add("@cli_Telefono",         cli_Telefono,          DbType.String, ParameterDirection.Input);
+            parametros.Add("@cli_Municipio",        cli_Municipio,         DbType.Int32,   ParameterDirection.Input);
+            parametros.Add("@cli_EstadoCivil",      cli_EstadoCivil,       DbType.Int32,   ParameterDirection.Input);
+            parametros.Add("@cli_UsuarioCrea",      cli_UsuarioCrea,       DbType.Int32,   ParameterDirection.Input);
 
 
-            return db.QueryFirst<int>(ScriptsDataBase.ClientesCrear, parametros, commandType: CommandType.StoredProcedure);
+            return db.Execute(ScriptsDataBase.ClientesCrear, parametros, commandType: CommandType.StoredProcedure);
+        }
+
+        public int Insert(tbClientes item)
+        {
+            throw new NotImplementedException();
         }
 
         public IEnumerable<Vw_Gral_tbClientes_LIST> List()

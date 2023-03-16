@@ -419,7 +419,7 @@ namespace Maquillaje.DataAccess.Context
             modelBuilder.Entity<tbCategorias>(entity =>
             {
                 entity.HasKey(e => e.cat_Id)
-                    .HasName("PK__tbCatego__DD5AD195B7DCED31");
+                    .HasName("PK__tbCatego__DD5AD19590BC32E7");
 
                 entity.ToTable("tbCategorias", "Maqui");
 
@@ -449,7 +449,7 @@ namespace Maquillaje.DataAccess.Context
             modelBuilder.Entity<tbClientes>(entity =>
             {
                 entity.HasKey(e => e.cli_ID)
-                    .HasName("PK__tbClient__FFECE5778C02C73C");
+                    .HasName("PK__tbClient__FFECE57749D8538B");
 
                 entity.ToTable("tbClientes", "Gral");
 
@@ -516,7 +516,7 @@ namespace Maquillaje.DataAccess.Context
             modelBuilder.Entity<tbDepartamentos>(entity =>
             {
                 entity.HasKey(e => e.dep_ID)
-                    .HasName("PK__tbDepart__BB4CBBC017838041");
+                    .HasName("PK__tbDepart__BB4CBBC0754E3AAA");
 
                 entity.ToTable("tbDepartamentos", "Gral");
 
@@ -545,7 +545,7 @@ namespace Maquillaje.DataAccess.Context
             modelBuilder.Entity<tbEmpleados>(entity =>
             {
                 entity.HasKey(e => e.emp_ID)
-                    .HasName("PK__tbEmplea__128545C945AD8435");
+                    .HasName("PK__tbEmplea__128545C9DA75042C");
 
                 entity.ToTable("tbEmpleados", "Gral");
 
@@ -622,7 +622,7 @@ namespace Maquillaje.DataAccess.Context
             modelBuilder.Entity<tbEstadosCiviles>(entity =>
             {
                 entity.HasKey(e => e.est_ID)
-                    .HasName("PK__tbEstado__40ADEC90395C2609");
+                    .HasName("PK__tbEstado__40ADEC9091865629");
 
                 entity.ToTable("tbEstadosCiviles", "Gral");
 
@@ -651,7 +651,7 @@ namespace Maquillaje.DataAccess.Context
             modelBuilder.Entity<tbInventario>(entity =>
             {
                 entity.HasKey(e => e.inv_Id)
-                    .HasName("PK__tbInvent__A7F1E3E18E0A4350");
+                    .HasName("PK__tbInvent__A7F1E3E1D3BCE3B8");
 
                 entity.ToTable("tbInventario", "Maqui");
 
@@ -683,7 +683,7 @@ namespace Maquillaje.DataAccess.Context
             modelBuilder.Entity<tbMetodoPago>(entity =>
             {
                 entity.HasKey(e => e.met_Id)
-                    .HasName("PK__tbMetodo__820DEB1E5D48CD02");
+                    .HasName("PK__tbMetodo__820DEB1E919AE8D2");
 
                 entity.ToTable("tbMetodoPago", "Maqui");
 
@@ -713,7 +713,7 @@ namespace Maquillaje.DataAccess.Context
             modelBuilder.Entity<tbMunicipios>(entity =>
             {
                 entity.HasKey(e => e.mun_ID)
-                    .HasName("PK__tbMunici__130DA68F32AB8000");
+                    .HasName("PK__tbMunici__130DA68F700E3793");
 
                 entity.ToTable("tbMunicipios", "Gral");
 
@@ -748,7 +748,7 @@ namespace Maquillaje.DataAccess.Context
             modelBuilder.Entity<tbProductos>(entity =>
             {
                 entity.HasKey(e => e.pro_Id)
-                    .HasName("PK__tbProduc__335D708EF8CABDBC");
+                    .HasName("PK__tbProduc__335D708E3706B4A9");
 
                 entity.ToTable("tbProductos", "Maqui");
 
@@ -801,7 +801,7 @@ namespace Maquillaje.DataAccess.Context
             modelBuilder.Entity<tbProveedores>(entity =>
             {
                 entity.HasKey(e => e.prv_ID)
-                    .HasName("PK__tbProvee__28A716C8E69DDED4");
+                    .HasName("PK__tbProvee__28A716C8411295C9");
 
                 entity.ToTable("tbProveedores", "Maqui");
 
@@ -860,7 +860,7 @@ namespace Maquillaje.DataAccess.Context
             modelBuilder.Entity<tbSucursales>(entity =>
             {
                 entity.HasKey(e => e.suc_Id)
-                    .HasName("PK__tbSucurs__C6E3237773313D10");
+                    .HasName("PK__tbSucurs__C6E32377DC86FCE8");
 
                 entity.ToTable("tbSucursales", "Gral");
 
@@ -896,7 +896,7 @@ namespace Maquillaje.DataAccess.Context
             modelBuilder.Entity<tbUsuarios>(entity =>
             {
                 entity.HasKey(e => e.usu_ID)
-                    .HasName("PK__tbUsuari__4305632445C0F557");
+                    .HasName("PK__tbUsuari__43056324C4F7A003");
 
                 entity.ToTable("tbUsuarios", "Gral");
 
@@ -927,7 +927,7 @@ namespace Maquillaje.DataAccess.Context
             modelBuilder.Entity<tbVentas>(entity =>
             {
                 entity.HasKey(e => e.ven_Id)
-                    .HasName("PK__tbVentas__7BA9B75135EE0A77");
+                    .HasName("PK__tbVentas__7BA9B75186A95363");
 
                 entity.ToTable("tbVentas", "Maqui");
 
@@ -979,7 +979,7 @@ namespace Maquillaje.DataAccess.Context
             modelBuilder.Entity<tbVentasDetalle>(entity =>
             {
                 entity.HasKey(e => e.vde_Id)
-                    .HasName("PK__tbVentas__C993F9CF141B7E89");
+                    .HasName("PK__tbVentas__C993F9CF21202469");
 
                 entity.ToTable("tbVentasDetalle", "Maqui");
 
