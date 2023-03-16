@@ -74,6 +74,7 @@ namespace Maquillaje.WebUI.Controllers
                     string Apellido = item.cli_Apellido;
                     string DNI = item.cli_DNI;
                     string Civil = item.cli_EstadoCivil;
+                    string depto = item.depto;
                     if (ExisteDni(DNI))
                     {
                         ModelState.AddModelError("ValidarDNI", "El DNI ya existe");
