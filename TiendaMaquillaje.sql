@@ -1614,6 +1614,23 @@ SELECT mun_ID, mun_Descripcion FROM Gral.tbMunicipios
 WHERE mun_depID = @depto
 )
 GO
+--************************************************************************************************************
+CREATE OR ALTER FUNCTION UDF_Gral_tbClienteInfo_DDL(@id INT)
+RETURNS TABLE
+AS
+RETURN
+(
+SELECT cli_Municipio, deptos.dep_ID FROM Gral.tbClientes client
+INNER JOIN Gral.tbMunicipios muni
+ON client.cli_Municipio = muni.mun_ID 
+INNER JOIN Gral.tbDepartamentos deptos
+ON muni.mun_depID = deptos.dep_ID
+WHERE cli_ID = @id
+)
+GO
+
+select * from Gral.tbClientes
+select * from Gral.tbMunicipios
 
 SELECT * FROM dbo.UDF_Gral_tbMunicipio_DDL(5)
 

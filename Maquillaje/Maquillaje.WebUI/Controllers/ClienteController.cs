@@ -127,9 +127,22 @@ namespace Maquillaje.WebUI.Controllers
 
         }
 
+        // EDITAR // 
+
+        [HttpGet("/Cliente/CargarInfo/{id}")]
+        public JsonResult CargarInfo(int cli_ID)
+        {
+            int numero = 5;
+            var ddl = db.UDF_Gral_tbClienteInfo_DDL(numero).ToList();
+
+            return Json(ddl);
+
+        }
+
         [HttpGet]
         public IActionResult Edit(int? id)
         {
+            
            var cliente =  _generalesService.ObtenerCliente(id);
             if(cliente == null)
             {
@@ -137,14 +150,17 @@ namespace Maquillaje.WebUI.Controllers
             }
             else
             {
-                
 
+                //var listadoMapeado = _mapper.Map<ClientesViewModel>(cliente);
                 ViewBag.cli_EstadoCivil = new SelectList(db.tbEstadosCiviles, "est_ID", "est_Descripcion");
-                ViewBag.depto = new SelectList(db.Vw_Gral_tbDepartamentos_DDL, "depto", "dep_Descripcion");
-                var municipios = db.tbMunicipios.Where(m => m.mun_ID == cliente.cli_Municipio).ToList();
-                ViewBag.cli_Municipio = municipios;
-                return View(cliente);
+                ViewBag.depto = new SelectList(db.tbDepartamentos, "dep_ID", "dep_Descripcion");
+                ViewBag.Municipio = new SelectList(db.tbMunicipios, "mun_ID", "mun_Descripcion");
+                return View();
             }
         }
+
+        // ELIMINAR //
+
+
     }
 }

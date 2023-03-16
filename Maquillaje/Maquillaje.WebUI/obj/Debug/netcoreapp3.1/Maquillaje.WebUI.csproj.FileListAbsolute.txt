@@ -1953,3 +1953,13 @@ C:\Users\Juan David\Desktop\m\tienda-makeup\Maquillaje\Maquillaje.WebUI\obj\Debu
 C:\Users\Juan David\Desktop\m\tienda-makeup\Maquillaje\Maquillaje.WebUI\obj\Debug\netcoreapp3.1\Razor\Views\EstadosCiviles\_Edit.cshtml.g.cs
 C:\Users\Juan David\Desktop\m\tienda-makeup\Maquillaje\Maquillaje.WebUI\obj\Debug\netcoreapp3.1\Razor\Views\Municipio\_Create.cshtml.g.cs
 C:\Users\Juan David\Desktop\m\tienda-makeup\Maquillaje\Maquillaje.WebUI\obj\Debug\netcoreapp3.1\Razor\Views\Municipio\_Edit.cshtml.g.cs
+C:\Users\LAB02\Documents\GitHub\tienda-makeup\Maquillaje\Maquillaje.WebUI\obj\Debug\netcoreapp3.1\Razor\Views\Cliente\Edit.cshtml.g.cs
+C:\Users\LAB02\Documents\GitHub\tienda-makeup\Maquillaje\Maquillaje.WebUI\obj\Debug\netcoreapp3.1\Razor\Views\Departamentos\_Create.cshtml.g.cs
+C:\Users\LAB02\Documents\GitHub\tienda-makeup\Maquillaje\Maquillaje.WebUI\obj\Debug\netcoreapp3.1\Razor\Views\Departamentos\_Edit.cshtml.g.cs
+C:\Users\LAB02\Documents\GitHub\tienda-makeup\Maquillaje\Maquillaje.WebUI\obj\Debug\netcoreapp3.1\Razor\Views\EstadosCiviles\_Create.cshtml.g.cs
+C:\Users\LAB02\Documents\GitHub\tienda-makeup\Maquillaje\Maquillaje.WebUI\obj\Debug\netcoreapp3.1\Razor\Views\EstadosCiviles\_Edit.cshtml.g.cs
+C:\Users\LAB02\Documents\GitHub\tienda-makeup\Maquillaje\Maquillaje.WebUI\obj\Debug\netcoreapp3.1\Razor\Views\MetodoPago\_Create.cshtml.g.cs
+C:\Users\LAB02\Documents\GitHub\tienda-makeup\Maquillaje\Maquillaje.WebUI\obj\Debug\netcoreapp3.1\Razor\Views\MetodoPago\_Delete.cshtml.g.cs
+C:\Users\LAB02\Documents\GitHub\tienda-makeup\Maquillaje\Maquillaje.WebUI\obj\Debug\netcoreapp3.1\Razor\Views\MetodoPago\_Edit.cshtml.g.cs
+C:\Users\LAB02\Documents\GitHub\tienda-makeup\Maquillaje\Maquillaje.WebUI\obj\Debug\netcoreapp3.1\Razor\Views\Municipio\_Create.cshtml.g.cs
+C:\Users\LAB02\Documents\GitHub\tienda-makeup\Maquillaje\Maquillaje.WebUI\obj\Debug\netcoreapp3.1\Razor\Views\Municipio\_Edit.cshtml.g.cs

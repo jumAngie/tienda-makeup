@@ -150,11 +150,15 @@
          "ObjectType": 3
       },
       {
+         "Name": "[dbo].[UDF_Gral_tbClienteInfo_DDL]",
+         "ObjectType": 2
+      },
+      {
          "Name": "[dbo].[UDF_Gral_tbMunicipio_DDL]",
          "ObjectType": 2
       }
    ],
-   "UiHint": "PC-ANGIE\\SQLEXPRESS.TiendaMaquillaje",
+   "UiHint": "DESKTOP-KKVKH2B\\SQLEXPRESSLOCAL.TiendaMaquillaje",
    "UseBoolPropertiesWithoutDefaultSql": false,
    "UseDatabaseNames": true,
    "UseDbContextSplitting": false,
