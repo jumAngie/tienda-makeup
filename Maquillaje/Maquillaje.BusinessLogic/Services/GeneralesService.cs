@@ -176,6 +176,12 @@ namespace Maquillaje.BusinessLogic.Services
             
         }
 
+        //public void UpdateClientes(int id, string cli_Apellido, string cli_DNI, string cli_FechaNacimiento, string cli_Sexo, string Telefono,
+        //                  int cli_Municipio, int cli_EstadoCivil, int cli_UsuarioCrea)
+        //{
+        //    _clientesRepository.Update();
+        //}
+
         public tbClientes ObtenerCliente(int? id)
         {
 

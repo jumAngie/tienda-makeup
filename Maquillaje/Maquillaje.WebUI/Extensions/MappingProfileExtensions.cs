@@ -12,6 +12,9 @@ namespace Maquillaje.WebUI.Extensions
     {
         public MappingProfileExtensions()
         {
+            CreateMap<ClientesViewModel, tbClientes>().ReverseMap();
+
+
             CreateMap<CategoriaViewModel, Vw_Maqui_tbCategorias_LIST>().ReverseMap();
             CreateMap<ProductosViewModel, Vw_Maqui_tbProductos_LIST>().ReverseMap();
             CreateMap<InventarioViewModel, Vw_Maqui_tbInventario_LIST>().ReverseMap();
@@ -25,6 +28,11 @@ namespace Maquillaje.WebUI.Extensions
             CreateMap<ProveedoresViewModel, Vw_Maqui_tbProveedores_LIST>().ReverseMap();
             CreateMap<VentasViewModel, Vw_Maqui_tbVentas_LIST>().ReverseMap();
             CreateMap<UsuariosViewModel, Vw_Gral_tbUsuarios_LIST>().ReverseMap();
+
+
+          
+            
+            
         }
     }
 }

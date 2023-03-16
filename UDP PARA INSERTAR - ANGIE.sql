@@ -1,0 +1,6 @@
+CREATE OR ALTER UDP_Maqui_tbMetodoPago_UPDATE
+	@cli_ID INT
+
+AS
+BEGIN
+END
