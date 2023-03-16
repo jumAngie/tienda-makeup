@@ -1279,8 +1279,8 @@ DECLARE @mun_FechaCrea DATETIME = GETDATE();
 DECLARE @mun_FechaModi DATETIME = NULL;
 
 INSERT INTO Gral.tbMunicipios
-VALUES  (@mun_Descripcion,
-		 @mun_DepId,
+VALUES  (@mun_DepId,
+		 @mun_Descripcion, 
 		 @mun_UsuCrea,
 		 @mun_FechaCrea,
 		 @mun_UsuModi,
@@ -1661,3 +1661,75 @@ UPDATE Maqui.tbCategorias SET cat_Estado = 0
 WHERE cat_Id = @cat_Id
 
 END
+GO
+
+
+CREATE OR  ALTER PROC UDP_Maqui_tbMetodoPago_ELIMINAR
+(@met_Id INT)
+AS BEGIN
+
+UPDATE Maqui.tbMetodoPago SET met_Estado = 0
+WHERE met_Id = @met_Id
+
+END
+GO
+
+
+CREATE OR ALTER PROC UDP_Maqui_tbMetodoPago_EDITAR(
+@met_Id INT,
+@met_Decripcion NVARCHAR(100),
+@met_UsuModi INT)
+AS BEGIN
+
+UPDATE Maqui.tbMetodoPago SET met_Descripcion = @met_Decripcion,
+							  met_usuModi = @met_UsuModi
+							  WHERE met_Id = @met_Id
+END
+GO
+
+
+CREATE OR ALTER PROC UDP_Gral_tbDepartamentos_EDITAR(
+@dep_Id INT, 
+@dep_Descripcion NVARCHAR(100), 
+@dep_UsuModi INT)
+AS BEGIN
+
+UPDATE Gral.tbDepartamentos SET dep_Descripcion = @dep_Descripcion,
+								dep_UsuarioModi = @dep_UsuModi
+								WHERE dep_ID = @dep_Id
+END
+GO
+
+
+
+CREATE OR ALTER PROC UDP_Gral_tbMunicipios_CARGARPORDEPTO
+(@dep_Id NVARCHAR(100))
+AS BEGIN
+
+SELECT  mun_ID, 
+		mun_depID,
+		dep_Descripcion,
+		mun_Descripcion 
+		FROM Gral.tbMunicipios T1 
+		INNER JOIN Gral.tbDepartamentos T2
+		ON T1.mun_depID = T2.dep_Id
+		WHERE T1.mun_depID = @dep_Id
+
+END
+GO
+
+
+CREATE OR ALTER PROC UDP_Gral_tbEstadosCiviles_EDITAR(
+@est_Id INT,
+@est_Descripcion NVARCHAR(100),
+@est_UsuModi INT)
+AS BEGIN
+
+UPDATE Gral.tbEstadosCiviles SET est_Descripcion = @est_Descripcion,
+								est_UsuarioModi = @est_UsuModi
+									WHERE est_ID = @est_Id
+END
+
+
+
+

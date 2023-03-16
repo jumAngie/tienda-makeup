@@ -36,7 +36,7 @@ namespace Maquillaje.DataAccess.Repositories.Gral
             parametros.Add("@mun_DepId", item.mun_depID, DbType.String, ParameterDirection.Input);
             parametros.Add("@mun_UsuCrea", item.mun_UsuarioCrea, DbType.Int32, ParameterDirection.Input);
 
-            return db.QueryFirst<int>(ScriptsDataBase.MunicipiosCrear, parametros, commandType: CommandType.StoredProcedure);
+            return db.Execute(ScriptsDataBase.MunicipiosCrear, parametros, commandType: CommandType.StoredProcedure);
         }
 
 

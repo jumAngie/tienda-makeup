@@ -29,6 +29,7 @@ namespace Maquillaje.WebUI.Controllers
         [HttpGet("/Municipios/Listado")]
         public IActionResult Index()
         {
+            ViewBag.depto = new SelectList(db.Vw_Gral_tbDepartamentos_DDL, "depto", "dep_Descripcion");
             var listado = _generalesService.ListadoMunicipios();
             var listadoMapeado = _mapper.Map<IEnumerable<MunicipiosViewModel>>(listado);
             return View(listadoMapeado);

@@ -38,7 +38,7 @@ namespace Maquillaje.DataAccess.Repositories
 
         #region Departamentos
         public static string DepartamentosCrear = "UDP_Gral_tbDepartamentos_CREAR";
-        public static string DepartamentosEditar = "UDP_Maqui_tbDepartamentos_EDITAR";
+        public static string DepartamentosEditar = "UDP_Gral_tbDepartamentos_EDITAR";
         #endregion
 
         #region Municipios

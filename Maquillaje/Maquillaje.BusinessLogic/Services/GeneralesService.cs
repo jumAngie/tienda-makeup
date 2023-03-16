@@ -286,15 +286,8 @@ namespace Maquillaje.BusinessLogic.Services
 
         public int CreateMuni(tbMunicipios municipios)
         {
-            try
-            {
-                return _municipiosRepository.Insert(municipios);
-            }
-            catch (Exception)
-            {
-
-                return 1;
-            }
+          return _municipiosRepository.Insert(municipios);
+        
         }
 
         public int UpdateMuni (tbMunicipios municipios)

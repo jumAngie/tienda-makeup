@@ -158,7 +158,7 @@
          "ObjectType": 2
       }
    ],
-   "UiHint": "DESKTOP-KKVKH2B\\SQLEXPRESSLOCAL.TiendaMaquillaje",
+   "UiHint": "DESKTOP-IU26N4Q\\SQLEXPRESSLOCAL.TiendaMaquillaje",
    "UseBoolPropertiesWithoutDefaultSql": false,
    "UseDatabaseNames": true,
    "UseDbContextSplitting": false,
