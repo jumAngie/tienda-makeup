@@ -23,6 +23,14 @@ namespace Maquillaje.WebUI.Controllers
             _mapper = mapper;
         }
 
+        public bool ExisteDni(string dni)
+        {
+            using (var db = new TiendaContext())
+            {
+                return db.tbClientes.Any(p => p.cli_DNI == dni);
+            }
+        }
+
         [HttpGet("/Cliente/Listado")]
         public IActionResult Index()
         {
@@ -49,6 +57,7 @@ namespace Maquillaje.WebUI.Controllers
 
             if (ModelState.IsValid)
             {
+
                 if( item.cli_Nombre != null && item.cli_Apellido != null && item.cli_DNI != null && item.cli_EstadoCivil != "0" && 
                     fechas != "01/01/0001 0:00:00" && item.cli_Sexo != null && item.cli_Telefono != null && item.depto != "0" &&
                    (item.cli_Municipio != null && item.cli_Municipio != "0"))
@@ -65,16 +74,28 @@ namespace Maquillaje.WebUI.Controllers
                     string Apellido = item.cli_Apellido;
                     string DNI = item.cli_DNI;
                     string Civil = item.cli_EstadoCivil;
+                    if (ExisteDni(DNI))
+                    {
+                        ModelState.AddModelError("ValidarDNI", "El DNI ya existe");
+                        ViewBag.cli_EstadoCivil = new SelectList(db.Vw_Gral_tbEstadosCiviles_DDL, "est_ID", "est_Descripcion");
+                        ViewBag.depto = new SelectList(db.Vw_Gral_tbDepartamentos_DDL, "depto", "dep_Descripcion", ViewBag.depto);
+                        return View(item);
+                        
+                    }
+                    else
+                    {
+                        _generalesService.CreateClientes(Nombre, Apellido, DNI, FechaValida, Sexo, Telefono, Int32.Parse(Municipio), Int32.Parse(Civil), 1);
 
-                    _generalesService.CreateClientes(Nombre, Apellido, DNI, FechaValida, Sexo, Telefono, Int32.Parse(Municipio), Int32.Parse(Civil), 1);
+                        return RedirectToAction("Index");
+                    }
 
-                    return RedirectToAction("Index");
+                   
                 }
                 else
                 {
                     if (item.depto == "0")              { ModelState.AddModelError("ValidarDep", "*"); }
                     if (item.cli_EstadoCivil == "0" )   { ModelState.AddModelError("ValidarCivil", "*"); }
-                    ViewBag.cli_EstadoCivil = new SelectList(db.Vw_Gral_tbEstadosCiviles_DDL, "est_ID", "est_Descripcion");
+                    ViewBag.cli_EstadoCivil = new SelectList(db.Vw_Gral_tbEstadosCiviles_DDL, "est_ID", "est_Descripcion", ViewBag.item.depto);
                     ViewBag.depto = new SelectList(db.Vw_Gral_tbDepartamentos_DDL, "depto", "dep_Descripcion");
                     return View(item);
                 }
