@@ -19,7 +19,10 @@ namespace Maquillaje.DataAccess.Repositories.Gral
 
         public tbClientes Find(int? id)
         {
-            throw new NotImplementedException();
+            using var db = new TiendaContext();
+            var result = db.tbClientes.Find(id);
+
+            return result;
         }
 
         public int Insertar(string cli_Nombre, string cli_Apellido, string cli_DNI, string cli_FechaNacimiento, string cli_Sexo, string cli_Telefono

@@ -176,6 +176,14 @@ namespace Maquillaje.BusinessLogic.Services
             
         }
 
+        public tbClientes ObtenerCliente(int? id)
+        {
+
+           return _clientesRepository.Find(id);
+
+
+        }
+
         #endregion
 
         #region Empleados

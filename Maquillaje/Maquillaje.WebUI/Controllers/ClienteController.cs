@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Maquillaje.WebUI.Controllers
 {
-     public class ClienteController : Controller
+    public class ClienteController : Controller
     {
         private readonly GeneralesService _generalesService;
         private readonly IMapper _mapper;
@@ -52,17 +52,17 @@ namespace Maquillaje.WebUI.Controllers
 
         public IActionResult Create(ClientesViewModel item)
         {
+
+
             var fechas = item.cli_FechaNacimiento.ToString();
-
-
             if (ModelState.IsValid)
             {
 
-                if( item.cli_Nombre != null && item.cli_Apellido != null && item.cli_DNI != null && item.cli_EstadoCivil != "0" && 
+                if (item.cli_Nombre != null && item.cli_Apellido != null && item.cli_DNI != null && item.cli_EstadoCivil != "0" &&
                     fechas != "01/01/0001 0:00:00" && item.cli_Sexo != null && item.cli_Telefono != null && item.depto != "0" &&
                    (item.cli_Municipio != null && item.cli_Municipio != "0"))
                 {
-                    
+
                     string[] f = fechas.Split('/');
                     string[] año = f[2].Split(' ');
                     string FechaValida = año[0] + "/" + f[1] + "/" + f[0];
@@ -81,7 +81,7 @@ namespace Maquillaje.WebUI.Controllers
                         ViewBag.cli_EstadoCivil = new SelectList(db.Vw_Gral_tbEstadosCiviles_DDL, "est_ID", "est_Descripcion");
                         ViewBag.depto = new SelectList(db.Vw_Gral_tbDepartamentos_DDL, "depto", "dep_Descripcion", ViewBag.depto);
                         return View(item);
-                        
+
                     }
                     else
                     {
@@ -90,18 +90,18 @@ namespace Maquillaje.WebUI.Controllers
                         return RedirectToAction("Index");
                     }
 
-                   
+
                 }
                 else
                 {
-                    if (item.depto == "0")              { ModelState.AddModelError("ValidarDep", "*"); }
-                    if (item.cli_EstadoCivil == "0" )   { ModelState.AddModelError("ValidarCivil", "*"); }
+                    if (item.depto == "0") { ModelState.AddModelError("ValidarDep", "*"); }
+                    if (item.cli_EstadoCivil == "0") { ModelState.AddModelError("ValidarCivil", "*"); }
                     ViewBag.cli_EstadoCivil = new SelectList(db.Vw_Gral_tbEstadosCiviles_DDL, "est_ID", "est_Descripcion", ViewBag.item.depto);
                     ViewBag.depto = new SelectList(db.Vw_Gral_tbDepartamentos_DDL, "depto", "dep_Descripcion");
                     return View(item);
                 }
-                
-                
+
+
             }
             else
             {
@@ -113,22 +113,38 @@ namespace Maquillaje.WebUI.Controllers
                 return View(item);
             }
 
-            
+
 
         }
-
-
-
-
 
         [HttpGet("/Cliente/CargarMunicipios/{depto}")]
         public JsonResult CargarMunicipios(int depto)
         {
-            
+
             var ddl = db.UDF_Gral_tbMunicipio_DDL(depto).ToList();
 
             return Json(ddl);
 
+        }
+
+        [HttpGet]
+        public IActionResult Edit(int? id)
+        {
+           var cliente =  _generalesService.ObtenerCliente(id);
+            if(cliente == null)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                
+
+                ViewBag.cli_EstadoCivil = new SelectList(db.tbEstadosCiviles, "est_ID", "est_Descripcion");
+                ViewBag.depto = new SelectList(db.Vw_Gral_tbDepartamentos_DDL, "depto", "dep_Descripcion");
+                var municipios = db.tbMunicipios.Where(m => m.mun_ID == cliente.cli_Municipio).ToList();
+                ViewBag.cli_Municipio = municipios;
+                return View(cliente);
+            }
         }
     }
 }

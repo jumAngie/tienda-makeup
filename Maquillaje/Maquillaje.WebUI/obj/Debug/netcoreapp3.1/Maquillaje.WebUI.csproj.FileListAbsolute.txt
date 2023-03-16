@@ -1755,3 +1755,4 @@ C:\Users\Usuario\Documents\GitHub\tienda-makeup\Maquillaje\Maquillaje.WebUI\obj\
 C:\Users\Usuario\Documents\GitHub\tienda-makeup\Maquillaje\Maquillaje.WebUI\obj\Debug\netcoreapp3.1\Razor\Views\Sucursal\Index.cshtml.g.cs
 C:\Users\Usuario\Documents\GitHub\tienda-makeup\Maquillaje\Maquillaje.WebUI\obj\Debug\netcoreapp3.1\Razor\Views\Usuarios\Index.cshtml.g.cs
 C:\Users\Usuario\Documents\GitHub\tienda-makeup\Maquillaje\Maquillaje.WebUI\obj\Debug\netcoreapp3.1\Razor\Views\Ventas\Index.cshtml.g.cs
+C:\Users\Usuario\Documents\GitHub\tienda-makeup\Maquillaje\Maquillaje.WebUI\obj\Debug\netcoreapp3.1\Razor\Views\Cliente\Edit.cshtml.g.cs
