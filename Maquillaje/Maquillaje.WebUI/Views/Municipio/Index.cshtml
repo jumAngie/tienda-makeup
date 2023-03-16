@@ -12,7 +12,7 @@
         <div class="d-flex align-items-end row">
             <div class="col-sm-12">
                 <div class="card-header">
-                    <a class="btn btn-primary btn-icon-text" asp-action="Create">
+                    <a class="btn btn-primary btn-icon-text" data-toggle="modal" data-target="#CreateMuni">
                         <i class="mdi mdi-file-check btn-icon-prepend"></i>Nuevo
                     </a>
 
@@ -52,9 +52,6 @@
                                             <i class="mdi mdi-reload btn-icon-prepend"></i>Editar
                                         </a> |
                                         <a class="btn  btn-success" asp-action="Details" asp-route-id="@item.mun_ID">Detalles</a> |
-                                        <a class="btn btn-danger btn-icon-text" asp-action="Delete" asp-route-id="@item.mun_ID">
-                                            <i class="mdi mdi-alert btn-icon-prepend"></i>Eliminar
-                                        </a>
                                     </td>
                                 </tr>
                             }
@@ -66,3 +63,6 @@
         </div>
     </div>
 </div>
+
+@Html.Partial("_Create");
+@*@Html.Partial("_Edit");*@

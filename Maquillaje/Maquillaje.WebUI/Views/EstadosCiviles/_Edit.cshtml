@@ -1,0 +1,54 @@
+﻿<!-- The Modal -->
+<Form action="@Url.Action("Edit","EstadosCiviles")" id="EditEst" method="post">
+    <div class="modal" id="EditEsta">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Edita un Departamento</h4>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <label class="form-text">Descripcion</label>
+                    <input type="text" hidden id="txtEstId" name="est_ID" class="form-control" />
+                    <input type="text" id="txtEstDescripcion" name="est_Descripcion" class="form-control" />
+                    <label id="ValidateEsta" hidden class="text-danger">Campo Requerido</label>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-warning" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-outline-success" onclick="GuardarDatos()">Guardar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</Form>
+
+<script>
+
+        function Editar(cadena) {
+        var datastring = cadena;
+        var data = datastring.split(',');
+            $("#txtEstId").val(data[0]);
+            $("#txtEstDescripcion").val(data[1]);
+            $("#EditEsta").modal('show');
+        };
+
+
+    function GuardarDatos() {
+
+        if ($("#txtEstDescripcion").val() == "") {
+            $("#ValidateEsta").attr("hidden", false);
+            stop();
+        }
+        else {
+            $("#ValidateEsta").attr("hidden", true);
+            $('#EditEst').submit();
+        }
+    };
+
+</script>

@@ -1,0 +1,27 @@
+﻿<!-- The Modal -->
+<Form action="@Url.Action("Create","EstadosCiviles")" method="post">
+    <div class="modal" id="CreateEst">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Crea un Estado Civil</h4>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <label class="form-text">Descripcion</label>
+                    <input type="text" class="form-control" id="est" name="est_Descripcion" />
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-warning" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-outline-success">Guardar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</Form>

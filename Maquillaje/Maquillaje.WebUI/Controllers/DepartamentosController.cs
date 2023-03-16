@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Maquillaje.BusinessLogic.Services;
+using Maquillaje.Entities.Entities;
 using Maquillaje.WebUI.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -29,11 +30,54 @@ namespace Maquillaje.WebUI.Controllers
             return View(listadoMapeado);
         }
 
-        [HttpGet("/Departamentos/Create")]
-
-        public IActionResult Create()
+        [HttpPost("/Departamentos/Create")]
+        public IActionResult Create(string dep_Descripcion)
         {
-            return View();
+            tbDepartamentos depto = new tbDepartamentos();
+            depto.dep_Descripcion = dep_Descripcion;
+            depto.dep_UsuarioCrea = 1;
+            var dep = _mapper.Map<tbDepartamentos>(depto);
+            var result = _generalesService.CreateDepto(dep);
+
+            return RedirectToAction("Index");
+
+        }
+
+
+        [HttpGet("/Departamentos/Editar/{id}")]
+        public IActionResult Edit(int? id)
+        {
+            var listado = _generalesService.BuscarDepto(id);
+            return View(listado);
+        }
+
+        [HttpPost("/Departamentos/Editar")]
+        public IActionResult Edit(int dep_Id, string dep_Descripcion)
+        {
+            tbDepartamentos depto = new tbDepartamentos();
+            depto.dep_ID = dep_Id;
+            depto.dep_Descripcion = dep_Descripcion;
+            depto.dep_UsuarioCrea = 1;
+            var dep = _mapper.Map<tbDepartamentos>(depto);
+            var result = _generalesService.EditDepto(dep);
+
+            return RedirectToAction("Index");
+        }
+
+
+
+        [HttpPost("/Departamentos/Eliminar/")]
+        public IActionResult Delete(int dep_Id)
+        {
+
+            tbDepartamentos depto = new tbDepartamentos();
+            depto.dep_ID = dep_Id;
+
+            var dep = _mapper.Map<tbDepartamentos>(depto);
+            var result = _generalesService.DeleteDepto(dep);
+
+
+            return RedirectToAction("Index");
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Maquillaje.BusinessLogic.Services;
+using Maquillaje.Entities.Entities;
 using Maquillaje.WebUI.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -29,6 +30,60 @@ namespace Maquillaje.WebUI.Controllers
             var ListadoMapeado = _mapper.Map<IEnumerable<MetodoPagoViewModel>>(listado);
             return View(ListadoMapeado);
         }
+
+
+        [HttpPost("/MetodoPago/Create")]
+        public IActionResult Create(string met_Descripcion)
+        {
+            tbMetodoPago cate = new tbMetodoPago();
+            cate.met_Descripcion = met_Descripcion;
+            cate.met_UsuCrea = 1;
+            var met = _mapper.Map<tbMetodoPago>(cate);
+            var result = _generalesService.CreateMetodoPago(met);
+
+            return RedirectToAction("Index");
+
+        }
+
+
+        [HttpGet("/MetodoPago/Editar/{id}")]
+        public IActionResult Edit(int? id)
+        {
+            var listado = _generalesService.BuscarMetodoPago(id);
+            return View(listado);
+        }
+
+        [HttpPost("/MetodoPago/Editar")]
+        public IActionResult Edit(int met_Id, string met_Descripcion)
+        {
+            tbMetodoPago meto = new tbMetodoPago();
+            meto.met_Id = met_Id;
+            meto.met_Descripcion = met_Descripcion;
+            meto.met_usuModi = 1;
+
+            var met = _mapper.Map<tbMetodoPago>(meto);
+            var result = _generalesService.EditMetodoPago(met);
+
+            return RedirectToAction("Index");
+        }
+
+
+        [HttpPost("/MetodoPago/Eliminar/")]
+        public IActionResult Delete(int met_Id)
+        {
+
+            tbMetodoPago meto = new tbMetodoPago();
+            meto.met_Id = met_Id;
+
+
+            var met = _mapper.Map<tbMetodoPago>(meto);
+            var result = _generalesService.DeleteMetodoPago(met);
+
+
+            return RedirectToAction("Index");
+        }
+
+
 
 
     }

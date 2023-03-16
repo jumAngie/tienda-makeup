@@ -25,16 +25,25 @@ namespace Maquillaje.DataAccess.Repositories
         public static string ClientesCrear = "UDP_Gral_tbClientes_CREAR";
         #endregion
 
+        #region Estados
+        public static string EstadosCivilesCrear = "UDP_Gral_tbEstadosCiviles_CREAR";
+        public static string EstadosCivilesEditar = "UDP_Gral_tbEstadosCiviles_EDITAR";
+        #endregion
+
         #region Sucursales
         public static string SucursalesCrear = "UDP_Gral_tbSucursales_CREAR";
+        public static string SucursalesEditar = "UDP_Gral_Sucursales_EDITAR";
+        public static string SucursalesEliminar = "UDP_Gral_tbSucurusales_ELIMINAR";
         #endregion
 
         #region Departamentos
-        public static string DepartamentosCrear = "UDP_Gral_tbSucursales_CREAR";
+        public static string DepartamentosCrear = "UDP_Gral_tbDepartamentos_CREAR";
+        public static string DepartamentosEditar = "UDP_Maqui_tbDepartamentos_EDITAR";
         #endregion
 
         #region Municipios
         public static string MunicipiosCrear = "UDP_Gral_tbMunicipios_CREAR";
+        public static string MunicipiosEditar = "UDP_Gral_tbMunicipios_EDITAR";
         #endregion
 
         #region Usuarios
@@ -43,6 +52,8 @@ namespace Maquillaje.DataAccess.Repositories
 
         #region MetodoPago
         public static string MetodoPagoCrear = "UDP_Maqui_tbMetodoPago_CREAR";
+        public static string MetodoPagoEditar = "UDP_Maqui_tbMetodoPago_EDITAR";
+        public static string MetodoPagoEliminar = "UDP_Maqui_tbMetodoPago_ELIMINAR";
         #endregion
 
         #region Proveedores

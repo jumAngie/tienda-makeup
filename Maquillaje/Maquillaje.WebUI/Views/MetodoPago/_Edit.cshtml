@@ -1,0 +1,54 @@
+﻿<!-- The Modal -->
+<Form action="@Url.Action("Edit","MetodoPago")" id="EditMeto" method="post">
+    <div class="modal" id="EditMetodo">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Edita un Método de Pago</h4>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <label class="form-text">Descripcion</label>
+                    <input type="text" hidden id="txtMetId" name="met_Id" class="form-control" />
+                    <input type="text" id="txtMetDescripcion" name="met_Descripcion" class="form-control" />
+                    <label id="ValidateMetodoPago" hidden class="text-danger">Campo Requerido</label>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-warning" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-outline-success" onclick="GuardarDatos()">Guardar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</Form>
+
+<script>
+
+        function Editar(cadena) {
+        var datastring = cadena;
+        var data = datastring.split(',');
+            $("#txtMetId").val(data[0]);
+            $("#txtMetDescripcion").val(data[1]);
+            $("#EditMetodo").modal('show');
+        };
+
+
+    function GuardarDatos() {
+
+        if ($("#txtMetDescripcion").val() == "") {
+            $("#ValidateMetodoPago").attr("hidden", false);
+            stop();
+        }
+        else {
+            $("#ValidateMetodoPago").attr("hidden", true);
+            $('#EditMeto').submit();
+        }
+    };
+
+</script>

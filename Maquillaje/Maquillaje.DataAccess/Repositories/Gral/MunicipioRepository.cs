@@ -1,7 +1,9 @@
-﻿using Maquillaje.Entities.Entities;
+﻿using Dapper;
+using Maquillaje.Entities.Entities;
 using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 
@@ -21,13 +23,23 @@ namespace Maquillaje.DataAccess.Repositories.Gral
 
         public tbMunicipios Find(int? id)
         {
-            throw new NotImplementedException();
+            using var db = new TiendaContext();
+            var result = db.tbMunicipios.Find(id);
+            return result;
         }
 
         public int Insert(tbMunicipios item)
         {
-            throw new NotImplementedException();
+            using var db = new SqlConnection(TiendaContext.ConnectionString);
+            var parametros = new DynamicParameters();
+            parametros.Add("@mun_Descripcion", item.mun_Descripcion, DbType.String, ParameterDirection.Input);
+            parametros.Add("@mun_DepId", item.mun_depID, DbType.String, ParameterDirection.Input);
+            parametros.Add("@mun_UsuCrea", item.mun_UsuarioCrea, DbType.Int32, ParameterDirection.Input);
+
+            return db.QueryFirst<int>(ScriptsDataBase.MunicipiosCrear, parametros, commandType: CommandType.StoredProcedure);
         }
+
+
         public IEnumerable<Vw_Gral_tbMunicipios_LIST> List()
         {
             using var db = new SqlConnection(TiendaContext.ConnectionString);

@@ -220,6 +220,52 @@ namespace Maquillaje.BusinessLogic.Services
             }
         }
 
+        public int CreateSucursales(tbSucursales sucursales)
+        {
+            try
+            {
+                return _sucursalesRepository.Insert(sucursales);
+            }
+            catch (Exception)
+            {
+
+                return 1;
+            }
+        }
+
+        public int EditSucursales(tbSucursales sucursales)
+        {
+            try
+            {
+                return _sucursalesRepository.Update(sucursales);
+            }
+            catch (Exception)
+            {
+
+                return 1;
+            }
+        }
+
+
+        public int DeleteSucursales(tbSucursales sucursales)
+        {
+            try
+            {
+                return _sucursalesRepository.Delete(sucursales);
+            }
+            catch (Exception)
+            {
+
+                return 1;
+            }
+        }
+
+
+        public tbSucursales BuscarSucursal(int? id)
+        {
+            return _sucursalesRepository.Find(id);
+        }
+
         #endregion
 
         #region Municipio
@@ -238,6 +284,37 @@ namespace Maquillaje.BusinessLogic.Services
             }
         }
 
+        public int CreateMuni(tbMunicipios municipios)
+        {
+            try
+            {
+                return _municipiosRepository.Insert(municipios);
+            }
+            catch (Exception)
+            {
+
+                return 1;
+            }
+        }
+
+        public int UpdateMuni (tbMunicipios municipios)
+        {
+            try
+            {
+                return _municipiosRepository.Update(municipios);
+            }
+            catch (Exception)
+            {
+
+                return 1;
+            }
+        }
+
+        public tbMunicipios BuscarMuni(int? id)
+        {
+            return _municipiosRepository.Find(id);
+        }
+
         #endregion
 
         #region Departamentos
@@ -253,6 +330,52 @@ namespace Maquillaje.BusinessLogic.Services
             {
 
                 return Enumerable.Empty<Vw_Gral_tbDepartamentos_LIST>();
+            }
+        }
+
+        public int CreateDepto(tbDepartamentos departamentos)
+        {
+            try
+            {
+                return _departamentosRepository.Insert(departamentos);
+            }
+            catch (Exception)
+            {
+
+                return 1;
+            }
+        }
+
+        public int EditDepto(tbDepartamentos departamentos)
+        {
+            try
+            {
+                return _departamentosRepository.Update(departamentos);
+            }
+            catch (Exception)
+            {
+
+                return 1;
+            }
+        }
+
+        public tbDepartamentos BuscarDepto(int? id)
+        {
+
+            return _departamentosRepository.Find(id);
+
+        }
+
+        public int DeleteDepto(tbDepartamentos departamentos)
+        {
+            try
+            {
+                return _departamentosRepository.Delete(departamentos);
+            }
+            catch (Exception)
+            {
+
+                return 1;
             }
         }
 
@@ -274,6 +397,44 @@ namespace Maquillaje.BusinessLogic.Services
             }
         }
 
+        public int CreateEstado(tbEstadosCiviles estadosCiviles)
+        {
+            try
+            {
+                return _estadosCivilesRepository.Insert(estadosCiviles);
+            }
+            catch (Exception)
+            {
+
+                return 1;
+            }
+        }
+
+        public int DeleteEstado(tbEstadosCiviles estadosCiviles)
+        {
+            try
+            {
+                return _estadosCivilesRepository.Delete(estadosCiviles);
+            }
+            catch (Exception)
+            {
+
+                return 1;
+            }
+        }
+
+        public tbEstadosCiviles BuscarEstado(int? id)
+        {
+            return _estadosCivilesRepository.Find(id);
+        }
+
+        public int EditEstado(tbEstadosCiviles estadosCiviles)
+        {
+
+            return _estadosCivilesRepository.Update(estadosCiviles);
+
+        }
+
         #endregion
 
         #region MetodoPago
@@ -292,6 +453,47 @@ namespace Maquillaje.BusinessLogic.Services
             }
         }
 
+        public int CreateMetodoPago(tbMetodoPago metodoPago)
+        {
+            try
+            {
+                return _metodoPagoRepository.Insert(metodoPago);
+
+            }
+            catch (Exception)
+            {
+                return 0;
+
+
+            }
+        }
+
+
+        public int EditMetodoPago(tbMetodoPago metodoPago)
+        {
+
+            return _metodoPagoRepository.Update(metodoPago);
+
+
+        }
+
+        public tbMetodoPago BuscarMetodoPago(int? id)
+        {
+            return _metodoPagoRepository.Find(id);
+        }
+
+
+        public int DeleteMetodoPago(tbMetodoPago metodoPago)
+        {
+            try
+            {
+                return _metodoPagoRepository.Delete(metodoPago);
+            }
+            catch
+            {
+                return 1;
+            }
+        }
         #endregion
 
         #region Proveedores

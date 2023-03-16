@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Maquillaje.BusinessLogic.Services;
+using Maquillaje.Entities.Entities;
 using Maquillaje.WebUI.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -29,11 +30,46 @@ namespace Maquillaje.WebUI.Controllers
             return View(listadoMapeado);
         }
 
-        [HttpGet("/EstadosCiviles/Create")]
 
-        public IActionResult Create()
+
+
+
+        [HttpPost("/EstadosCiviles/Create")]
+        public IActionResult Create(string est_Descripcion)
         {
-            return View();
+            tbEstadosCiviles esta = new tbEstadosCiviles();
+            esta.est_Descripcion = est_Descripcion;
+            esta.est_UsuarioCrea = 1;
+            var est = _mapper.Map<tbEstadosCiviles>(esta);
+            var result = _generalesService.CreateEstado(est);
+
+            return RedirectToAction("Index");
         }
+
+
+
+
+
+        [HttpGet("/EstadosCiviles/Editar/{id}")]
+        public IActionResult Edit(int? id)
+        {
+            var listado = _generalesService.BuscarEstado(id);
+            return View(listado);
+        }
+
+        [HttpPost("/EstadosCiviles/Editar")]
+        public IActionResult Edit(int est_ID, string est_Descripcion)
+        {
+            tbEstadosCiviles esta = new tbEstadosCiviles();
+            esta.est_ID = est_ID;
+            esta.est_Descripcion = est_Descripcion;
+            esta.est_UsuarioModi = 1;
+
+            var est = _mapper.Map<tbEstadosCiviles>(esta);
+            var result = _generalesService.EditEstado(est);
+
+            return RedirectToAction("Index");
+        }
+
     }
 }

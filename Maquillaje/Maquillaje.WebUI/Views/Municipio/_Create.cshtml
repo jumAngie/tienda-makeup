@@ -1,0 +1,39 @@
+﻿<!-- The Modal -->
+<Form action="@Url.Action("Create","Municipio")" method="post">
+    <div class="modal" id="CreateMuni">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Crea un Municipio</h4>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label class="form-text">Departamento</label>
+                            <select id="depto" name="depto" class="form-control" asp-items="ViewBag.depto"></select>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <label class="form-text">Descripcion</label>
+                            <input type="text" class="form-control" id="mun" name="mun_Descripcion" />
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-warning" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-outline-success">Guardar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</Form>
+

@@ -5,41 +5,56 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<div class="col-lg-12 mb-0 order-0">
+    <div class="card" style="background-color: white">
+        <div class="d-flex align-items-end row">
+            <div class="col-sm-12">
+                <div class="card-header">
+                    <a class="btn btn-primary" data-toggle="modal" data-target="#CreateDep">Nuevo</a>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.dep_ID)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.dep_Descripcion)
-            </th>
+                </div>
+                <div class="card-body">
 
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.dep_ID)
-            </td>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.dep_Descripcion)
-            </td>
+                    <table class="table table-responsive-sm table-light" id="DataTable">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.dep_ID)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.dep_Descripcion)
+                                </th>
 
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.dep_ID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.dep_ID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.dep_ID">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.dep_ID)
+                                    </td>
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.dep_Descripcion)
+                                    </td>
+
+                                    <td>
+                                        <button type="button" id="btnEditar" class="btn btn-outline-info" onclick="Editar('@item.dep_ID,@item.dep_Descripcion')">Editar</button> |
+                                        <a class="btn  btn-outline-success" asp-action="Details" asp-route-id="@item.dep_ID">Detalles</a> |
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@Html.Partial("_Create");
+@Html.Partial("_Edit");
