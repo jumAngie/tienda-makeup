@@ -48,7 +48,7 @@
                                     </td>
 
                                     <td>
-                                        <a class="btn btn-warning btn-icon-text" asp-action="Edit" asp-route-id="@item.mun_ID">
+                                        <a class="btn btn-warning btn-icon-text" data-toggle="modal" data-target="#EditMuni" onclick="DataEdit('@item.mun_ID')">
                                             <i class="mdi mdi-reload btn-icon-prepend"></i>Editar
                                         </a> |
                                         <a class="btn  btn-success" asp-action="Details" asp-route-id="@item.mun_ID">Detalles</a> |
@@ -65,4 +65,4 @@
 </div>
 
 @Html.Partial("_Create");
-@*@Html.Partial("_Edit");*@
+@Html.Partial("_Edit");

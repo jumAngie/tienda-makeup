@@ -51,7 +51,15 @@ namespace Maquillaje.DataAccess.Repositories.Gral
 
         public int Update(tbMunicipios item)
         {
-            throw new NotImplementedException();
+            using var db = new SqlConnection(TiendaContext.ConnectionString);
+            var parametros = new DynamicParameters();
+            parametros.Add("@mun_Descripcion", item.mun_Descripcion, DbType.String, ParameterDirection.Input);
+            parametros.Add("@mun_UsuModi", item.mun_UsuarioModi, DbType.Int32, ParameterDirection.Input);
+            parametros.Add("@mun_Id", item.mun_ID, DbType.String, ParameterDirection.Input);
+            parametros.Add("@mun_DepId", item.mun_depID, DbType.String, ParameterDirection.Input);
+
+
+            return db.Execute(ScriptsDataBase.MunicipiosEditar, parametros, commandType: CommandType.StoredProcedure);
         }
 
         IEnumerable<tbMunicipios> IRepository<tbMunicipios>.List()

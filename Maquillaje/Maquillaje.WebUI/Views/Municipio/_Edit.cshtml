@@ -1,39 +1,42 @@
 ﻿<!-- The Modal -->
-<Form action="@Url.Action("Edit","Categoria")" id="EditMun" method="post">
+<Form action="@Url.Action("Edit","Municipio")" id="EditMun" method="post">
     <div class="modal" id="EditMuni">
         <div class="modal-dialog">
             <div class="modal-content">
 
                 <!-- Modal Header -->
                 <div class="modal-header">
-                    <h4 class="modal-title">Edita una Categoría</h4>
+                    <h4 class="modal-title">Edita un Municipio</h4>
                 </div>
 
                 <!-- Modal body -->
                 <div class="modal-body">
-                    <label class="form-text">Descripcion</label>
-                    <input type="hidden" class="form-control" id="txtMunID" name="mun_ID" />
+                    <div class="p-4 pb-0">
+                        <div class="row">
+                                    <input type="hidden" id="txtid" name="mun_Id" class="form-control" readonly />
 
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <label class="form-text">Departamento</label>
-                            <select id="mun_DepId" name="mun_DepId" class="form-control" asp-items="ViewBag.depto"></select>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Departamento<label id="lb7" hidden style="color:red;">*</label></label>
+                                    <select id="DDL_Dept" name="mun_DepId" class="form-control"></select>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Municipio<label id="lb8" hidden style="color:red;">*</label></label>
+                                    <input type="text" id="txtMuni" required name="mun_Descripcion" class="form-control" />
+                                </div>
+                            </div>
+
                         </div>
-
-                        <div class="col-sm-6">
-                            <label class="form-text">Descripcion</label>
-                            <input type="text" class="form-control" id="mun" name="mun_Descripcion" />
-                            <label id="ValidateMuni" hidden class="text-danger">Campo Requerido</label>
-
-                        </div>
+                        <br />
+                        <br />
                     </div>
-
                 </div>
-
                 <!-- Modal footer -->
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-warning" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-outline-success" onclick="GuardarDatos()">Guardar</button>
+                    <button type="submit" class="btn btn-outline-success" onclick="Editar()">Guardar</button>
                 </div>
 
             </div>
@@ -43,25 +46,57 @@
 
 <script>
 
-        function Editar(cadena) {
-        var datastring = cadena;
-        var data = datastring.split(',');
-            $("#txtMunID").val(data[0]);
-            $("#mun_Descripcion").val(data[1]);
-            $("#EditMuni").modal('show');
-        };
+
+    function DataEdit(id) {
+
+        $.ajax({
+            url: "/Municipio/Edit",
+            type: 'GET',
+            data: { id: id },
+            success: function (result) {
+                console.log(result);
+                if (result.success) {
+                    $('#txtid').val(result.mun_Id);
+                    $('#txtMuni').val(result.mun_Descripcion);
+                    $('#DDL_Dept').val(result.mun_DepId);
 
 
-    function GuardarDatos() {
+                    $.ajax({
+                        url: "/Municipio/getDepartment",
+                        type: "GET",
+                        data: "{}",
+                        success: function (data) {
+                            var s = '<option value="-1">Por favor selecciona un departamento</option>';
+                            for (var i = 0; i < data.length; i++) {
+                                s += '<option value="' + data[i].DepartmentID + '">' + data[i].DepartmentName + '</option>';
+                            }
+                            $("#DDL_Dept").html(s);
+                            $('#DDL_Dept').val(result.mun_DepId);
+                        }
+                    });
+                }
+            }
+        });
+    }
 
-        if ($("#mun_Descripcion").val() == "") {
-            $("#ValidateMuni").attr("hidden", false);
-            stop();
-        }
-        else {
-            $("#ValidateMuni").attr("hidden", true);
-            $('#EditMun').submit();
-        }
-    };
-
+    function Editar() {
+        var id = $('#DDL_Dept').val();
+        var id2 = $('#txtMuni').val();
+        var id3 = $('#txtid').val();
+        $.ajax({
+            url: "/Municipio/Edit",
+            type: 'POST',
+            data: { mun_Id: id3, mun_DepId: id, mun_Descripcion: id2 },
+            success: function (result) {
+                if (result.success && result.Editar) {
+                    window.location.reload();
+                }
+                else {
+                    $("#txtid").val(result.mun_Id);
+                    $('#txtMuni').val(result.mun_Descripcion);
+                    $('#DDL_Dept').val(result.mun_DepId);
+                }
+            }
+        });
+    }
 </script>

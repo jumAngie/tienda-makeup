@@ -1729,7 +1729,43 @@ UPDATE Gral.tbEstadosCiviles SET est_Descripcion = @est_Descripcion,
 								est_UsuarioModi = @est_UsuModi
 									WHERE est_ID = @est_Id
 END
+GO
 
 
+
+
+CREATE OR ALTER FUNCTION UDF_Gral_tbMunicipios_CARGAR(@mun_Id INT)
+RETURNS TABLE
+AS
+RETURN
+(
+SELECT  mun_ID ,
+		mun_depID,
+		dep_Descripcion,
+		mun_Descripcion
+		FROM Gral.tbMunicipios T1
+		INNER JOIN Gral.tbDepartamentos T2
+		ON T1.mun_depID = T2.dep_ID
+		WHERE mun_ID = @mun_Id
+)
+GO
+
+
+
+
+
+/*Proc que me acutualiza las ciudades*/
+CREATE OR ALTER PROC UDP_Gral_tbMunicipios_EDITAR(
+@mun_Descripcion NVARCHAR(100),
+@mun_UsuModi INT,
+@mun_Id INT,
+@mun_DepId INT)
+AS BEGIN
+UPDATE Gral.tbMunicipios SET mun_Descripcion = @mun_Descripcion,
+					  mun_UsuarioModi = @mun_UsuModi,
+					  mun_depID = @mun_DepId
+					  WHERE mun_ID = @mun_Id
+END
+GO
 
 

@@ -21,10 +21,17 @@ namespace Maquillaje.DataAccess.Context
             return FromExpression(() => UDF_Gral_tbMunicipio_DDL(depto));
         }
 
+        [DbFunction("UDF_Gral_tbMunicipios_CARGAR", "dbo")]
+        public IQueryable<UDF_Gral_tbMunicipios_CARGARResult> UDF_Gral_tbMunicipios_CARGAR(int? mun_Id)
+        {
+            return FromExpression(() => UDF_Gral_tbMunicipios_CARGAR(mun_Id));
+        }
+
         protected void OnModelCreatingGeneratedFunctions(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<UDF_Gral_tbClienteInfo_DDLResult>().HasNoKey();
             modelBuilder.Entity<UDF_Gral_tbMunicipio_DDLResult>().HasNoKey();
+            modelBuilder.Entity<UDF_Gral_tbMunicipios_CARGARResult>().HasNoKey();
         }
     }
 }

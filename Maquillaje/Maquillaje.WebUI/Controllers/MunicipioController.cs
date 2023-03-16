@@ -70,6 +70,61 @@ namespace Maquillaje.WebUI.Controllers
             }
         }
 
- 
+
+
+
+        public ActionResult getDepartment()
+        {
+            try
+            {
+
+                    return Json(db.tbDepartamentos.Select(x => new
+                    {
+                        DepartmentID = x.dep_ID,
+                        DepartmentName = x.dep_Descripcion
+                    }).ToList());
+            
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Index", "Home");
+                throw;
+            }
+        }
+
+
+
+
+        public ActionResult Edit(int? id)
+        {
+
+            var tbMunicipios = db.UDF_Gral_tbMunicipios_CARGAR(id).ToList();
+            return Json(new { success = true, mun_Id = tbMunicipios[0].mun_ID, mun_Descripcion = tbMunicipios[0].mun_Descripcion, mun_DepId = tbMunicipios[0].mun_depID });
+
+        }
+
+
+
+
+        [HttpPost("/Municipio/Edit")]
+        public ActionResult Edit(int mun_Id, int mun_DepId, string mun_Descripcion)
+        {
+
+            tbMunicipios muni = new tbMunicipios();
+            muni.mun_ID = mun_Id;
+            muni.mun_Descripcion = mun_Descripcion;
+            muni.mun_depID = mun_DepId;
+            muni.mun_UsuarioModi = 1;
+
+            var mun = _mapper.Map<tbMunicipios>(muni);
+            var resultado = _generalesService.UpdateMuni(mun);
+            if (resultado > 0)
+            {
+                return Json(new { success = true, Editar = true });
+            }
+            return RedirectToAction("Index");
+
+        }
+
     }
 }
