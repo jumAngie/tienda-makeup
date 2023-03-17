@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "wj0WkHsO/JIadsKUSHSIe8VJgmMYZqdzqaM7/J910cpU9PHbWQSLcTQA6SmaSFdo0do4Wgq2E3yBsyCJ5kpSUg==",
+  "dgSpecHash": "JKGKilxd8+s/6lt1/EKlqTC9sJAyaUMRy0oHLIkj7JELr2rpyw1lOZDESsAIZS7Aia1RTfO6qG7hqxTHSttqrQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\LAB02\\Documents\\GitHub\\tienda-makeup\\Maquillaje\\Maquillaje.WebUI\\Maquillaje.WebUI.csproj",
+  "projectFilePath": "C:\\Users\\LAB02\\Desktop\\Maqui\\tienda-makeup\\Maquillaje\\Maquillaje.WebUI\\Maquillaje.WebUI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\LAB02\\.nuget\\packages\\automapper\\11.0.0\\automapper.11.0.0.nupkg.sha512",
     "C:\\Users\\LAB02\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\7.0.0\\automapper.extensions.microsoft.dependencyinjection.7.0.0.nupkg.sha512",
