@@ -106,6 +106,7 @@ namespace Maquillaje.WebUI.Controllers
                 {
                     if (item.depto == "0") { ModelState.AddModelError("ValidarDep", "*"); }
                     if (item.cli_EstadoCivil == "0") { ModelState.AddModelError("ValidarCivil", "*"); }
+                    if (fechas == "01/01/0001 0:00:00") { ModelState.AddModelError("ValidarFecha", "*"); }
                     ViewBag.cli_EstadoCivil = new SelectList(db.Vw_Gral_tbEstadosCiviles_DDL, "est_ID", "est_Descripcion", ViewBag.item.depto);
                     ViewBag.depto = new SelectList(db.Vw_Gral_tbDepartamentos_DDL, "depto", "dep_Descripcion");
                     return View(item);

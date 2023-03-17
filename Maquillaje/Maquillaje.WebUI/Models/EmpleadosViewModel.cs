@@ -37,6 +37,7 @@ namespace Maquillaje.WebUI.Models
         public string emp_Municipio { get; set; }
 
         [Display(Name = "Correo")]
+        [RegularExpression("^[a-z0-9_\\+-]+(\\.[a-z0-9_\\+-]+)*@[a-z0-9-]+(\\.[a-z0-9]+)*\\.([a-z]{2,4})$", ErrorMessage = "Formato inválido")]
         [Required(ErrorMessage = "*")]
         public string emp_Correo { get; set; }
 

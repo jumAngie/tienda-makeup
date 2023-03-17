@@ -71,6 +71,9 @@ namespace Maquillaje.WebUI.Controllers
                     if(ExisteDni(item.emp_DNI))
                     {
                         ModelState.AddModelError("ValidarDNI", "El DNI ya existe");
+                        ViewBag.emp_EstadoCivil = new SelectList(db.Vw_Gral_tbEstadosCiviles_DDL, "est_ID", "est_Descripcion");
+                        ViewBag.depto = new SelectList(db.Vw_Gral_tbDepartamentos_DDL, "depto", "dep_Descripcion");
+                        ViewBag.emp_Sucursal = new SelectList(db.Vw_Gral_tbSucursales_DDL, "suc_Id", "suc_Descripcion");
                         return View(item);
                     }
                     else
@@ -86,15 +89,37 @@ namespace Maquillaje.WebUI.Controllers
                 }
                 else
                 {
+                    if (item.depto == "0") { ModelState.AddModelError("ValidarDep", "*"); }
+                    if (item.emp_EstadoCivil == "0") { ModelState.AddModelError("ValidarCivil", "*"); }
+                    if (item.emp_Sucursal == "0") { ModelState.AddModelError("ValidarSucu", "*"); }
+                    ViewBag.emp_EstadoCivil = new SelectList(db.Vw_Gral_tbEstadosCiviles_DDL, "est_ID", "est_Descripcion");
+                    ViewBag.depto = new SelectList(db.Vw_Gral_tbDepartamentos_DDL, "depto", "dep_Descripcion");
+                    ViewBag.emp_Sucursal = new SelectList(db.Vw_Gral_tbSucursales_DDL, "suc_Id", "suc_Descripcion");
                     return View(item);
                 }
                     
             }
             else
             {
-
+                if(item.depto == "0") { ModelState.AddModelError("ValidarDep", "*"); }
+                if(item.emp_EstadoCivil == "0") { ModelState.AddModelError("ValidarCivil", "*"); }
+                if(item.emp_Sucursal == "0") { ModelState.AddModelError("ValidarSucu", "*"); }
+                if(fechas == "01/01/0001 0:00:00") { ModelState.AddModelError("ValidarFecha", "*"); }
+                ViewBag.emp_EstadoCivil = new SelectList(db.Vw_Gral_tbEstadosCiviles_DDL, "est_ID", "est_Descripcion");
+                ViewBag.depto = new SelectList(db.Vw_Gral_tbDepartamentos_DDL, "depto", "dep_Descripcion");
+                ViewBag.emp_Sucursal = new SelectList(db.Vw_Gral_tbSucursales_DDL, "suc_Id", "suc_Descripcion");
                 return View(item);
             }
+        }
+
+        [HttpGet("/Empleado/CargarMunicipios/{depto}")]
+        public JsonResult CargarMunicipios(int depto)
+        {
+
+            var ddl = db.UDF_Gral_tbMunicipio_DDL(depto).ToList();
+
+            return Json(ddl);
+
         }
         #endregion
 
