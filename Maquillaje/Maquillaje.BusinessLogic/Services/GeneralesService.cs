@@ -149,6 +149,16 @@ namespace Maquillaje.BusinessLogic.Services
             }
         }
 
+        public int CreateInventario(tbInventario inventario)
+        {
+
+                return _inventarioRepository.Insert(inventario);
+           
+
+        }
+
+
+
         #endregion
 
         #region Clientes
@@ -239,15 +249,18 @@ namespace Maquillaje.BusinessLogic.Services
 
         public int CreateSucursales(tbSucursales sucursales)
         {
+
             try
             {
                 return _sucursalesRepository.Insert(sucursales);
+
             }
             catch (Exception)
             {
 
                 return 1;
             }
+       
         }
 
         public int EditSucursales(tbSucursales sucursales)

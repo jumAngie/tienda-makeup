@@ -71,5 +71,9 @@ namespace Maquillaje.DataAccess.Repositories
         #region VentasDetalles
         public static string VentasDetallesCrear = "UDP_Maqui_tbVentasDetalle_CREAR";
         #endregion
+
+        #region Inventario
+        public static string InventarioCrear = "UDP_Maqui_tbInventario_CREAR";
+        #endregion
     }
 }

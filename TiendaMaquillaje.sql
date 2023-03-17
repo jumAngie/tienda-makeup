@@ -1090,13 +1090,13 @@ AS
 
 SELECT  inv_Id,
 		produc.pro_Nombre,	
+		produc.pro_StockInicial,
 	    inv_Cantidad
 	    FROM Maqui.tbInventario inven INNER JOIN Maqui.tbProductos produc
 		ON	 inven.inv_Producto = produc.pro_Id
 		WHERE inven.inv_Estado = 1
 
 GO
-
 
 
 
@@ -1900,3 +1900,20 @@ AS BEGIN
 UPDATE Gral.tbSucursales SET suc_Estado = 0 WHERE suc_Id = @suc_Id;
 
 END
+GO
+
+
+CREATE OR ALTER FUNCTION UDF_Gral_tbSucursales_DDL(@id INT)
+RETURNS TABLE
+AS
+RETURN
+(
+SELECT suc_Municipio, deptos.dep_ID FROM Gral.tbSucursales suc
+INNER JOIN Gral.tbMunicipios muni
+ON suc.suc_Municipio = muni.mun_ID 
+INNER JOIN Gral.tbDepartamentos deptos
+ON muni.mun_depID = deptos.dep_ID
+WHERE suc_Id = @id
+)
+GO
+

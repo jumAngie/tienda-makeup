@@ -160,6 +160,10 @@
       {
          "Name": "[dbo].[UDF_Gral_tbMunicipios_CARGAR]",
          "ObjectType": 2
+      },
+      {
+         "Name": "[dbo].[UDF_Gral_tbSucursales_DDL]",
+         "ObjectType": 2
       }
    ],
    "UiHint": "DESKTOP-IU26N4Q\\SQLEXPRESSLOCAL.TiendaMaquillaje",
