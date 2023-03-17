@@ -15,14 +15,17 @@ namespace Maquillaje.DataAccess.Repositories
 
         #region Productos
         public static string ProductosCrear = "UDP_Maqui_tbProductos_CREAR";
+        public static string ProductosEditar = "UDP_Maqui_tbProductos_UPDATE";
         #endregion
 
         #region Empleados
         public static string EmpleadosCrear = "UDP_Gral_tbEmpleados_CREAR";
+        public static string EmpleadosEditar = "UDP_Gral_tbEmpleados_UPDATE";
         #endregion
 
         #region Clientes
         public static string ClientesCrear = "UDP_Gral_tbClientes_CREAR";
+        public static string ClientesEditar = "UDP_Gral_tbClientes_UPDATE";
         #endregion
 
         #region Estados
@@ -58,6 +61,7 @@ namespace Maquillaje.DataAccess.Repositories
 
         #region Proveedores
         public static string ProveedoresCrear = "UDP_Maqui_tbProveedores_CREAR";
+        public static string ProveedoresEditar = "UDP_Maqui_tbProveedores_UPDATE";
         #endregion
 
         #region Ventas
