@@ -21,6 +21,7 @@ namespace Maquillaje.WebUI.Controllers
         {
             _generalesService = generalesService;
             _mapper = mapper;
+            
         }
 
 
@@ -97,7 +98,7 @@ namespace Maquillaje.WebUI.Controllers
                         /// CAMBIAR EL USUARIO MODIFICACION ///
                         
                         _generalesService.CreateClientes(Nombre, Apellido, DNI, FechaValida, Sexo, Telefono, Int32.Parse(Municipio), Int32.Parse(Civil), 1);
-                        
+                       
                         return RedirectToAction("Index");
                     }
 
