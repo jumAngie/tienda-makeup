@@ -23,6 +23,8 @@ namespace Maquillaje.WebUI.Controllers
             _mapper = mapper;
         }
 
+
+        #region Validaciones
         public bool ExisteDni(string dni)
         {
             using (var db = new TiendaContext())
@@ -30,6 +32,7 @@ namespace Maquillaje.WebUI.Controllers
                 return db.tbClientes.Any(p => p.cli_DNI == dni);
             }
         }
+        #endregion
 
         [HttpGet("/Cliente/Listado")]
         public IActionResult Index()
@@ -39,6 +42,8 @@ namespace Maquillaje.WebUI.Controllers
             return View(ListadoMapeado);
         }
 
+
+        #region Crear Clientes
         [HttpGet("/Cliente/Create")]
 
         public IActionResult Create()
@@ -139,7 +144,9 @@ namespace Maquillaje.WebUI.Controllers
             return Json(ddl);
 
         }
+        #endregion
 
+        #region Editar Cliente
         [HttpGet]
         public IActionResult Edit(int? id)
         {
@@ -195,21 +202,19 @@ namespace Maquillaje.WebUI.Controllers
                     string DNI = item.cli_DNI;
                     string Civil = item.cli_EstadoCivil;
                     string depto = item.depto;
-                    //if (ExisteDni(DNI))
-                    //{
-                    //    ModelState.AddModelError("ValidarDNI", "El DNI ya existe");
-                    //    ViewBag.cli_EstadoCivil = new SelectList(db.Vw_Gral_tbEstadosCiviles_DDL, "est_ID", "est_Descripcion");
-                    //    ViewBag.depto = new SelectList(db.Vw_Gral_tbDepartamentos_DDL, "depto", "dep_Descripcion", ViewBag.depto);
-                    //    return View(item);
+                        // CAMBIAR EL USUARIO MODIFICACION ///
+                   _generalesService.UpdateClientes(id, Nombre, Apellido, DNI, FechaValida, Sexo, Telefono, Int32.Parse(Municipio), Int32.Parse(Civil), 1);
 
-                    //}
-                    //else
-                    //{ 
-                       //// CAMBIAR EL USUARIO MODIFICACION ///
-                        //_generalesService.UpdateClientes(id, Nombre, Apellido, DNI, FechaValida, Sexo, Telefono, Int32.Parse(Municipio), Int32.Parse(Civil), 1);
-
-                        return RedirectToAction("Index");
-                    //}
+                   return RedirectToAction("Index");
+                    }
+                else
+                {
+                    if (item.depto == "0") { ModelState.AddModelError("ValidarDep", "*"); }
+                    if (item.cli_EstadoCivil == "0") { ModelState.AddModelError("ValidarCivil", "*"); }
+                    ViewBag.cli_EstadoCivil = new SelectList(db.Vw_Gral_tbEstadosCiviles_DDL, "est_ID", "est_Descripcion", ViewBag.item.depto);
+                    ViewBag.depto = new SelectList(db.Vw_Gral_tbDepartamentos_DDL, "depto", "dep_Descripcion");
+                    return View(item);
+                }
 
 
                 }
@@ -224,20 +229,8 @@ namespace Maquillaje.WebUI.Controllers
 
 
             }
-            else
-            {
-                if (item.depto == "0") { ModelState.AddModelError("ValidarDep", "*"); }
-                if (item.cli_EstadoCivil == "0") { ModelState.AddModelError("ValidarCivil", "*"); }
-                if (fechas == "01/01/0001 0:00:00") { ModelState.AddModelError("ValidarFecha", "*"); }
-                ViewBag.cli_EstadoCivil = new SelectList(db.Vw_Gral_tbEstadosCiviles_DDL, "est_ID", "est_Descripcion");
-                ViewBag.depto = new SelectList(db.Vw_Gral_tbDepartamentos_DDL, "depto", "dep_Descripcion");
-                return View(item);
-            }
 
         }
+        #endregion
 
-
-
-
-    }
 }
