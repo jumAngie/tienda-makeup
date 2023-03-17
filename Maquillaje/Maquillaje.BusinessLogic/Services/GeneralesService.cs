@@ -256,6 +256,21 @@ namespace Maquillaje.BusinessLogic.Services
 
         }
 
+        public tbEmpleados ObtenerEmpleado(int? id)
+        {
+
+            return _empleadosRepository.Find(id);
+
+
+        }
+
+        public void UpdateEmpleados(int emp_ID, string emp_Nombre, string emp_Apellido, string emp_DNI, string emp_FechaNacimiento, string emp_Sexo,
+            int emp_Municipio, string emp_Telefono, string emp_Correo, int emp_EstadoCivil, int emp_Sucursal, int emp_UsuarioCrea)
+        {
+            _empleadosRepository.Actualizar(emp_ID, emp_Nombre, emp_Apellido, emp_DNI, emp_FechaNacimiento, emp_Sexo, emp_Municipio, emp_Telefono,
+                emp_Correo, emp_EstadoCivil, emp_Sucursal, emp_UsuarioCrea);
+        }
+
         public int DeleteEmpleado (tbEmpleados empleados)
         {
             try

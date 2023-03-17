@@ -127,8 +127,34 @@ namespace Maquillaje.WebUI.Controllers
         [HttpGet]
         public IActionResult Edit(int? id)
         {
-            // meter el generales service
-            return View();
+            var empleado = _generalesService.ObtenerEmpleado(id);
+            if (empleado == null)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+
+                EmpleadosViewModel emple = new EmpleadosViewModel();
+                emple.emp_ID = empleado.emp_ID;
+                emple.emp_Nombre = empleado.emp_Nombre;
+                emple.emp_Apellido = emple.emp_Apellido;
+                emple.emp_DNI = emple.emp_DNI;
+                emple.emp_EstadoCivil = emple.emp_EstadoCivil.ToString();
+                emple.emp_FechaNacimiento = emple.emp_FechaNacimiento;
+                emple.emp_Municipio = emple.emp_Municipio.ToString();
+                emple.emp_Sexo = emple.emp_Sexo;
+                emple.emp_Telefono = emple.emp_Telefono;
+                emple.emp_Correo = emple.emp_Correo;
+                emple.emp_Sucursal = emple.emp_Sucursal;
+
+                emple.depto = db.tbMunicipios.Where(m => m.mun_ID == empleado.emp_Municipio).Select(m => m.mun_depID).FirstOrDefault().ToString();
+
+                ViewBag.emp_EstadoCivil = new SelectList(db.Vw_Gral_tbEstadosCiviles_DDL, "est_ID", "est_Descripcion");
+                ViewBag.depto = new SelectList(db.Vw_Gral_tbDepartamentos_DDL, "depto", "dep_Descripcion");
+                ViewBag.emp_Municipio = new SelectList(db.tbMunicipios, "mun_ID", "mun_Descripcion");
+                return View(emple);
+            }
         }
 
         [HttpPost]
