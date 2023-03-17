@@ -47,7 +47,6 @@ namespace Maquillaje.WebUI.Controllers
 
         #endregion
 
-
         #region Crear Clientes
         [HttpGet("/Cliente/Create")]
 

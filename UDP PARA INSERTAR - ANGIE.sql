@@ -124,3 +124,22 @@ BEGIN
 END
 
 EXEC UDP_Validar '1904425167251'
+
+
+
+SELECT * FROM Maqui.tbVentas
+SELECT * FROM Maqui.tbVentasDetalle
+
+
+GO
+CREATE OR ALTER TRIGGER Maqui.tg_ActualizarStock ON [Maqui].[tbVentasDetalle]
+AFTER INSERT 
+AS
+BEGIN
+	SET NOCOUNT ON;
+	UPDATE		tbInventario SET inv_Cantidad = inv_Cantidad - (SELECT vde_Cantidad from inserted)
+	WHERE		inv_Producto = (Select vde_Producto from inserted)
+END;
+GO
+
+
