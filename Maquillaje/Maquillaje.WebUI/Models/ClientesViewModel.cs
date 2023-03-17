@@ -21,7 +21,7 @@ namespace Maquillaje.WebUI.Models
 
         public string cli_DNI { get; set; }
 
-        [Display(Name = "F. Nacimiento")]
+        [Display(Name = "Fecha Nacimiento")]
         [Required(ErrorMessage = "*")]
 
         public DateTime cli_FechaNacimiento { get; set; }

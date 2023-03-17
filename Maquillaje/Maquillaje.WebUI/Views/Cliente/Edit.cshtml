@@ -29,6 +29,7 @@
                         <input asp-for="cli_Apellido" class="form-control" />
                     </div>
                     <div class="form-group">
+                        <span asp-validation-for="cli_DNI" class="text-danger"></span>
                         <label asp-validation-for="cli_DNI" class="text-danger">@Html.ValidationMessage("DNI")</label>
                         <label asp-for="cli_DNI" class="control-label"></label>
                         <input asp-for="cli_DNI" class="form-control" />
