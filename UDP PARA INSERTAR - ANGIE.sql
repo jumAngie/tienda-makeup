@@ -112,25 +112,8 @@ AS
 SELECT '0' AS 'suc_Id', ' ---Seleccione una opción---' AS 'suc_Descripcion'
 UNION ALL
 SELECT suc_Id, suc_Descripcion FROM Gral.tbSucursales
-GO
 
-CREATE OR ALTER PROC UDP_Validar
-@DNI NVARCHAR(13)
-AS
-BEGIN
-	
-	SELECT  cli_DNI FROM Gral.tbClientes
-	WHERE	cli_DNI = @DNI
-END
-
-EXEC UDP_Validar '1904425167251'
-
-
-
-SELECT * FROM Maqui.tbVentas
-SELECT * FROM Maqui.tbVentasDetalle
-
-
+--****************************************** TG PARA ACTUALIZAR STOCK ****************************************************--
 GO
 CREATE OR ALTER TRIGGER Maqui.tg_ActualizarStock ON [Maqui].[tbVentasDetalle]
 AFTER INSERT 
@@ -141,5 +124,8 @@ BEGIN
 	WHERE		inv_Producto = (Select vde_Producto from inserted)
 END;
 GO
+
+
+
 
 

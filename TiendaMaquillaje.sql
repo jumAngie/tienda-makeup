@@ -2004,3 +2004,23 @@ AS BEGIN
 UPDATE Maqui.tbVentas SET ven_Estado = 0 WHERE ven_Id  = @ven_Id;
 
 END
+GO
+--****************************************** VISTA PARA DDL SUCURSALES ****************************************************--
+CREATE OR ALTER VIEW Vw_Gral_tbSucursales_DDL
+AS
+
+SELECT '0' AS 'suc_Id', ' ---Seleccione una opción---' AS 'suc_Descripcion'
+UNION ALL
+SELECT suc_Id, suc_Descripcion FROM Gral.tbSucursales
+
+--****************************************** TG PARA ACTUALIZAR STOCK ****************************************************--
+GO
+CREATE OR ALTER TRIGGER Maqui.tg_ActualizarStock ON [Maqui].[tbVentasDetalle]
+AFTER INSERT 
+AS
+BEGIN
+	SET NOCOUNT ON;
+	UPDATE		tbInventario SET inv_Cantidad = inv_Cantidad - (SELECT vde_Cantidad from inserted)
+	WHERE		inv_Producto = (Select vde_Producto from inserted)
+END;
+GO
