@@ -53,5 +53,23 @@ namespace Maquillaje.WebUI.Controllers
             }
             return View(productosView);
         }
+
+
+
+        [HttpPost("/Productos/Eliminar/")]
+        public IActionResult Delete(int pro_Id)
+        {
+
+            tbProductos pro = new tbProductos();
+            pro.pro_Id = pro_Id;
+
+
+            var prod = _mapper.Map<tbProductos>(pro);
+            var result = _generalesService.DeleteProductos(prod);
+
+
+            return RedirectToAction("Index");
+        }
+
     }
 }

@@ -18,7 +18,7 @@
                         <div class="card-body">
 
 
-                            <table class="table table-responsive" id="mytable">
+                            <table class="table table-responsive" id="Datatable">
                                 <thead>
                                     <tr>
                                         <th>
@@ -63,7 +63,7 @@
                                             <td>
                                                 <a class="btn  btn-sm  btn-warning" asp-action="Edit" asp-route-id="@item.pro_Id">Editar</a> |
                                                 <a class="btn  btn-sm  btn-success" asp-action="Details" asp-route-id="@item.pro_Id">Detalles</a> |
-                                                <a class="btn  btn-sm  btn-danger" asp-action="Delete" asp-route-id="@item.pro_Id">Eliminar</a>
+                                                <a class="btn-delete btn btn-danger" onclick="ShowModal(@item.pro_Id)" data-id="@item.pro_Id">Eliminar</a>
                                             </td>
                                         </tr>
                                     }
@@ -78,3 +78,6 @@
         </div>
     </div>
 </div>
+
+
+@Html.Partial("_Delete");

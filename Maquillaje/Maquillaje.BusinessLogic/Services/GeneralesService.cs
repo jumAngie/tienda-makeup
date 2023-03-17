@@ -26,7 +26,7 @@ namespace Maquillaje.BusinessLogic.Services
         private readonly VentasRepository _ventasRepository;
         private readonly UsuariosRepository _usuariosRepository;
 
-        public GeneralesService(CategoriaRepository categoriaRepository, ProductosRepository productosRepository, InventarioRepository inventarioRepository, ClientesRepository clientesRepository, EmpleadosRepository empleadosRepository, SucursalesRepository sucursalesRepository, MunicipioRepository municipioRepository, DepartamentosRepository departamentosRepository, EstadosCivilesRepository estadosCivilesRepository, MetodoPagoRepository metodoPagoRepository, ProveedoresRepository proveedoresRepository, VentasRepository ventasRepository, UsuariosRepository usuariosRepository) 
+        public GeneralesService(CategoriaRepository categoriaRepository, ProductosRepository productosRepository, InventarioRepository inventarioRepository, ClientesRepository clientesRepository, EmpleadosRepository empleadosRepository, SucursalesRepository sucursalesRepository, MunicipioRepository municipioRepository, DepartamentosRepository departamentosRepository, EstadosCivilesRepository estadosCivilesRepository, MetodoPagoRepository metodoPagoRepository, ProveedoresRepository proveedoresRepository, VentasRepository ventasRepository, UsuariosRepository usuariosRepository)
         {
             _categoriaRepository = categoriaRepository;
             _productosRepository = productosRepository;
@@ -76,10 +76,10 @@ namespace Maquillaje.BusinessLogic.Services
 
         public int EditCategoria(tbCategorias categorias)
         {
-   
-                return _categoriaRepository.Update(categorias);
 
-      
+            return _categoriaRepository.Update(categorias);
+
+
         }
 
         public tbCategorias BuscarCategoria(int? id)
@@ -131,6 +131,18 @@ namespace Maquillaje.BusinessLogic.Services
             }
         }
 
+        public int DeleteProductos(tbProductos productos)
+        {
+      
+               return _productosRepository.Delete(productos);
+
+           
+    
+        }
+
+
+
+
         #endregion
 
         #region Inventario
@@ -152,8 +164,8 @@ namespace Maquillaje.BusinessLogic.Services
         public int CreateInventario(tbInventario inventario)
         {
 
-                return _inventarioRepository.Insert(inventario);
-           
+            return _inventarioRepository.Insert(inventario);
+
 
         }
 
@@ -179,14 +191,14 @@ namespace Maquillaje.BusinessLogic.Services
         public void CreateClientes(string cli_Nombre, string cli_Apellido, string cli_DNI, string cli_FechaNacimiento, string cli_Sexo, string Telefono,
                           int cli_Municipio, int cli_EstadoCivil, int cli_UsuarioCrea)
         {
-            
-                _clientesRepository.Insertar(cli_Nombre, cli_Apellido, cli_DNI, cli_FechaNacimiento, cli_Sexo, Telefono,
-                                            cli_Municipio, cli_EstadoCivil ,cli_UsuarioCrea);
 
-            
+            _clientesRepository.Insertar(cli_Nombre, cli_Apellido, cli_DNI, cli_FechaNacimiento, cli_Sexo, Telefono,
+                                        cli_Municipio, cli_EstadoCivil, cli_UsuarioCrea);
+
+
         }
 
-        public void UpdateClientes(int id, string cli_Nombre, string cli_Apellido, string cli_DNI, string cli_FechaNacimiento, 
+        public void UpdateClientes(int id, string cli_Nombre, string cli_Apellido, string cli_DNI, string cli_FechaNacimiento,
                                    string cli_Sexo, string Telefono, int cli_Municipio, int cli_EstadoCivil, int cli_UsuarioCrea)
         {
             _clientesRepository.Actualizar(id, cli_Nombre, cli_Apellido, cli_DNI, cli_FechaNacimiento, cli_Sexo, Telefono, cli_Municipio,
@@ -196,9 +208,24 @@ namespace Maquillaje.BusinessLogic.Services
         public tbClientes ObtenerCliente(int? id)
         {
 
-           return _clientesRepository.Find(id);
+            return _clientesRepository.Find(id);
 
 
+        }
+
+
+
+        public int DeleteCliente (tbClientes clientes)
+        {
+            try
+            {
+                return _clientesRepository.Delete(clientes);
+            }
+            catch (Exception)
+            {
+
+                return 1;
+            }
         }
 
         #endregion
@@ -227,6 +254,19 @@ namespace Maquillaje.BusinessLogic.Services
                 emp_Correo, emp_EstadoCivil, emp_Sucursal, emp_UsuarioCrea);
 
 
+        }
+
+        public int DeleteEmpleado (tbEmpleados empleados)
+        {
+            try
+            {
+                return _empleadosRepository.Delete(empleados);
+            }
+            catch (Exception)
+            {
+
+                return 1;
+            }
         }
 
         #endregion
@@ -260,7 +300,7 @@ namespace Maquillaje.BusinessLogic.Services
 
                 return 1;
             }
-       
+
         }
 
         public int EditSucursales(tbSucursales sucursales)
@@ -316,11 +356,11 @@ namespace Maquillaje.BusinessLogic.Services
 
         public int CreateMuni(tbMunicipios municipios)
         {
-          return _municipiosRepository.Insert(municipios);
-        
+            return _municipiosRepository.Insert(municipios);
+
         }
 
-        public int UpdateMuni (tbMunicipios municipios)
+        public int UpdateMuni(tbMunicipios municipios)
         {
             try
             {
@@ -535,6 +575,19 @@ namespace Maquillaje.BusinessLogic.Services
             }
         }
 
+        public int DeleteProv(tbProveedores proveedores)
+        {
+            try
+            {
+                return _proveedoresRepository.Delete(proveedores);
+            }
+            catch (Exception)
+            {
+
+                return 1;
+            }
+        }
+
         #endregion
 
         #region Ventas
@@ -573,12 +626,43 @@ namespace Maquillaje.BusinessLogic.Services
 
         public int CreateUsuario(tbUsuarios usuarios)
         {
-        
-             return  _usuariosRepository.Insert(usuarios);
-             
+
+            return _usuariosRepository.Insert(usuarios);
 
 
 
+
+        }
+
+        public int EditUsuario(tbUsuarios usuarios)
+        {
+            try
+            {
+                return _usuariosRepository.Update(usuarios);
+            }
+            catch (Exception)
+            {
+
+                return 1;
+            }
+        }
+
+        public int DeleteUsuario(tbUsuarios usuarios)
+        {
+            try
+            {
+                return _usuariosRepository.Delete(usuarios);
+            }
+            catch (Exception)
+            {
+
+                return 1;
+            }
+        }
+
+        public tbUsuarios BuscarUsuario(int? id)
+        {
+            return _usuariosRepository.Find(id);
         }
 
         #endregion

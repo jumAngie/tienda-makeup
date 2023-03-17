@@ -18,9 +18,14 @@ namespace Maquillaje.DataAccess.Repositories
 
         public int Delete(tbProductos item)
         {
-            throw new NotImplementedException();
-        }
+            using var db = new SqlConnection(TiendaContext.ConnectionString);
+            var parametros = new DynamicParameters();
+            parametros.Add("@pro_Id", item.pro_Id, DbType.Int32, ParameterDirection.Input);
 
+            return db.Execute(ScriptsDataBase.ProductosEliminar, parametros, commandType: CommandType.StoredProcedure);
+
+
+        }
         public tbProductos Find(int? id)
         {
             using var db = new TiendaContext();

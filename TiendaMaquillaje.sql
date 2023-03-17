@@ -1393,6 +1393,8 @@ VALUES  (@usu_Usuario,
 		 @usu_Estado)
 END
 GO
+
+select * from gral.tbUsuarios
 --CREATE OR ALTER PROC UDP_Maqui_tbCategoriasProducto_CREAR
 --	@cpr_Categoria		INT,
 --	@cpr_Producto		INT, 
@@ -1937,3 +1939,59 @@ WHERE suc_Id = @id
 )
 GO
 
+
+
+CREATE OR ALTER PROC UDP_Gral_tbUsuarios_ELIMINAR(@usu_Id INT)
+AS BEGIN
+
+UPDATE Gral.tbUsuarios SET usu_Estado = 0 WHERE usu_Id = @usu_Id
+
+END
+GO
+
+CREATE OR ALTER PROC UDP_Gral_tbUsuarios_EDITAR(
+@usu_Id INT,
+@usu_Usuario NVARCHAR(100),
+@usu_EsAdmin BIT)
+AS BEGIN
+
+UPDATE Gral.tbUsuarios SET usu_Usuario = @usu_Usuario,
+						   usu_EsAdmin = @usu_EsAdmin
+						   WHERE usu_Id = @usu_Id
+
+END
+GO
+
+
+
+CREATE OR ALTER PROC UDP_Gral_tbProveedores_ELIMINAR(@prv_Id INT)
+AS BEGIN
+
+UPDATE Maqui.tbProveedores SET prv_Estado = 0 WHERE prv_ID = @prv_Id
+
+END
+GO
+
+CREATE OR ALTER PROC UDP_Gral_tbClientes_ELIMINAR(@cli_Id INT)
+AS BEGIN
+
+UPDATE Gral.tbClientes SET cli_Estado = 0 WHERE cli_ID = @cli_Id
+
+END
+GO
+
+
+CREATE OR ALTER PROC UDP_Gral_tbEmpleados_ELIMINAR(@emp_Id INT)
+AS BEGIN
+
+UPDATE Gral.tbEmpleados SET emp_Estado = 0 WHERE emp_id = @emp_Id
+
+END
+GO
+
+CREATE OR ALTER PROC UDP_Gral_tbProductos_ELIMINAR(@pro_Id INT)
+AS BEGIN
+
+UPDATE Maqui.tbProductos SET pro_Estado = 0 WHERE pro_Id = @pro_Id
+
+END

@@ -1,0 +1,49 @@
+﻿<!-- Elimar Categorias -->
+<form action="@Url.Action("Delete","Producto")" method="post" id="deleteform">
+    <div class="modal inmodal" id="DeleteProd" tabindex="-1" role="dialog" aria-labelledby="confirm-delete-modal-label" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content animated bounceInRight">
+                <div class="modal-header">
+                    <button type="button" class="close" aria-label="Cerrar" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <i class="fa fa-laptop modal-icon"></i>
+                    <h4 class="modal-title">Confirme la acción</h4>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="pro_Id" name="pro_Id" />
+                    <center>¿Está seguro de que desea eliminar el elemento?</center>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" id="confirmar" class="btn btn-danger">Eliminar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</form>
+
+
+<script>
+
+    function ShowModal(pro_Id) {
+        $('#DeleteProd').modal('show');
+        $("#confirmar").click(function () {
+            var id = pro_Id;
+
+            $.ajax({
+                url: "/Producto/Eliminar",
+                type: "POST",
+                data: { pro_Id: id },
+                success: function () {
+                    window.location.href = "/Producto/Listado";
+                },
+                error: function () {
+                    alert("Error al eliminar el registro.");
+                }
+            });
+        });
+    };
+</script>

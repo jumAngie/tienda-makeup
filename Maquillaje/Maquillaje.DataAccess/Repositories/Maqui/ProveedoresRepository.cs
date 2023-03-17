@@ -1,7 +1,9 @@
-﻿using Maquillaje.Entities.Entities;
+﻿using Dapper;
+using Maquillaje.Entities.Entities;
 using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 
@@ -16,8 +18,16 @@ namespace Maquillaje.DataAccess.Repositories.Maqui
 
         public int Delete(tbProveedores item)
         {
-            throw new NotImplementedException();
+            using var db = new SqlConnection(TiendaContext.ConnectionString);
+            var parametros = new DynamicParameters();
+            parametros.Add("@prv_Id", item.prv_ID, DbType.Int32, ParameterDirection.Input);
+
+            return db.Execute(ScriptsDataBase.ProveedoresEliminar, parametros, commandType: CommandType.StoredProcedure);
+
+
         }
+
+
 
         public tbProveedores Find(int? id)
         {

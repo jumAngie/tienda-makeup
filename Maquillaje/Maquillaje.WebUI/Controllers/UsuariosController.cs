@@ -5,6 +5,7 @@ using Maquillaje.Entities.Entities;
 using Maquillaje.WebUI.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using MySqlX.XDevAPI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,6 +46,8 @@ namespace Maquillaje.WebUI.Controllers
         [HttpPost("/Usuarios/Create")]
         public IActionResult Create(string usu_Usuario, int emp_Id, string usu_Clave, bool usu_EsAdmin)
         {
+
+
             tbUsuarios usua = new tbUsuarios();
             usua.usu_Usuario = usu_Usuario;
             usua.usu_empID = emp_Id;
@@ -64,6 +67,21 @@ namespace Maquillaje.WebUI.Controllers
 
 
 
+
+        [HttpPost("/Usuarios/Eliminar/")]
+        public IActionResult Delete(int usu_Id)
+        {
+
+            tbUsuarios usu = new tbUsuarios();
+            usu.usu_ID = usu_Id;
+
+
+            var usua = _mapper.Map<tbUsuarios>(usu);
+            var result = _generalesService.DeleteUsuario(usua);
+
+
+            return RedirectToAction("Index");
+        }
 
 
 

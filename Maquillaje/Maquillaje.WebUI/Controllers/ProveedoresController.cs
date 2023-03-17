@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Maquillaje.BusinessLogic.Services;
+using Maquillaje.Entities.Entities;
 using Maquillaje.WebUI.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -33,5 +34,24 @@ namespace Maquillaje.WebUI.Controllers
             
             return View();
         }
+
+
+
+        [HttpPost("/Proveedores/Eliminar/")]
+        public IActionResult Delete(int prv_Id)
+        {
+
+            tbProveedores prov = new tbProveedores();
+            prov.prv_ID = prv_Id;
+
+
+            var prove = _mapper.Map<tbProveedores>(prov);
+            var result = _generalesService.DeleteProv(prove);
+
+
+            return RedirectToAction("Index");
+        }
+
+
     }
 }
