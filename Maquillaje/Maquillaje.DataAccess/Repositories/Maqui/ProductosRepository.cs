@@ -26,6 +26,10 @@ namespace Maquillaje.DataAccess.Repositories
 
 
         }
+
+
+
+
         public tbProductos Find(int? id)
         {
             using var db = new TiendaContext();

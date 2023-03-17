@@ -56,7 +56,7 @@ namespace Maquillaje.WebUI.Controllers
 
 
 
-        [HttpPost("/Productos/Eliminar/")]
+        [HttpPost("/Producto/Eliminar/")]
         public IActionResult Delete(int pro_Id)
         {
 
@@ -64,8 +64,8 @@ namespace Maquillaje.WebUI.Controllers
             pro.pro_Id = pro_Id;
 
 
-            var prod = _mapper.Map<tbProductos>(pro);
-            var result = _generalesService.DeleteProductos(prod);
+            var produ = _mapper.Map<tbProductos>(pro);
+            var result = _generalesService.DeleteProductos(produ);
 
 
             return RedirectToAction("Index");

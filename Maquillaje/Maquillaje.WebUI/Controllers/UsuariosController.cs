@@ -5,7 +5,6 @@ using Maquillaje.Entities.Entities;
 using Maquillaje.WebUI.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using MySqlX.XDevAPI;
 using System;
 using System.Collections.Generic;
 using System.Linq;

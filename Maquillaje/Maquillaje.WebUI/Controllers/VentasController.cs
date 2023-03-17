@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Maquillaje.BusinessLogic.Services;
+using Maquillaje.Entities.Entities;
 using Maquillaje.WebUI.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -35,5 +36,22 @@ namespace Maquillaje.WebUI.Controllers
         {
             return View();
         }
+
+
+        [HttpPost("/Ventas/Eliminar/")]
+        public IActionResult Delete(int ven_Id)
+        {
+
+            tbVentas ven = new tbVentas();
+            ven.ven_Id = ven_Id;
+
+
+            var vent = _mapper.Map<tbVentas>(ven);
+            var result = _generalesService.DeleteVenta(vent);
+
+
+            return RedirectToAction("Index");
+        }
+
     }
 }

@@ -14,7 +14,12 @@ namespace Maquillaje.DataAccess.Repositories.Gral
 
         public int Delete(tbClientes item)
         {
-            throw new NotImplementedException();
+            using var db = new SqlConnection(TiendaContext.ConnectionString);
+            var parametros = new DynamicParameters();
+            parametros.Add("@cli_Id", item.cli_ID, DbType.Int32, ParameterDirection.Input);
+
+            return db.Execute(ScriptsDataBase.ClientesEliminar, parametros, commandType: CommandType.StoredProcedure);
+
         }
 
         public tbClientes Find(int? id)

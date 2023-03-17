@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Maquillaje.BusinessLogic.Services;
 using Maquillaje.DataAccess;
+using Maquillaje.Entities.Entities;
 using Maquillaje.WebUI.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -21,7 +22,24 @@ namespace Maquillaje.WebUI.Controllers
         {
             _generalesService = generalesService;
             _mapper = mapper;
-            
+
+        }
+
+
+
+        [HttpPost("/Cliente/Eliminar/")]
+        public IActionResult Delete(int cli_Id)
+        {
+
+            tbClientes cli = new tbClientes();
+            cli.cli_ID = cli_Id;
+
+
+            var clie = _mapper.Map<tbClientes>(cli);
+            var result = _generalesService.DeleteCliente(clie);
+
+
+            return RedirectToAction("Index");
         }
 
 
@@ -95,9 +113,9 @@ namespace Maquillaje.WebUI.Controllers
                     else
                     {
                         /// CAMBIAR EL USUARIO MODIFICACION ///
-                        
+
                         _generalesService.CreateClientes(Nombre, Apellido, DNI, FechaValida, Sexo, Telefono, Int32.Parse(Municipio), Int32.Parse(Civil), 1);
-                       
+
                         return RedirectToAction("Index");
                     }
 
@@ -144,7 +162,7 @@ namespace Maquillaje.WebUI.Controllers
         [HttpGet("/Cliente/CargarInfo/{cli_ID}")]
         public JsonResult CargarInfo(int cli_ID)
         {
-            
+
             var ddl = db.UDF_Gral_tbClienteInfo_DDL(cli_ID).ToList();
 
             return Json(ddl);
@@ -156,15 +174,15 @@ namespace Maquillaje.WebUI.Controllers
         [HttpGet]
         public IActionResult Edit(int? id)
         {
-            
-           var cliente =  _generalesService.ObtenerCliente(id);
-            if(cliente == null)
+
+            var cliente = _generalesService.ObtenerCliente(id);
+            if (cliente == null)
             {
                 return RedirectToAction("Index");
             }
             else
             {
-                
+
                 ClientesViewModel clientesview = new ClientesViewModel();
                 clientesview.cli_ID = cliente.cli_ID;
                 clientesview.cli_Nombre = cliente.cli_Nombre;
@@ -210,7 +228,7 @@ namespace Maquillaje.WebUI.Controllers
                     string depto = item.depto;
                     // CAMBIAR EL USUARIO MODIFICACION ///
                     var registrosConMismoDNI = db.tbClientes.Where(r => r.cli_ID != id && r.cli_DNI == DNI).ToList();
-                    if(registrosConMismoDNI.Any())
+                    if (registrosConMismoDNI.Any())
                     {
                         ModelState.AddModelError("DNI", "Ya existe un registro con el mismo DNI");
                         if (item.depto == "0") { ModelState.AddModelError("ValidarDep", "*"); }
@@ -225,8 +243,8 @@ namespace Maquillaje.WebUI.Controllers
 
                         return RedirectToAction("Index");
                     }
-                    
-                    }
+
+                }
                 else
                 {
                     if (item.depto == "0") { ModelState.AddModelError("ValidarDep", "*"); }
@@ -238,20 +256,23 @@ namespace Maquillaje.WebUI.Controllers
                 }
 
 
-                }
-                else
-                {
-                    if (item.depto == "0") { ModelState.AddModelError("ValidarDep", "*"); }
-                    if (item.cli_EstadoCivil == "0") { ModelState.AddModelError("ValidarCivil", "*"); }
-                    ViewBag.cli_EstadoCivil = new SelectList(db.Vw_Gral_tbEstadosCiviles_DDL, "est_ID", "est_Descripcion");
-                    ViewBag.depto = new SelectList(db.Vw_Gral_tbDepartamentos_DDL, "depto", "dep_Descripcion");
-                    return View(item);
-                }
-
-
+            }
+            else
+            {
+                if (item.depto == "0") { ModelState.AddModelError("ValidarDep", "*"); }
+                if (item.cli_EstadoCivil == "0") { ModelState.AddModelError("ValidarCivil", "*"); }
+                ViewBag.cli_EstadoCivil = new SelectList(db.Vw_Gral_tbEstadosCiviles_DDL, "est_ID", "est_Descripcion");
+                ViewBag.depto = new SelectList(db.Vw_Gral_tbDepartamentos_DDL, "depto", "dep_Descripcion");
+                return View(item);
             }
 
+
         }
-        #endregion
+
+    }
+    #endregion
+
+
+
 
 }

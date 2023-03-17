@@ -621,6 +621,19 @@ namespace Maquillaje.BusinessLogic.Services
             }
         }
 
+        public int DeleteVenta(tbVentas ventas)
+        {
+            try
+            {
+                return _ventasRepository.Delete(ventas);
+            }
+            catch (Exception)
+            {
+
+                return 1;
+            }
+        }
+
         #endregion
 
         #region Usuarios

@@ -1995,3 +1995,12 @@ AS BEGIN
 UPDATE Maqui.tbProductos SET pro_Estado = 0 WHERE pro_Id = @pro_Id
 
 END
+GO
+
+
+CREATE OR ALTER PROC UDP_Maqui_tbVentas_ELIMINAR(@ven_Id INT)
+AS BEGIN
+
+UPDATE Maqui.tbVentas SET ven_Estado = 0 WHERE ven_Id  = @ven_Id;
+
+END

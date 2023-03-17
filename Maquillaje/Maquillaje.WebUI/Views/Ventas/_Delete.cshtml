@@ -1,6 +1,6 @@
 ﻿<!-- Elimar Categorias -->
-<form action="@Url.Action("Delete","Producto")" method="post" id="deleteform">
-    <div class="modal inmodal" id="DeletePro" tabindex="-1" role="dialog" aria-labelledby="confirm-delete-modal-label" aria-hidden="true">
+<form action="@Url.Action("Delete","Ventas")" method="post" id="deleteform">
+    <div class="modal inmodal" id="DeleteVen" tabindex="-1" role="dialog" aria-labelledby="confirm-delete-modal-label" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content animated bounceInRight">
                 <div class="modal-header">
@@ -9,7 +9,7 @@
                     <h4 class="modal-title">Confirme la acción</h4>
                 </div>
                 <div class="modal-body">
-                    <input type="hidden" id="txt_ProId" name="pro_Id" />
+                    <input type="hidden" id="ven_Id" name="ven_Id" />
                     <center>¿Está seguro de que desea eliminar el elemento?</center>
 
                 </div>
@@ -28,17 +28,17 @@
 
 <script>
 
-    function ShowModal(txt_ProId) {
-        $('#DeletePro').modal('show');
+    function ShowModal(ven_Id) {
+        $('#DeleteVen').modal('show');
         $("#confirmar").click(function () {
-            var id = txt_ProId;
+            var id = ven_Id;
 
             $.ajax({
-                url: "/Producto/Eliminar",
+                url: "/Ventas/Eliminar",
                 type: "POST",
-                data: { pro_Id: id },
+                data: { ven_Id: id },
                 success: function () {
-                    window.location.href = "/Producto/Listado";
+                    window.location.href = "/Ventas/Listado";
                 },
                 error: function () {
                     alert("Error al eliminar el registro.");
