@@ -1,0 +1,95 @@
+﻿@model Maquillaje.WebUI.Models.EmpleadosViewModel
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header">
+        <h1>Crear</h1>
+
+        <h4>Empleados</h4>
+    </div>
+    <form asp-action="Create" class="needs-validation" method="post" novalidate>
+
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <span asp-validation-for="emp_Nombre" class="text-danger"></span>
+                        <label asp-for="emp_Nombre" class="control-label"></label>
+                        <input asp-for="emp_Nombre" class="form-control" />
+
+                    </div>
+                    <div class="form-group">
+                        <span asp-validation-for="emp_Apellido" class="text-danger"></span>
+                        <label asp-for="emp_Apellido" class="control-label"></label>
+                        <input asp-for="emp_Apellido" class="form-control" />
+
+                    </div>
+                    <div class="form-group">
+                        <span asp-validation-for="emp_DNI" class="text-danger"></span>
+                        <label asp-for="emp_DNI" class="control-label"></label>
+                        <input asp-for="emp_DNI" class="form-control" />
+
+                    </div>
+                    <div class="form-group">
+                        <span asp-validation-for="emp_FechaNacimiento" class="text-danger"></span>
+                        <label asp-for="emp_FechaNacimiento" class="control-label"></label>
+                        <input type="date" asp-for="emp_FechaNacimiento" class="form-control" />
+
+                    </div>
+                    <div class="form-group">
+                        <span asp-validation-for="emp_Sexo" class="text-danger"></span>
+                        <label asp-for="emp_Sexo" class="control-label"></label>
+                        <input asp-for="emp_Sexo" class="form-control" />
+
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <span asp-validation-for="emp_Telefono" class="text-danger"></span>
+                        <label asp-for="emp_Telefono" class="control-label"></label>
+                        <input asp-for="emp_Telefono" class="form-control" />
+
+                    </div>
+                    <div class="form-group">
+                        <label asp-validation-for="depto" class="text-danger">@Html.ValidationMessage("ValidarDep")</label>
+                        <label asp-for="depto" class="control-label"></label>
+                        <select id="depto" name="depto" class="form-control" asp-items="ViewBag.depto"></select>
+                    </div>
+                    <div class="form-group">
+                        <span asp-validation-for="emp_Municipio" class="text-danger"></span>
+                        <label asp-for="emp_Municipio" class="control-label"></label>
+                        <select asp-for="emp_Municipio" class="form-control" asp-items="ViewBag.emp_Municipio"></select>
+                    </div>
+                    <div class="form-group">
+                        <span asp-validation-for="emp_Correo" class="text-danger"></span>
+                        <label asp-for="emp_Correo" class="control-label"></label>
+                        <input type="email" asp-for="emp_Correo" class="form-control" />
+
+                    </div>
+                    <div class="form-group">
+                        <span asp-validation-for="emp_EstadoCivil" class="text-danger"></span>
+                        <label asp-for="emp_EstadoCivil" class="control-label"></label>
+                        <select asp-for="emp_EstadoCivil" class="form-control" asp-items="ViewBag.emp_EstadoCivil"></select>
+                    </div>
+                    <div class="form-group">
+                        <span asp-validation-for="emp_Sucursal" class="text-danger"></span>
+                        <label asp-for="emp_Sucursal" class="control-label"></label>
+                        <select asp-for="emp_Sucursal" class="form-control" asp-items="ViewBag.emp_Sucursal"></select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <div class="text-center">
+                <input class="btn btn-primary" type="submit" value="Guardar" />
+                <a class="btn btn-dark" asp-action="Index">Volver</a>
+            </div>
+        </div>
+    </form>
+</div>
+
