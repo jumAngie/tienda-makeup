@@ -39,7 +39,7 @@ namespace Maquillaje.DataAccess.Repositories.Gral
             parametros.Add("@suc_Municipio", item.suc_Municipio, DbType.Int32, ParameterDirection.Input);
             parametros.Add("@suc_UsuCrea", item.suc_UsuCrea, DbType.Int32, ParameterDirection.Input);
 
-            return db.QueryFirst<int>(ScriptsDataBase.SucursalesCrear, parametros, commandType: CommandType.StoredProcedure);
+            return db.Execute(ScriptsDataBase.SucursalesCrear, parametros, commandType: CommandType.StoredProcedure);
         }
 
         public IEnumerable<Vw_Gral_tbSucursales_LIST> List()
@@ -60,7 +60,7 @@ namespace Maquillaje.DataAccess.Repositories.Gral
             parametros.Add("@suc_Municipio", item.suc_Municipio, DbType.Int32, ParameterDirection.Input);
             parametros.Add("@suc_UsuCrea", item.suc_UsuCrea, DbType.Int32, ParameterDirection.Input);
 
-            return db.QueryFirst<int>(ScriptsDataBase.SucursalesEditar, parametros, commandType: CommandType.StoredProcedure);
+            return db.Execute(ScriptsDataBase.SucursalesEditar, parametros, commandType: CommandType.StoredProcedure);
         }
 
         IEnumerable<tbSucursales> IRepository<tbSucursales>.List()

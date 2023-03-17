@@ -47,9 +47,9 @@
                                         @Html.DisplayFor(modelItem => item.suc_Municipio)
                                     </td>
                                     <td>
-                                        <a asp-action="Edit" asp-route-id="@item.suc_Id">Edit</a> |
+                                        <button type="button" id="btnEditar" class="btn btn-outline-info" onclick="Editar('@item.suc_Id,@item.suc_Descripcion, @item.suc_Municipio')">Editar</button> |
                                         <a asp-action="Details" asp-route-id="@item.suc_Id">Details</a> |
-                                        <a asp-action="Delete" asp-route-id="@item.suc_Id">Delete</a>
+                                        <a class="btn-delete btn btn-danger" onclick="ShowModal(@item.suc_Id)" data-id="@item.suc_Id">Eliminar</a>
                                     </td>
                                 </tr>
                             }
@@ -62,3 +62,5 @@
     </div>
 </div>
 @Html.Partial("_Create");
+@Html.Partial("_Edit");
+@Html.Partial("_Delete");

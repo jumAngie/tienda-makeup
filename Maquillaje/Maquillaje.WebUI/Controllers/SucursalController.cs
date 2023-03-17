@@ -70,6 +70,55 @@ namespace Maquillaje.WebUI.Controllers
             return RedirectToAction("Index");
 
         }
+
+
+
+        [HttpGet("/Sucursales/CargarInfo/{suc_Id}")]
+        public JsonResult CargarInfo(int suc_Id)
+        {
+            ViewBag.depto = new SelectList(db.Vw_Gral_tbDepartamentos_DDL, "depto", "dep_Descripcion");
+            var ddl = db.UDF_Gral_tbSucursales_DDL(suc_Id).ToList();
+
+            return Json(ddl);
+
+        }
+
+
+        [HttpPost("/Sucursal/Editar")]
+        public IActionResult Edit(int suc_Id, string suc_Descripcion, int suc_Municipio)
+        {
+            tbSucursales suc = new tbSucursales();
+            suc.suc_Municipio = suc_Municipio;
+            suc.suc_Id = suc_Id;
+            suc.suc_Descripcion = suc_Descripcion;
+            suc.suc_usuModi = 1;
+            ViewBag.depto = new SelectList(db.Vw_Gral_tbDepartamentos_DDL, "depto", "dep_Descripcion");
+
+            var sucu = _mapper.Map<tbSucursales>(suc);
+            var result = _generalesService.EditSucursales(sucu);
+
+            return RedirectToAction("Index");
+        }
+
+
+
+
+        [HttpPost("/Sucursal/Eliminar/")]
+        public IActionResult Delete(int suc_Id)
+        {
+
+            tbSucursales suc = new tbSucursales();
+            suc.suc_Id = suc_Id;
+
+
+            var sucu = _mapper.Map<tbSucursales>(suc);
+            var result = _generalesService.DeleteSucursales(sucu);
+
+
+            return RedirectToAction("Index");
+        }
+
+
     }
 }
 

@@ -10,6 +10,7 @@ namespace Maquillaje.Entities.Entities
     {
         public int inv_Id { get; set; }
         public string pro_Nombre { get; set; }
+        public string pro_StockInicial { get; set; }
         public int inv_Cantidad { get; set; }
     }
 }

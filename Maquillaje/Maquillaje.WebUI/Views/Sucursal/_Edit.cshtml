@@ -1,6 +1,6 @@
 ﻿<!-- The Modal -->
-<Form action="@Url.Action("Create","Sucursal")" method="post">
-    <div class="modal" id="CreateSucu">
+<Form action="@Url.Action("Edit","Sucursal")" method="post" id="sucu">
+    <div class="modal" id="EditSucu">
         <div class="modal-dialog">
             <div class="modal-content">
 
@@ -11,6 +11,8 @@
 
                 <!-- Modal body -->
                 <div class="modal-body">
+                    <input type="hidden" class="form-control" id="suc_Id" name="suc_Id" />
+
                     <div class="row">
                         <div class="col-sm-6">
                             <label class="form-text">Departamento</label>
@@ -25,7 +27,9 @@
 
                     <div class="col-sm-12">
                         <label class="form-text">Descripcion</label>
-                        <input type="text" class="form-control" id="mun" name="suc_Descripcion" />
+                        <input type="text" class="form-control" id="txtSucu" name="suc_Descripcion" />
+                        <label id="ValidateSucu" hidden class="text-danger">Campo Requerido</label>
+
                     </div>
 
                 </div>
@@ -33,7 +37,7 @@
                 <!-- Modal footer -->
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-warning" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-outline-success">Guardar</button>
+                    <button type="submit" class="btn btn-outline-success" onclick="GuardarDatos()">Guardar</button>
                 </div>
 
             </div>
@@ -41,27 +45,27 @@
     </div>
 </Form>
 
-<script>
-    $("#depto").change(function () {
+    <script>
 
-        var depto = $("#depto").val();
+        function Editar(cadena) {
+        var datastring = cadena;
+        var data = datastring.split(',');
+            $("#suc_Id").val(data[0]);
+        $("#txtSucu").val(data[1]);
+            $("#EditSucu").modal('show');
+        };
 
 
-        $.ajax({
-            url: "/Sucursal/CargarMunicipios/" + depto,
-            method: "GET",
-            dataType: "json",
-            contentType: "application/json; charset=utf-8",
+        function GuardarDatos() {
 
-            success: function (data) {
-                console.log(data);
-                $("#suc_Municipio").empty();
-                $("#suc_Municipio").append("<option value= '0' >Seleccione un Municipio</option>");
+            if ($("#txtSucu").val() == "") {
+            $("#ValidateSucu").attr("hidden", false);
+        stop();
+        }
+        else {
+            $("#ValidateSucu").attr("hidden", true);
+            $('#sucu').submit();
+        }
+    };
 
-                $.each(data, function (i, value) {
-                    $("#suc_Municipio").append("<option value='" + value.mun_ID + "'>" + value.mun_Descripcion + "</option>");
-                })
-            }
-        })
-    });
 </script>

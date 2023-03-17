@@ -16,5 +16,9 @@ namespace Maquillaje.WebUI.Models
 
         [Display(Name = "Cantidad")]
         public int inv_Cantidad { get; set; }
+
+
+        [Display(Name = "Stock Inicial")]
+        public int pro_StockInicial { get; set; }
     }
 }
