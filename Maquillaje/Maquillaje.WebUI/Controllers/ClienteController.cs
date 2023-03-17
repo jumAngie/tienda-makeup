@@ -95,8 +95,9 @@ namespace Maquillaje.WebUI.Controllers
                     else
                     {
                         /// CAMBIAR EL USUARIO MODIFICACION ///
+                        
                         _generalesService.CreateClientes(Nombre, Apellido, DNI, FechaValida, Sexo, Telefono, Int32.Parse(Municipio), Int32.Parse(Civil), 1);
-
+                        
                         return RedirectToAction("Index");
                     }
 

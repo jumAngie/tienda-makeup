@@ -45,12 +45,10 @@ namespace Maquillaje.WebUI.Controllers
 
         // Condicionar Campos
         [HttpPost]
-        public IActionResult Create(tbProductos productosView)
+        public IActionResult Create(ProductosViewModel productosView)
         {
             if (ModelState.IsValid)
             {
-                var productos = _mapper.Map<tbProductos>(productosView);
-                _generalesService.CreateProductos(productos);
                 return RedirectToAction("Index");
             }
             return View(productosView);

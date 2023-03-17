@@ -68,7 +68,7 @@ namespace Maquillaje.WebUI.Controllers
                     fechas != "01/01/0001 0:00:00" && item.emp_Sexo != null && item.emp_Telefono != null && item.depto != "0" &&
                    (item.emp_Municipio != null && item.emp_Municipio != "0") && item.emp_Sucursal != "0")
                 {
-                    if(ExisteDni(item.emp_DNI))
+                    if (ExisteDni(item.emp_DNI))
                     {
                         ModelState.AddModelError("ValidarDNI", "El DNI ya existe");
                         ViewBag.emp_EstadoCivil = new SelectList(db.Vw_Gral_tbEstadosCiviles_DDL, "est_ID", "est_Descripcion");
@@ -85,7 +85,7 @@ namespace Maquillaje.WebUI.Controllers
                             Int32.Parse(item.emp_Municipio), item.emp_Telefono, item.emp_Correo, Int32.Parse(item.emp_EstadoCivil), Int32.Parse(item.emp_Sucursal), 1);
                         return RedirectToAction("Index");
                     }
-                    
+
                 }
                 else
                 {
@@ -97,14 +97,14 @@ namespace Maquillaje.WebUI.Controllers
                     //ViewBag.emp_Sucursal = new SelectList(db.Vw_Gral_tbSucursales_DDL, "suc_Id", "suc_Descripcion");
                     return View(item);
                 }
-                    
+
             }
             else
             {
-                if(item.depto == "0") { ModelState.AddModelError("ValidarDep", "*"); }
-                if(item.emp_EstadoCivil == "0") { ModelState.AddModelError("ValidarCivil", "*"); }
-                if(item.emp_Sucursal == "0") { ModelState.AddModelError("ValidarSucu", "*"); }
-                if(fechas == "01/01/0001 0:00:00") { ModelState.AddModelError("ValidarFecha", "*"); }
+                if (item.depto == "0") { ModelState.AddModelError("ValidarDep", "*"); }
+                if (item.emp_EstadoCivil == "0") { ModelState.AddModelError("ValidarCivil", "*"); }
+                if (item.emp_Sucursal == "0") { ModelState.AddModelError("ValidarSucu", "*"); }
+                if (fechas == "01/01/0001 0:00:00") { ModelState.AddModelError("ValidarFecha", "*"); }
                 ViewBag.emp_EstadoCivil = new SelectList(db.Vw_Gral_tbEstadosCiviles_DDL, "est_ID", "est_Descripcion");
                 ViewBag.depto = new SelectList(db.Vw_Gral_tbDepartamentos_DDL, "depto", "dep_Descripcion");
                 //ViewBag.emp_Sucursal = new SelectList(db.Vw_Gral_tbSucursales_DDL, "suc_Id", "suc_Descripcion");
@@ -122,6 +122,26 @@ namespace Maquillaje.WebUI.Controllers
 
         }
         #endregion
+
+        #region Editar Empleado
+        [HttpGet]
+        public IActionResult Edit(int? id)
+        {
+            // meter el generales service
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Edit(EmpleadosViewModel item)
+        {
+            // hacer lo mismo q en crear
+            return View();
+        }
+
+        #endregion
+
+
+
 
 
 
