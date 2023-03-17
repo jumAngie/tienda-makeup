@@ -30,6 +30,7 @@
 
                     </div>
                     <div class="form-group">
+                        <label asp-validation-for="cli_DNI" class="text-danger">@Html.ValidationMessage("DNI")</label>
                         <span asp-validation-for="emp_DNI" class="text-danger"></span>
                         <label asp-for="emp_DNI" class="control-label"></label>
                         <input asp-for="emp_DNI" class="form-control" />
@@ -47,14 +48,14 @@
                         <input asp-for="emp_Sexo" class="form-control" />
 
                     </div>
-                </div>
-                <div class="col-md-6">
                     <div class="form-group">
                         <span asp-validation-for="emp_Telefono" class="text-danger"></span>
                         <label asp-for="emp_Telefono" class="control-label"></label>
                         <input asp-for="emp_Telefono" class="form-control" />
 
                     </div>
+                </div>
+                <div class="col-md-6">
                     <div class="form-group">
                         <label asp-validation-for="depto" class="text-danger">@Html.ValidationMessage("ValidarDep")</label>
                         <label asp-for="depto" class="control-label"></label>

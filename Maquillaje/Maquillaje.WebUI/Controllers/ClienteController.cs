@@ -34,6 +34,8 @@ namespace Maquillaje.WebUI.Controllers
         }
         #endregion
 
+        #region Listado
+
         [HttpGet("/Cliente/Listado")]
         public IActionResult Index()
         {
@@ -41,6 +43,8 @@ namespace Maquillaje.WebUI.Controllers
             var ListadoMapeado = _mapper.Map<IEnumerable<ClientesViewModel>>(listado);
             return View(ListadoMapeado);
         }
+
+        #endregion
 
 
         #region Crear Clientes

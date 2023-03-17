@@ -20,7 +20,7 @@ namespace Maquillaje.WebUI.Models
         [Display(Name = "Identidad")]
         [Required(ErrorMessage = "*")]
         public string emp_DNI { get; set; }
-        [Display(Name = "F. Nacimiento")]
+        [Display(Name = "Fecha Nacimiento")]
         [Required(ErrorMessage = "*")]
         public DateTime emp_FechaNacimiento { get; set; }
 

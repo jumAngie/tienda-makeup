@@ -104,3 +104,12 @@ BEGIN
 		   prv_UsuarioCrea = @prv_UsuarioCrea
 	WHERE	prv_ID = @prv_ID
 END
+go
+--****************************************** VISTA PARA DDL SUCURSALES ****************************************************--
+CREATE OR ALTER VIEW Vw_Gral_tbSucursales_DDL
+AS
+
+SELECT '0' AS 'suc_Id', ' ---Seleccione una opción---' AS 'suc_Descripcion'
+UNION ALL
+SELECT suc_Id, suc_Descripcion FROM Gral.tbSucursales
+GO
