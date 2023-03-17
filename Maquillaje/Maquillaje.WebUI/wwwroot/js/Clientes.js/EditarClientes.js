@@ -11,6 +11,7 @@
         success: function (data) {
             console.log(data);
             $.each(data, function (i, value) {
+                $("#cli_Municipio").val(value.cli_Municipio)
                 $("#depto").val(value.dep_ID);
             })
 
