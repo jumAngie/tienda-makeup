@@ -1393,7 +1393,6 @@ VALUES  (@usu_Usuario,
 		 @usu_Estado)
 END
 GO
-
 --CREATE OR ALTER PROC UDP_Maqui_tbCategoriasProducto_CREAR
 --	@cpr_Categoria		INT,
 --	@cpr_Producto		INT, 
@@ -1615,6 +1614,24 @@ WHERE mun_depID = @depto
 )
 GO
 --************************************************************************************************************
+
+CREATE OR ALTER VIEW Vw_Gral_tbEmpleados_DDL
+AS
+
+
+SELECT '0' AS 'emp_ID', ' ---Seleccione una opción---' AS 'emp_Nombre'
+UNION ALL
+
+SELECT T2.emp_ID, emp_Nombre + ' '+ emp_Apellido AS per_Nombres FROM Gral.tbUsuarios T1
+FULL JOIN Gral.tbEmpleados T2 ON T1.usu_empID = T2.emp_ID WHERE T1.usu_Usuario IS NULL AND T2.emp_Estado = 1
+GO
+--************************************************************************************************************
+
+
+
+
+
+
 CREATE OR ALTER FUNCTION UDF_Gral_tbClienteInfo_DDL(@id INT)
 RETURNS TABLE
 AS
@@ -1628,6 +1645,9 @@ ON muni.mun_depID = deptos.dep_ID
 WHERE cli_ID = @id
 )
 GO
+
+
+
 
 select * from Gral.tbClientes
 select * from Gral.tbMunicipios

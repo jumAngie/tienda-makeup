@@ -6,9 +6,9 @@ using System.Collections.Generic;
 
 namespace Maquillaje.Entities.Entities
 {
-    public partial class Vw_Gral_tbSucursales_DDL
+    public partial class Vw_Gral_tbEmpleados_DDL
     {
-        public int suc_Id { get; set; }
-        public string suc_Descripcion { get; set; }
+        public int? emp_ID { get; set; }
+        public string emp_Nombre { get; set; }
     }
 }

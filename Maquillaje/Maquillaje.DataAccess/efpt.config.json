@@ -86,6 +86,10 @@
          "ObjectType": 3
       },
       {
+         "Name": "[dbo].[Vw_Gral_tbEmpleados_DDL]",
+         "ObjectType": 3
+      },
+      {
          "Name": "[dbo].[Vw_Gral_tbEmpleados_LIST]",
          "ObjectType": 3
       },
