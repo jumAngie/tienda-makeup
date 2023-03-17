@@ -1,0 +1,21 @@
+public bool ValidarExistencia(Producto producto, DbContext dbContext)
+{
+    // Obtener la existencia del producto en la tabla Inventario
+    var existencia = dbContext.Inventario
+                               .Where(i => i.ProductoId == producto.Id)
+                               .Select(i => i.Existencias)
+                               .FirstOrDefault();
+
+    // Validar si la cantidad de producto a insertar es mayor que la existencia en el inventario
+    if (producto.Cantidad > existencia)
+    {
+        // La cantidad de producto a insertar es mayor que la existencia en el inventario
+        return false;
+    }
+    else
+    {
+        // La cantidad de producto a insertar es menor o igual a la existencia en el inventario
+        return true;
+    }
+}
+
