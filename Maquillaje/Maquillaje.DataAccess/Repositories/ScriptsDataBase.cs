@@ -35,8 +35,8 @@ namespace Maquillaje.DataAccess.Repositories
 
         #region Sucursales
         public static string SucursalesCrear = "UDP_Gral_tbSucursales_CREAR";
-        public static string SucursalesEditar = "UDP_Gral_Sucursales_EDITAR";
-        public static string SucursalesEliminar = "UDP_Gral_tbSucurusales_ELIMINAR";
+        public static string SucursalesEditar = "UDP_Gral_tbSucurusales_EDITAR";
+        public static string SucursalesEliminar = "UDP_Gral_tbSucursales_ELIMINAR";
         #endregion
 
         #region Departamentos

@@ -1874,5 +1874,29 @@ BEGIN
 		   prv_UsuarioCrea = @prv_UsuarioCrea
 	WHERE	prv_ID = @prv_ID
 END
+GO
 
 
+CREATE OR ALTER PROC UDP_Gral_tbSucurusales_EDITAR(
+@suc_Id INT,
+@suc_Descripcion NVARCHAR(100),
+@suc_Municipio INT,
+@suc_UsuModi INT)
+AS BEGIN
+
+UPDATE Gral.tbSucursales SET suc_Municipio = @suc_Municipio,
+							 suc_Descripcion = @suc_Descripcion,
+							 suc_usuModi = @suc_UsuModi
+							 WHERE suc_Id = @suc_Id
+
+END
+GO
+
+
+
+CREATE OR ALTER PROC UDP_Gral_tbSucursales_ELIMINAR(@suc_Id INT)
+AS BEGIN
+
+UPDATE Gral.tbSucursales SET suc_Estado = 0 WHERE suc_Id = @suc_Id;
+
+END

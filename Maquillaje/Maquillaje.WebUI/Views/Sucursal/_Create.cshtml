@@ -1,0 +1,67 @@
+﻿<!-- The Modal -->
+<Form action="@Url.Action("Create","Sucursal")" method="post">
+    <div class="modal" id="CreateSucu">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Crea una Sucursal</h4>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label class="form-text">Departamento</label>
+                            <select id="depto" name="depto" class="form-control" asp-items="ViewBag.depto"></select>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <label class="form-text">Ciudad</label>
+                            <select id="suc_Municipio" name="suc_Municipio" class="form-control"></select>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12">
+                        <label class="form-text">Descripcion</label>
+                        <input type="text" class="form-control" id="mun" name="mun_Descripcion" />
+                    </div>
+
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-warning" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-outline-success">Guardar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</Form>
+
+<script>
+    $("#depto").change(function () {
+
+        var depto = $("#depto").val();
+
+
+        $.ajax({
+            url: "/Sucursal/CargarMunicipios/" + depto,
+            method: "GET",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+
+            success: function (data) {
+                console.log(data);
+                $("#suc_Municipio").empty();
+                $("#suc_Municipio").append("<option value= '0' >Seleccione un Municipio</option>");
+
+                $.each(data, function (i, value) {
+                    $("#suc_Municipio").append("<option value='" + value.mun_ID + "'>" + value.mun_Descripcion + "</option>");
+                })
+            }
+        })
+    });
+</script>
