@@ -5,13 +5,18 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
+@if (!string.IsNullOrEmpty(ViewBag.ErrorMessageScript))
+{
+    @Html.Raw(ViewBag.ErrorMessageScript)
+}
 <div class="card">
     <div class="card-header">
         <h1>Editar</h1>
 
         <h4>tbClientes</h4>
     </div>
-   
+
     <form asp-action="Edit" class="needs-validation" method="post" novalidate>
         <div class="card-body">
             <div class="row">

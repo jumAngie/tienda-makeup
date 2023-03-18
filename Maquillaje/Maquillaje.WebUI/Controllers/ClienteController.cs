@@ -258,6 +258,20 @@ namespace Maquillaje.WebUI.Controllers
         [HttpPost]
         public IActionResult Edit(ClientesViewModel item)
         {
+            if (TempData.ContainsKey("ErrorMessage"))
+            {
+                // Obtener el mensaje de éxito y eliminarlo de TempData
+                string errorMessage = TempData["ErrorMessage"].ToString();
+                TempData.Remove("ErrorMessage");
+
+                // Generar el código JavaScript para mostrar el Toast de Success
+                string script = $"<script>toastr.error('{errorMessage}', 'Error');</script>";
+                ViewBag.ErrorMessageScript = script;
+            }
+            else
+            {
+                ViewBag.ErrorMessageScript = null;
+            }
             var fechas = item.cli_FechaNacimiento.ToString();
             if (ModelState.IsValid)
             {
@@ -283,7 +297,9 @@ namespace Maquillaje.WebUI.Controllers
                     var registrosConMismoDNI = db.tbClientes.Where(r => r.cli_ID != id && r.cli_DNI == DNI).ToList();
                     if (registrosConMismoDNI.Any())
                     {
-                        ModelState.AddModelError("DNI", "Ya existe un registro con el mismo DNI");
+                        ModelState.AddModelError("DNI", "*");
+                        TempData["ErrorMessage"] = "El DNI ingresado ya existe.";
+                        MostrarToastDeError();
                         if (item.depto == "0") { ModelState.AddModelError("ValidarDep", "*"); }
                         if (item.cli_EstadoCivil == "0") { ModelState.AddModelError("ValidarCivil", "*"); }
                         ViewBag.cli_EstadoCivil = new SelectList(db.Vw_Gral_tbEstadosCiviles_DDL, "est_ID", "est_Descripcion");
