@@ -1,4 +1,4 @@
-﻿@model Maquillaje.Entities.Entities.tbEmpleados
+﻿@model Maquillaje.WebUI.Models.EmpleadosViewModel
 
 @{
     ViewData["Title"] = "Edit";
@@ -33,24 +33,35 @@
             </div>
             <div class="form-group">
                 <span asp-validation-for="emp_DNI" class="text-danger"></span>
+                <label asp-validation-for="emp_DNI" class="text-danger">@Html.ValidationMessage("DNI")</label>
                 <label asp-for="emp_DNI" class="control-label"></label>
                 <input asp-for="emp_DNI" class="form-control" />
             </div>
             <div class="form-group">
                 <span asp-validation-for="emp_FechaNacimiento" class="text-danger"></span>
                 <label asp-for="emp_FechaNacimiento" class="control-label"></label>
-                <input asp-for="emp_FechaNacimiento" class="form-control" />
+                <input type="date" asp-for="emp_FechaNacimiento" class="form-control" />
             </div>
             <div class="form-group">
                 <span asp-validation-for="emp_Sexo" class="text-danger"></span>
                 <label asp-for="emp_Sexo" class="control-label"></label>
-                <input asp-for="emp_Sexo" class="form-control" />
-
+                <div class="row">
+                    <div class="col-sm-1"></div>
+                    <label>F</label>
+                    <input type="radio" value="F" asp-for="emp_Sexo" class="form-check-inline" />
+                    <label>M</label>
+                    <input type="radio" value="M" asp-for="emp_Sexo" class="form-check-inline" />
+                </div>
             </div>
             <div class="form-group">
                 <span asp-validation-for="emp_Telefono" class="text-danger"></span>
                 <label asp-for="emp_Telefono" class="control-label"></label>
                 <input asp-for="emp_Telefono" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-validation-for="depto" class="text-danger">@Html.ValidationMessage("ValidarDep")</label>
+                <label asp-for="depto" class="control-label"></label>
+                <select id="depto" name="depto" class="form-control" asp-items="ViewBag.depto"></select>
             </div>
             <div class="form-group">
                 <span asp-validation-for="emp_Municipio" class="text-danger"></span>
@@ -65,7 +76,7 @@
 
             </div>
             <div class="form-group">
-                <span asp-validation-for="emp_EstadoCivil" class="text-danger"></span>
+                <label asp-validation-for="emp_EstadoCivil" class="text-danger">@Html.ValidationMessage("ValidarCivil")</label>
                 <label asp-for="emp_EstadoCivil" class="control-label"></label>
                 <select asp-for="emp_EstadoCivil" class="form-control" asp-items="ViewBag.emp_EstadoCivil"></select>
 
@@ -86,4 +97,4 @@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
-
+<script src="~/js/Empleados.js/EditarEmpleados.js"></script>

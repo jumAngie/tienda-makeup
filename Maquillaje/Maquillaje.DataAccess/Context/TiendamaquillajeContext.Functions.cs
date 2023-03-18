@@ -15,6 +15,12 @@ namespace Maquillaje.DataAccess.Context
             return FromExpression(() => UDF_Gral_tbClienteInfo_DDL(id));
         }
 
+        [DbFunction("UDF_Gral_tbEmpleadoInfo_DDL", "dbo")]
+        public IQueryable<UDF_Gral_tbEmpleadoInfo_DDLResult> UDF_Gral_tbEmpleadoInfo_DDL(int? id)
+        {
+            return FromExpression(() => UDF_Gral_tbEmpleadoInfo_DDL(id));
+        }
+
         [DbFunction("UDF_Gral_tbMunicipio_DDL", "dbo")]
         public IQueryable<UDF_Gral_tbMunicipio_DDLResult> UDF_Gral_tbMunicipio_DDL(int? depto)
         {
@@ -36,6 +42,7 @@ namespace Maquillaje.DataAccess.Context
         protected void OnModelCreatingGeneratedFunctions(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<UDF_Gral_tbClienteInfo_DDLResult>().HasNoKey();
+            modelBuilder.Entity<UDF_Gral_tbEmpleadoInfo_DDLResult>().HasNoKey();
             modelBuilder.Entity<UDF_Gral_tbMunicipio_DDLResult>().HasNoKey();
             modelBuilder.Entity<UDF_Gral_tbMunicipios_CARGARResult>().HasNoKey();
             modelBuilder.Entity<UDF_Gral_tbSucursales_DDLResult>().HasNoKey();

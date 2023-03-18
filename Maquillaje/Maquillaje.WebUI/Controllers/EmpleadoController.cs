@@ -73,6 +73,17 @@ namespace Maquillaje.WebUI.Controllers
         #endregion
 
         #region Validaciones
+        // EDITAR // 
+
+        [HttpGet("/Empleado/CargarInfo/{emp_ID}")]
+        public JsonResult CargarInfo(int emp_ID)
+        {
+
+            var ddl = db.UDF_Gral_tbEmpleadoInfo_DDL(emp_ID).ToList();
+
+            return Json(ddl);
+
+        }
         public bool ExisteDni(string dni)
         {
             using (var db = new TiendaContext())
@@ -80,6 +91,8 @@ namespace Maquillaje.WebUI.Controllers
                 return db.tbEmpleados.Any(p => p.emp_DNI == dni);
             }
         }
+
+
         #endregion
 
         #region Crear Empleado
@@ -199,15 +212,15 @@ namespace Maquillaje.WebUI.Controllers
                 EmpleadosViewModel emple = new EmpleadosViewModel();
                 emple.emp_ID = empleado.emp_ID;
                 emple.emp_Nombre = empleado.emp_Nombre;
-                emple.emp_Apellido = emple.emp_Apellido;
-                emple.emp_DNI = emple.emp_DNI;
-                emple.emp_EstadoCivil = emple.emp_EstadoCivil.ToString();
-                emple.emp_FechaNacimiento = emple.emp_FechaNacimiento;
-                emple.emp_Municipio = emple.emp_Municipio.ToString();
-                emple.emp_Sexo = emple.emp_Sexo;
-                emple.emp_Telefono = emple.emp_Telefono;
-                emple.emp_Correo = emple.emp_Correo;
-                emple.emp_Sucursal = emple.emp_Sucursal;
+                emple.emp_Apellido = empleado.emp_Apellido;
+                emple.emp_DNI = empleado.emp_DNI;
+                emple.emp_EstadoCivil = empleado.emp_EstadoCivil.ToString();
+                emple.emp_FechaNacimiento = empleado.emp_FechaNacimiento;
+                emple.emp_Municipio = empleado.emp_Municipio.ToString();
+                emple.emp_Sexo = empleado.emp_Sexo;
+                emple.emp_Telefono = empleado.emp_Telefono;
+                emple.emp_Correo = empleado.emp_Correo;
+                emple.emp_Sucursal = empleado.emp_Sucursal.ToString();
 
                 emple.depto = db.tbMunicipios.Where(m => m.mun_ID == empleado.emp_Municipio).Select(m => m.mun_depID).FirstOrDefault().ToString();
 
@@ -260,6 +273,8 @@ namespace Maquillaje.WebUI.Controllers
                 }
                 else
                 {
+                    //ViewBag.depto = Request.Form["depto"];
+                    //ViewBag.emp_Muicipio = Request.Form["emp_Municipio"];
                     if (item.depto == "0") { ModelState.AddModelError("ValidarDep", "*"); }
                     if (item.emp_EstadoCivil == "0") { ModelState.AddModelError("ValidarCivil", "*"); }
                     if (item.emp_Sucursal == "0") { ModelState.AddModelError("ValidarSucu", "*"); }
@@ -277,6 +292,8 @@ namespace Maquillaje.WebUI.Controllers
                 if (item.emp_Sucursal == "0") { ModelState.AddModelError("ValidarSucu", "*"); }
                 if (fechas == "01/01/0001 0:00:00") { ModelState.AddModelError("ValidarFecha", "*"); }
                 ViewBag.emp_EstadoCivil = new SelectList(db.Vw_Gral_tbEstadosCiviles_DDL, "est_ID", "est_Descripcion");
+                //ViewBag.depto = Request.Form["depto"];
+                //ViewBag.emp_Muicipio = Request.Form["emp_Municipio"];
                 ViewBag.depto = new SelectList(db.Vw_Gral_tbDepartamentos_DDL, "depto", "dep_Descripcion");
                 ViewBag.emp_Sucursal = new SelectList(db.Vw_Gral_tbSucursales_DDL, "suc_Id", "suc_Descripcion");
                 return View(item);

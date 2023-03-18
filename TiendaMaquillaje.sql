@@ -1626,7 +1626,19 @@ SELECT T2.emp_ID, emp_Nombre + ' '+ emp_Apellido AS per_Nombres FROM Gral.tbUsua
 FULL JOIN Gral.tbEmpleados T2 ON T1.usu_empID = T2.emp_ID WHERE T1.usu_Usuario IS NULL AND T2.emp_Estado = 1
 GO
 --************************************************************************************************************
-
+CREATE OR ALTER FUNCTION UDF_Gral_tbEmpleadoInfo_DDL(@id INT)
+RETURNS TABLE
+AS
+RETURN
+(
+SELECT emp_Municipio, deptos.dep_ID FROM Gral.tbEmpleados emple
+INNER JOIN Gral.tbMunicipios muni
+ON emple.emp_Municipio = muni.mun_ID 
+INNER JOIN Gral.tbDepartamentos deptos
+ON muni.mun_depID = deptos.dep_ID
+WHERE emp_ID = @id
+)
+GO
 
 
 
