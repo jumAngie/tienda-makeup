@@ -38,13 +38,43 @@ namespace Maquillaje.DataAccess.Repositories
             return result;
         }
 
-        public int Insert(tbProductos item)
-        {
-            using var db = new TiendaContext();
+        
 
-            db.tbProductos.Add(item);
-            db.SaveChanges();
-            return item.pro_Id;
+        public int Insertar(string pro_Codigo, string pro_Nombre, string pro_StockInicial, decimal pro_PrecioUnitario, 
+                            int pro_Proveedor, int pro_usuCrea, int pro_Categoria)
+        {
+            pro_usuCrea = 1;
+            using var db = new SqlConnection(TiendaContext.ConnectionString);
+            var parametros = new DynamicParameters();
+            parametros.Add("@pro_Codigo",         pro_Codigo,           DbType.String,  ParameterDirection.Input);
+            parametros.Add("@pro_Nombre",         pro_Nombre,           DbType.String,  ParameterDirection.Input);
+            parametros.Add("@pro_StockInicial",   pro_StockInicial,     DbType.String,  ParameterDirection.Input);
+            parametros.Add("@pro_PrecioUnitario", pro_PrecioUnitario,   DbType.Decimal, ParameterDirection.Input);
+            parametros.Add("@pro_Proveedor",      pro_Proveedor,        DbType.Int32,   ParameterDirection.Input);
+            parametros.Add("@pro_usuCrea",        pro_usuCrea,          DbType.Int32,   ParameterDirection.Input);
+            parametros.Add("@pro_Categoria",      pro_Categoria,        DbType.Int32,   ParameterDirection.Input);
+
+
+            return db.Execute(ScriptsDataBase.ProductosCrear, parametros, commandType: CommandType.StoredProcedure);
+        }
+
+        public int Actualizar(int pro_Id, string pro_Codigo, string pro_Nombre, string pro_StockInicial, decimal pro_PrecioUnitario,
+                           int pro_Proveedor, int pro_usuCrea, int pro_Categoria)
+        {
+            pro_usuCrea = 1;
+            using var db = new SqlConnection(TiendaContext.ConnectionString);
+            var parametros = new DynamicParameters();
+            parametros.Add("@pro_Id",               pro_Id, DbType.Int32, ParameterDirection.Input);
+            parametros.Add("@pro_Codigo",           pro_Codigo, DbType.String, ParameterDirection.Input);
+            parametros.Add("@pro_Nombre",           pro_Nombre, DbType.String, ParameterDirection.Input);
+            parametros.Add("@pro_StockInicial",     pro_StockInicial, DbType.String, ParameterDirection.Input);
+            parametros.Add("@pro_PrecioUnitario",   pro_PrecioUnitario, DbType.Decimal, ParameterDirection.Input);
+            parametros.Add("@pro_Proveedor",        pro_Proveedor, DbType.Int32, ParameterDirection.Input);
+            parametros.Add("@pro_usuCrea",          pro_usuCrea, DbType.Int32, ParameterDirection.Input);
+            parametros.Add("@pro_Categoria",        pro_Categoria, DbType.Int32, ParameterDirection.Input);
+
+
+            return db.Execute(ScriptsDataBase.ProductosEditar, parametros, commandType: CommandType.StoredProcedure);
         }
 
         public IEnumerable<Vw_Maqui_tbProductos_LIST> List()
@@ -59,7 +89,10 @@ namespace Maquillaje.DataAccess.Repositories
         {
             throw new NotImplementedException();
         }
-
+        public int Insert(tbProductos item)
+        {
+            throw new NotImplementedException();
+        }
         IEnumerable<tbProductos> IRepository<tbProductos>.List()
         {
             throw new NotImplementedException();
