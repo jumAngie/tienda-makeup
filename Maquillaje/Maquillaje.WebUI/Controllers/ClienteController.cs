@@ -309,7 +309,8 @@ namespace Maquillaje.WebUI.Controllers
                     else
                     {
                         _generalesService.UpdateClientes(id, Nombre, Apellido, DNI, FechaValida, Sexo, Telefono, Int32.Parse(Municipio), Int32.Parse(Civil), 1);
-
+                        TempData["SuccessMessage"] = "El proceso se completó correctamente";
+                        MostrarToastDeExito();
                         return RedirectToAction("Index");
                     }
 

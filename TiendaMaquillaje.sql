@@ -1393,8 +1393,6 @@ VALUES  (@usu_Usuario,
 		 @usu_Estado)
 END
 GO
-
-select * from gral.tbUsuarios
 --CREATE OR ALTER PROC UDP_Maqui_tbCategoriasProducto_CREAR
 --	@cpr_Categoria		INT,
 --	@cpr_Producto		INT, 
@@ -1789,7 +1787,6 @@ UPDATE Gral.tbMunicipios SET mun_Descripcion = @mun_Descripcion,
 					  WHERE mun_ID = @mun_Id
 END
 GO
-
 --****************************************************************************--
 CREATE OR ALTER PROC UDP_Gral_tbClientes_UPDATE
 	@cli_ID INT,
@@ -1814,7 +1811,8 @@ BEGIN
 			cli_Telefono = @cli_Telefono,
 			cli_Municipio = @cli_Municipio,
 			cli_EstadoCivil = @cli_EstadoCivil,
-			cli_UsuarioCrea = @cli_UsuarioCrea
+			cli_UsuarioModi = @cli_UsuarioCrea,
+			cli_FechaModi = GETDATE()
 	WHERE	cli_ID = @cli_ID
 			
 END
@@ -1846,7 +1844,8 @@ BEGIN
 			emp_Correo = @emp_Correo,
 			emp_EstadoCivil = @emp_EstadoCivil,
 			emp_Sucursal = @emp_Sucursal,
-			emp_UsuarioCrea = @emp_UsuarioCrea
+			emp_UsuarioModi = @emp_UsuarioCrea,
+			emp_FechaModi = GETDATE()
 	WHERE	emp_ID = @emp_ID
 END
 GO
@@ -1866,8 +1865,9 @@ BEGIN
 			pro_Nombre = @pro_Nombre,
 			pro_PrecioUnitario = @pro_PrecioUnitario,
 			pro_Proveedor = @pro_Proveedor,
-			pro_usuCrea = @pro_usuCrea,
-			pro_Categoria = @pro_Categoria
+			pro_UsuModi = @pro_usuCrea,
+			pro_Categoria = @pro_Categoria,
+			pro_FechaModi = GETDATE()
 	WHERE   pro_ID = @pro_Id
 END
 GO
@@ -1893,7 +1893,8 @@ BEGIN
 		   prv_DireccionEmpresa = @prv_DireccionEmpresa,
 		   prv_DireccionContacto = @prv_DireccionContacto,
 		   prv_SexoContacto = @prv_SexoContacto,
-		   prv_UsuarioCrea = @prv_UsuarioCrea
+		   prv_UsuarioModi = @prv_UsuarioCrea,
+		   prv_FechaModi = GETDATE()
 	WHERE	prv_ID = @prv_ID
 END
 GO
@@ -1908,7 +1909,8 @@ AS BEGIN
 
 UPDATE Gral.tbSucursales SET suc_Municipio = @suc_Municipio,
 							 suc_Descripcion = @suc_Descripcion,
-							 suc_usuModi = @suc_UsuModi
+							 suc_usuModi = @suc_UsuModi,
+							 suc_FechaModi = GETDATE()
 							 WHERE suc_Id = @suc_Id
 
 END
