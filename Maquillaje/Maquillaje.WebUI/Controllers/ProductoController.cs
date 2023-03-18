@@ -25,6 +25,7 @@ namespace Maquillaje.WebUI.Controllers
             _mapper = mapper;
         }
 
+        #region Listado
         [HttpGet("/Producto/Listado")]
         public IActionResult Index()
         {
@@ -32,7 +33,10 @@ namespace Maquillaje.WebUI.Controllers
             var listadoMapeado = _mapper.Map<IEnumerable<ProductosViewModel>>(listado);
             return View(listadoMapeado);
         }
+        #endregion
 
+
+        #region Crear Productos
         [HttpGet("/Producto/Create")]
 
         public IActionResult Create()
@@ -45,16 +49,48 @@ namespace Maquillaje.WebUI.Controllers
 
         // Condicionar Campos
         [HttpPost]
-        public IActionResult Create(ProductosViewModel productosView)
+        public IActionResult Create(ProductosViewModel item)
         {
             if (ModelState.IsValid)
             {
-                return RedirectToAction("Index");
+                if(item.pro_Codigo != null && item.pro_Nombre != null && item.pro_PrecioUnitario != 0 && item.pro_Proveedor != "0"
+                    && item.pro_StockInicial != null && item.pro_Categoria != 0)
+                {
+                    if(item.pro_StockInicial == "0")
+                    {
+                        return View(item);
+                    }
+                    else
+                    {
+                        _generalesService.CreateProductos(item.pro_Codigo, item.pro_Nombre, item.pro_StockInicial, item.pro_PrecioUnitario, Int32.Parse(item.pro_Proveedor),
+                            1, item.pro_Categoria);
+                        return RedirectToAction("Index");
+                    }
+
+
+
+                }
+                else
+                {
+                    return View(item);
+                }
+                
             }
-            return View(productosView);
+            else
+            {
+                return View(item);
+            }
+            
         }
+        #endregion
 
 
+        #region Editar Productos
+
+
+        #endregion
+
+        #region Elimar Productos
 
         [HttpPost("/Producto/Eliminar/")]
         public IActionResult Delete(int pro_Id)
@@ -70,6 +106,8 @@ namespace Maquillaje.WebUI.Controllers
 
             return RedirectToAction("Index");
         }
+
+        #endregion
 
     }
 }

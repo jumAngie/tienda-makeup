@@ -33,6 +33,11 @@ namespace Maquillaje.WebUI.Models
         [Required(ErrorMessage = "*")]
         public string cat_Descripcion { get; set; }
 
+        [Display(Name = "Categoria")]
+        [Required(ErrorMessage = "*")]
+        public int pro_Categoria { get; set; }
+
+
         [Display(Name = "Empresa")]
         public string prv_NombreCompañia { get; set; }
 
