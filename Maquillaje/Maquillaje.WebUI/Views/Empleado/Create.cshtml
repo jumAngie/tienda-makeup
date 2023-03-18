@@ -5,6 +5,11 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
+@if (!string.IsNullOrEmpty(ViewBag.ErrorMessageScript))
+{
+    @Html.Raw(ViewBag.ErrorMessageScript)
+}
 <div class="card">
     <div class="card-header">
         <h1>Crear</h1>
@@ -69,7 +74,7 @@
                     <div class="form-group">
                         <span asp-validation-for="emp_Correo" class="text-danger"></span>
                         <label asp-for="emp_Correo" class="control-label"></label>
-                        <input  asp-for="emp_Correo" placeholder="ejemplo@gmail.com" class="mdi-email-box, form-control" type="email"/>
+                        <input asp-for="emp_Correo" placeholder="ejemplo@gmail.com" class="mdi-email-box, form-control" type="email" />
 
                     </div>
                     <div class="form-group">
