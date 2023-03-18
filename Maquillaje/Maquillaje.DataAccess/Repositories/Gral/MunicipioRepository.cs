@@ -33,7 +33,7 @@ namespace Maquillaje.DataAccess.Repositories.Gral
             using var db = new SqlConnection(TiendaContext.ConnectionString);
             var parametros = new DynamicParameters();
             parametros.Add("@mun_Descripcion", item.mun_Descripcion, DbType.String, ParameterDirection.Input);
-            parametros.Add("@mun_DepId", item.mun_depID, DbType.String, ParameterDirection.Input);
+            parametros.Add("@mun_DepId", item.mun_depID, DbType.Int32, ParameterDirection.Input);
             parametros.Add("@mun_UsuCrea", item.mun_UsuarioCrea, DbType.Int32, ParameterDirection.Input);
 
             return db.Execute(ScriptsDataBase.MunicipiosCrear, parametros, commandType: CommandType.StoredProcedure);

@@ -18,7 +18,6 @@
                     <input type="hidden" id="txtCatId" name="cat_Id" class="input w-full border mt-2 flex-1">
                     <label>Descripcion</label>
                     <input type="text" id="txtCatDescripcion" name="cat_Descripcion" class="input w-full border mt-2 flex-1">
-                    <label id="ValidateDescripctionEdit" hidden style="color: red">Campo Requerido</label>
                 </Form>
 
             </div>
@@ -46,12 +45,12 @@
     function GuardarDatos() {
 
         if ($("#txtCatDescripcion").val() == "") {
-            $("#ValidateDescripctionEdit").attr("hidden", false);
-            stop();
+            mostrarErrorToast("Campos requeridos.");
+
         }
         else {
-            $("#ValidateDescripctionEdit").attr("hidden", true);
             $('#EditForm').submit();
+            mostrarInfoToast("Se ha modificado el registro.")
         }
     };
 

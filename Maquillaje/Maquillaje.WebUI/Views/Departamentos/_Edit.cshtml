@@ -19,7 +19,6 @@
                     <input type="text" hidden id="txtDepId" name="dep_ID" class="form-control" />
                     <label class="form-text">Descripcion</label>
                     <input type="text" id="txtDepDescripcion" name="dep_Descripcion" class="input w-full border mt-2 flex-1" />
-                    <label id="ValidateDeptoEdit" hidden class="text-danger">Campo Requerido</label>
                 </Form>
 
             </div>
@@ -45,12 +44,14 @@
     function GuardarDatos() {
 
         if ($("#txtDepDescripcion").val() == "") {
-            $("#ValidateDeptoEdit").attr("hidden", false);
+            mostrarErrorToast("Campos requeridos.");
             stop();
         }
         else {
             $("#ValidateDeptoEdit").attr("hidden", true);
             $('#EditDepa').submit();
+            mostrarInfoToast("Se ha modificado el registro.")
+
         }
     };
 

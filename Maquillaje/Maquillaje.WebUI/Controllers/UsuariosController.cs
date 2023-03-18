@@ -46,7 +46,8 @@ namespace Maquillaje.WebUI.Controllers
         public IActionResult Create(string usu_Usuario, int emp_Id, string usu_Clave, bool usu_EsAdmin)
         {
 
-
+            try
+            {
             tbUsuarios usua = new tbUsuarios();
             usua.usu_Usuario = usu_Usuario;
             usua.usu_empID = emp_Id;
@@ -61,6 +62,13 @@ namespace Maquillaje.WebUI.Controllers
             var result = _generalesService.CreateUsuario(usu);
 
             return RedirectToAction("Index");
+            }
+            catch (Exception)
+            {
+
+                return RedirectToAction("Index");
+            }
+
 
         }
 

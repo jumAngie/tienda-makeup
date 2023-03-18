@@ -1,30 +1,22 @@
-﻿<!-- Elimar Categorias -->
-<form action="@Url.Action("Delete","Usuarios")" method="post" id="deleteform">
-    <div class="modal inmodal" id="DeleteUsu" tabindex="-1" role="dialog" aria-labelledby="confirm-delete-modal-label" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content animated bounceInRight">
-                <div class="modal-header">
-                    <button type="button" class="close" aria-label="Cerrar" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <i class="fa fa-laptop modal-icon"></i>
-                    <h4 class="modal-title">Confirme la acción</h4>
-                </div>
-                <div class="modal-body">
-                    <input type="hidden" id="usu_Id" name="usu_Id" />
-                    <center>¿Está seguro de que desea eliminar el elemento?</center>
+﻿
 
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
-                    <button type="submit" id="confirmar" class="btn btn-danger">Eliminar</button>
-                </div>
-            </div>
+<div class="modal" id="DeleteUsu">
+    <div class="modal__content">
+        <div class="p-5 text-center">
+            <form action="@Url.Action("Delete","Usuarios")" method="post" id="deleteform">
+
+                <i data-feather="x-circle" class="w-16 h-16 text-theme-6 mx-auto mt-3"></i>
+                <input type="hidden" id="usu_Id" name="usu_Id" />
+                <div class="text-gray-600 mt-2">¿Está seguro de eliminar el registro?</div>
+            </form>
+
+        </div>
+        <div class="px-5 pb-8 text-center">
+            <button type="button" data-dismiss="modal" class="button w-24 border text-gray-700 mr-1">Cancelar</button>
+            <button type="button" id="confirmar" class="button w-24 bg-theme-6 text-white">Eliminar</button>
         </div>
     </div>
-
-
-
-</form>
-
+</div>
 
 <script>
 

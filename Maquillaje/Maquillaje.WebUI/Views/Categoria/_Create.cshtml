@@ -11,7 +11,6 @@
 
                         <label>Descripcion</label>
                         <input type="text" id="txtCate" name="cat_Descripcion" class="input w-full border mt-2 flex-1" />
-                        <label id="ValidateDescripctionCreate" hidden style="color: red">Campo Requerido</label>
                     </Form>
 
                 </div>
@@ -30,10 +29,9 @@
 
         var siuu = true;
 
-        $('#ValidateDescripctionCreate').prop('hidden', true);
 
         if ($('#txtCate').val() == "") {
-            $('#ValidateDescripctionCreate').prop('hidden', false);
+            mostrarErrorToast("Campos requeridos.");
             siuu = false;
             console.log(1);
 
@@ -41,6 +39,7 @@
 
         if (siuu) {
             $('#createcategoria').submit();
+            mostrarSuccessToast("Se ha ingresado correctamente los datos.")
         }
 
     };

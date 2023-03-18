@@ -13,7 +13,6 @@
 
                     <label>Descripcion</label>
                     <input type="text" class="input w-full border mt-2 flex-1" id="dep" name="dep_Descripcion" />
-                    <label id="ValidateDeptoCreate" hidden style="color: red">Campo Requerido</label>
                 </Form>
 
             </div>
@@ -36,7 +35,7 @@
         $('#ValidateDeptoCreate').prop('hidden', true);
 
         if ($('#dep').val() == "") {
-            $('#ValidateDeptoCreate').prop('hidden', false);
+            mostrarErrorToast("Campos requeridos.");
             siuu = false;
             console.log(1);
 
@@ -44,6 +43,8 @@
 
         if (siuu) {
             $('#createdepto').submit();
+            mostrarSuccessToast("Se ha ingresado correctamente los datos.")
+
         }
 
     };

@@ -1,51 +1,44 @@
 ﻿<!-- The Modal -->
-<Form action="@Url.Action("Create","Sucursal")" method="post">
+<Form action="@Url.Action("Create","Sucursal")" id="createsuc" method="post">
+
     <div class="modal" id="CreateSucu">
-        <div class="modal-dialog">
-            <div class="modal-content">
+        <div class="modal__content">
+            <div class="flex items-center px-5 py-5 sm:py-3 border-b border-gray-200">
+                <h2 class="font-medium text-base mr-auto">Cree una Sucursal</h2>
+            </div>
 
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title">Crea una Sucursal</h4>
-                </div>
+            <div class="p-5 grid grid-cols-12 gap-4 row-gap-3">
+                <div class="col-span-12 sm:col-span-12">
 
-                <!-- Modal body -->
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <label class="form-text">Departamento</label>
-                            <select id="depto" name="depto" class="form-control" asp-items="ViewBag.depto"></select>
-                        </div>
+                    <label>Departamento</label>
+                    <select id="depto" name="depto" class="select2 w-full" asp-items="ViewBag.depto"></select>
 
-                        <div class="col-sm-6">
-                            <label class="form-text">Ciudad</label>
-                            <select id="suc_Municipio" name="suc_Municipio" class="form-control"></select>
-                        </div>
-                    </div>
+                    <label>Ciudad</label>
+                    <select id="suc_Municipio" name="suc_Municipio" class="select2 w-full"></select>
 
-                    <div class="col-sm-12">
-                        <label class="form-text">Descripcion</label>
-                        <input type="text" class="form-control" id="mun" name="suc_Descripcion" />
-                    </div>
+                    <label>Descripcion</label>
+                    <input type="text" class="input w-full border mt-2 flex-1" id="suc" name="suc_Descripcion" />
+
 
                 </div>
+            </div>
 
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-warning" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-outline-success">Guardar</button>
-                </div>
-
+            <div class="px-5 py-3 text-right border-t border-gray-200">
+                <button type="button" data-dismiss="modal" class="button w-20 border text-gray-700 mr-1">Cancelar</button>
+                <button type="button" onclick="GuardarInsert()" class="button w-20 bg-theme-1 text-white">Guardar</button>
             </div>
         </div>
     </div>
 </Form>
 
 <script>
+
+
     $("#depto").change(function () {
 
         var depto = $("#depto").val();
 
+        console.log(depto);
 
         $.ajax({
             url: "/Sucursal/CargarMunicipios/" + depto,
@@ -54,7 +47,6 @@
             contentType: "application/json; charset=utf-8",
 
             success: function (data) {
-                console.log(data);
                 $("#suc_Municipio").empty();
                 $("#suc_Municipio").append("<option value= '0' >Seleccione un Municipio</option>");
 
@@ -64,4 +56,27 @@
             }
         })
     });
+
+
+    function GuardarInsert() {
+
+        var siuu = true;
+
+
+        if ($('#suc').val() == "" || $('#depto').val() == 0 || $('#suc_Municipio').val() == 0) {
+            mostrarErrorToast("Campos requeridos.");
+            siuu = false;
+            console.log(1);
+        }
+
+
+        if (siuu) {
+            $('#createsuc').submit();
+            mostrarSuccessToast("Se ha ingresado correctamente los datos.")
+        }
+
+    };
+
+
 </script>
+

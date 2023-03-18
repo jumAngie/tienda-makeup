@@ -36,6 +36,8 @@ namespace Maquillaje.DataAccess.Repositories.Gral
 
         public int Insert(tbUsuarios item)
         {
+            try
+            {
             string admin;
             if (item.usu_EsAdmin == true)
             {
@@ -54,6 +56,13 @@ namespace Maquillaje.DataAccess.Repositories.Gral
             parametros.Add("@usu_UsuarioCrea", item.usu_UsuarioCrea, DbType.Int32, ParameterDirection.Input);
 
             return db.Execute(ScriptsDataBase.UsuariosCrear, parametros, commandType: CommandType.StoredProcedure);
+
+            }
+            catch (Exception)
+            {
+
+                return 1;
+            }
         }
 
         public IEnumerable<Vw_Gral_tbUsuarios_LIST> List()

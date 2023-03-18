@@ -41,7 +41,7 @@ namespace Maquillaje.DataAccess.Repositories
             parametros.Add("@cat_Descripcion", item.cat_Descripcion, DbType.String, ParameterDirection.Input);
             parametros.Add("@cat_UsuCrea", item.cat_UsuCrea, DbType.Int32, ParameterDirection.Input);
 
-            return db.QueryFirst<int>(ScriptsDataBase.CategoriasCrear, parametros, commandType: CommandType.StoredProcedure);
+            return db.Execute(ScriptsDataBase.CategoriasCrear, parametros, commandType: CommandType.StoredProcedure);
         }
 
         public IEnumerable<Vw_Maqui_tbCategorias_LIST> List()

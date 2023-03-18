@@ -73,11 +73,11 @@ namespace Maquillaje.WebUI.Controllers
 
 
 
-        [HttpGet("/Sucursales/CargarInfo/{suc_Id}")]
-        public JsonResult CargarInfo(int suc_Id)
+        [HttpGet("/Sucursales/CargarInfo/{depto}")]
+        public JsonResult CargarInfo(int depto)
         {
             ViewBag.depto = new SelectList(db.Vw_Gral_tbDepartamentos_DDL, "depto", "dep_Descripcion");
-            var ddl = db.UDF_Gral_tbSucursales_DDL(suc_Id).ToList();
+            var ddl = db.UDF_Gral_tbSucursales_DDL(depto).ToList();
 
             return Json(ddl);
 

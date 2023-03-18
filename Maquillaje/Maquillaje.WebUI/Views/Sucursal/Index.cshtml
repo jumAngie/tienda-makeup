@@ -9,14 +9,15 @@
     <div class="card" style="background-color: white">
         <div class="d-flex align-items-end row">
             <div class="col-sm-12">
+                <br />
                 <div class="card-header">
-                    <a class="btn btn-primary btn-icon-text" data-toggle="modal" data-target="#CreateSucu">
-                        <i class="mdi mdi-file-check btn-icon-prepend"></i>Nuevo
-                    </a>
+                    <a class="button w-24 rounded-full mr-1 mb-2 bg-theme-1 text-white" data-toggle="modal" data-target="#CreateSucu">Nuevo</a>
 
                 </div>
+                <br />
+
                 <div class="card-body">
-                    <table class="table table-responsive-sm table-light" id="DataTable">
+                    <table class="table table-report -mt-2" id="DataTable">
                         <thead>
                             <tr>
                                 <th>
@@ -47,9 +48,9 @@
                                         @Html.DisplayFor(modelItem => item.suc_Municipio)
                                     </td>
                                     <td>
-                                        <button type="button" id="btnEditar" class="btn btn-outline-info" onclick="Editar('@item.suc_Id,@item.suc_Descripcion, @item.suc_Municipio')">Editar</button> |
-                                        <a asp-action="Details" asp-route-id="@item.suc_Id">Details</a> |
-                                        <a class="btn-delete btn btn-danger" onclick="ShowModal(@item.suc_Id)" data-id="@item.suc_Id">Eliminar</a>
+                                        <a class="button w-24 rounded-full mr-1 mb-2 bg-theme-12 text-white" data-toggle="modal" data-target="#EditCate" onclick="Editar('@item.suc_Id,@item.suc_Descripcion')">Editar</a> |
+                                        <a class="button w-24 rounded-full mr-1 mb-2 bg-theme-9 text-white" asp-action="Details" asp-route-id="@item.suc_Id">Detalles</a> |
+                                        <a class="button w-24 rounded-full mr-1 mb-2 bg-theme-6 text-white" onclick="ShowModal(@item.suc_Id)" data-id="@item.suc_Id">Eliminar</a>
                                     </td>
                                 </tr>
                             }

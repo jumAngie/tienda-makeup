@@ -10,14 +10,15 @@
     <div class="card" style="background-color: white">
         <div class="d-flex align-items-end row">
             <div class="col-sm-12">
+                <br />
                 <div class="card-header">
-                    <a class="btn btn-primary btn-icon-text" data-toggle="modal" data-target="#CreateUsu">
-                        <i class="mdi mdi-file-check btn-icon-prepend"></i>Nuevo
-                    </a>
+                    <a class="button w-24 rounded-full mr-1 mb-2 bg-theme-1 text-white" data-toggle="modal" data-target="#CreateUsu">Nuevo</a>
 
                 </div>
+                <br />
+
                 <div class="card-body">
-                    <table class="table table-responsive-sm table-light" id="DataTable">
+                    <table class="table table-report -mt-2" id="DataTable">
                         <thead>
                             <tr>
                                 <th>
@@ -52,9 +53,9 @@
                                         @Html.DisplayFor(modelItem => item.usu_EsAdmin)
                                     </td>
                                     <td>
-                                        <a asp-action="Edit" asp-route-id="@item.usu_ID">Edit</a> |
-                                        <a asp-action="Details" asp-route-id="@item.usu_ID">Details</a> |
-                                        <a class="btn-delete btn btn-danger" onclick="ShowModal(@item.usu_ID)" data-id="@item.usu_ID">Eliminar</a>
+                                        <a class="button w-24 rounded-full mr-1 mb-2 bg-theme-12 text-white" data-toggle="modal" data-target="#EditCate" onclick="Editar('@item.usu_ID,@item.usu_Usuario')">Editar</a> |
+                                        <a class="button w-24 rounded-full mr-1 mb-2 bg-theme-9 text-white" asp-action="Details" asp-route-id="@item.usu_ID">Detalles</a> |
+                                        <a class="button w-24 rounded-full mr-1 mb-2 bg-theme-6 text-white" onclick="ShowModal(@item.usu_ID)" data-id="@item.usu_ID">Eliminar</a>
                                     </td>
                                 </tr>
                             }
