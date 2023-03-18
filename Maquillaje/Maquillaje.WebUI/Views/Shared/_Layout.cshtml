@@ -21,6 +21,8 @@ License: You must have a valid license purchased only from themeforest(the above
     <!-- BEGIN: CSS Assets-->
     <link rel="stylesheet" href="~/Content/dist/css/app.css" />
     <!-- END: CSS Assets-->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+
 </head>
 <!-- END: Head -->
 <body class="app">
@@ -34,7 +36,7 @@ License: You must have a valid license purchased only from themeforest(the above
         </div>
         <ul class="border-t border-theme-24 py-5 hidden">
             <li>
-                <a href="~/Content/Source/index.html" class="menu menu--active">
+                <a asp-controller="Categoria" asp-action="Index" class="menu menu--active">
                     <div class="menu__icon"> <i data-feather="home"></i> </div>
                     <div class="menu__title"> Dashboard </div>
                 </a>
@@ -1163,9 +1165,9 @@ License: You must have a valid license purchased only from themeforest(the above
     </div>
     <!-- BEGIN: JS Assets-->
     <script src="~/Content/dist/js/jquery-3.1.1.min.js"></script>
-    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=[" your-google-map-api"]&libraries=places"></script>
     <script src="~/Content/dist/js/app.js"></script>
+    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=[" your-google-map-api"]&libraries=places"]></script>
     <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 
     <script>

@@ -1,27 +1,52 @@
-﻿<!-- The Modal -->
-<Form action="@Url.Action("Create","Departamentos")" method="post">
-    <div class="modal" id="CreateDep">
-        <div class="modal-dialog">
-            <div class="modal-content">
+﻿
 
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title">Crea un Método de Pago</h4>
-                </div>
+<!-- The Modal -->
+<div class="modal" id="CreateDep">
+    <div class="modal__content">
+        <div class="flex items-center px-5 py-5 sm:py-3 border-b border-gray-200">
+            <h2 class="font-medium text-base mr-auto">Cree un Departamento</h2>
+        </div>
 
-                <!-- Modal body -->
-                <div class="modal-body">
-                    <label class="form-text">Descripcion</label>
-                    <input type="text" class="form-control" id="dep" name="dep_Descripcion" />
-                </div>
+        <div class="p-5 grid grid-cols-12 gap-4 row-gap-3">
+            <div class="col-span-12 sm:col-span-12">
+                <Form action="@Url.Action("Create","Departamentos")" method="post" id="createdepto">
 
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-warning" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-outline-success">Guardar</button>
-                </div>
+                    <label>Descripcion</label>
+                    <input type="text" class="input w-full border mt-2 flex-1" id="dep" name="dep_Descripcion" />
+                    <label id="ValidateDeptoCreate" hidden style="color: red">Campo Requerido</label>
+                </Form>
 
             </div>
         </div>
+
+        <div class="px-5 py-3 text-right border-t border-gray-200">
+            <button type="button" data-dismiss="modal" class="button w-20 border text-gray-700 mr-1">Cancelar</button>
+            <button type="button" onclick="GuardarInsert()" class="button w-20 bg-theme-1 text-white">Guardar</button>
+        </div>
     </div>
-</Form>
+</div>
+
+
+<script>
+
+    function GuardarInsert() {
+
+        var siuu = true;
+
+        $('#ValidateDeptoCreate').prop('hidden', true);
+
+        if ($('#dep').val() == "") {
+            $('#ValidateDeptoCreate').prop('hidden', false);
+            siuu = false;
+            console.log(1);
+
+                }
+
+        if (siuu) {
+            $('#createdepto').submit();
+        }
+
+    };
+
+</script>
+
