@@ -117,11 +117,13 @@ namespace Maquillaje.BusinessLogic.Services
                 return Enumerable.Empty<Vw_Maqui_tbProductos_LIST>();
             }
         }
-        public void CreateProductos(tbProductos productos)
+        public void CreateProductos(string pro_Codigo, string pro_Nombre, string pro_StockInicial, decimal pro_PrecioUnitario,
+                            int pro_Proveedor, int pro_usuCrea, int pro_Categoria)
         {
             try
             {
-                _productosRepository.Insert(productos);
+                _productosRepository.Insertar(pro_Codigo, pro_Nombre, pro_StockInicial, pro_PrecioUnitario, pro_Proveedor, pro_usuCrea
+                    , pro_Categoria);
 
             }
             catch (Exception)
@@ -133,11 +135,7 @@ namespace Maquillaje.BusinessLogic.Services
 
         public int DeleteProductos(tbProductos productos)
         {
-      
                return _productosRepository.Delete(productos);
-
-           
-    
         }
 
 
