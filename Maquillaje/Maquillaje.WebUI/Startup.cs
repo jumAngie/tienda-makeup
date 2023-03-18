@@ -29,6 +29,12 @@ namespace Maquillaje.WebUI
             services.DataAccess(Configuration.GetConnectionString("MaquiCon"));
             services.BussinessLogic();
             services.AddAutoMapper(x => x.AddProfile<MappingProfileExtensions>(), AppDomain.CurrentDomain.GetAssemblies());
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
 
             services.AddControllersWithViews();
         }
