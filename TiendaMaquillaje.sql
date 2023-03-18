@@ -568,7 +568,7 @@ CREATE TABLE Maqui.tbProveedores(
 		prv_NombreCompañia		NVARCHAR(250)		NOT NULL,
 		prv_NombreContacto		NVARCHAR(250)		NOT NULL,
 		prv_TelefonoContacto	NVARCHAR(100)		NOT NULL,
-		prv_Municipio		    INT					NOT NULL,
+		
 		prv_DireccionEmpresa	NVARCHAR(200)		NOT NULL,
 		prv_DireccionContacto	NVARCHAR(200)		NOT NULL,
 		prv_SexoContacto		CHAR(1)				NOT NULL,
@@ -580,7 +580,6 @@ CREATE TABLE Maqui.tbProveedores(
 		prv_Estado			    BIT					DEFAULT 1,
 
 		
-		CONSTRAINT PK_Maqui_tbProveedores_Gral_tbMunicipios_prv_Municipio	FOREIGN KEY (prv_Municipio)	    REFERENCES Gral.tbMunicipios  (mun_ID),
 		CONSTRAINT FK_Maqui_tbProveedores_prv_UsuarioCrea_Gral_tbUsuarios_usu_ID FOREIGN KEY(prv_UsuarioCrea) REFERENCES Gral.tbUsuarios(usu_ID),
 		CONSTRAINT FK_Maqui_tbProveedores_prv_UsuarioModi_Gral_tbUsuarios_usu_ID FOREIGN KEY(prv_UsuarioModi) REFERENCES Gral.tbUsuarios(usu_ID),
 		CONSTRAINT CK_Maqui_tbProveedores_prv_SexoContacto CHECK (prv_SexoContacto IN ('F','M'))
@@ -588,26 +587,26 @@ CREATE TABLE Maqui.tbProveedores(
 );
 INSERT INTO Maqui.tbProveedores
 VALUES  
-		('Lubre Cosmética Natural', 'Francsico Mejía', '+504 9878-4562', 25, 'Calle hacia Armenta, atras de Mall Altara.','1ra Calle, Salida a La Lima','F',	1, GETDATE(), NULL, NULL, 1),
-		('Ortrade', 'Blanca Wong', '+504 9809-4453', 32, '3ra Avenida, 2da Calle Prolonogación Pasaje Valle','1ra Calle, Salida a La Lima','F',				1, GETDATE(), NULL, NULL, 1),
-		('Yesensy', 'Marlon Lee', '+504 9856-6371', 173, '1ra Calle, Salida a La Lima',	'1ra Calle, Salida a La Lima','F',									1, GETDATE(), NULL, NULL, 1),
-		('Bamboo Cosmetcis', 'Tristan Thompson', '+504 9801-3561', 289, '1ra Calle, 3ra Avenida, Frente al Parque Central','1ra Calle, Salida a La Lima','F',	1, GETDATE(), NULL, NULL, 1),
-		('Laboratorios Anteii', 'Ulises Menjivar', '+504 8790-4352', 231, '5ta Calle, 5ta Avenida, Barrio El Centro','1ra Calle, Salida a La Lima','F',		1, GETDATE(), NULL, NULL, 1),
-		('Divasa Cosmetics', 'Pedro Urquía', '+504 8909-5564', 126, '4 y 5 Calle, 2da Avenida, Barrio El Centro','1ra Calle, Salida a La Lima','F',			1, GETDATE(), NULL, NULL, 1),
-		('CosmetiChile', 'Maryuri Lee', '+504 8909-5563', 149, '2da Calle, Avenida Junior',	'1ra Calle, Salida a La Lima','F',								1, GETDATE(), NULL, NULL, 1),
-		('Kylie Cosmetics', 'Angie Campos', '+504 9756-3311', 105, '1ra Calle, 4ta Avenida, Barrio Concepción',	'1ra Calle, Salida a La Lima','F',			1, GETDATE(), NULL, NULL, 1),
-		('Guangzhou Xiran Cosmetics Co.', 'Sandra Xiang', '+504 9867-8954', 209, 'Bo. del Norte', '1ra Calle, Salida a La Lima','F',						1, GETDATE(), NULL, NULL, 1),
-		('Bause Cosmetcis', 'Julissa Liang', '+504 8756-3412', 243, '5ta Calle, 3ra Avenida, Atrás de Tropigas','1ra Calle, Salida a La Lima','F',			1, GETDATE(), NULL, NULL, 1),
-		('Frida Cosmetics', 'Karla Eraza', '+504 9756-3526', 122, '16 Avenida, Barrio Suyapa',	'1ra Calle, Salida a La Lima','F',							1, GETDATE(), NULL, NULL, 1),
-		('Paulis MakeUp', 'Yana Rodríguez', '+504 9786-4451', 245, 'Calle Salida Vieja a La Lima',	'1ra Calle, Salida a La Lima','F',						1, GETDATE(), NULL, NULL, 1),
-		('Maquillaje Stock', 'Oliver Memphis', '+504 8967-4251', 128, 'Barrio El Calvario, Calle Principal',	'1ra Calle, Salida a La Lima','F',			1, GETDATE(), NULL, NULL, 1),
-		('Seytú', 'Ernesto Lopez', '+504 9878-3300', 133, 'Col. El Carmen, Calle Principal',		'1ra Calle, Salida a La Lima','F',						1, GETDATE(), NULL, NULL, 1),
-		('Ibella', 'Vanessa Banegas', '+504 9878-5536', 244, 'Avenida Circunvalación',	'1ra Calle, Salida a La Lima','F',									1, GETDATE(), NULL, NULL, 1),
-		('Estudio Juvenil', 'Juana Jeréx', '+504 9299-5637', 267, 'Avenida los Olivos, 6ta Calle, 1ra Avenida',	'1ra Calle, Salida a La Lima','F',			1, GETDATE(), NULL, NULL, 1),
-		('Cosméticos al por Mayor', 'Paulina Guatusa', '+504 8900-6738', 128, 'Avenida Francisco Olivos',	'1ra Calle, Salida a La Lima','F',				1, GETDATE(), NULL, NULL, 1),
-		('DisDroper', 'Fanny Hungría', '+504 9877-5362', 162, 'Col. Trinidad Yanez',	'1ra Calle, Salida a La Lima','F',									1, GETDATE(), NULL, NULL, 1),
-		('Cosbelly Profesional', 'Deiby Guerra', '+504 9877-4412', 169, 'Col. Villa Nuria',		'1ra Calle, Salida a La Lima','F',							1, GETDATE(), NULL, NULL, 1),
-		('Fransua', 'Maicoll Hungaro', '+504 9677-3142', 169, 'Col. Yanez',			'1ra Calle, Salida a La Lima','F',										1, GETDATE(), NULL, NULL, 1);
+		('Lubre Cosmética Natural', 'Francsico Mejía', '+504 9878-4562',  'Calle hacia Armenta, atras de Mall Altara.','1ra Calle, Salida a La Lima','F',	1, GETDATE(), NULL, NULL, 1),
+		('Ortrade', 'Blanca Wong', '+504 9809-4453',  '3ra Avenida, 2da Calle Prolonogación Pasaje Valle','1ra Calle, Salida a La Lima','F',				1, GETDATE(), NULL, NULL, 1),
+		('Yesensy', 'Marlon Lee', '+504 9856-6371',  '1ra Calle, Salida a La Lima',	'1ra Calle, Salida a La Lima','F',									1, GETDATE(), NULL, NULL, 1),
+		('Bamboo Cosmetcis', 'Tristan Thompson', '+504 9801-3561',  '1ra Calle, 3ra Avenida, Frente al Parque Central','1ra Calle, Salida a La Lima','F',	1, GETDATE(), NULL, NULL, 1),
+		('Laboratorios Anteii', 'Ulises Menjivar', '+504 8790-4352', '5ta Calle, 5ta Avenida, Barrio El Centro','1ra Calle, Salida a La Lima','F',		1, GETDATE(), NULL, NULL, 1),
+		('Divasa Cosmetics', 'Pedro Urquía', '+504 8909-5564',  '4 y 5 Calle, 2da Avenida, Barrio El Centro','1ra Calle, Salida a La Lima','F',			1, GETDATE(), NULL, NULL, 1),
+		('CosmetiChile', 'Maryuri Lee', '+504 8909-5563',  '2da Calle, Avenida Junior',	'1ra Calle, Salida a La Lima','F',								1, GETDATE(), NULL, NULL, 1),
+		('Kylie Cosmetics', 'Angie Campos', '+504 9756-3311',  '1ra Calle, 4ta Avenida, Barrio Concepción',	'1ra Calle, Salida a La Lima','F',			1, GETDATE(), NULL, NULL, 1),
+		('Guangzhou Xiran Cosmetics Co.', 'Sandra Xiang', '+504 9867-8954',  'Bo. del Norte', '1ra Calle, Salida a La Lima','F',						1, GETDATE(), NULL, NULL, 1),
+		('Bause Cosmetcis', 'Julissa Liang', '+504 8756-3412',  '5ta Calle, 3ra Avenida, Atrás de Tropigas','1ra Calle, Salida a La Lima','F',			1, GETDATE(), NULL, NULL, 1),
+		('Frida Cosmetics', 'Karla Eraza', '+504 9756-3526',  '16 Avenida, Barrio Suyapa',	'1ra Calle, Salida a La Lima','F',							1, GETDATE(), NULL, NULL, 1),
+		('Paulis MakeUp', 'Yana Rodríguez', '+504 9786-4451',  'Calle Salida Vieja a La Lima',	'1ra Calle, Salida a La Lima','F',						1, GETDATE(), NULL, NULL, 1),
+		('Maquillaje Stock', 'Oliver Memphis', '+504 8967-4251',  'Barrio El Calvario, Calle Principal',	'1ra Calle, Salida a La Lima','F',			1, GETDATE(), NULL, NULL, 1),
+		('Seytú', 'Ernesto Lopez', '+504 9878-3300',  'Col. El Carmen, Calle Principal',		'1ra Calle, Salida a La Lima','F',						1, GETDATE(), NULL, NULL, 1),
+		('Ibella', 'Vanessa Banegas', '+504 9878-5536', 'Avenida Circunvalación',	'1ra Calle, Salida a La Lima','F',									1, GETDATE(), NULL, NULL, 1),
+		('Estudio Juvenil', 'Juana Jeréx', '+504 9299-5637',  'Avenida los Olivos, 6ta Calle, 1ra Avenida',	'1ra Calle, Salida a La Lima','F',			1, GETDATE(), NULL, NULL, 1),
+		('Cosméticos al por Mayor', 'Paulina Guatusa', '+504 8900-6738',  'Avenida Francisco Olivos',	'1ra Calle, Salida a La Lima','F',				1, GETDATE(), NULL, NULL, 1),
+		('DisDroper', 'Fanny Hungría', '+504 9877-5362',  'Col. Trinidad Yanez',	'1ra Calle, Salida a La Lima','F',									1, GETDATE(), NULL, NULL, 1),
+		('Cosbelly Profesional', 'Deiby Guerra', '+504 9877-4412',  'Col. Villa Nuria',		'1ra Calle, Salida a La Lima','F',							1, GETDATE(), NULL, NULL, 1),
+		('Fransua', 'Maicoll Hungaro', '+504 9677-3142', 'Col. Yanez',			'1ra Calle, Salida a La Lima','F',										1, GETDATE(), NULL, NULL, 1);
 
 
 
@@ -1147,13 +1146,11 @@ SELECT prv_ID,
 	   prv_NombreCompañia, 
 	   prv_NombreContacto, 
 	   prv_TelefonoContacto, 
-	   prv_Municipio = mun_Descripcion, 
+	    
 	   prv_DireccionEmpresa,
 	   prv_DireccionContacto,
 	   prv_SexoContacto
-	   FROM Maqui.tbProveedores T1
-	   INNER JOIN Gral.tbMunicipios T2
-	   ON T1.prv_Municipio = T2.mun_Id
+	   FROM Maqui.tbProveedores 
 	   WHERE prv_Estado = 1;
 
 
@@ -1481,7 +1478,6 @@ CREATE OR ALTER PROC UDP_Maqui_tbProveedores_CREAR
 	@prv_NombreCompañia		NVARCHAR(250),
 	@prv_NombreContacto		NVARCHAR(250), 
 	@prv_TelefonoContacto   NVARCHAR(100), 
-	@prv_Municipio			INT, 
 	@prv_DireccionEmpresa	NVARCHAR(200), 
 	@prv_DireccionContacto	NVARCHAR(200),
 	@prv_SexoContacto		CHAR(1),
@@ -1492,11 +1488,11 @@ BEGIN
 		DECLARE @prv_Estado	   BIT =	1	
 
 		INSERT INTO Maqui.tbProveedores
-				(prv_NombreCompañia, prv_NombreContacto, prv_TelefonoContacto, prv_Municipio, 
+				(prv_NombreCompañia, prv_NombreContacto, prv_TelefonoContacto, 
 				 prv_DireccionEmpresa, prv_DireccionContacto, prv_SexoContacto, prv_UsuarioCrea, prv_FechaCrea, prv_UsuarioModi, 
 				 prv_FechaModi, prv_Estado)
 
-		VALUES	(@prv_NombreCompañia,@prv_NombreContacto, @prv_TelefonoContacto, @prv_Municipio,
+		VALUES	(@prv_NombreCompañia,@prv_NombreContacto, @prv_TelefonoContacto,
 				 @prv_DireccionEmpresa, @prv_DireccionContacto, @prv_SexoContacto, @prv_UsuarioCrea, @prv_FechaCrea, NULL,
 				 NULL, @prv_Estado)
 
@@ -1889,7 +1885,6 @@ CREATE OR ALTER PROC UDP_Maqui_tbProveedores_UPDATE
 	@prv_NombreCompañia		NVARCHAR(250),
 	@prv_NombreContacto		NVARCHAR(250), 
 	@prv_TelefonoContacto   NVARCHAR(100), 
-	@prv_Municipio			INT, 
 	@prv_DireccionEmpresa	NVARCHAR(200), 
 	@prv_DireccionContacto	NVARCHAR(200),
 	@prv_SexoContacto		CHAR(1),
@@ -1901,7 +1896,6 @@ BEGIN
 	SET	   prv_NombreCompañia =  @prv_NombreCompañia,
 		   prv_NombreContacto =  @prv_NombreContacto,
 		   prv_TelefonoContacto = @prv_TelefonoContacto,
-		   prv_Municipio = @prv_Municipio,
 		   prv_DireccionEmpresa = @prv_DireccionEmpresa,
 		   prv_DireccionContacto = @prv_DireccionContacto,
 		   prv_SexoContacto = @prv_SexoContacto,
