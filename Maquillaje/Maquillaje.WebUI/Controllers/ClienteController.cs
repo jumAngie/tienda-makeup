@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Maquillaje.WebUI.Controllers
@@ -26,7 +28,55 @@ namespace Maquillaje.WebUI.Controllers
         }
 
 
+        #region Validaciones
+        public bool ExisteDni(string dni)
+        {
+            using (var db = new TiendaContext())
+            {
+                return db.tbClientes.Any(p => p.cli_DNI == dni);
+            }
+        }
+        #endregion
 
+        #region Mensajes
+
+        public HttpResponseMessage MostrarToastDeExito()
+        {
+            string script = "<script>toastr.success('¡El proceso se completó correctamente!', 'Éxito');</script>";
+            HttpResponseMessage response = new HttpResponseMessage();
+            response.Content = new StringContent(script, Encoding.UTF8, "text/html");
+            return response;
+        }
+
+        #endregion
+
+        #region Listado
+
+        [HttpGet("/Cliente/Listado")]
+        public IActionResult Index()
+        {
+            var listado = _generalesService.ListadoClientes();
+            var ListadoMapeado = _mapper.Map<IEnumerable<ClientesViewModel>>(listado);
+            if (TempData.ContainsKey("SuccessMessage"))
+            {
+                // Obtener el mensaje de éxito y eliminarlo de TempData
+                string successMessage = TempData["SuccessMessage"].ToString();
+                TempData.Remove("SuccessMessage");
+
+                // Generar el código JavaScript para mostrar el Toast de Success
+                string script = $"<script>toastr.success('{successMessage}', 'Éxito');</script>";
+                ViewBag.SuccessMessageScript = script;
+            }
+            else
+            {
+                ViewBag.SuccessMessageScript = null;
+            }
+            return View(ListadoMapeado);
+        }
+
+        #endregion
+
+        #region Eliminar Cliente
         [HttpPost("/Cliente/Eliminar/")]
         public IActionResult Delete(int cli_Id)
         {
@@ -41,28 +91,6 @@ namespace Maquillaje.WebUI.Controllers
 
             return RedirectToAction("Index");
         }
-
-
-        #region Validaciones
-        public bool ExisteDni(string dni)
-        {
-            using (var db = new TiendaContext())
-            {
-                return db.tbClientes.Any(p => p.cli_DNI == dni);
-            }
-        }
-        #endregion
-
-        #region Listado
-
-        [HttpGet("/Cliente/Listado")]
-        public IActionResult Index()
-        {
-            var listado = _generalesService.ListadoClientes();
-            var ListadoMapeado = _mapper.Map<IEnumerable<ClientesViewModel>>(listado);
-            return View(ListadoMapeado);
-        }
-
         #endregion
 
         #region Crear Clientes
@@ -115,7 +143,8 @@ namespace Maquillaje.WebUI.Controllers
                         /// CAMBIAR EL USUARIO MODIFICACION ///
 
                         _generalesService.CreateClientes(Nombre, Apellido, DNI, FechaValida, Sexo, Telefono, Int32.Parse(Municipio), Int32.Parse(Civil), 1);
-
+                        TempData["SuccessMessage"] = "El proceso se completó correctamente";
+                        MostrarToastDeExito();
                         return RedirectToAction("Index");
                     }
 
@@ -272,6 +301,8 @@ namespace Maquillaje.WebUI.Controllers
     }
     #endregion
 
+
+    
 
 
 
