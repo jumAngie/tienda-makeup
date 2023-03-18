@@ -48,6 +48,14 @@ namespace Maquillaje.WebUI.Controllers
             return response;
         }
 
+        public HttpResponseMessage MostrarToastDeError()
+        {
+            string script = "<script>toastr.error('El DNI ingresado ya existe.', 'Error');</script>";
+            HttpResponseMessage response = new HttpResponseMessage();
+            response.Content = new StringContent(script, Encoding.UTF8, "text/html");
+            return response;
+        }
+
         #endregion
 
         #region Listado
@@ -107,6 +115,20 @@ namespace Maquillaje.WebUI.Controllers
 
         public IActionResult Create(ClientesViewModel item)
         {
+            if (TempData.ContainsKey("ErrorMessage"))
+            {
+                // Obtener el mensaje de éxito y eliminarlo de TempData
+                string errorMessage = TempData["ErrorMessage"].ToString();
+                TempData.Remove("ErrorMessage");
+
+                // Generar el código JavaScript para mostrar el Toast de Success
+                string script = $"<script>toastr.error('{errorMessage}', 'Error');</script>";
+                ViewBag.ErrorMessageScript = script;
+            }
+            else
+            {
+                ViewBag.ErrorMessageScript = null;
+            }
 
 
             var fechas = item.cli_FechaNacimiento.ToString();
@@ -132,7 +154,9 @@ namespace Maquillaje.WebUI.Controllers
                     string depto = item.depto;
                     if (ExisteDni(DNI))
                     {
-                        ModelState.AddModelError("ValidarDNI", "El DNI ya existe");
+                        ModelState.AddModelError("ValidarDNI", "*");
+                        TempData["ErrorMessage"] = "El DNI ingresado ya existe.";
+                        MostrarToastDeError();
                         ViewBag.cli_EstadoCivil = new SelectList(db.Vw_Gral_tbEstadosCiviles_DDL, "est_ID", "est_Descripcion");
                         ViewBag.depto = new SelectList(db.Vw_Gral_tbDepartamentos_DDL, "depto", "dep_Descripcion", ViewBag.depto);
                         return View(item);
