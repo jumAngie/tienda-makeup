@@ -36,15 +36,15 @@ toastr.options = {
     progressBar: true
 };
 
-function CerrarSesion() {
-    localStorage.removeItem("Session");
-}
+////function CerrarSesion() {
+////////    localStorage.removeItem("Session");
+//////////}
 
-if (!localStorage.getItem("Session")) {
-    setTimeout(function () {
-        window.location.reload();
-    }, 20)
-}
+//if (!localStorage.getItem("Session")) {
+//    setTimeout(function () {
+//        window.location.reload();
+//    }, 20)
+//}
 
 
 
