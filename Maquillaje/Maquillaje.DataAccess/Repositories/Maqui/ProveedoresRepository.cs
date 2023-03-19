@@ -54,7 +54,7 @@ namespace Maquillaje.DataAccess.Repositories.Maqui
             return db.Execute(ScriptsDataBase.ProveedoresCrear, parametros, commandType: CommandType.StoredProcedure);
         }
 
-        public int Actulizar(int prv_ID, string prv_NombreCompañia, string prv_NombreContacto, string prv_TelefonoContacto,
+        public int Actualizar(int prv_ID, string prv_NombreCompañia, string prv_NombreContacto, string prv_TelefonoContacto,
                             string prv_DireccionEmpresa, string prv_DireccionContacto, string prv_SexoContacto, int prv_UsuarioCrea)
         {
             //QUITAR

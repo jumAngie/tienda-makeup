@@ -90,14 +90,6 @@ namespace Maquillaje.WebUI.Controllers
         }
 
 
-        [HttpGet("/Municipio/DatosIdMunicipio")]
-        public JsonResult DatosIdMunicipio(string mun_Id)
-        {
-            var Municipios = _generalesService.CargarDatosMuniPorId(mun_Id);
-            return Json(Municipios);
-        }
-
-
 
 
         //public ActionResult Edit(int? id)
