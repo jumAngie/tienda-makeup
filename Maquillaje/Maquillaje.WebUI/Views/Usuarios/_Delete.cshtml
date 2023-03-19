@@ -1,23 +1,26 @@
 ﻿
 
-<div class="modal" id="DeleteUsu">
-    <div class="modal__content">
-        <div class="p-5 text-center">
-            <form action="@Url.Action("Delete","Usuarios")" method="post" id="deleteform">
 
-                <i data-feather="x-circle" class="w-16 h-16 text-theme-6 mx-auto mt-3"></i>
-                <input type="hidden" id="usu_Id" name="usu_Id" />
-                <div class="text-gray-600 mt-2">¿Está seguro de eliminar el registro?</div>
-            </form>
 
-        </div>
-        <div class="px-5 pb-8 text-center">
-            <button type="button" data-dismiss="modal" class="button w-24 border text-gray-700 mr-1">Cancelar</button>
-            <button type="button" id="confirmar" class="button w-24 bg-theme-6 text-white">Eliminar</button>
+<form action="@Url.Action("Delete","Usuarios")" method="post" id="deleteform">
+
+    <div class="modal fade" id="DeleteUsu" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm modal-dialog-centered">
+            <div class="modal-content bg-danger text-white">
+                <div class="modal-body text-center">
+                    <h3 class="text-white mb-15"><i class="fa fa-exclamation-triangle"></i> Alert</h3>
+                    <input type="hidden" id="usu_Id" name="usu_Id" />
+                    <div class="text-gray-600 mt-2">
+                        ¿Está seguro de eliminar el registro?
+                        <br />
+                        <br />
+                        <button type="button" id="confirmar" class="btn btn-light">OK</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</div>
-
+</form>
 <script>
 
     function ShowModal(usu_Id) {

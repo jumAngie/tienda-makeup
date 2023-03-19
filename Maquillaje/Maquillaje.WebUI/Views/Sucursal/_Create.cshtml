@@ -1,35 +1,44 @@
-﻿<!-- The Modal -->
+﻿
+<Form action="@Url.Action("Create","Sucursal")" id="createsuc" method="post">
 
-    <div class="modal" id="CreateSucu">
-        <div class="modal__content">
-            <div class="flex items-center px-5 py-5 sm:py-3 border-b border-gray-200">
-                <h2 class="font-medium text-base mr-auto">Cree una Sucursal</h2>
-            </div>
-
-            <div class="p-5 grid grid-cols-12 gap-4 row-gap-3">
-                <div class="col-span-12 sm:col-span-12">
-                    <Form action="@Url.Action("Create","Sucursal")" id="createsuc" method="post">
-
-                        <label>Departamento</label>
-                        <select id="deptoCrea" name="deptoCrea" asp-items="ViewBag.deptoCrea"></select>
-                        <br />
-                        <label>Ciudad</label>
-                        <select id="suc_MunicipioCrea" name="suc_MunicipioCrea"></select>
-                        <br />
-                        <label>Descripcion</label>
-                        <input type="text" class="input w-full border mt-2 flex-1" id="suc_DescripcionCrea" name="suc_Descripcion" />
-
-                    </Form>
-
+    <div class="modal fade" id="CreateSuc" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myLargeModalLabel">Cree una categoría</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 </div>
-            </div>
+                <div class="modal-body">
+                    <br />
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label>Departamento</label>
+                            <select id="deptoCrea" class="form-control" name="deptoCrea" asp-items="ViewBag.deptoCrea"></select>
+                        </div>
 
-            <div class="px-5 py-3 text-right border-t border-gray-200">
-                <button type="button" data-dismiss="modal" class="button w-20 border text-gray-700 mr-1">Cancelar</button>
-                <button type="button" onclick="GuardarInsert()" class="button w-20 bg-theme-1 text-white">Guardar</button>
+                        <div class="col-sm-6">
+                            <label>Ciudad</label>
+                            <select id="suc_MunicipioCrea" class="form-control" name="suc_MunicipioCrea"></select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <label>Descripcion</label>
+                            <input type="text" class="form-control" id="suc_DescripcionCrea" name="suc_Descripcion" />
+                        </div>
+                    </div>
+                    <br />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-outline-danger">Cancelar</button>
+                    <button type="button" onclick="GuardarInsert()" class="btn btn-outline-success">Guardar</button>
+                </div>
             </div>
         </div>
     </div>
+</Form>
+
 
 <script>
 

@@ -1,27 +1,27 @@
-﻿<!-- The Modal -->
-<div class="modal" id="CreateEst">
-    <div class="modal__content">
-        <div class="flex items-center px-5 py-5 sm:py-3 border-b border-gray-200">
-            <h2 class="font-medium text-base mr-auto">Cree un Estado Civil</h2>
-        </div>
+﻿
+<Form action="@Url.Action("Create","EstadosCiviles")" method="post" id="createestado">
 
-        <div class="p-5 grid grid-cols-12 gap-4 row-gap-3">
-            <div class="col-span-12 sm:col-span-12">
-                <Form action="@Url.Action("Create","EstadosCiviles")" method="post" id="createestado">
-
+    <div class="modal fade" id="CreateEst" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myLargeModalLabel">Cree un Estado Civil</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                </div>
+                <div class="modal-body">
+                    <br />
                     <label>Descripcion</label>
-                    <input type="text" id="txtEstado" name="est_Descripcion" class="input w-full border mt-2 flex-1" />
-                </Form>
-
+                    <input type="text" id="txtEstado" name="est_Descripcion" class="form-control" />
+                    <br />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-outline-danger">Cancelar</button>
+                    <button type="button" onclick="GuardarInsert()" class="btn btn-outline-success">Guardar</button>
+                </div>
             </div>
         </div>
-
-        <div class="px-5 py-3 text-right border-t border-gray-200">
-            <button type="button" data-dismiss="modal" class="button w-20 border text-gray-700 mr-1">Cancelar</button>
-            <button type="button" onclick="GuardarInsert()" class="button w-20 bg-theme-1 text-white">Guardar</button>
-        </div>
     </div>
-</div>
+</Form>
 
 
 <script>
@@ -36,7 +36,7 @@
             siuu = false;
             console.log(1);
 
-                }
+        }
 
         if (siuu) {
             $('#createestado').submit();

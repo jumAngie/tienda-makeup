@@ -10,14 +10,12 @@
     <div class="card" style="background-color: white">
         <div class="d-flex align-items-end row">
             <div class="col-sm-12">
-                <br />
-                <div class="card-header">
-                    <a class="button w-24 rounded-full mr-1 mb-2 bg-theme-1 text-white" data-toggle="modal" data-target="#CreateUsu">Nuevo</a>
-
-                </div>
-                <br />
 
                 <div class="card-body">
+                    <a class="btn btn-outline-primary" data-toggle="modal" data-target="#CreateUsu">Nuevo</a>
+                    <br />
+                    <br />
+
                     <table class="table table-report -mt-2" id="DataTable">
                         <thead>
                             <tr>
@@ -53,9 +51,9 @@
                                         @Html.DisplayFor(modelItem => item.usu_EsAdmin)
                                     </td>
                                     <td>
-                                        <a class="button w-24 rounded-full mr-1 mb-2 bg-theme-12 text-white" data-toggle="modal" data-target="#EditCate" onclick="Editar('@item.usu_ID,@item.usu_Usuario')">Editar</a> |
-                                        <a class="button w-24 rounded-full mr-1 mb-2 bg-theme-9 text-white" asp-action="Details" asp-route-id="@item.usu_ID">Detalles</a> |
-                                        <a class="button w-24 rounded-full mr-1 mb-2 bg-theme-6 text-white" onclick="ShowModal(@item.usu_ID)" data-id="@item.usu_ID">Eliminar</a>
+                                        <a class="btn btn-outline-info" data-toggle="modal" data-target="#EditUsu" onclick="Editar('@item.usu_ID,@item.usu_Usuario')">Editar</a> |
+                                        <a class="btn btn-outline-success" asp-action="Details" asp-route-id="@item.usu_ID">Detalles</a> |
+                                        <a class="btn btn-outline-danger" onclick="ShowModal(@item.usu_ID)" data-id="@item.usu_ID">Eliminar</a>
                                     </td>
                                 </tr>
                             }

@@ -9,15 +9,12 @@
     <div class="card" style="background-color: white">
         <div class="d-flex align-items-end row">
             <div class="col-sm-12">
-                <br />
-
-                <div class="card-header">
-                    <a class="button w-24 rounded-full mr-1 mb-2 bg-theme-1 text-white" data-toggle="modal" data-target="#CreateDep">Nuevo</a>
-
-                </div>
-                <br />
+         
 
                 <div class="card-body">
+                    <a class="btn btn-outline-primary" data-toggle="modal" data-target="#CreateDep">Nuevo</a>
+                    <br />
+                    <br />
 
 
                     <table class="table table-report -mt-2" id="DataTable">
@@ -46,8 +43,8 @@
                                     </td>
 
                                     <td>
-                                        <a class="button w-24 rounded-full mr-1 mb-2 bg-theme-12 text-white" data-toggle="modal" data-target="#EditDepo" onclick="Editar('@item.dep_ID,@item.dep_Descripcion')">Editar</a> |
-                                        <a class="button w-24 rounded-full mr-1 mb-2 bg-theme-9 text-white" asp-action="Details" asp-route-id="@item.dep_ID">Detalles</a> |
+                                        <a class="btn btn-outline-info" data-toggle="modal" data-target="#EditDepo" onclick="Editar('@item.dep_ID,@item.dep_Descripcion')">Editar</a> |
+                                        <a class="btn btn-outline-success" asp-action="Details" asp-route-id="@item.dep_ID">Detalles</a> |
                                     </td>
                                 </tr>
                             }

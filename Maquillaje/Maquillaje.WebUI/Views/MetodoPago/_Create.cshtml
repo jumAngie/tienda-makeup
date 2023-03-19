@@ -1,27 +1,27 @@
-﻿<!-- The Modal -->
-<div class="modal" id="CreateMet">
-    <div class="modal__content">
-        <div class="flex items-center px-5 py-5 sm:py-3 border-b border-gray-200">
-            <h2 class="font-medium text-base mr-auto">Cree un Método de Pago</h2>
-        </div>
+﻿
+<Form action="@Url.Action("Create","MetodoPago")" id="createmet" method="post">
 
-        <div class="p-5 grid grid-cols-12 gap-4 row-gap-3">
-            <div class="col-span-12 sm:col-span-12">
-                <Form action="@Url.Action("Create","MetodoPago")" id="createmet" method="post">
-
+    <div class="modal fade" id="CreateMet" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myLargeModalLabel">Cree un Método de Pago</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                </div>
+                <div class="modal-body">
+                    <br />
                     <label class="form-text">Descripcion</label>
-                    <input type="text" class="input w-full border mt-2 flex-1" id="met" name="met_Descripcion" />
-                </Form>
-
+                    <input type="text" class="form-control" id="met" name="met_Descripcion" />
+                    <br />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-outline-danger">Cancelar</button>
+                    <button type="button" onclick="GuardarInsert()" class="btn btn-outline-success">Guardar</button>
+                </div>
             </div>
         </div>
-
-        <div class="px-5 py-3 text-right border-t border-gray-200">
-            <button type="button" data-dismiss="modal" class="button w-20 border text-gray-700 mr-1">Cancelar</button>
-            <button type="button" onclick="GuardarInsert()" class="button w-20 bg-theme-1 text-white">Guardar</button>
-        </div>
     </div>
-</div>
+</Form>
 
 
 <script>
@@ -36,7 +36,7 @@
             siuu = false;
             console.log(1);
 
-                }
+        }
 
         if (siuu) {
             $('#createmet').submit();

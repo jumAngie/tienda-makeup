@@ -1,36 +1,49 @@
-﻿<!-- The Modal -->
-<div class="modal" id="CreateUsu">
-    <div class="modal__content">
-        <div class="flex items-center px-5 py-5 sm:py-3 border-b border-gray-200">
-            <h2 class="font-medium text-base mr-auto">Cree un Usuario</h2>
-        </div>
+﻿
+<Form action="@Url.Action("Create","Usuarios")" method="post" id="createusu">
 
-        <div class="p-5 grid grid-cols-12 gap-4 row-gap-3">
-            <div class="col-span-12 sm:col-span-12">
-                <Form action="@Url.Action("Create","Usuarios")" method="post" id="createusu">
+    <div class="modal fade" id="CreateUsu" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myLargeModalLabel">Cree un Usuario</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                </div>
+                <div class="modal-body">
+                    <br />
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label class="form-text">Empleado</label>
+                            <select id="emp_Id" name="emp_Id" class="form-control" asp-items="ViewBag.usuario"></select>
+                        </div>
 
-                        <label class="form-text">Empleado</label>
-                        <select id="emp_Id" name="emp_Id" class="select2 w-full border col-span-4" asp-items="ViewBag.usuario"></select>
+                        <div class="col-sm-6">
+                            <label class="form-text">Usuario</label>
+                            <input id="usu_Usuario" name="usu_Usuario" class="form-control" />
+                        </div>
+                    </div>
 
-                        <label class="form-text">Usuario</label>
-                        <input id="usu_Usuario" name="usu_Usuario" class="input w-full border col-span-4" />
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label class="form-text">Clave</label>
+                            <input id="usu_Clave" name="usu_Clave" class="form-control" />
+                        </div>
 
-                        <label class="form-text">Clave</label>
-                        <input id="usu_Clave" name="usu_Clave" class="input w-full border mt-2 flex-1" />
-                    
-                        <label class="form-text">Es Admin</label>
-                        <input type="checkbox" id="usu_EsAdmin" value="true" name="usu_EsAdmin" class="input input--switch border" />
-                </Form>
-
-        </div>
-        </div>
-
-        <div class="px-5 py-3 text-right border-t border-gray-200">
-            <button type="button" data-dismiss="modal" class="button w-20 border text-gray-700 mr-1">Cancelar</button>
-            <button type="button" onclick="GuardarInsert()" class="button w-20 bg-theme-1 text-white">Guardar</button>
+                        <div class="col-sm-6">
+                            <label class="form-text">Es Admin</label>
+                            <input type="checkbox" id="usu_EsAdmin" value="true" name="usu_EsAdmin" class="form-control"/>
+                        </div>
+                    </div>
+                    <br />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-outline-danger">Cancelar</button>
+                    <button type="button" onclick="GuardarInsert()" class="btn btn-outline-success">Guardar</button>
+                </div>
+            </div>
         </div>
     </div>
-</div>
+</Form>
+
 
 
 <script>
@@ -43,8 +56,7 @@
 
 
 
-        if ($('#usu_Usuario').val() == "" || $('#usu_Clave').val() == "" || $('#emp_Id').val() == 0 )
-        {
+        if ($('#usu_Usuario').val() == "" || $('#usu_Clave').val() == "" || $('#emp_Id').val() == 0) {
             mostrarErrorToast("Campos requeridos.");
             siuu = false;
             console.log(1);
