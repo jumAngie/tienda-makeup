@@ -117,7 +117,7 @@ namespace Maquillaje.BusinessLogic.Services
                 return Enumerable.Empty<Vw_Maqui_tbProductos_LIST>();
             }
         }
-        public void CreateProductos(string pro_Codigo, string pro_Nombre, string pro_StockInicial, decimal pro_PrecioUnitario,
+        public void CreateProductos(string pro_Codigo, string pro_Nombre, string pro_StockInicial, decimal? pro_PrecioUnitario,
                             int pro_Proveedor, int pro_usuCrea, int pro_Categoria)
         {
             try
@@ -138,12 +138,12 @@ namespace Maquillaje.BusinessLogic.Services
             return _productosRepository.Find(id);
         }
 
-        public void EditProductos(int pro_Id, string pro_Codigo, string pro_Nombre, string pro_StockInicial, decimal pro_PrecioUnitario,
+        public void EditProductos(int pro_Id, string pro_Codigo, string pro_Nombre, decimal? pro_PrecioUnitario,
                            int pro_Proveedor, int pro_usuCrea, int pro_Categoria)
         {
             try
             {
-                _productosRepository.Actualizar(pro_Id, pro_Codigo, pro_Nombre, pro_StockInicial, pro_PrecioUnitario, pro_Proveedor, pro_usuCrea
+                _productosRepository.Actualizar(pro_Id, pro_Codigo, pro_Nombre, pro_PrecioUnitario, pro_Proveedor, pro_usuCrea
                     , pro_Categoria);
 
             }

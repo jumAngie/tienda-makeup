@@ -27,7 +27,7 @@ namespace Maquillaje.WebUI.Models
 
         [Display(Name = "Precio Unitario")]
         [Required(ErrorMessage = "*")]
-        public decimal pro_PrecioUnitario { get; set; }
+        public decimal? pro_PrecioUnitario { get; set; }
 
         [Display(Name = "Categoria")]
         [Required(ErrorMessage = "*")]

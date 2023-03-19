@@ -40,7 +40,7 @@ namespace Maquillaje.DataAccess.Repositories
 
         
 
-        public int Insertar(string pro_Codigo, string pro_Nombre, string pro_StockInicial, decimal pro_PrecioUnitario, 
+        public int Insertar(string pro_Codigo, string pro_Nombre, string pro_StockInicial, decimal? pro_PrecioUnitario, 
                             int pro_Proveedor, int pro_usuCrea, int pro_Categoria)
         {
             pro_usuCrea = 1;
@@ -58,7 +58,7 @@ namespace Maquillaje.DataAccess.Repositories
             return db.Execute(ScriptsDataBase.ProductosCrear, parametros, commandType: CommandType.StoredProcedure);
         }
 
-        public int Actualizar(int pro_Id, string pro_Codigo, string pro_Nombre, string pro_StockInicial, decimal pro_PrecioUnitario,
+        public int Actualizar(int pro_Id, string pro_Codigo, string pro_Nombre, decimal? pro_PrecioUnitario,
                            int pro_Proveedor, int pro_usuCrea, int pro_Categoria)
         {
             pro_usuCrea = 1;
@@ -67,7 +67,6 @@ namespace Maquillaje.DataAccess.Repositories
             parametros.Add("@pro_Id",               pro_Id, DbType.Int32, ParameterDirection.Input);
             parametros.Add("@pro_Codigo",           pro_Codigo, DbType.String, ParameterDirection.Input);
             parametros.Add("@pro_Nombre",           pro_Nombre, DbType.String, ParameterDirection.Input);
-            parametros.Add("@pro_StockInicial",     pro_StockInicial, DbType.String, ParameterDirection.Input);
             parametros.Add("@pro_PrecioUnitario",   pro_PrecioUnitario, DbType.Decimal, ParameterDirection.Input);
             parametros.Add("@pro_Proveedor",        pro_Proveedor, DbType.Int32, ParameterDirection.Input);
             parametros.Add("@pro_usuCrea",          pro_usuCrea, DbType.Int32, ParameterDirection.Input);
