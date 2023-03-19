@@ -2032,3 +2032,128 @@ BEGIN
 	WHERE		inv_Producto = (Select vde_Producto from inserted)
 END;
 GO
+
+--****************************************** PANTALLA DETALLES ****************************************************--
+
+--CREATE PROCEDURE 'UDP_tbVentas_IdVentaReciente'
+CREATE OR ALTER PROCEDURE Maqui.UDP_tbVentas_IdVentaReciente
+AS
+BEGIN
+	SELECT TOP 1 ven_Id
+			FROM Maqui.tbVentas
+		   WHERE ven_Estado = 1 
+		ORDER BY ven_Id DESC 
+END
+GO
+
+GO
+CREATE OR ALTER FUNCTION Maqui.UDF_tbVentas_ListarDetallesPorIdVenta(@ven_Id INT)
+RETURNS TABLE
+RETURN
+	SELECT detalles.vde_Id,
+		   detalles.vde_VentaId,
+		   productos.pro_Codigo,
+		   productos.pro_Nombre,
+		   detalles.vde_Cantidad,
+		   productos.pro_PrecioUnitario,
+		   MontoTotal = detalles.vde_Cantidad * productos.pro_PrecioUnitario
+	  FROM Maqui.tbVentasDetalle detalles
+INNER JOIN Maqui.tbProductos productos
+	    ON detalles.vde_Producto = productos.pro_Id
+	 WHERE detalles.vde_VentaId = @ven_Id
+	   AND detalles.vde_Estado = 1
+GO
+
+CREATE OR ALTER PROCEDURE Maqui.UDP_tbVentas_IngresarNuevaVenta
+(
+	@ven_Cliente		INT,
+	@ven_Empleado	INT,
+	@ven_Sucursal	INT,
+	@ven_MetodoPago INT,
+	@ven_UsuCrea	INT
+)
+AS
+BEGIN
+	SET @ven_MetodoPago = 1
+	INSERT INTO Maqui.tbVentas(ven_Cliente, ven_Empleado, ven_Fecha, ven_Sucursal, ven_MetodoPago, ven_UsuCrea, ven_FechaCrea, ven_UsuModi, ven_FechaModi, ven_Estado)
+	VALUES					(@ven_Cliente,@ven_Empleado,GETDATE(), @ven_Sucursal, @ven_MetodoPago, @ven_UsuCrea,GETDATE(),null, null, 1)
+END
+GO
+
+CREATE OR ALTER FUNCTION UDF_tbProductos_ListarProductoPorId(@pro_Id INT)
+RETURNS TABLE
+RETURN
+	SELECT  pro_Id,
+			pro_Codigo,
+			pro_Nombre,
+			pro_Categoria,
+			pro_Proveedor,
+			inv.inv_Cantidad,
+			pro_PrecioUnitario
+	  FROM  Maqui.tbProductos pro INNER JOIN Maqui.tbInventario inv
+	  ON	pro.pro_Id = inv.inv_Producto
+	 WHERE  pro_Id = @pro_Id
+	   AND  pro_Estado= 1
+
+GO
+
+CREATE OR ALTER FUNCTION Maqui.UDF_tbProductos_CargarStockProductoPorId(@pro_Id INT)
+RETURNS TABLE
+RETURN
+	SELECT  inv_Cantidad
+	  FROM Maqui.tbInventario 
+	 WHERE inv_Producto = @pro_Id
+	   AND inv_Estado = 1
+GO
+
+CREATE OR ALTER FUNCTION UDF_tbDetallesVentas_CargarDetalleVentaPorId(@vde_Id INT)
+RETURNS TABLE
+RETURN
+	SELECT	vde_Id,
+			vde_VentaId, 
+			vde_Producto, 
+			vde_Cantidad, 
+			pr.pro_PrecioUnitario
+	  FROM  Maqui.tbVentasDetalle det INNER JOIN Maqui.tbProductos pr
+	  ON	det.vde_Producto = pr.pro_Id
+	 WHERE  vde_Id = @vde_Id
+GO
+
+CREATE OR ALTER PROCEDURE Maqui.UDP_tbVentas_IngresarNuevoDetalleVenta
+(
+	@vde_VentaId		INT,
+	@vde_Producto		INT,
+	@vde_Cantidad		INT,
+	@vde_UsuCrea		INT
+)
+AS
+BEGIN
+	INSERT INTO Maqui.tbVentasDetalle(vde_VentaId, vde_Producto, vde_Cantidad, vde_UsuCrea, vde_FechaCrea, vde_UsuModi, vde_FechaModi, vde_Estado)
+	VALUES(@vde_VentaId, @vde_Producto, @vde_Cantidad, @vde_UsuCrea, GETDATE(), null, null, 1);
+END
+GO
+
+CREATE OR ALTER PROCEDURE Maqui.UDP_tbDetallesVentas_ActualizarDetalleVenta
+(
+	@vde_Id				INT,
+	@vde_Producto			INT,
+	@vde_Cantidad			INT,
+	@vde_UsuModi			INT
+)
+AS
+BEGIN
+	 UPDATE Maqui.tbVentasDetalle
+		SET vde_Producto = @vde_Producto,
+			vde_Cantidad = @vde_Cantidad,
+			vde_UsuModi = @vde_UsuModi,
+			vde_FechaModi = GETDATE()
+	  WHERE vde_Id = @vde_Id
+END
+GO
+
+CREATE OR ALTER PROCEDURE Maqui.UDP_tbDetallesVentas_EliminarDetalleVenta (@vde_Id INT)
+AS
+BEGIN
+ DELETE FROM Maqui.tbVentasDetalle WHERE vde_Id = @vde_Id
+END
+GO

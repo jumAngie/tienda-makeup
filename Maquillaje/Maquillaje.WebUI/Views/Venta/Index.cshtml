@@ -1,0 +1,260 @@
+﻿@model IEnumerable<Maquillaje.DataAccess.Context.UDF_tbVentas_ListarDetallesPorIdVentaResult>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <!-- Default box -->
+    <div class="card">
+        <div class="card-header pb-0 mb-0">
+            <a class="btn btn-primary" onclick="NuevaVenta()">
+                <div class="d-flex align-items-center">
+                    <span class="nav-link-icon">
+                        <span class="fas fa-plus"></span>
+                    </span>
+                    <span class="nav-link-text ps-1">Nueva Venta</span>
+                </div>
+            </a>
+        </div>
+        <hr />
+        <div class="card-body pt-0 mt-0">
+            <div class="row" id="divNuevaVenta">
+                <div class="col-sm-6">
+                    <label for="DdlClientes">Cliente</label><br />
+                    <select id="DdlClientes" class="form-control col-12">
+                    </select>
+                </div>
+                <div class="col-sm-6 d-flex justify-content-center">
+                    <button class="btn btn-primary m-auto" onclick="GuardarVenta()" id="btnGuardarVenta" style="height: 40px;">
+                        <div class="d-flex align-items-center">
+                            <span class="nav-link-icon">
+                                <span class="fas fa-save"></span>
+                            </span>
+                            <span class="nav-link-text ps-1">Guardar Venta</span>
+                        </div>
+                    </button>
+                </div>
+            </div>
+            <hr />
+            <div id="divNuevoDetalleVenta" hidden>
+                <form action="/DetallesVentas/GuardarDetalle/" method="post" id="formDetalleVenta">
+                    <div class="row" id="MensajeError" hidden>
+                        <div class="col-sm-12 d-flex justify-content-center">
+                            <label style="color: red;">Los campos (*) son obligatorios</label>
+                        </div>
+                    </div>
+                    <div class="row" hidden>
+                        <input type="text" id="txtIdDetalleVenta" class="form-control col-12" readonly="" />
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label for="txtIdVenta">Id Venta</label>
+                            <input type="text" id="txtIdVenta" name="Vent_Id" class="form-control col-12" readonly="" />
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="DdlProductos">Producto&nbsp;</label><label id="lblProductoError" style="color:red;" hidden>*</label>
+                            <select id="DdlProductos" name="Prod_Id" class="form-control col-12">
+                            </select>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label for="txtPrecioVenta">Precio Venta&nbsp;</label><label id="lblPrecioVentaError" style="color:red;" hidden>*</label>
+                            <input type="text" id="txtPrecioVenta" name="Prod_PrecioVenta" class="form-control col-12" />
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="txtCantidad">Cantidad&nbsp;</label><label id="lblCantidadError" style="color:red;" hidden>*</label>
+                            <input type="text" id="txtCantidad" name="Prod_Cantidad" class="form-control col-12" />
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-sm-4"></div>
+                        <div class="col-sm-4 d-flex justify-content-center">
+                            <a class="btn btn-success" onclick="GuardarEdicion()" id="btnGuardarEdicion" hidden>
+                                <div class="d-flex align-items-center">
+                                    <span class="nav-link-icon">
+                                        <span class="fas fa-save"></span>
+                                    </span>
+                                    <span class="nav-link-text ps-1">Guardar Edición</span>
+                                </div>
+                            </a>
+                            <a onclick="GuardarDetalleVenta()" class="btn btn-success" id="btnGuardarDetalle">
+                                <div class="d-flex align-items-center">
+                                    <span class="nav-link-icon">
+                                        <span class="fas fa-save"></span>
+                                    </span>
+                                    <span class="nav-link-text ps-1">Guardar Detalle Venta</span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-sm-4"></div>
+                    </div>
+                </form>
+                <br />
+                <hr />
+                <br />
+                <div id="divTable" hidden>
+                    <div class="table-responsive scrollbar">
+                        <table class="table table-bordered is-striped" id="tbDetallesVenta">
+                            <thead>
+                            <th>
+                                Detalle ID
+                            </th>
+                            <th>
+                                Venta ID
+                            </th>
+                            <th>
+                                Código del Producto
+                            </th>
+                            <th>
+                                Producto
+                            </th>
+                            <th>
+                                Cantidad
+                            </th>
+                            <th>
+                                Precio Unitario
+                            </th>
+                            <th>
+                                Total
+                            </th>
+                            <th>
+                                Editar
+                            </th>
+                            <th>
+                                Eliminar
+                            </th>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.vde_Id)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.vde_VentaId)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.pro_Codigo)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.pro_Nombre)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.vde_Cantidad)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.pro_PrecioUnitario)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.MontoTotal)
+                                        </td>
+                                        <td>
+                                            <button type="button" class="btn btn-warning btnEditar" onclick="Editar(@item.vde_Id)">
+                                                <div class="d-flex align-items-center">
+                                                    <span class="nav-link-icon">
+                                                        <span class="fas fa-pencil-alt"></span>
+                                                    </span>
+                                                    <span class="nav-link-text ps-1">Editar</span>
+                                                </div>
+                                            </button>
+                                        </td>
+                                        <td>
+                                            <button type="button" class="btn btn-danger btnEliminar" onclick="preEliminar(@item.vde_Id)">
+                                                <div class="d-flex align-items-center">
+                                                    <span class="nav-link-icon">
+                                                        <span class="far fa-trash-alt"></span>
+                                                    </span>
+                                                    <span class="nav-link-text ps-1">Eliminar</span>
+                                                </div>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="col-sm-4"></div>
+                        <div class="col-sm-4 d-flex justify-content-end m-auto" style="font-size: 16px;">
+                            <b>Descuento</b>
+                        </div>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control col-12" id="txtDescuento" style="font-size: 16px;" />
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-sm-4"></div>
+                        <div class="col-sm-4">
+                            <button type="button" class="btn btn-primary col-12" onclick="PagarAhora()" id="btnPagarAhora">
+                                <div class="d-flex justify-content-center">
+                                    <span class="nav-link-icon">
+                                        <span class="far fa-money-bill-alt"></span>
+                                    </span>
+                                    <span class="nav-link-text ps-1">Pagar Ahora</span>
+                                </div>
+                            </button>
+                        </div>
+                        <div class="col-sm-4"></div>
+                    </div>
+                    <br />
+                    <div>
+                        <div class="row">
+                            <div class="col-sm-4"></div>
+                            <div class="col-sm-4 d-flex justify-content-end m-auto" style="font-size: 16px;">
+                                <b>SubTotal</b>
+                            </div>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control col-12" id="txtSubtotal" style="font-size: 16px;" readonly />
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-sm-4"></div>
+                            <div class="col-sm-4 d-flex justify-content-end m-auto" style="font-size: 16px;">
+                                <b>ISV (15%)</b>
+                            </div>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control col-12" id="txtIsv" style="font-size: 16px;" readonly />
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-sm-4"></div>
+                            <div class="col-sm-4 d-flex justify-content-end m-auto" style="font-size: 16px;">
+                                <b>Descuento</b>
+                            </div>
+                            <div class="col-sm-4">
+                                <input type="number" class="form-control col-12" id="txtDescuentoInfo" style="font-size: 16px;" readonly />
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-sm-4"></div>
+                            <div class="col-sm-4 d-flex justify-content-end m-auto" style="font-size: 16px;">
+                                <b>Total</b>
+                            </div>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control col-12" id="txtTotal" style="font-size: 16px;" readonly />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+</div>
+<script src="~/js/Ventas/CrearVenta.js"></script>
+<script src="~/js/Detalles/Create.js"></script>
+<script src="~/js/Detalles/Edit.js"></script>
+
+<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+<script src="~/js/Ventas/Index.js"></script>

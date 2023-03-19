@@ -1,8 +1,4 @@
-﻿toastr.options = {
-    progressBar: true
-};
-
-
+﻿
 function mostrarSuccessToast(mensaje) {
     toastr.success(mensaje, 'Exitoso')
 }
@@ -19,30 +15,36 @@ function mostrarInfoToast(mensaje) {
     toastr.info(mensaje, 'Información')
 }
 
-const mostrarSuccessToastEvent = new Event('mostrarSuccessToast');
-const mostrarErrorToastEvent = new Event('mostrarErrorToast');
-const mostrarWarningToastEvent = new Event('mostrarWarningToast');
-const mostrarInfoToastEvent = new Event('mostrarInfoToast');
+function MostrarMensajeSuccess(bodymessage) {
+    toastr.success(bodymessage, 'Exitoso')
+}
 
-document.addEventListener('mostrarSuccessToast', function (event) {
-    var mensaje = event.detail;
-    mostrarSuccessToast(mensaje);
-});
+function MostrarMensajeWarning(bodymessage) {
+    toastr.warning(bodymessage, 'Advertencia')
+}
 
-document.addEventListener('mostrarErrorToast', function (event) {
-    var mensaje = event.detail;
-    mostrarErrorToast(mensaje);
-});
+function MostrarMensajeDanger(bodymessage) {
+    toastr.error(bodymessage, 'Error')
+}
 
-document.addEventListener('mostrarWarningToast', function (event) {
-    var mensaje = event.detail;
-    mostrarWarningToast(mensaje);
-});
+function MostrarMensajeInfo(bodymessage) {
+    toastr.info(bodymessage, 'Info')
+}
 
-document.addEventListener('mostrarInfoToast', function (event) {
-    var mensaje = event.detail;
-    mostrarInfoToast(mensaje);
-});
+toastr.options = {
+    closeButton: true,
+    progressBar: true
+};
+
+function CerrarSesion() {
+    localStorage.removeItem("Session");
+}
+
+if (!localStorage.getItem("Session")) {
+    setTimeout(function () {
+        window.location.reload();
+    }, 20)
+}
 
 
 

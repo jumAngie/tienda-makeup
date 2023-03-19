@@ -75,10 +75,15 @@ namespace Maquillaje.DataAccess.Repositories
         #region Ventas
         public static string VentasCrear = "UDP_Maqui_tbVentas_CREAR";
         public static string VentasEliminar = "UDP_Maqui_tbVentas_ELIMINAR";
+        public static string IdVentaReciente = "Maqui.UDP_tbVentas_IdVentaReciente";
+        public static string IngresarNuevaVenta = "Maqui.UDP_tbVentas_IngresarNuevaVenta";
         #endregion
 
         #region VentasDetalles
         public static string VentasDetallesCrear = "UDP_Maqui_tbVentasDetalle_CREAR";
+        public static string IngresarNuevoDetalleVenta = "Maqui.UDP_tbVentas_IngresarNuevoDetalleVenta";
+        public static string ActualizarDetalleVenta = "Maqui.UDP_tbDetallesVentas_ActualizarDetalleVenta";
+        public static string EliminarDetalleVenta = "Maqui.UDP_tbDetallesVentas_EliminarDetalleVenta";
         #endregion
 
         #region Inventario

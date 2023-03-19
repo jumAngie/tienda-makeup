@@ -176,9 +176,25 @@
       {
          "Name": "[dbo].[UDF_Gral_tbSucursales_DDL]",
          "ObjectType": 2
+      },
+      {
+         "Name": "[dbo].[UDF_tbDetallesVentas_CargarDetalleVentaPorId]",
+         "ObjectType": 2
+      },
+      {
+         "Name": "[dbo].[UDF_tbProductos_ListarProductoPorId]",
+         "ObjectType": 2
+      },
+      {
+         "Name": "[Maqui].[UDF_tbProductos_CargarStockProductoPorId]",
+         "ObjectType": 2
+      },
+      {
+         "Name": "[Maqui].[UDF_tbVentas_ListarDetallesPorIdVenta]",
+         "ObjectType": 2
       }
    ],
-   "UiHint": "LAPTOP-4UJ5657P\\SQLEXPRESS.TiendaMaquillaje",
+   "UiHint": "PC-ANGIE\\SQLEXPRESS.TiendaMaquillaje",
    "UseBoolPropertiesWithoutDefaultSql": false,
    "UseDatabaseNames": true,
    "UseDbContextSplitting": false,

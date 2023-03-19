@@ -9659,23 +9659,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Juan David\\.nuget\\packages\\": {},
+    "C:\\Users\\Usuario\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Juan David\\Desktop\\m\\tienda-makeup\\Maquillaje\\Maquillaje.WebUI\\Maquillaje.WebUI.csproj",
+      "projectUniqueName": "C:\\Users\\Usuario\\Documents\\GitHub\\tienda-makeup\\Maquillaje\\Maquillaje.WebUI\\Maquillaje.WebUI.csproj",
       "projectName": "Maquillaje.WebUI",
-      "projectPath": "C:\\Users\\Juan David\\Desktop\\m\\tienda-makeup\\Maquillaje\\Maquillaje.WebUI\\Maquillaje.WebUI.csproj",
-      "packagesPath": "C:\\Users\\Juan David\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Juan David\\Desktop\\m\\tienda-makeup\\Maquillaje\\Maquillaje.WebUI\\obj\\",
+      "projectPath": "C:\\Users\\Usuario\\Documents\\GitHub\\tienda-makeup\\Maquillaje\\Maquillaje.WebUI\\Maquillaje.WebUI.csproj",
+      "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Usuario\\Documents\\GitHub\\tienda-makeup\\Maquillaje\\Maquillaje.WebUI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Juan David\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -9690,11 +9690,11 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Users\\Juan David\\Desktop\\m\\tienda-makeup\\Maquillaje\\Maquillaje.BusinessLogic\\Maquillaje.BusinessLogic.csproj": {
-              "projectPath": "C:\\Users\\Juan David\\Desktop\\m\\tienda-makeup\\Maquillaje\\Maquillaje.BusinessLogic\\Maquillaje.BusinessLogic.csproj"
+            "C:\\Users\\Usuario\\Documents\\GitHub\\tienda-makeup\\Maquillaje\\Maquillaje.BusinessLogic\\Maquillaje.BusinessLogic.csproj": {
+              "projectPath": "C:\\Users\\Usuario\\Documents\\GitHub\\tienda-makeup\\Maquillaje\\Maquillaje.BusinessLogic\\Maquillaje.BusinessLogic.csproj"
             },
-            "C:\\Users\\Juan David\\Desktop\\m\\tienda-makeup\\Maquillaje\\Maquillaje.Entities\\Maquillaje.Entities.csproj": {
-              "projectPath": "C:\\Users\\Juan David\\Desktop\\m\\tienda-makeup\\Maquillaje\\Maquillaje.Entities\\Maquillaje.Entities.csproj"
+            "C:\\Users\\Usuario\\Documents\\GitHub\\tienda-makeup\\Maquillaje\\Maquillaje.Entities\\Maquillaje.Entities.csproj": {
+              "projectPath": "C:\\Users\\Usuario\\Documents\\GitHub\\tienda-makeup\\Maquillaje\\Maquillaje.Entities\\Maquillaje.Entities.csproj"
             }
           }
         }
@@ -9762,7 +9762,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.411\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.416\\RuntimeIdentifierGraph.json"
       }
     }
   }
