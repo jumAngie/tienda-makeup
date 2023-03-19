@@ -609,6 +609,30 @@ namespace Maquillaje.BusinessLogic.Services
             }
         }
 
+
+        public void CreateProveedor(string prv_NombreCompañia, string prv_NombreContacto, string prv_TelefonoContacto,
+                            string prv_DireccionEmpresa, string prv_DireccionContacto, string prv_SexoContacto, int prv_UsuarioCrea)
+        {
+            _proveedoresRepository.Insertar(prv_NombreCompañia,prv_NombreContacto,prv_TelefonoContacto,prv_DireccionEmpresa, prv_DireccionContacto,
+                prv_SexoContacto, prv_UsuarioCrea);
+        }
+
+        public void UpdateProveedor(int prv_ID, string prv_NombreCompañia, string prv_NombreContacto, string prv_TelefonoContacto,
+                            string prv_DireccionEmpresa, string prv_DireccionContacto, string prv_SexoContacto, int prv_UsuarioCrea)
+        {
+            _proveedoresRepository.Actualizar(prv_ID, prv_NombreCompañia, prv_NombreContacto, 
+                prv_TelefonoContacto,prv_DireccionEmpresa,prv_DireccionContacto,prv_SexoContacto,prv_UsuarioCrea);
+        }
+
+
+        public tbProveedores ObtenerProveedores(int? id)
+        {
+
+            return _proveedoresRepository.Find(id);
+
+
+        }
+
         public int DeleteProv(tbProveedores proveedores)
         {
             try

@@ -90,9 +90,6 @@ namespace Maquillaje.WebUI.Controllers
         }
 
 
-   
-
-
 
 
         //public ActionResult Edit(int? id)

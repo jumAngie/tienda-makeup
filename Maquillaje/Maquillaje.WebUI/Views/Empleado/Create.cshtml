@@ -48,8 +48,13 @@
                     <div class="form-group">
                         <span asp-validation-for="emp_Sexo" class="text-danger"></span>
                         <label asp-for="emp_Sexo" class="control-label"></label>
-                        <input asp-for="emp_Sexo" class="form-control" />
-
+                        <div class="row">
+                            <div class="col-sm-1"></div>
+                            <label>F</label>
+                            <input type="radio" value="F" asp-for="emp_Sexo" class="form-check-inline" />
+                            <label>M</label>
+                            <input type="radio" value="M" asp-for="emp_Sexo" class="form-check-inline" />
+                        </div>
                     </div>
                     <div class="form-group">
                         <span asp-validation-for="emp_Telefono" class="text-danger"></span>

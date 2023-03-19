@@ -1,18 +1,19 @@
 ﻿@model Maquillaje.WebUI.Models.ProveedoresViewModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Create</h1>
+<h1>Editar</h1>
 
-<h4>tbProveedores</h4>
+<h4>Proveedores</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="prv_ID" />
             <div class="form-group">
                 <span asp-validation-for="prv_NombreCompañia" class="text-danger"></span>
                 <label asp-for="prv_NombreCompañia" class="control-label"></label>
@@ -55,7 +56,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
     </div>
