@@ -12,7 +12,6 @@ namespace Maquillaje.Entities.Entities
         public string prv_NombreCompañia { get; set; }
         public string prv_NombreContacto { get; set; }
         public string prv_TelefonoContacto { get; set; }
-        public string prv_Municipio { get; set; }
         public string prv_DireccionEmpresa { get; set; }
         public string prv_DireccionContacto { get; set; }
         public string prv_SexoContacto { get; set; }

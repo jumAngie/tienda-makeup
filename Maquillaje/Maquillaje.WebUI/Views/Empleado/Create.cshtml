@@ -6,10 +6,7 @@
 }
 
 
-@if (!string.IsNullOrEmpty(ViewBag.ErrorMessageScript))
-{
-    @Html.Raw(ViewBag.ErrorMessageScript)
-}
+
 <div class="card">
     <div class="card-header">
         <h1>Crear</h1>
@@ -35,10 +32,11 @@
 
                     </div>
                     <div class="form-group">
-                        <label asp-validation-for="cli_DNI" class="text-danger">@Html.ValidationMessage("DNI")</label>
+
                         <span asp-validation-for="emp_DNI" class="text-danger"></span>
                         <label asp-for="emp_DNI" class="control-label"></label>
                         <input asp-for="emp_DNI" class="form-control" />
+                        <label asp-validation-for="cli_DNI" class="text-danger">@Html.ValidationMessage("DNI")</label>
 
                     </div>
                     <div class="form-group">
