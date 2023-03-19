@@ -30,6 +30,20 @@ namespace Maquillaje.WebUI.Controllers
         {
             var listado = _generalesService.ListadoProveedores();
             var listadoMapeado = _mapper.Map<IEnumerable<ProveedoresViewModel>>(listado);
+            if (TempData.ContainsKey("SuccessMessage"))
+            {
+                // Obtener el mensaje de éxito y eliminarlo de TempData
+                string successMessage = TempData["SuccessMessage"].ToString();
+                TempData.Remove("SuccessMessage");
+
+                // Generar el código JavaScript para mostrar el Toast de Success
+                string script = $"<script>toastr.success('{successMessage}', 'Éxito');</script>";
+                ViewBag.SuccessMessageScript = script;
+            }
+            else
+            {
+                ViewBag.SuccessMessageScript = null;
+            }
             return View(listadoMapeado);
         }
 
@@ -67,7 +81,7 @@ namespace Maquillaje.WebUI.Controllers
 
                     // QUITAR EL 1
                     _generalesService.CreateProveedor(item.prv_NombreCompañia,item.prv_NombreContacto, item.prv_TelefonoContacto,
-                        item.prv_DireccionContacto, item.prv_DireccionContacto, item.prv_SexoContacto, 1);
+                      item.prv_DireccionEmpresa, item.prv_DireccionContacto, item.prv_SexoContacto, 1);
                     TempData["SuccessMessage"] = "El proceso se completó correctamente";
                     MostrarToastDeExito();
                     return RedirectToAction("Index");
