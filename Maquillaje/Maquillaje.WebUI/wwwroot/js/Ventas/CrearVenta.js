@@ -4,12 +4,13 @@
         method: "POST",
         data: { cargar: 'Yes' },
         success: function (data) {
+            console.log(data);
             $('#DdlClientes').empty();
+            $('#DdlClientes').append("<option value='0' hidden selected>---Seleccione un cliente---</option>");
             $.each(data.DdlClientes, function (index, value) {
-                $('#DdlClientes').append("<option value='" + value.cli_ID + "'>" + value.cli_Nombre + "</option>")
+                $('#DdlClientes').append("<option value='" + value.Clie_Id + "'>" + value.Clie_Nombre + "</option>")
             })
 
-            $('#DdlProductos').empty();
             $.each(data.Ddlproductos, function (index, value) {
                 $('#DdlProductos').append("<option value='" + value.pro_Id + "'>" + value.pro_Nombre + "</option>")
             })

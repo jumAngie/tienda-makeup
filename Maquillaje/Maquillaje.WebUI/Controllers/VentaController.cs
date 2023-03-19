@@ -29,12 +29,9 @@ namespace Maquillaje.WebUI.Controllers
             var IdUltimaVentaReciente = _generalesService.IdVentaReciente();
             int idVenta = 0;
 
-            foreach (Nullable<int> item in IdUltimaVentaReciente)
+            if(IdUltimaVentaReciente != 0)
             {
-                if (item.HasValue)
-                {
-                    idVenta = item.Value;
-                }
+                idVenta = IdUltimaVentaReciente;
             }
 
             var Detalles = db.UDF_tbVentas_ListarDetallesPorIdVenta(idVenta);
@@ -59,8 +56,8 @@ namespace Maquillaje.WebUI.Controllers
             {
                 if (cargar != null && cargar != "")
                 {
-                    var DdlClientes = db.Vw_Gral_tbClientes_DDL;
-                    var Ddlproductos = db.Vw_Maqui_tbProductos_DDL;
+                    var DdlClientes = db.UDF_Gral_tbClientes_DDL();
+                    var Ddlproductos = db.UDF_Maqui_tbProductos_DDL();
                     return Json(new { DdlClientes, Ddlproductos });
                 }
                 else

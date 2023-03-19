@@ -666,7 +666,7 @@ namespace Maquillaje.BusinessLogic.Services
         }
 
 
-        public IEnumerable IdVentaReciente()
+        public int IdVentaReciente()
         {
            var IdVentaReciente = _ventasRepository.IdVentaReciente();
 

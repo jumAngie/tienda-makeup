@@ -2157,3 +2157,34 @@ BEGIN
  DELETE FROM Maqui.tbVentasDetalle WHERE vde_Id = @vde_Id
 END
 GO
+
+CREATE OR ALTER FUNCTION Gral.UDF_Gral_tbClientes_DDL()
+RETURNS TABLE
+RETURN
+SELECT '0' AS 'cli_ID', ' ---Seleccione una opción---' AS 'cli_Nombre'
+UNION ALL
+SELECT cli_ID, cli_Nombre + ' ' + cli_Apellido FROM Gral.tbClientes
+GO
+
+go
+CREATE OR ALTER FUNCTION Maqui.UDF_Maqui_tbProductos_DDL()
+RETURNS TABLE
+RETURN
+SELECT '0' AS 'pro_Id', ' ---Seleccione una opción---' AS 'pro_Nombre'
+UNION ALL
+SELECT pro_Id, pro_Nombre FROM Maqui.tbProductos
+GO
+---*************************¨¡¡
+CREATE OR ALTER PROC Gral.UDP_Gral_tbClientes_DDL
+AS
+BEGIN
+SELECT cli_ID, cli_Nombre + ' ' + cli_Apellido FROM Gral.tbClientes
+END
+GO
+
+go
+CREATE OR ALTER PROC Maqui.UDP_Maqui_tbProductos_DDL
+AS
+BEGIN
+SELECT pro_Id, pro_Nombre FROM Maqui.tbProductos
+END
