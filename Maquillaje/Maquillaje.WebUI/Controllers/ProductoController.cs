@@ -61,6 +61,17 @@ namespace Maquillaje.WebUI.Controllers
             }
         }
 
+        public bool ExisteCodigoEditar(int id, string codigo)
+        {
+            var registrosConMismoCodigo = db.tbProductos.Where(r => r.pro_Id != id && r.pro_Codigo == codigo).ToList();
+            if (registrosConMismoCodigo.Count > 0)
+            {
+                return true;
+            }
+            else
+                return false;
+        }
+
         #endregion
 
         #region Mensajes
@@ -73,15 +84,15 @@ namespace Maquillaje.WebUI.Controllers
             return response;
         }
 
-        
-        #endregion 
+
+        #endregion
 
         #region Crear Productos
         [HttpGet("/Producto/Create")]
 
         public IActionResult Create()
         {
-           
+
             ViewBag.cat_Id = new SelectList(db.Vw_Maqui_tbCategorias_DDL, "cat_Id", "cat_Descripcion");
             ViewBag.pro_Proveedor = new SelectList(db.Vw_Maqui_tbProveedores_DDL, "prv_ID", "prv_NombreCompañia");
             return View();
@@ -93,20 +104,9 @@ namespace Maquillaje.WebUI.Controllers
         {
             if (ModelState.IsValid)
             {
-                if(item.pro_Codigo != null && item.pro_Nombre != null && item.pro_PrecioUnitario != 0 && item.pro_Proveedor != "0"
+                if (item.pro_Codigo != null && item.pro_Nombre != null && item.pro_PrecioUnitario != null && item.pro_Proveedor != "0"
                     && item.pro_StockInicial != null && item.cat_Descripcion != "0")
                 {
-
-                    
-                    if(item.pro_StockInicial == "0")
-                    {
-                        ModelState.AddModelError("StockCero", "* El Stock Inicial no puede ser cero.");
-                        ViewBag.cat_Id = new SelectList(db.Vw_Maqui_tbCategorias_DDL, "cat_Id", "cat_Descripcion");
-                        ViewBag.pro_Proveedor = new SelectList(db.Vw_Maqui_tbProveedores_DDL, "prv_ID", "prv_NombreCompañia");
-                        return View(item);
-                    }
-                    else
-                    {
                         if (ExisteCodigo(item.pro_Codigo))
                         {
                             ModelState.AddModelError("Codigo", "* El código ingresado ya exsite.");
@@ -122,21 +122,17 @@ namespace Maquillaje.WebUI.Controllers
                             MostrarToastDeExito();
                             return RedirectToAction("Index");
                         }
-                        
-                    }
-
-
 
                 }
                 else
                 {
-                    if(item.cat_Descripcion == "0") { ModelState.AddModelError("ValidarCategoria", "*"); }
-                    if(item.pro_Proveedor == "0") { ModelState.AddModelError("ValidarProveedor", "*"); }
+                    if (item.cat_Descripcion == "0") { ModelState.AddModelError("ValidarCategoria", "*"); }
+                    if (item.pro_Proveedor == "0") { ModelState.AddModelError("ValidarProveedor", "*"); }
                     ViewBag.cat_Id = new SelectList(db.Vw_Maqui_tbCategorias_DDL, "cat_Id", "cat_Descripcion");
                     ViewBag.pro_Proveedor = new SelectList(db.Vw_Maqui_tbProveedores_DDL, "prv_ID", "prv_NombreCompañia");
                     return View(item);
                 }
-                
+
             }
             else
             {
@@ -146,7 +142,7 @@ namespace Maquillaje.WebUI.Controllers
                 ViewBag.pro_Proveedor = new SelectList(db.Vw_Maqui_tbProveedores_DDL, "prv_ID", "prv_NombreCompañia");
                 return View(item);
             }
-            
+
         }
         #endregion
 
@@ -172,6 +168,51 @@ namespace Maquillaje.WebUI.Controllers
                 item.pro_StockInicial = producto.pro_StockInicial;
                 item.cat_Descripcion = producto.pro_Categoria.ToString();
 
+                ViewBag.cat_Id = new SelectList(db.Vw_Maqui_tbCategorias_DDL, "cat_Id", "cat_Descripcion");
+                ViewBag.pro_Proveedor = new SelectList(db.Vw_Maqui_tbProveedores_DDL, "prv_ID", "prv_NombreCompañia");
+                return View(item);
+            }
+        }
+
+        [HttpPost]
+
+        public IActionResult Edit(ProductosViewModel item)
+        {
+            ModelState.Remove(item.pro_StockInicial);
+            if(ModelState.IsValid)
+            {
+                if(item.pro_Codigo != null && item.pro_Nombre != null && item.pro_PrecioUnitario != null && item.pro_Proveedor != "0"
+                     && item.cat_Descripcion != "0")
+                {
+                    if (ExisteCodigoEditar(item.pro_Id, item.pro_Codigo))
+                    {
+                        ViewBag.cat_Id = new SelectList(db.Vw_Maqui_tbCategorias_DDL, "cat_Id", "cat_Descripcion");
+                        ViewBag.pro_Proveedor = new SelectList(db.Vw_Maqui_tbProveedores_DDL, "prv_ID", "prv_NombreCompañia");
+                        ModelState.AddModelError("Codigo", "* El código ingresado ya existe.");
+                        return View(item);
+                    }
+                    else
+                    {
+                        _generalesService.EditProductos(item.pro_Id, item.pro_Codigo, item.pro_Nombre,  item.pro_PrecioUnitario, Int32.Parse(item.pro_Proveedor)
+                            , 1, Int32.Parse(item.cat_Descripcion));
+                        TempData["SuccessMessage"] = "El proceso se completó correctamente";
+                        MostrarToastDeExito();
+                        return RedirectToAction("Index");
+                    }
+                }
+                else
+                {
+                    if (item.cat_Descripcion == "0") { ModelState.AddModelError("ValidarCategoria", "*"); }
+                    if (item.pro_Proveedor == "0") { ModelState.AddModelError("ValidarProveedor", "*"); }
+                    ViewBag.cat_Id = new SelectList(db.Vw_Maqui_tbCategorias_DDL, "cat_Id", "cat_Descripcion");
+                    ViewBag.pro_Proveedor = new SelectList(db.Vw_Maqui_tbProveedores_DDL, "prv_ID", "prv_NombreCompañia");
+                    return View(item);
+                }
+            }
+            else
+            {   
+                if (item.cat_Descripcion == "0") { ModelState.AddModelError("ValidarCategoria", "*"); }
+                if (item.pro_Proveedor == "0") { ModelState.AddModelError("ValidarProveedor", "*"); }
                 ViewBag.cat_Id = new SelectList(db.Vw_Maqui_tbCategorias_DDL, "cat_Id", "cat_Descripcion");
                 ViewBag.pro_Proveedor = new SelectList(db.Vw_Maqui_tbProveedores_DDL, "prv_ID", "prv_NombreCompañia");
                 return View(item);
