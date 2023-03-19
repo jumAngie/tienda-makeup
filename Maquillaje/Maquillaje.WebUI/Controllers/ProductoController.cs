@@ -151,7 +151,32 @@ namespace Maquillaje.WebUI.Controllers
         #endregion
 
         #region Editar Productos
+        [HttpGet]
+        public IActionResult Edit(int? id)
+        {
 
+            var producto = _generalesService.ObtenerProducto(id);
+            if (producto == null)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+
+                ProductosViewModel item = new ProductosViewModel();
+                item.pro_Id = producto.pro_Id;
+                item.pro_Codigo = producto.pro_Codigo;
+                item.pro_Nombre = producto.pro_Nombre;
+                item.pro_PrecioUnitario = producto.pro_PrecioUnitario;
+                item.pro_Proveedor = producto.pro_Proveedor.ToString();
+                item.pro_StockInicial = producto.pro_StockInicial;
+                item.cat_Descripcion = producto.pro_Categoria.ToString();
+
+                ViewBag.cat_Id = new SelectList(db.Vw_Maqui_tbCategorias_DDL, "cat_Id", "cat_Descripcion");
+                ViewBag.pro_Proveedor = new SelectList(db.Vw_Maqui_tbProveedores_DDL, "prv_ID", "prv_NombreCompañia");
+                return View(item);
+            }
+        }
 
         #endregion
 
