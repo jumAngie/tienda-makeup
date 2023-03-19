@@ -1,14 +1,14 @@
 ﻿$("#depto").change(function () {
 
     var depto = $("#depto").val();
-   
+
 
     $.ajax({
         url: "/Cliente/CargarMunicipios/" + depto,
         method: "GET",
         dataType: "json",
         contentType: "application/json; charset=utf-8",
-        
+
         success: function (data) {
             console.log(data);
             $("#cli_Municipio").empty();

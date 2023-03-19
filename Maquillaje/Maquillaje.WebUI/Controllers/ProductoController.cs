@@ -73,30 +73,15 @@ namespace Maquillaje.WebUI.Controllers
             return response;
         }
 
-        public HttpResponseMessage MostrarToastDeAdvertencia()
-        {
-            string script = "<script>toastr.warning('El Stock Inicial no puede ser cero.', 'Advertencia');</script>";
-            HttpResponseMessage response = new HttpResponseMessage();
-            response.Content = new StringContent(script, Encoding.UTF8, "text/html");
-            return response;
-        }
-
-        public HttpResponseMessage MostrarToastDeError()
-        {
-            string script = "<script>toastr.error('El código ingresado ya existe.', 'Error');</script>";
-            HttpResponseMessage response = new HttpResponseMessage();
-            response.Content = new StringContent(script, Encoding.UTF8, "text/html");
-            return response;
-        }
+        
         #endregion 
-
 
         #region Crear Productos
         [HttpGet("/Producto/Create")]
 
         public IActionResult Create()
         {
-            
+           
             ViewBag.cat_Id = new SelectList(db.Vw_Maqui_tbCategorias_DDL, "cat_Id", "cat_Descripcion");
             ViewBag.pro_Proveedor = new SelectList(db.Vw_Maqui_tbProveedores_DDL, "prv_ID", "prv_NombreCompañia");
             return View();
@@ -106,35 +91,6 @@ namespace Maquillaje.WebUI.Controllers
         [HttpPost]
         public IActionResult Create(ProductosViewModel item)
         {
-            if (TempData.ContainsKey("WarningMessage"))
-            {
-                
-                string warningMessage = TempData["WarningMessage"].ToString();
-                TempData.Remove("WarningMessage");
-
-                
-                string script = $"<script>toastr.warning('{warningMessage}', 'Advertencia');</script>";
-                ViewBag.WarningMessageScript = script;
-            }
-            else
-            {
-                ViewBag.WarningMessageScript = null;
-            }
-
-            if (TempData.ContainsKey("ErrorMessage"))
-            {
-
-                string errorMessage = TempData["ErrorMessage"].ToString();
-                TempData.Remove("ErrorMessage");
-
-
-                string script = $"<script>toastr.error('{errorMessage}', 'Error');</script>";
-                ViewBag.ErrorMessageScript = script;
-            }
-            else
-            {
-                ViewBag.ErrorMessageScript = null;
-            }
             if (ModelState.IsValid)
             {
                 if(item.pro_Codigo != null && item.pro_Nombre != null && item.pro_PrecioUnitario != 0 && item.pro_Proveedor != "0"
@@ -144,21 +100,16 @@ namespace Maquillaje.WebUI.Controllers
                     
                     if(item.pro_StockInicial == "0")
                     {
-                        ModelState.AddModelError("StockCero", "*");
-                        TempData["ErrorMessage"] = "El Stock Inicial no puede ser cero.";
-                        MostrarToastDeAdvertencia();
+                        ModelState.AddModelError("StockCero", "* El Stock Inicial no puede ser cero.");
                         ViewBag.cat_Id = new SelectList(db.Vw_Maqui_tbCategorias_DDL, "cat_Id", "cat_Descripcion");
                         ViewBag.pro_Proveedor = new SelectList(db.Vw_Maqui_tbProveedores_DDL, "prv_ID", "prv_NombreCompañia");
                         return View(item);
                     }
                     else
                     {
-
                         if (ExisteCodigo(item.pro_Codigo))
                         {
-                            ModelState.AddModelError("Codigo", "*");
-                            TempData["WarningMessage"] = "El código ingresado ya existe.";
-                            MostrarToastDeError();
+                            ModelState.AddModelError("Codigo", "* El código ingresado ya exsite.");
                             ViewBag.cat_Id = new SelectList(db.Vw_Maqui_tbCategorias_DDL, "cat_Id", "cat_Descripcion");
                             ViewBag.pro_Proveedor = new SelectList(db.Vw_Maqui_tbProveedores_DDL, "prv_ID", "prv_NombreCompañia");
                             return View(item);
@@ -189,19 +140,47 @@ namespace Maquillaje.WebUI.Controllers
             }
             else
             {
+                if (item.cat_Descripcion == "0") { ModelState.AddModelError("ValidarCategoria", "*"); }
+                if (item.pro_Proveedor == "0") { ModelState.AddModelError("ValidarProveedor", "*"); }
+                ViewBag.cat_Id = new SelectList(db.Vw_Maqui_tbCategorias_DDL, "cat_Id", "cat_Descripcion");
+                ViewBag.pro_Proveedor = new SelectList(db.Vw_Maqui_tbProveedores_DDL, "prv_ID", "prv_NombreCompañia");
                 return View(item);
             }
             
         }
         #endregion
 
-
         #region Editar Productos
+        [HttpGet]
+        public IActionResult Edit(int? id)
+        {
 
+            var producto = _generalesService.ObtenerProducto(id);
+            if (producto == null)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+
+                ProductosViewModel item = new ProductosViewModel();
+                item.pro_Id = producto.pro_Id;
+                item.pro_Codigo = producto.pro_Codigo;
+                item.pro_Nombre = producto.pro_Nombre;
+                item.pro_PrecioUnitario = producto.pro_PrecioUnitario;
+                item.pro_Proveedor = producto.pro_Proveedor.ToString();
+                item.pro_StockInicial = producto.pro_StockInicial;
+                item.cat_Descripcion = producto.pro_Categoria.ToString();
+
+                ViewBag.cat_Id = new SelectList(db.Vw_Maqui_tbCategorias_DDL, "cat_Id", "cat_Descripcion");
+                ViewBag.pro_Proveedor = new SelectList(db.Vw_Maqui_tbProveedores_DDL, "prv_ID", "prv_NombreCompañia");
+                return View(item);
+            }
+        }
 
         #endregion
 
-        #region Elimar Productos
+        #region Eliminar Productos
 
         [HttpPost("/Producto/Eliminar/")]
         public IActionResult Delete(int pro_Id)
