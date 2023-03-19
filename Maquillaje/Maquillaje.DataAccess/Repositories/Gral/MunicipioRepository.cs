@@ -40,6 +40,16 @@ namespace Maquillaje.DataAccess.Repositories.Gral
         }
 
 
+        public tbMunicipios CargarMunicipios(string muni_Id)
+        {
+            using var db = new SqlConnection(TiendaContext.ConnectionString);
+            var parametro = new DynamicParameters();
+            parametro.Add("@muni_Id", muni_Id, DbType.String, ParameterDirection.Input);
+
+            return db.QueryFirst<tbMunicipios>(ScriptsDataBase.MunicipiosCargarDatosId, parametro, commandType: CommandType.StoredProcedure);
+        }
+
+
         public IEnumerable<Vw_Gral_tbMunicipios_LIST> List()
         {
             using var db = new SqlConnection(TiendaContext.ConnectionString);

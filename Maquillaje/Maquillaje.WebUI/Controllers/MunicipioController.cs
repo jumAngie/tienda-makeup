@@ -26,7 +26,7 @@ namespace Maquillaje.WebUI.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet("/Municipios/Listado")]
+        [HttpGet("/Municipio/Listado")]
         public IActionResult Index()
         {
             ViewBag.depto = new SelectList(db.Vw_Gral_tbDepartamentos_DDL, "depto", "dep_Descripcion");
@@ -78,12 +78,9 @@ namespace Maquillaje.WebUI.Controllers
             try
             {
 
-                    return Json(db.tbDepartamentos.Select(x => new
-                    {
-                        DepartmentID = x.dep_ID,
-                        DepartmentName = x.dep_Descripcion
-                    }).ToList());
-            
+                var Deptos = _generalesService.ListadoDepartamentos();
+                return Json(Deptos);
+
             }
             catch (Exception)
             {
@@ -93,15 +90,23 @@ namespace Maquillaje.WebUI.Controllers
         }
 
 
-
-
-        public ActionResult Edit(int? id)
+        [HttpGet("/Municipio/DatosIdMunicipio")]
+        public JsonResult DatosIdMunicipio(string mun_Id)
         {
-
-            var tbMunicipios = db.UDF_Gral_tbMunicipios_CARGAR(id).ToList();
-            return Json(new { success = true, mun_Id = tbMunicipios[0].mun_ID, mun_Descripcion = tbMunicipios[0].mun_Descripcion, mun_DepId = tbMunicipios[0].mun_depID });
-
+            var Municipios = _generalesService.CargarDatosMuniPorId(mun_Id);
+            return Json(Municipios);
         }
+
+
+
+
+        //public ActionResult Edit(int? id)
+        //{
+
+        //    var tbMunicipios = db.UDF_Gral_tbMunicipios_CARGAR(id).ToList();
+        //    return Json(new { success = true, mun_Id = tbMunicipios[0].mun_ID, mun_Descripcion = tbMunicipios[0].mun_Descripcion, mun_DepId = tbMunicipios[0].mun_depID });
+
+        //}
 
 
 
@@ -118,10 +123,7 @@ namespace Maquillaje.WebUI.Controllers
 
             var mun = _mapper.Map<tbMunicipios>(muni);
             var resultado = _generalesService.UpdateMuni(mun);
-            if (resultado > 0)
-            {
-                return Json(new { success = true, Editar = true });
-            }
+
             return RedirectToAction("Index");
 
         }

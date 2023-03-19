@@ -1,86 +1,67 @@
-﻿<!-- The Modal -->
-<Form action="@Url.Action("Edit","Municipio")" id="EditMun" method="post">
-    <div class="modal" id="EditMuni">
-        <div class="modal-dialog">
-            <div class="modal-content">
+﻿
+<!-- The Modal -->
+<div class="modal" id="EditMuni">
+    <div class="modal__content">
+        <div class="flex items-center px-5 py-5 sm:py-3 border-b border-gray-200">
+            <h2 class="font-medium text-base mr-auto">Cree un Municipio</h2>
+        </div>
 
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title">Edita un Municipio</h4>
-                </div>
+        <div class="p-5 grid grid-cols-12 gap-4 row-gap-3">
+            <div class="col-span-12 sm:col-span-12">
+                <Form action="@Url.Action("Edit","Municipio")" id="EditMun" method="post">
 
-                <!-- Modal body -->
-                <div class="modal-body">
-                    <div class="p-4 pb-0">
-                        <div class="row">
-                                    <input type="hidden" id="txtid" name="mun_Id" class="form-control" readonly />
+                    <input type="hidden" id="txtid" name="mun_Id" class="form-control" readonly />
 
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label>Departamento<label id="lb7" hidden style="color:red;">*</label></label>
-                                    <select id="DDL_Dept" name="mun_DepId" class="form-control"></select>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label>Municipio<label id="lb8" hidden style="color:red;">*</label></label>
-                                    <input type="text" id="txtMuni" required name="mun_Descripcion" class="form-control" />
-                                </div>
-                            </div>
-
-                        </div>
-                        <br />
-                        <br />
-                    </div>
-                </div>
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-warning" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-outline-success" onclick="Editar()">Guardar</button>
-                </div>
+                    <label>Departamento</label>
+                    <select id="mun_DepId" name="mun_DepId" class="input w-full border mt-2 flex-1"></select>
+                    <label>Municipio</label>
+                    <input type="text" id="txtMuni" required name="mun_Descripcion" class="input w-full border mt-2 flex-1" />
+                </Form>
 
             </div>
         </div>
+        <div class="px-5 py-3 text-right border-t border-gray-200">
+            <button type="button" data-dismiss="modal" class="button w-20 border text-gray-700 mr-1">Cancelar</button>
+            <button type="button" onclick="Editar()" class="button w-20 bg-theme-1 text-white">Guardar</button>
+        </div>
     </div>
-</Form>
+</div>
 
 <script>
 
 
-    function DataEdit(id) {
 
+
+    function CargarDatos(mun_Id) {
         $.ajax({
-            url: "/Municipio/Edit",
-            type: 'GET',
-            data: { id: id },
-            success: function (result) {
-                console.log(result);
-                if (result.success) {
-                    $('#txtid').val(result.mun_Id);
-                    $('#txtMuni').val(result.mun_Descripcion);
-                    $('#DDL_Dept').val(result.mun_DepId);
+            type: "GET",
+            url: "/Municipio/DatosIdMunicipio",
+            data: { mun_Id: mun_Id },
+            success: function (data) {
 
-
-                    $.ajax({
-                        url: "/Municipio/getDepartment",
-                        type: "GET",
-                        data: "{}",
-                        success: function (data) {
-                            var s = '<option value="-1">Por favor selecciona un departamento</option>';
-                            for (var i = 0; i < data.length; i++) {
-                                s += '<option value="' + data[i].DepartmentID + '">' + data[i].DepartmentName + '</option>';
-                            }
-                            $("#DDL_Dept").html(s);
-                            $('#DDL_Dept').val(result.mun_DepId);
+                $("#txtid").val(data.mun_Id);
+                $("#txtMuni").val(data.mun_Descripcion);
+                var deptoId = data.mun_DepId;
+                $.ajax({
+                    type: "GET",
+                    url: "/Municipio/getDepartment",
+                    data: "{}",
+                    success: function (data) {
+                        var s;
+                        for (var i = 0; i < data.length; i++) {
+                            s += '<option value="' + data[i].dep_ID + '" >' + data[i].dep_Descripcion + '</option>';
                         }
-                    });
-                }
+                        $("#mun_DepId").html(s);
+                        $("#mun_DepId").val(deptoId);
+                    }
+                });
             }
         });
     }
 
+
     function Editar() {
-        var id = $('#DDL_Dept').val();
+        var id = $('#mun_DepId').val();
         var id2 = $('#txtMuni').val();
         var id3 = $('#txtid').val();
         $.ajax({
@@ -89,12 +70,13 @@
             data: { mun_Id: id3, mun_DepId: id, mun_Descripcion: id2 },
             success: function (result) {
                 if (result.success && result.Editar) {
-                    window.location.reload();
+                    $('#EditMun').submit();
+                    mostrarSuccessToast("Se ha ingresado correctamente.")
                 }
                 else {
                     $("#txtid").val(result.mun_Id);
                     $('#txtMuni').val(result.mun_Descripcion);
-                    $('#DDL_Dept').val(result.mun_DepId);
+                    $('#mun_DepId').val(result.mun_DepId);
                 }
             }
         });

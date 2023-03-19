@@ -1,5 +1,4 @@
 ﻿<!-- The Modal -->
-<Form action="@Url.Action("Create","Sucursal")" id="createsuc" method="post">
 
     <div class="modal" id="CreateSucu">
         <div class="modal__content">
@@ -9,16 +8,18 @@
 
             <div class="p-5 grid grid-cols-12 gap-4 row-gap-3">
                 <div class="col-span-12 sm:col-span-12">
+                    <Form action="@Url.Action("Create","Sucursal")" id="createsuc" method="post">
 
-                    <label>Departamento</label>
-                    <select id="depto" name="depto" class="select2 w-full" asp-items="ViewBag.depto"></select>
+                        <label>Departamento</label>
+                        <select id="deptoCrea" name="deptoCrea" asp-items="ViewBag.deptoCrea"></select>
+                        <br />
+                        <label>Ciudad</label>
+                        <select id="suc_MunicipioCrea" name="suc_MunicipioCrea"></select>
+                        <br />
+                        <label>Descripcion</label>
+                        <input type="text" class="input w-full border mt-2 flex-1" id="suc_DescripcionCrea" name="suc_Descripcion" />
 
-                    <label>Ciudad</label>
-                    <select id="suc_Municipio" name="suc_Municipio" class="select2 w-full"></select>
-
-                    <label>Descripcion</label>
-                    <input type="text" class="input w-full border mt-2 flex-1" id="suc" name="suc_Descripcion" />
-
+                    </Form>
 
                 </div>
             </div>
@@ -29,14 +30,13 @@
             </div>
         </div>
     </div>
-</Form>
 
 <script>
 
 
-    $("#depto").change(function () {
+    $("#deptoCrea").change(function () {
 
-        var depto = $("#depto").val();
+        var depto = $("#deptoCrea").val();
 
         console.log(depto);
 
@@ -47,11 +47,11 @@
             contentType: "application/json; charset=utf-8",
 
             success: function (data) {
-                $("#suc_Municipio").empty();
-                $("#suc_Municipio").append("<option value= '0' >Seleccione un Municipio</option>");
+                $("#suc_MunicipioCrea").empty();
+                $("#suc_MunicipioCrea").append("<option value= '0' >Seleccione un Municipio</option>");
 
                 $.each(data, function (i, value) {
-                    $("#suc_Municipio").append("<option value='" + value.mun_ID + "'>" + value.mun_Descripcion + "</option>");
+                    $("#suc_MunicipioCrea").append("<option value='" + value.mun_ID + "'>" + value.mun_Descripcion + "</option>");
                 })
             }
         })
@@ -63,7 +63,7 @@
         var siuu = true;
 
 
-        if ($('#suc').val() == "" || $('#depto').val() == 0 || $('#suc_Municipio').val() == 0) {
+        if ($('#suc_DescripcionCrea').val() == "" || $('#deptoCrea').val() == 0 || $('#suc_MunicipioCrea').val() == 0) {
             mostrarErrorToast("Campos requeridos.");
             siuu = false;
             console.log(1);

@@ -28,7 +28,7 @@ namespace Maquillaje.WebUI.Controllers
         [HttpGet("/Sucursal/Listado")]
         public IActionResult Index()
         {
-            ViewBag.depto = new SelectList(db.Vw_Gral_tbDepartamentos_DDL, "depto", "dep_Descripcion");
+            ViewBag.deptoCrea = new SelectList(db.Vw_Gral_tbDepartamentos_DDL, "depto", "dep_Descripcion");
             var listado = _generalesService.ListadoSucursales();
             var ListadoMapeado = _mapper.Map<IEnumerable<SucursalesViewModel>>(listado);
             return View(ListadoMapeado);
@@ -39,7 +39,7 @@ namespace Maquillaje.WebUI.Controllers
 
         public IActionResult Create()
         {
-            ViewBag.depto = new SelectList(db.Vw_Gral_tbDepartamentos_DDL, "depto", "dep_Descripcion");
+            ViewBag.deptoCrea = new SelectList(db.Vw_Gral_tbDepartamentos_DDL, "depto", "dep_Descripcion");
             return View();
         }
 
@@ -58,11 +58,11 @@ namespace Maquillaje.WebUI.Controllers
 
 
         [HttpPost("/Sucursal/Create")]
-        public IActionResult Create(string suc_Descripcion, int suc_Municipio)
+        public IActionResult Create(string suc_Descripcion, int suc_MunicipioCrea)
         {
             tbSucursales sucu = new tbSucursales();
             sucu.suc_Descripcion = suc_Descripcion;
-            sucu.suc_Municipio = suc_Municipio;
+            sucu.suc_Municipio = suc_MunicipioCrea;
             sucu.suc_UsuCrea = 1;
             var suc = _mapper.Map<tbSucursales>(sucu);
             var result = _generalesService.CreateSucursales(suc);
@@ -76,7 +76,7 @@ namespace Maquillaje.WebUI.Controllers
         [HttpGet("/Sucursales/CargarInfo/{depto}")]
         public JsonResult CargarInfo(int depto)
         {
-            ViewBag.depto = new SelectList(db.Vw_Gral_tbDepartamentos_DDL, "depto", "dep_Descripcion");
+            ViewBag.deptoCrea = new SelectList(db.Vw_Gral_tbDepartamentos_DDL, "depto", "dep_Descripcion");
             var ddl = db.UDF_Gral_tbSucursales_DDL(depto).ToList();
 
             return Json(ddl);
@@ -92,7 +92,7 @@ namespace Maquillaje.WebUI.Controllers
             suc.suc_Id = suc_Id;
             suc.suc_Descripcion = suc_Descripcion;
             suc.suc_usuModi = 1;
-            ViewBag.depto = new SelectList(db.Vw_Gral_tbDepartamentos_DDL, "depto", "dep_Descripcion");
+            ViewBag.deptoCrea = new SelectList(db.Vw_Gral_tbDepartamentos_DDL, "depto", "dep_Descripcion");
 
             var sucu = _mapper.Map<tbSucursales>(suc);
             var result = _generalesService.EditSucursales(sucu);
