@@ -28,7 +28,10 @@ namespace Maquillaje.DataAccess.Repositories.Gral
 
         public tbSucursales Find(int? id)
         {
-            throw new NotImplementedException();
+            using var db = new TiendaContext();
+            var result = db.tbSucursales.Find(id);
+
+            return result;
         }
 
         public int Insert(tbSucursales item)

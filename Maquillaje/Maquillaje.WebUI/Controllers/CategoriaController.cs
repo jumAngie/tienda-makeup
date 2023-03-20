@@ -76,8 +76,6 @@ namespace Maquillaje.WebUI.Controllers
                 }
 
                 tbCategorias catego = _generalesService.BuscarCategoria(id);
-                //var catego = db.UDF_tbCategorias_BuscarCategorias(id).ToList();
-                
                 if (catego == null)
                 {
                     return RedirectToAction("Index"); // acá vamos a redireccionar a la pagina 404
