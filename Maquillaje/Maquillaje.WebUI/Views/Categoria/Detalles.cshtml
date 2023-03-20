@@ -1,0 +1,43 @@
+﻿@model Maquillaje.Entities.Entities.tbCategorias
+
+@{
+    ViewData["Title"] = "Detalles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Detalles</h1>
+
+<div>
+    <h4>tbCategorias</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.cat_Descripcion)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.cat_Descripcion)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.cat_FechaCrea)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.cat_FechaCrea)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.cat_FechaModi)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.cat_FechaModi)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.cat_Estado)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.cat_Estado)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.cat_Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

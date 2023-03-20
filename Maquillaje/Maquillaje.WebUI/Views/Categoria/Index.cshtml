@@ -9,9 +9,14 @@
     <div class="card" style="background-color: white">
         <div class="d-flex align-items-end row">
             <div class="col-sm-12">
-
-
+                <div class="card-header" style="background-color:hotpink">
+                    <div class="text-center">
+                        <img src="~/Content/iMG/giphy.gif" width="100" />
+                        <h3 style="color:white">Listado Categorías</h3>
+                    </div>
+                </div>
                 <div class="card-body">
+
                     <a class="btn btn-outline-primary" data-toggle="modal" data-target="#CreateCate">Nuevo</a>
                     <br />
                     <br />
@@ -40,7 +45,7 @@
                                         @Html.DisplayFor(modelItem => item.cat_Descripcion)
                                     </td>
                                     <td>
-                                        <a class="btn btn-outline-info" data-toggle="modal" data-target="#EditCate" onclick="Editar('@item.cat_Id,@item.cat_Descripcion')">Editar</a> |
+                                        <a class="btn btn-outline-secondary" data-toggle="modal" data-target="#EditCate" onclick="Editar('@item.cat_Id,@item.cat_Descripcion')">Editar</a> |
                                         <a class="btn btn-outline-success" asp-action="Details" asp-route-id="@item.cat_Id">Detalles</a> |
                                         <a class="btn btn-outline-danger" onclick="ShowModal(@item.cat_Id)" data-id="@item.cat_Id">Eliminar</a>
                                     </td>
