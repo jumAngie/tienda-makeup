@@ -2182,3 +2182,32 @@ BEGIN
  DELETE FROM Maqui.tbVentasDetalle WHERE vde_Id = @vde_Id
 END
 GO
+
+
+CREATE OR ALTER PROCEDURE UDP_Login
+(
+@usu_Usuario NVARCHAR(100),
+@usu_Clave	 NVARCHAR(100)
+)
+AS
+BEGIN
+
+SELECT  usu_ID, 
+		emp_Nombre + ' ' + emp_Apellido AS usu_Nombre,
+		usu_EsAdmin,
+		emp_Sucursal,
+		suc_Descripcion,
+		usu_Usuario, 
+		usu_Clave
+		FROM Gral.[tbUsuarios] T1 
+		INNER JOIN Gral.tbEmpleados T2
+		ON T1.usu_empID = T2.emp_ID
+		INNER JOIN Gral.tbSucursales T3
+		ON T2.emp_Sucursal = T3.suc_Id
+		WHERE [usu_Clave] = @usu_Clave
+
+
+
+END
+GO
+
