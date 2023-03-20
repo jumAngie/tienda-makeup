@@ -773,6 +773,14 @@ namespace Maquillaje.BusinessLogic.Services
             return _usuariosRepository.Find(id);
         }
 
+        public string[] ValidarLogin(string txtUsername, string txtPass)
+        {
+
+            var result = _usuariosRepository.IniciarSesion(txtUsername, txtPass);
+            return result;
+
+        }
+
         #endregion
     }
 }
