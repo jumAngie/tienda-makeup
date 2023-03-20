@@ -11,12 +11,12 @@ namespace Maquillaje.DataAccess.Repositories.Maqui
 {
     public class VentasRepository : IRepository<tbVentas>
     {
-        public IEnumerable<tbVentas> IdVentaReciente()
+        public int IdVentaReciente()
         {
             using var db = new SqlConnection(TiendaContext.ConnectionString);
-            var listado = db.Query<tbVentas>(ScriptsDataBase.IdVentaReciente, null, commandType: CommandType.StoredProcedure);
-
-            return listado;
+            var registro = db.ExecuteScalar<int>(ScriptsDataBase.IdVentaReciente, null, commandType: CommandType.StoredProcedure);
+            
+            return registro;
         }
 
 
