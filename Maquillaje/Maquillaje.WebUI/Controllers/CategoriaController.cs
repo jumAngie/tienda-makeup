@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Maquillaje.BusinessLogic.Services;
+using Maquillaje.DataAccess;
 using Maquillaje.Entities.Entities;
 using Maquillaje.WebUI.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -14,6 +15,7 @@ namespace Maquillaje.WebUI.Controllers
     {
         private readonly GeneralesService _generalesService;
         private readonly IMapper _mapper;
+        TiendaContext db = new TiendaContext();
 
 
         public CategoriaController(GeneralesService generalesService, IMapper mapper)
@@ -74,6 +76,8 @@ namespace Maquillaje.WebUI.Controllers
                 }
 
                 tbCategorias catego = _generalesService.BuscarCategoria(id);
+                //var catego = db.UDF_tbCategorias_BuscarCategorias(id).ToList();
+                
                 if (catego == null)
                 {
                     return RedirectToAction("Index"); // acá vamos a redireccionar a la pagina 404
