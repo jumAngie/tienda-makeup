@@ -2211,3 +2211,16 @@ SELECT  usu_ID,
 END
 GO
 
+CREATE OR ALTER FUNCTION Maqui.UDF_tbCategorias_BuscarCategorias(@ID INT)
+RETURNS TABLE
+RETURN
+SELECT cat_Id, cat_Descripcion, cat_UsuCrea = usu.usu_Usuario, cat_UsuModi = usua.usu_Usuario, cat_FechaCrea, cat_FechaModi FROM Maqui.tbCategorias cate
+INNER JOIN  [Gral].[tbUsuarios] usu
+ON		cate.cat_UsuCrea = usu.usu_ID
+LEFT JOIN  [Gral].[tbUsuarios] usua
+ON		cate.cat_UsuModi = usua.usu_ID
+WHERE	cate.cat_Id = @ID
+GO
+SELECT*FROM Maqui.UDF_tbCategorias_BuscarCategorias(1)
+
+SELECT * FROM Maqui.tbCategorias

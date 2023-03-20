@@ -4,33 +4,73 @@
     ViewData["Title"] = "Detalles";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div class="text-center">
+    <img src="~/Content/iMG/giphy.gif" width="100" />
+    <h1 style="color:black;font-family:'Segoe Print'">Detalles Categoria</h1>
+</div>
+<center>
+    <div>
+        <hr />
 
-<h1>Detalles</h1>
 
-<div>
-    <h4>Detalles Categorias</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.cat_Descripcion)
+        <dl class="row">
+            <div class="col-sm-2"></div>
+            <div class="row">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-4">
+            <dt>
+                @Html.DisplayNameFor(model => model.cat_Descripcion)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.cat_Descripcion)
+            </dd>
+    </div>
+    <div class="col-sm-2"></div>
+    <div class="col-sm-4">
+        <dt>
+            @Html.DisplayNameFor(model => model.cat_UsuCrea)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.cat_Descripcion)
+        <dd>
+            @Html.DisplayFor(model => model.cat_UsuCrea)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.cat_FechaCrea)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.cat_FechaCrea)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.cat_FechaModi)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.cat_FechaModi)
-        </dd>
+    </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-4">
+            <dt>
+                @Html.DisplayNameFor(model => model.cat_FechaCrea)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.cat_FechaCrea)
+            </dd>
+        </div>
+        <div class="col-sm-2"></div>
+        <div class="col-sm-4">
+            <dt>
+                @Html.DisplayNameFor(model => model.cat_UsuModi)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.cat_UsuModi)
+            </dd>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-4">
+            <dt>
+                @Html.DisplayNameFor(model => model.cat_FechaModi)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.cat_FechaModi)
+            </dd>
+        </div>
+    </div>
     </dl>
-</div>
-<div>
-    <a class="btn btn-light" asp-action="Index">Volver</a>
-</div>
+    </div>
+
+    <div>
+        <a class="btn btn-light" asp-action="Index">Volver</a>
+    </div>
+</center>
+<center><strong><h2>@ViewBag.NombreCategoria</h2></strong></center>
