@@ -64,7 +64,36 @@ namespace Maquillaje.WebUI.Controllers
             return RedirectToAction("Index");
         }
 
+        public IActionResult Details(int? id)
+        {
+            try
+            {
+                if (id == null)
+                {
+                    return RedirectToAction("Index");
+                }
 
+                tbCategorias catego = _generalesService.BuscarCategoria(id);
+                if (catego == null)
+                {
+                    return RedirectToAction("Index"); // acá vamos a redireccionar a la pagina 404
+                }
+                CategoriaViewModel model = new CategoriaViewModel();
+                model.cat_Id = catego.cat_Id;
+                model.cat_Descripcion = catego.cat_Descripcion;
+                model.cat_FechaCrea = catego.cat_FechaCrea;
+                model.cat_FechaModi = catego.cat_FechaModi;
+                model.cat_UsuCrea = catego.cat_UsuCrea;
+                model.cat_UsuModi = catego.cat_UsuModi;
+                return View(model);
+
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Index"); // acá iria la pagina 404
+
+            }
+        }
 
 
 

@@ -1,4 +1,4 @@
-﻿@model Maquillaje.Entities.Entities.tbCategorias
+﻿@model Maquillaje.WebUI.Models.CategoriaViewModel
 
 @{
     ViewData["Title"] = "Detalles";
@@ -8,7 +8,7 @@
 <h1>Detalles</h1>
 
 <div>
-    <h4>tbCategorias</h4>
+    <h4>Detalles Categorias</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -29,9 +29,6 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.cat_FechaModi)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.cat_Estado)
-        </dt>
     </dl>
 </div>
 <div>

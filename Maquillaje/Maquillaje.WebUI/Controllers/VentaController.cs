@@ -49,31 +49,31 @@ namespace Maquillaje.WebUI.Controllers
 
         }
 
-        [HttpPost, ActionName("CargarDdl")]
-        public ActionResult CargarDdlClientes(string cargar)
-        {
-            try
-            {
-                if (cargar != null && cargar != "")
-                {
-                    var DdlClientes = db.UDF_Gral_tbClientes_DDL();
-                    var Ddlproductos = db.UDF_Maqui_tbProductos_DDL();
-                    return Json(new { DdlClientes, Ddlproductos });
-                }
-                else
-                {
-                    return RedirectToAction("Index");
-                }
+        //[HttpPost, ActionName("CargarDdl")]
+        //public ActionResult CargarDdlClientes(string cargar)
+        //{
+        //    try
+        //    {
+        //        if (cargar != null && cargar != "")
+        //        {
+        //            //var DdlClientes = db.UDF_Gral_tbClientes_DDL();
+        //            //var Ddlproductos = db.UDF_Maqui_tbProductos_DDL();
+        //            return Json(new { DdlClientes, Ddlproductos });
+        //        }
+        //        else
+        //        {
+        //            return RedirectToAction("Index");
+        //        }
 
 
-            }
-            catch (Exception)
-            {
-                // cambiar a pagina de error.
-                return RedirectToAction("Index");
-                throw;
-            }
-        }
+        //    }
+        //    catch (Exception)
+        //    {
+        //        // cambiar a pagina de error.
+        //        return RedirectToAction("Index");
+        //        throw;
+        //    }
+        //}
 
         [HttpPost, ActionName("Guardar")]
         public ActionResult Guardar(int? clie_id)
