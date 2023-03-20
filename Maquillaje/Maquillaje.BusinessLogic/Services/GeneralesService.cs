@@ -394,23 +394,34 @@ namespace Maquillaje.BusinessLogic.Services
 
         }
 
-        public int UpdateMuni(tbMunicipios municipios)
+        public int EditarCiudades(int mun_Id, string mun_Descripcion, int mun_DepId)
         {
-            try
-            {
-                return _municipiosRepository.Update(municipios);
-            }
-            catch (Exception)
-            {
 
-                return 1;
-            }
+            var result = _municipiosRepository.Update(mun_Id, mun_Descripcion, mun_DepId);
+            return result;
+
+
         }
 
-        public tbMunicipios BuscarMuni(int? id)
+        public IEnumerable<tbMunicipios> LlenarCiudades(int? id)
         {
-            return _municipiosRepository.Find(id);
+
+            var result = _municipiosRepository.Find(id);
+            return result;
+
+
         }
+
+        public IEnumerable<tbDepartamentos> CargaDepa()
+        {
+
+            var result = _municipiosRepository.CargaDepa();
+            return result;
+
+
+        }
+
+ 
 
         #endregion
 

@@ -1729,6 +1729,18 @@ END
 GO
 
 
+CREATE OR ALTER PROC UDP_tbDeptos_CARGAR
+AS BEGIN
+
+SELECT '0' AS 'dep_ID', ' ---Seleccione una opción---' AS 'dep_Descripcion'
+UNION ALL
+SELECT  
+		dep_ID,
+		dep_Descripcion
+		FROM  Gral.tbDepartamentos T2
+END
+GO
+
 
 CREATE OR ALTER PROC UDP_Gral_tbMunicipios_CARGARPORDEPTO
 (@dep_Id NVARCHAR(100))
@@ -1746,7 +1758,6 @@ SELECT  mun_ID,
 END
 GO
 
-
 CREATE OR ALTER PROC UDP_Gral_tbEstadosCiviles_EDITAR(
 @est_Id INT,
 @est_Descripcion NVARCHAR(100),
@@ -1756,6 +1767,20 @@ AS BEGIN
 UPDATE Gral.tbEstadosCiviles SET est_Descripcion = @est_Descripcion,
 								est_UsuarioModi = @est_UsuModi
 									WHERE est_ID = @est_Id
+END
+GO
+
+
+CREATE OR ALTER PROC UDP_Gral_tbMunicipios_CARGAR(@mun_Id INT)
+AS BEGIN
+SELECT  mun_ID ,
+		mun_depID,
+		dep_Descripcion,
+		mun_Descripcion
+		FROM Gral.tbMunicipios T1
+		INNER JOIN Gral.tbDepartamentos T2
+		ON T1.mun_depID = T2.dep_ID
+		WHERE mun_ID = @mun_Id
 END
 GO
 
@@ -2155,33 +2180,5 @@ CREATE OR ALTER PROCEDURE Maqui.UDP_tbDetallesVentas_EliminarDetalleVenta (@vde_
 AS
 BEGIN
  DELETE FROM Maqui.tbVentasDetalle WHERE vde_Id = @vde_Id
-END
-GO
-
-
-CREATE OR ALTER PROCEDURE UDP_Login
-(
-@usu_Usuario NVARCHAR(100),
-@usu_Clave	 NVARCHAR(100)
-)
-AS
-BEGIN
-
-SELECT  usu_ID, 
-		emp_Nombre + ' ' + emp_Apellido AS usu_Nombre,
-		usu_EsAdmin,
-		emp_Sucursal,
-		suc_Descripcion,
-		usu_Usuario, 
-		usu_Clave
-		FROM Gral.[tbUsuarios] T1 
-		INNER JOIN Gral.tbEmpleados T2
-		ON T1.usu_empID = T2.emp_ID
-		INNER JOIN Gral.tbSucursales T3
-		ON T2.emp_Sucursal = T3.suc_Id
-		WHERE [usu_Clave] = @usu_Clave
-
-
-
 END
 GO

@@ -73,52 +73,87 @@ namespace Maquillaje.WebUI.Controllers
 
 
 
-        public ActionResult getDepartment()
-        {
-            try
-            {
+        //public ActionResult getDepartment()
+        //{
+        //    try
+        //    {
 
-                var Deptos = _generalesService.ListadoDepartamentos();
-                return Json(Deptos);
+        //        var Deptos = _generalesService.ListadoDepartamentos();
+        //        return Json(Deptos);
 
-            }
-            catch (Exception)
-            {
-                return RedirectToAction("Index", "Home");
-                throw;
-            }
-        }
-
-
+        //    }
+        //    catch (Exception)
+        //    {
+        //        return RedirectToAction("Index", "Home");
+        //        throw;
+        //    }
+        //}
 
 
-        //public ActionResult Edit(int? id)
+
+
+        ////public ActionResult Edit(int? id)
+        ////{
+
+        ////    var tbMunicipios = db.UDF_Gral_tbMunicipios_CARGAR(id).ToList();
+        ////    return Json(new { success = true, mun_Id = tbMunicipios[0].mun_ID, mun_Descripcion = tbMunicipios[0].mun_Descripcion, mun_DepId = tbMunicipios[0].mun_depID });
+
+        ////}
+
+
+
+
+        //[HttpPost("/Municipio/Edit")]
+        //public ActionResult Edit(int mun_Id, int mun_DepId, string mun_Descripcion)
         //{
 
-        //    var tbMunicipios = db.UDF_Gral_tbMunicipios_CARGAR(id).ToList();
-        //    return Json(new { success = true, mun_Id = tbMunicipios[0].mun_ID, mun_Descripcion = tbMunicipios[0].mun_Descripcion, mun_DepId = tbMunicipios[0].mun_depID });
+        //    tbMunicipios muni = new tbMunicipios();
+        //    muni.mun_ID = mun_Id;
+        //    muni.mun_Descripcion = mun_Descripcion;
+        //    muni.mun_depID = mun_DepId;
+        //    muni.mun_UsuarioModi = 1;
+
+        //    var mun = _mapper.Map<tbMunicipios>(muni);
+        //    var resultado = _generalesService.UpdateMuni(mun);
+
+        //    return RedirectToAction("Index");
 
         //}
 
 
 
 
-        [HttpPost("/Municipio/Edit")]
-        public ActionResult Edit(int mun_Id, int mun_DepId, string mun_Descripcion)
+        [HttpGet("/Municipios/Cargar")]
+        public JsonResult Cargar()
         {
 
-            tbMunicipios muni = new tbMunicipios();
-            muni.mun_ID = mun_Id;
-            muni.mun_Descripcion = mun_Descripcion;
-            muni.mun_depID = mun_DepId;
-            muni.mun_UsuarioModi = 1;
+            var cargaDepa = _generalesService.CargaDepa();
 
-            var mun = _mapper.Map<tbMunicipios>(muni);
-            var resultado = _generalesService.UpdateMuni(mun);
+            return Json(cargaDepa);
+        }
 
-            return RedirectToAction("Index");
+
+        [HttpGet("/Municipios/CargaPaEditar/{mun_Id}")]
+        public JsonResult CargaPaEditar(int? mun_Id)
+        {
+
+            var CargaPaEditar = _generalesService.LlenarCiudades(mun_Id);
+
+            return Json(CargaPaEditar);
+        }
+
+
+        [HttpGet("/Municipios/Editar/{mun_Id}/{mun_Descripcion}/{mun_DepIdEdit}")]
+        public JsonResult Editar(int mun_Id, string mun_Descripcion, int mun_DepIdEdit)
+        {
+
+            var CargaPaEditar = _generalesService.EditarCiudades(mun_Id, mun_Descripcion, mun_DepIdEdit);
+
+            return Json(CargaPaEditar);
 
         }
+
+
 
     }
 }

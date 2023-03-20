@@ -21,11 +21,16 @@ namespace Maquillaje.DataAccess.Repositories.Gral
             throw new NotImplementedException();
         }
 
-        public tbMunicipios Find(int? id)
+        public IEnumerable<tbMunicipios> Find(int? id)
         {
-            using var db = new TiendaContext();
-            var result = db.tbMunicipios.Find(id);
-            return result;
+            using var db = new SqlConnection(TiendaContext.ConnectionString);
+
+
+            var parametros = new DynamicParameters();
+            parametros.Add("@mun_Id", id, DbType.Int32, ParameterDirection.Input);
+
+            return db.Query<tbMunicipios>(ScriptsDataBase.MunicipiosCargar, parametros, commandType: CommandType.StoredProcedure);
+
         }
 
         public int Insert(tbMunicipios item)
@@ -40,14 +45,14 @@ namespace Maquillaje.DataAccess.Repositories.Gral
         }
 
 
-        public tbMunicipios CargarMunicipios(string muni_Id)
-        {
-            using var db = new SqlConnection(TiendaContext.ConnectionString);
-            var parametro = new DynamicParameters();
-            parametro.Add("@muni_Id", muni_Id, DbType.String, ParameterDirection.Input);
+        //public tbMunicipios CargarMunicipios(string muni_Id)
+        //{
+        //    using var db = new SqlConnection(TiendaContext.ConnectionString);
+        //    var parametro = new DynamicParameters();
+        //    parametro.Add("@muni_Id", muni_Id, DbType.String, ParameterDirection.Input);
 
-            return db.QueryFirst<tbMunicipios>(ScriptsDataBase.MunicipiosCargarDatosId, parametro, commandType: CommandType.StoredProcedure);
-        }
+        //    return db.QueryFirst<tbMunicipios>(ScriptsDataBase.MunicipiosCargarDatosId, parametro, commandType: CommandType.StoredProcedure);
+        //}
 
 
         public IEnumerable<Vw_Gral_tbMunicipios_LIST> List()
@@ -59,20 +64,49 @@ namespace Maquillaje.DataAccess.Repositories.Gral
         }
 
 
-        public int Update(tbMunicipios item)
+        public int Update(int mun_Id, string mun_Descripcion, int mun_DepId)
         {
             using var db = new SqlConnection(TiendaContext.ConnectionString);
             var parametros = new DynamicParameters();
-            parametros.Add("@mun_Descripcion", item.mun_Descripcion, DbType.String, ParameterDirection.Input);
-            parametros.Add("@mun_UsuModi", item.mun_UsuarioModi, DbType.Int32, ParameterDirection.Input);
-            parametros.Add("@mun_Id", item.mun_ID, DbType.String, ParameterDirection.Input);
-            parametros.Add("@mun_DepId", item.mun_depID, DbType.String, ParameterDirection.Input);
+            parametros.Add("@mun_Descripcion", mun_Descripcion, DbType.String, ParameterDirection.Input);
+            parametros.Add("@mun_UsuModi", 1, DbType.Int32, ParameterDirection.Input);
+            parametros.Add("@mun_Id", mun_Id, DbType.Int32, ParameterDirection.Input);
+            parametros.Add("@mun_DepId", mun_DepId, DbType.Int32, ParameterDirection.Input);
 
 
-            return db.Execute(ScriptsDataBase.MunicipiosEditar, parametros, commandType: CommandType.StoredProcedure);
+            var lis = db.Query<tbMunicipios>(ScriptsDataBase.MunicipiosEditar, parametros, commandType: CommandType.StoredProcedure);
+
+            int result = 0;
+            if (lis.Count() == 1)
+            {
+                result = 1;
+            }
+
+            return result;
+        }
+
+
+        public IEnumerable<tbDepartamentos> CargaDepa()
+        {
+
+            using var db = new SqlConnection(TiendaContext.ConnectionString);
+
+
+            return db.Query<tbDepartamentos>(ScriptsDataBase.MunicipiosCargarCiudades, commandType: CommandType.StoredProcedure);
+
         }
 
         IEnumerable<tbMunicipios> IRepository<tbMunicipios>.List()
+        {
+            throw new NotImplementedException();
+        }
+
+        public int Update(tbMunicipios item)
+        {
+            throw new NotImplementedException();
+        }
+
+        tbMunicipios IRepository<tbMunicipios>.Find(int? id)
         {
             throw new NotImplementedException();
         }

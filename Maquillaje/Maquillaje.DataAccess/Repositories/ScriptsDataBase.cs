@@ -50,7 +50,9 @@ namespace Maquillaje.DataAccess.Repositories
         #region Municipios
         public static string MunicipiosCrear = "UDP_Gral_tbMunicipios_CREAR";
         public static string MunicipiosEditar = "UDP_Gral_tbMunicipios_EDITAR";
-        public static string MunicipiosCargarDatosId = "UDP_tbMunicipios_CargarDatosEditarPorIdmunicipio";
+        public static string MunicipiosCargarCiudades = "UDP_tbDeptos_CARGAR";
+        public static string MunicipiosCargar = "UDP_Gral_tbMunicipios_CARGAR";
+
 
         #endregion
 
