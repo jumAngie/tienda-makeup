@@ -1667,14 +1667,22 @@ UNION ALL
 SELECT cli_ID, cli_Nombre + ' ' + cli_Apellido FROM Gral.tbClientes
 
 go
+
+
+
+
+
+
+
 CREATE OR ALTER PROC UDP_Maqui_tbCategorias_EDITAR(
 @cat_Id INT,
 @cat_Descripcion NVARCHAR(100),
 @cat_UsuModi INT)
 AS BEGIN
-
+DECLARE @cat_FechaModi DATETIME = GETDATE();
 UPDATE Maqui.tbCategorias SET cat_Descripcion = @cat_Descripcion,
-							  cat_UsuModi = @cat_UsuModi
+							  cat_UsuModi = @cat_UsuModi,
+							  cat_FechaModi = @cat_FechaModi
 							  WHERE cat_Id = @cat_Id
 
 END
@@ -1682,10 +1690,11 @@ GO
 
 
 CREATE OR ALTER PROC UDP_Maqui_tbCategorias_ELIMINAR
-(@cat_Id INT)
+(@cat_Id INT, @cat_UsuModi INT)
 AS BEGIN
 
-UPDATE Maqui.tbCategorias SET cat_Estado = 0
+DECLARE @cat_FechaModi DATETIME = GETDATE();
+UPDATE Maqui.tbCategorias SET cat_Estado = 0, cat_UsuModi = @cat_UsuModi, cat_FechaModi = @cat_FechaModi
 WHERE cat_Id = @cat_Id
 
 END
@@ -1693,10 +1702,11 @@ GO
 
 
 CREATE OR  ALTER PROC UDP_Maqui_tbMetodoPago_ELIMINAR
-(@met_Id INT)
+(@met_Id INT, @met_UsuModi INT)
 AS BEGIN
 
-UPDATE Maqui.tbMetodoPago SET met_Estado = 0
+DECLARE @met_FechaModi DATETIME = GETDATE();
+UPDATE Maqui.tbMetodoPago SET met_Estado = 0, met_usuModi = @met_UsuModi, met_FechaModi = @met_FechaModi
 WHERE met_Id = @met_Id
 
 END
@@ -1709,8 +1719,11 @@ CREATE OR ALTER PROC UDP_Maqui_tbMetodoPago_EDITAR(
 @met_UsuModi INT)
 AS BEGIN
 
+
+DECLARE @met_FechaModi DATETIME = GETDATE();
 UPDATE Maqui.tbMetodoPago SET met_Descripcion = @met_Decripcion,
-							  met_usuModi = @met_UsuModi
+							  met_usuModi = @met_UsuModi,
+							  met_FechaModi = @met_FechaModi
 							  WHERE met_Id = @met_Id
 END
 GO
@@ -1722,8 +1735,10 @@ CREATE OR ALTER PROC UDP_Gral_tbDepartamentos_EDITAR(
 @dep_UsuModi INT)
 AS BEGIN
 
+DECLARE @dep_FechaModi DATETIME = GETDATE();
 UPDATE Gral.tbDepartamentos SET dep_Descripcion = @dep_Descripcion,
-								dep_UsuarioModi = @dep_UsuModi
+								dep_UsuarioModi = @dep_UsuModi,
+								dep_FechaModi = @dep_FechaModi
 								WHERE dep_ID = @dep_Id
 END
 GO
@@ -1763,9 +1778,10 @@ CREATE OR ALTER PROC UDP_Gral_tbEstadosCiviles_EDITAR(
 @est_Descripcion NVARCHAR(100),
 @est_UsuModi INT)
 AS BEGIN
-
+DECLARE @est_FechaModi DATETIME = GETDATE();
 UPDATE Gral.tbEstadosCiviles SET est_Descripcion = @est_Descripcion,
-								est_UsuarioModi = @est_UsuModi
+								est_UsuarioModi = @est_UsuModi,
+								est_FechaModi = @est_FechaModi
 									WHERE est_ID = @est_Id
 END
 GO
@@ -1814,9 +1830,12 @@ CREATE OR ALTER PROC UDP_Gral_tbMunicipios_EDITAR(
 @mun_Id INT,
 @mun_DepId INT)
 AS BEGIN
+
+DECLARE @mun_FechaModi DATETIME = GETDATE();
 UPDATE Gral.tbMunicipios SET mun_Descripcion = @mun_Descripcion,
 					  mun_UsuarioModi = @mun_UsuModi,
-					  mun_depID = @mun_DepId
+					  mun_depID = @mun_DepId,
+					  mun_FechaModi = @mun_FechaModi
 					  WHERE mun_ID = @mun_Id
 END
 GO
@@ -1938,10 +1957,11 @@ CREATE OR ALTER PROC UDP_Gral_tbSucurusales_EDITAR(
 @suc_UsuModi INT)
 AS BEGIN
 
+DECLARE @suc_FechaModi DATETIME = GETDATE();
 UPDATE Gral.tbSucursales SET suc_Municipio = @suc_Municipio,
 							 suc_Descripcion = @suc_Descripcion,
 							 suc_usuModi = @suc_UsuModi,
-							 suc_FechaModi = GETDATE()
+							 suc_FechaModi = @suc_FechaModi
 							 WHERE suc_Id = @suc_Id
 
 END
@@ -1949,10 +1969,11 @@ GO
 
 
 
-CREATE OR ALTER PROC UDP_Gral_tbSucursales_ELIMINAR(@suc_Id INT)
+CREATE OR ALTER PROC UDP_Gral_tbSucursales_ELIMINAR(@suc_Id INT, @suc_UsuModi INT)
 AS BEGIN
 
-UPDATE Gral.tbSucursales SET suc_Estado = 0 WHERE suc_Id = @suc_Id;
+DECLARE @suc_FechaModi DATETIME = GETDATE();
+UPDATE Gral.tbSucursales SET suc_Estado = 0, suc_FechaModi = @suc_FechaModi, suc_usuModi = @suc_UsuModi WHERE suc_Id = @suc_Id;
 
 END
 GO
@@ -1974,10 +1995,12 @@ GO
 
 
 
-CREATE OR ALTER PROC UDP_Gral_tbUsuarios_ELIMINAR(@usu_Id INT)
+CREATE OR ALTER PROC UDP_Gral_tbUsuarios_ELIMINAR(@usu_Id INT,  @usu_UsuModi INT)
 AS BEGIN
 
-UPDATE Gral.tbUsuarios SET usu_Estado = 0 WHERE usu_Id = @usu_Id
+DECLARE @usu_FechaModi DATETIME = GETDATE();
+
+UPDATE Gral.tbUsuarios SET usu_Estado = 0, usu_FechaModi = @usu_FechaModi, usu_UsuarioModi = @usu_UsuModi WHERE usu_Id = @usu_Id
 
 END
 GO
@@ -1985,11 +2008,16 @@ GO
 CREATE OR ALTER PROC UDP_Gral_tbUsuarios_EDITAR(
 @usu_Id INT,
 @usu_Usuario NVARCHAR(100),
-@usu_EsAdmin BIT)
+@usu_EsAdmin BIT
+,  @usu_UsuModi INT)
 AS BEGIN
 
+DECLARE @usu_FechaModi DATETIME = GETDATE();
+
 UPDATE Gral.tbUsuarios SET usu_Usuario = @usu_Usuario,
-						   usu_EsAdmin = @usu_EsAdmin
+						   usu_EsAdmin = @usu_EsAdmin,
+						   usu_FechaModi = @usu_FechaModi, 
+						   usu_UsuarioModi = @usu_UsuModi
 						   WHERE usu_Id = @usu_Id
 
 END
@@ -1997,44 +2025,44 @@ GO
 
 
 
-CREATE OR ALTER PROC UDP_Gral_tbProveedores_ELIMINAR(@prv_Id INT)
+CREATE OR ALTER PROC UDP_Gral_tbProveedores_ELIMINAR(@prv_Id INT, @prv_UsuModi INT)
 AS BEGIN
 
-UPDATE Maqui.tbProveedores SET prv_Estado = 0 WHERE prv_ID = @prv_Id
+UPDATE Maqui.tbProveedores SET prv_Estado = 0, prv_UsuarioModi = @prv_UsuModi, prv_FechaModi = GETDATE() WHERE prv_ID = @prv_Id
 
 END
 GO
 
-CREATE OR ALTER PROC UDP_Gral_tbClientes_ELIMINAR(@cli_Id INT)
+CREATE OR ALTER PROC UDP_Gral_tbClientes_ELIMINAR(@cli_Id INT, @cli_UsuModi INT)
 AS BEGIN
 
-UPDATE Gral.tbClientes SET cli_Estado = 0 WHERE cli_ID = @cli_Id
-
-END
-GO
-
-
-CREATE OR ALTER PROC UDP_Gral_tbEmpleados_ELIMINAR(@emp_Id INT)
-AS BEGIN
-
-UPDATE Gral.tbEmpleados SET emp_Estado = 0 WHERE emp_id = @emp_Id
-
-END
-GO
-
-CREATE OR ALTER PROC UDP_Gral_tbProductos_ELIMINAR(@pro_Id INT)
-AS BEGIN
-
-UPDATE Maqui.tbProductos SET pro_Estado = 0 WHERE pro_Id = @pro_Id
+UPDATE Gral.tbClientes SET cli_Estado = 0, cli_UsuarioModi = @cli_UsuModi, cli_FechaModi = GETDATE() WHERE cli_ID = @cli_Id
 
 END
 GO
 
 
-CREATE OR ALTER PROC UDP_Maqui_tbVentas_ELIMINAR(@ven_Id INT)
+CREATE OR ALTER PROC UDP_Gral_tbEmpleados_ELIMINAR(@emp_Id INT, @emp_UsuModi INT)
 AS BEGIN
 
-UPDATE Maqui.tbVentas SET ven_Estado = 0 WHERE ven_Id  = @ven_Id;
+UPDATE Gral.tbEmpleados SET emp_Estado = 0, emp_UsuarioModi = @emp_UsuModi, emp_FechaModi = GETDATE() WHERE emp_id = @emp_Id
+
+END
+GO
+
+CREATE OR ALTER PROC UDP_Gral_tbProductos_ELIMINAR(@pro_Id INT, @pro_UsuModi INT)
+AS BEGIN
+
+UPDATE Maqui.tbProductos SET pro_Estado = 0, pro_UsuModi = @pro_UsuModi, pro_FechaModi = GETDATE() WHERE pro_Id = @pro_Id
+
+END
+GO
+
+
+CREATE OR ALTER PROC UDP_Maqui_tbVentas_ELIMINAR(@ven_Id INT, @ven_UsuModi INT)
+AS BEGIN
+
+UPDATE Maqui.tbVentas SET ven_Estado = 0, ven_UsuModi = @ven_UsuModi, ven_FechaModi = GETDATE() WHERE ven_Id  = @ven_Id;
 
 END
 GO
