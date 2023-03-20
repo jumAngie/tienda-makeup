@@ -58,6 +58,8 @@ namespace Maquillaje.DataAccess.Repositories
         public static string UsuariosCrear = "UDP_Gral_tbUsuarios_CREAR";
         public static string UsuariosEliminar = "UDP_Gral_tbUsuarios_ELIMINAR";
         public static string UsuariosEditar = "UDP_Gral_tbUsuarios_EDITAR";
+        public static string ValidarLogin = "UDP_Login";
+
         #endregion
 
         #region MetodoPago

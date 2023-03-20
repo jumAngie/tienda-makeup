@@ -1,4 +1,5 @@
 ﻿using Maquillaje.WebUI.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -20,6 +21,10 @@ namespace Maquillaje.WebUI.Controllers
 
         public IActionResult Index()
         {
+            string nombreUsuario = HttpContext.Session.GetString("usu_Nombre");
+
+            ViewBag.usu_Nombre = nombreUsuario;
+
             return View();
         }
 

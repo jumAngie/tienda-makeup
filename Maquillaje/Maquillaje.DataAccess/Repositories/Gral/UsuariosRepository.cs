@@ -73,6 +73,37 @@ namespace Maquillaje.DataAccess.Repositories.Gral
             return Listado;
         }
 
+        public string[] IniciarSesion(string txtUsername, string txtPass)
+        {
+            using var db = new SqlConnection(TiendaContext.ConnectionString);
+            var parametro = new DynamicParameters();
+            parametro.Add("@usu_Usuario", txtUsername, DbType.String, ParameterDirection.Input);
+            parametro.Add("@usu_Clave", txtPass, DbType.String, ParameterDirection.Input);
+
+            var result = db.QueryFirst(ScriptsDataBase.ValidarLogin, parametro, commandType: CommandType.StoredProcedure);
+            string[] resultado = new string[5];
+
+
+            string admin;
+            if (result.usu_EsAdmin == true)
+            {
+                admin = "1";
+            }
+            else
+            {
+                admin = "0";
+
+            }
+
+            resultado[0] = result.usu_ID.ToString();
+            resultado[1] = result.usu_Nombre;
+            resultado[2] = admin;
+            resultado[3] = result.emp_Sucursal.ToString();
+            resultado[4] = result.suc_Descripcion;
+
+
+            return resultado;
+        }
         public int Update(tbUsuarios item)
         {
             throw new NotImplementedException();
