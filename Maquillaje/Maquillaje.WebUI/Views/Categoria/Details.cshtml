@@ -39,74 +39,34 @@
         @Html.DisplayFor(model => model.cat_Descripcion)
     </dd>
 </div>
-    </div>
-
-
-
-<br />
-<br />
-
-<div class="row">
-    <div class="col-sm-2"></div>
-
-    <div class="col-sm-4">
-        <dt>
-            Usuario Creación
-        </dt>
-
-        <dd class="form-control">
-            @Html.DisplayFor(model => model.cat_UsuCrea)
-        </dd>
-
-    </div>
-
-
-    <div class="col-sm-4">
-        <dt>
-            Usuario Modificación
-        </dt>
-
-        <dd class="form-control">
-            @Html.DisplayFor(model => model.cat_UsuModi)
-        </dd>
-
-    </div>
-</div>
-
-<br />
-<br />
-
-<div class="row">
-    <div class="col-sm-2"></div>
-
-    <div class="col-sm-4">
-        <dt>
-            Fecha Creación
-        </dt>
-
-        <dd class="form-control">
-            @Html.DisplayFor(model => model.cat_FechaCrea)
-        </dd>
-
-    </div>
-
-
-    <div class="col-sm-4">
-        <dt>
-            Fecha Modificación
-        </dt>
-
-        <dd class="form-control">
-            @Html.DisplayFor(model => model.cat_FechaModi)
-        </dd>
-
-    </div>
-</div>
 
     </dl>
     </center>
 
-
+<div class="card-body">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Acción</th>
+                <th>Usuario</th>
+                <th>Fecha</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Creado</td>
+                <td></td>
+                <td>@Html.DisplayFor(model => model.cat_FechaCrea)</td>
+            </tr>
+            <tr>
+                <td>Modificado</td>
+                <td></td>
+                <td>@Html.DisplayFor(model => model.cat_FechaModi)</td>
+            </tr>
+          
+        </tbody>
+    </table>
+</div>
 
 
 <div>
