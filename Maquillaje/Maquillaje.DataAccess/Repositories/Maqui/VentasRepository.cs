@@ -83,7 +83,10 @@ namespace Maquillaje.DataAccess.Repositories.Maqui
 
         public tbVentas Find(int? id)
         {
-            throw new NotImplementedException();
+            using var db = new TiendaContext();
+            var result = db.tbVentas.Find(id);
+
+            return result;
         }
 
         public int Insert(tbVentas item)
