@@ -85,6 +85,7 @@ namespace Maquillaje.WebUI.Controllers
                 model.cat_FechaModi = catego.cat_FechaModi;
                 model.cat_UsuCrea = catego.cat_UsuCrea;
                 model.cat_UsuModi = catego.cat_UsuModi;
+                ViewBag.NombreCategoria = "Tabla de Productos por Categoría: " + catego.cat_Descripcion;
                 return View(model);
 
             }
