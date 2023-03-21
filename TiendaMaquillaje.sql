@@ -2238,6 +2238,82 @@ SELECT  usu_ID,
 
 END
 GO
+CREATE OR ALTER FUNCTION Maqui.UDF_tbCategorias_BuscarCategorias(@ID INT)
+RETURNS TABLE
+RETURN
+SELECT cat_Id, cat_Descripcion, cat_UsuCrea = usu.usu_Usuario, cat_UsuModi = usua.usu_Usuario, cat_FechaCrea, cat_FechaModi FROM Maqui.tbCategorias cate
+INNER JOIN  [Gral].[tbUsuarios] usu
+ON		cate.cat_UsuCrea = usu.usu_ID
+LEFT JOIN  [Gral].[tbUsuarios] usua
+ON		cate.cat_UsuModi = usua.usu_ID
+WHERE	cate.cat_Id = @ID
+GO
+--¡¡ VENTAS  ¡¡--
+GO
+
+CREATE OR ALTER VIEW Maqui.VW_tbVentas_List
+AS
+SELECT ven_Id, client.cli_Nombre +' '+client.cli_Apellido AS cli_Nombres,
+	   emple.emp_Nombre + ' '+ emple.emp_Apellido AS		emp_Nombres,
+	   pago.met_Descripcion, ventas.ven_Fecha
+FROM		Maqui.tbVentas ventas
+INNER JOIN	Gral.tbClientes client
+ON			ventas.ven_Cliente = client.cli_ID
+INNER JOIN  Gral.tbEmpleados emple
+ON			ventas.ven_Empleado = emple.emp_ID
+INNER JOIN  Maqui.tbMetodoPago pago
+ON			ventas.ven_MetodoPago = pago.met_Id
+GO
+--¡¡¡¡¡ UDP  ¡¡¡¡¡¡ --
+CREATE OR ALTER PROCEDURE Maqui.UDP_tbVentas_Listado
+AS
+BEGIN
+	SELECT * FROM Maqui.VW_tbVentas_List
+END
+GO
+
+--¡¡Listado de ventas con detalles ¡¡¡--
+CREATE OR ALTER VIEW Maqui.VW_tbVentasDetalles_List
+AS
+	SELECT t1.vde_Id,
+		   T1.vde_VentaId, 
+		   T2.pro_Id,
+		   T2.pro_Nombre,
+		   T2.pro_Categoria,
+		   T1.vde_Cantidad,
+		   T2.pro_PrecioUnitario,
+		   (T1.vde_Cantidad*pro_PrecioUnitario) AS vde_PrecioTotal
+	FROM	Maqui.tbVentasDetalle T1 INNER JOIN Maqui.tbProductos T2
+	ON		T1.vde_Producto = T2.pro_Id
+	WHERE	vde_Estado= 1
+GO
+
+CREATE OR ALTER PROCEDURE Maqui.UDP_maqu_tbVentasDetalles_Listado 
+	@vde_VentaId INT
+AS
+BEGIN
+	SELECT*FROM Maqui.VW_tbVentasDetalles_List 
+	WHERE		vde_VentaId = @vde_VentaId
+END
+
+GO
+
+---¡¡¡ Listado de Clientes --¡¡
+GO
+CREATE OR ALTER PROCEDURE Maqui.UDP_maqu_tbClientes_List
+AS
+BEGIN
+    SELECT cli_ID,
+		   cli_Nombre, 
+           cli_Apellido, 
+           cli_DNI,
+           CASE cli_Sexo WHEN 'F' THEN 'Femenino'
+                            ELSE 'Masculino'
+           END AS cli_Sexo
+    FROM   Gral.tbClientes
+    WHERE  cli_Estado = 1
+END
+GO
 
 CREATE OR ALTER PROC UDP_tbCategorias_Detalles(@ID INT)
 AS BEGIN
