@@ -42,7 +42,7 @@ namespace Maquillaje.WebUI
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-
+            app.UseMiddleware<NoCacheMiddleware>();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -58,7 +58,7 @@ namespace Maquillaje.WebUI
             app.UseRouting();
             app.UseSession();
             app.UseAuthorization();
-            app.UseMiddleware<NoCacheMiddleware>();
+            
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

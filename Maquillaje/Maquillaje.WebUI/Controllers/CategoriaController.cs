@@ -3,6 +3,7 @@ using Maquillaje.BusinessLogic.Services;
 using Maquillaje.DataAccess;
 using Maquillaje.Entities.Entities;
 using Maquillaje.WebUI.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -27,14 +28,41 @@ namespace Maquillaje.WebUI.Controllers
         [HttpGet("/Categorias/Listado")]
         public IActionResult Index()
         {
-            var listado = _generalesService.ListadoCategorias();
-            var listadoMapeado = _mapper.Map<IEnumerable<CategoriaViewModel>>(listado);
-            return View(listadoMapeado);
+            try
+            {
+                if (HttpContext.Session.GetString("usu_Nombre") != null)
+                {
+                    ViewBag.usu_Nombre = HttpContext.Session.GetString("usu_Nombre");
+                    ViewBag.suc_Descripcion = HttpContext.Session.GetString("suc_Descripcion");
+                    ViewBag.usu_Id = HttpContext.Session.GetString("usu_Id");
+                    ViewBag.suc_Id = HttpContext.Session.GetString("suc_Id");
+
+                    var listado = _generalesService.ListadoCategorias();
+                    var listadoMapeado = _mapper.Map<IEnumerable<CategoriaViewModel>>(listado);
+
+                    return View(listadoMapeado);
+
+                }
+
+                return RedirectToAction("Index", "Login");
+
+
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Index", "Home");
+                throw;
+            }
+
+
+         
         }
 
         [HttpPost("/Categorias/Create")]
         public IActionResult Create(string cat_Descripcion)
         {
+
+
             tbCategorias cate = new tbCategorias();
             cate.cat_Descripcion = cat_Descripcion;
             cate.cat_UsuCrea = 1;

@@ -10,9 +10,10 @@ namespace Maquillaje.WebUI.Controllers
 {
     public class LoginController : Controller
     {
+     
         private readonly GeneralesService _generalesService;
 
-        public LoginController (GeneralesService generalesService)
+        public LoginController(GeneralesService generalesService)
         {
             _generalesService = generalesService;
         }
@@ -23,13 +24,16 @@ namespace Maquillaje.WebUI.Controllers
         }
 
 
-        [HttpPost("Login/Validar")]
-        public IActionResult Index  (string txtUsername, string txtPass)
+
+
+
+        [HttpPost]
+        public IActionResult Index(string txtUsername, string txtPass)
         {
             ViewBag.usu_Nombre = txtUsername;
             ViewBag.usu_Clave = txtPass;
 
-            
+
             if ((txtUsername != "" && txtUsername != null) && (txtPass != "" && txtPass != null))
             {
                 var usuario = _generalesService.ValidarLogin(txtUsername, txtPass);
@@ -40,6 +44,7 @@ namespace Maquillaje.WebUI.Controllers
                     HttpContext.Session.SetString("usu_EsAdmin", usuario[2]);
                     HttpContext.Session.SetString("emp_Sucursal", usuario[3]);
                     HttpContext.Session.SetString("sucu_Descripcion", usuario[4]);
+                    HttpContext.Session.SetString("suc_Id", usuario[5]);
 
 
                     if (usuario[2] == "admin")
@@ -67,6 +72,13 @@ namespace Maquillaje.WebUI.Controllers
                 ModelState.AddModelError("password", "El campo clave es obligatorio.");
             }
             return View();
+        }
+         
+
+        public IActionResult LogOut()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("Index", "Login");
         }
     }
 }

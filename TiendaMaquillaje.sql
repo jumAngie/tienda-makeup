@@ -2225,6 +2225,7 @@ SELECT  usu_ID,
 		usu_EsAdmin,
 		emp_Sucursal,
 		suc_Descripcion,
+		suc_Id,
 		usu_Usuario, 
 		usu_Clave
 		FROM Gral.[tbUsuarios] T1 

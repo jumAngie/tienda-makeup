@@ -19,7 +19,7 @@
             <img src="~/img/woman.gif">
         </div>
         <div class="login-content">
-            <form action="/Login/Validar" method="post">
+            <form href="@Url.Action("Index", "Login")" method="post">
                 <img src="~/img/avatar.png">
                 <h2 class="title">Welcome</h2>
                 <span class="text-danger">@Html.ValidationMessage("General")</span>
