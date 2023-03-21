@@ -61,15 +61,43 @@ namespace Maquillaje.WebUI.Controllers
         [HttpPost("/Categorias/Create")]
         public IActionResult Create(string cat_Descripcion)
         {
+            try
+            {
+
+                if (HttpContext.Session.GetString("usu_Nombre") != null)
+                {
+                    ViewBag.usu_Nombre = HttpContext.Session.GetString("usu_Nombre");
+                    ViewBag.suc_Descripcion = HttpContext.Session.GetString("suc_Descripcion");
+                    ViewBag.usu_Id = HttpContext.Session.GetString("usu_ID");
+                    ViewBag.suc_Id = HttpContext.Session.GetString("suc_Id");
+                    int? usucrea = int.Parse(HttpContext.Session.GetString("usu_ID"));
+                    tbCategorias cate = new tbCategorias();
+                    cate.cat_Descripcion = cat_Descripcion;
+                    cate.cat_UsuCrea = usucrea;
+                    var cat = _mapper.Map<tbCategorias>(cate);
+                    var result = _generalesService.CreateCategorias(cat);
+
+                    return RedirectToAction("Index");
+
+                }
+
+                return RedirectToAction("Index", "Login");
+
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Index", "Home");
+                throw;
+            }
 
 
-            tbCategorias cate = new tbCategorias();
-            cate.cat_Descripcion = cat_Descripcion;
-            cate.cat_UsuCrea = 1;
-            var cat = _mapper.Map<tbCategorias>(cate);
-            var result = _generalesService.CreateCategorias(cat);
 
-            return RedirectToAction("Index");
+
+   
+
+
+
+
 
         }
 
@@ -83,41 +111,86 @@ namespace Maquillaje.WebUI.Controllers
         [HttpPost("/Categorias/Editar")]
         public IActionResult Edit(int cat_Id, string cat_Descripcion)
         {
-            tbCategorias cat = new tbCategorias();
-            cat.cat_Id = cat_Id;
-            cat.cat_Descripcion = cat_Descripcion;
-            cat.cat_UsuModi = 1;
 
-            var categoria = _mapper.Map<tbCategorias>(cat);
-            var result = _generalesService.EditCategoria(categoria);
+            try
+            {
+                if (HttpContext.Session.GetString("usu_Nombre") != null)
+                {
+                    ViewBag.usu_Nombre = HttpContext.Session.GetString("usu_Nombre");
+                    ViewBag.suc_Descripcion = HttpContext.Session.GetString("suc_Descripcion");
+                    ViewBag.usu_Id = HttpContext.Session.GetString("usu_ID");
+                    ViewBag.suc_Id = HttpContext.Session.GetString("suc_Id");
 
-            return RedirectToAction("Index");
+
+                    int? usumodi = int.Parse(HttpContext.Session.GetString("usu_ID"));
+                    tbCategorias cat = new tbCategorias();
+                    cat.cat_Id = cat_Id;
+                    cat.cat_Descripcion = cat_Descripcion;
+                    cat.cat_UsuModi = usumodi;
+
+                    var categoria = _mapper.Map<tbCategorias>(cat);
+                    var result = _generalesService.EditCategoria(categoria);
+
+                    return RedirectToAction("Index");
+                }
+
+                return RedirectToAction("Index", "Login");
+
+
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Index", "Home");
+                throw;
+            }
+
+
+
         }
 
         public IActionResult Details(int id)
         {
-           
-                var cates = _generalesService.Detalles(id);
-                CategoriaViewModel model = new CategoriaViewModel();
 
-                if (cates != null && cates.Length > 0)
+       
+                if (HttpContext.Session.GetString("usu_Nombre") != null)
                 {
-                    model.cat_Id = cates[0];
-                    model.cat_Descripcion = cates[1];
-                    model.cat_UsuCrea = cates[2];
-                    model.cat_UsuModi = cates[3];
-                    model.cat_FechaCrea = Convert.ToDateTime(cates[4]);
-                    model.cat_FechaModi = Convert.ToDateTime(cates[5]);
+                    ViewBag.usu_Nombre = HttpContext.Session.GetString("usu_Nombre");
+                    ViewBag.suc_Descripcion = HttpContext.Session.GetString("suc_Descripcion");
+                    ViewBag.usu_Id = HttpContext.Session.GetString("usu_Id");
+                    ViewBag.suc_Id = HttpContext.Session.GetString("suc_Id");
 
-                }
-                ViewBag.UsuCrea = model.cat_UsuCrea;
-                ViewBag.UsuModi = model.cat_UsuModi;
 
-                if (cates == null)
-                {
-                    return RedirectToAction("Index"); // acá vamos a redireccionar a la pagina 404
-                }
-                return View(model);
+
+                        var cates = _generalesService.Detalles(id);
+                        CategoriaViewModel model = new CategoriaViewModel();
+
+                        if (cates != null && cates.Length > 0)
+                        {
+                            model.cat_Id = cates[0];
+                            model.cat_Descripcion = cates[1];
+                            model.cat_UsuCrea = cates[2];
+                            model.cat_UsuModi = cates[3];
+                            model.cat_FechaCrea = Convert.ToDateTime(cates[4]);
+                            model.cat_FechaModi = Convert.ToDateTime(cates[5]);
+
+                        }
+                        ViewBag.UsuCrea = model.cat_UsuCrea;
+                        ViewBag.UsuModi = model.cat_UsuModi;
+
+                        if (cates == null)
+                        {
+                            return RedirectToAction("Index"); // acá vamos a redireccionar a la pagina 404
+                        }
+                        return View(model);
+                        }
+
+                        return RedirectToAction("Index", "Login");
+
+
+
+
+
+   
 
          
 
@@ -128,16 +201,38 @@ namespace Maquillaje.WebUI.Controllers
         public IActionResult Delete(int cat_Id)
         {
 
-            tbCategorias cat = new tbCategorias();
-            cat.cat_Id = cat_Id;
-            cat.cat_UsuModi = 1;
+            try
+            {
+                if (HttpContext.Session.GetString("usu_Nombre") != null)
+                {
+                    ViewBag.usu_Nombre = HttpContext.Session.GetString("usu_Nombre");
+                    ViewBag.suc_Descripcion = HttpContext.Session.GetString("suc_Descripcion");
+                    ViewBag.usu_Id = HttpContext.Session.GetString("usu_Id");
+                    ViewBag.suc_Id = HttpContext.Session.GetString("suc_Id");
+
+                        tbCategorias cat = new tbCategorias();
+                        cat.cat_Id = cat_Id;
+                        cat.cat_UsuModi = ViewBag.usu_Id;
 
 
-            var categoria = _mapper.Map<tbCategorias>(cat);
-            var result = _generalesService.DeleteCategoria(categoria);
+                        var categoria = _mapper.Map<tbCategorias>(cat);
+                        var result = _generalesService.DeleteCategoria(categoria);
 
 
-            return RedirectToAction("Index");
+                        return RedirectToAction("Index");
+
+                }
+
+                return RedirectToAction("Index", "Login");
+
+
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Index", "Home");
+                throw;
+            }
+
         }
 
 
