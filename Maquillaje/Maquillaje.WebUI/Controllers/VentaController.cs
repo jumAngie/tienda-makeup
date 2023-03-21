@@ -49,7 +49,7 @@ namespace Maquillaje.WebUI.Controllers
             ViewBag.ven_Cliente = new SelectList(ddlCliente, "cli_ID", "cli_Nombre");
             ViewBag.ven_MetodoPago = new SelectList(ddlMetodo, "met_Id", "met_Descripcion");
             ViewBag.detalles = detalles;
-            ViewBag.fact_Id = item.vde_VentaId;
+            ViewBag.vde_VentaId = item.vde_VentaId;
             ViewBag.esEditar = false;
 
             if (TempData["Script"] is string script)
