@@ -37,29 +37,29 @@ namespace Maquillaje.WebUI.Controllers
             return View(listado);
         }
 
-        [HttpGet("/Venta/Create")]
-        public IActionResult Create(VentaDetallesViewModel item, VentaViewModel item2)
-        {
-            var ddlCliente = _generalesService.ListadoClientes(out string error).ToList();
-            var ddlMetodo = _generalesService.ListadoMetodosPago().ToList();
-            var ddlCategoria = _generalesService.ListadoCategorias(out string error1).ToList();
-            var detalles = _generalesService.ListadoVentaDetalles(item.vde_VentaId);
+        //[HttpGet("/Venta/Create")]
+        //public IActionResult Create(VentaDetallesViewModel item, VentaViewModel item2)
+        //{
+        //    var ddlCliente = _generalesService.ListadoClientes(out string error).ToList();
+        //    var ddlMetodo = _generalesService.ListadoMetodosPago().ToList();
+        //    var ddlCategoria = _generalesService.ListadoCategorias(out string error1).ToList();
+        //    var detalles = _generalesService.ListadoVentaDetalles(item.vde_VentaId);
 
-            ViewBag.cate = new SelectList(ddlCategoria, "cate_Id", "cate_Nombre");
-            ViewBag.clie_Id = new SelectList(ddlCliente, "clie_Id", "clie_Nombres");
-            ViewBag.meto_Id = new SelectList(ddlMetodo, "meto_Id", "meto_Nombre");
-            ViewBag.detalles = detalles;
-            ViewBag.fact_Id = item.vde_VentaId;
-            ViewBag.esEditar = false;
+        //    ViewBag.cate = new SelectList(ddlCategoria, "cate_Id", "cate_Nombre");
+        //    ViewBag.clie_Id = new SelectList(ddlCliente, "clie_Id", "clie_Nombres");
+        //    ViewBag.meto_Id = new SelectList(ddlMetodo, "meto_Id", "meto_Nombre");
+        //    ViewBag.detalles = detalles;
+        //    ViewBag.fact_Id = item.vde_VentaId;
+        //    ViewBag.esEditar = false;
 
-            if (TempData["Script"] is string script)
-            {
-                TempData.Remove("Script");
-                ViewBag.Script = script;
-            }
+        //    if (TempData["Script"] is string script)
+        //    {
+        //        TempData.Remove("Script");
+        //        ViewBag.Script = script;
+        //    }
 
-            return View(item2);
-        }
+        //    return View(item2);
+        //}
     }
 }
 
