@@ -11,6 +11,7 @@ namespace Maquillaje.DataAccess.Repositories
         public static string CategoriasEditar = "UDP_Maqui_tbCategorias_EDITAR";
         public static string CategoriasEliminar = "UDP_Maqui_tbCategorias_ELIMINAR";
         public static string CategoriasDetalles = "UDP_tbCategorias_Detalles";
+        public static string UDP_Listar_Categorias = "Maqui.UDP_tbCategorias_List";
         #endregion
 
         #region Productos
@@ -79,7 +80,7 @@ namespace Maquillaje.DataAccess.Repositories
         public static string MetodoPagoEditar = "UDP_Maqui_tbMetodoPago_EDITAR";
         public static string MetodoPagoEliminar = "UDP_Maqui_tbMetodoPago_ELIMINAR";
         public static string MetodoPagoDetalles = "UDP_tbMetodoPago_Detalles";
-
+        public static string UDP_Listar_MetodosPago = "Maqui.UDP_tbMetodosPago_VW";
         #endregion
 
         #region Proveedores

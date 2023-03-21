@@ -2533,6 +2533,38 @@ GO
 
 
 
-
 select * from Maqui.tbProveedores
 exec UDP_tbProveedores_Detalles 5
+
+
+/*Vista metodos de pago*/
+GO
+CREATE OR ALTER VIEW Maqui.VW_maqu_tbMetodosPago_View
+AS
+SELECT meto.met_Id, meto.met_Descripcion
+FROM Maqui.tbMetodoPago meto
+
+/*Vista metodos de pago UDP*/
+GO
+CREATE OR ALTER PROCEDURE Maqui.UDP_tbMetodosPago_VW
+AS
+SELECT * FROM Maqui.VW_maqu_tbMetodosPago_View
+GO
+/*Listado de categorias*/
+GO
+CREATE OR ALTER PROCEDURE Maqui.UDP_tbCategorias_List
+AS
+BEGIN
+	SELECT cat_Id, cat_Descripcion 
+	FROM Maqui.tbCategorias
+	WHERE cat_Estado = 1
+END
+
+/*Listado de categoria x Id*/
+GO
+CREATE OR ALTER PROCEDURE Maqui.UDP_tbCategorias_maqu_ListById
+@cat_Id INT
+AS
+BEGIN
+SELECT * FROM Maqui.tbCategorias WHERE cat_Id = @cat_Id AND cat_Estado = 1
+END

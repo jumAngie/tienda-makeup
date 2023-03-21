@@ -81,7 +81,8 @@ namespace Maquillaje.DataAccess.Repositories.Maqui
 
         }
 
-        ///
+        /// 
+
         public IEnumerable<VW_tbVentas_List> ListView()
         {
             using var db = new SqlConnection(TiendaContext.ConnectionString);

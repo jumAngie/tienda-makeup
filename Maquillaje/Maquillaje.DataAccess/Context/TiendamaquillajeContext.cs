@@ -19,6 +19,7 @@ namespace Maquillaje.DataAccess.Context
         {
         }
 
+        public virtual DbSet<VW_maqu_tbMetodosPago_View> VW_maqu_tbMetodosPago_View { get; set; }
         public virtual DbSet<VW_tbVentasDetalles_List> VW_tbVentasDetalles_List { get; set; }
         public virtual DbSet<VW_tbVentas_List> VW_tbVentas_List { get; set; }
         public virtual DbSet<Vw_Gral_tbClientes_DDL> Vw_Gral_tbClientes_DDL { get; set; }
@@ -61,6 +62,19 @@ namespace Maquillaje.DataAccess.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
+
+            modelBuilder.Entity<VW_maqu_tbMetodosPago_View>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToView("VW_maqu_tbMetodosPago_View", "Maqui");
+
+                entity.Property(e => e.met_Descripcion)
+                    .IsRequired()
+                    .HasMaxLength(100);
+
+                entity.Property(e => e.met_Id).ValueGeneratedOnAdd();
+            });
 
             modelBuilder.Entity<VW_tbVentasDetalles_List>(entity =>
             {
