@@ -55,8 +55,8 @@ namespace Maquillaje.WebUI.Controllers
                         model.cli_EstadoCivil = cates[8];
                         model.cli_UsuarioCrea = cates[9];
                         model.cli_UsuarioModi = cates[10];
-                        model.cli_FechaCrea = Convert.ToDateTime(cates[12]);
-                        model.cli_FechaModi = Convert.ToDateTime(cates[13]);
+                        model.cli_FechaCrea = Convert.ToDateTime(cates[11]);
+                        model.cli_FechaModi = Convert.ToDateTime(cates[12]);
 
 
 
