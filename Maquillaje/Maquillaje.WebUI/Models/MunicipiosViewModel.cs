@@ -16,5 +16,20 @@ namespace Maquillaje.WebUI.Models
 
         [Display(Name = "Municipio")]
         public string mun_Descripcion { get; set; }
+
+
+        //AUDITORIA
+
+        [Display(Name = "Usuario Creación")]
+        public string mun_UsuarioCrea { get; set; }
+
+        [Display(Name = "Fecha Creacion")]
+        public DateTime? mun_FechaCrea { get; set; }
+
+        [Display(Name = "Usuario Modificación")]
+        public string mun_UsuarioModi { get; set; }
+
+        [Display(Name = "Fecha Modificación")]
+        public DateTime? mun_FechaModi { get; set; }
     }
 }

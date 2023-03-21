@@ -26,8 +26,30 @@ namespace Maquillaje.DataAccess.Repositories
 
 
         }
+   
+        public dynamic[] Detalles(int pro_Id)
+        {
+            using var db = new SqlConnection(TiendaContext.ConnectionString);
+            var parametro = new DynamicParameters();
+            parametro.Add("@ID", pro_Id, DbType.Int32, ParameterDirection.Input);
+
+            var result = db.QueryFirst(ScriptsDataBase.ProductosDetalles, parametro, commandType: CommandType.StoredProcedure);
+            dynamic[] resultado = new dynamic[12];
+            resultado[0] = result.pro_Id;
+            resultado[1] = result.pro_Codigo;
+            resultado[2] = result.pro_Nombre;
+            resultado[3] = result.pro_StockInicial;
+            resultado[4] = result.pro_PrecioUnitario;
+            resultado[5] = result.pro_Proveedor;
+            resultado[6] = result.pro_Categoria;
+            resultado[7] = result.pro_usuCrea;
+            resultado[8] = result.pro_UsuModi;
+            resultado[9] = result.pro_FechaCrea;
+            resultado[10] = result.pro_FechaModi;
 
 
+            return resultado;
+        }
 
 
         public tbProductos Find(int? id)

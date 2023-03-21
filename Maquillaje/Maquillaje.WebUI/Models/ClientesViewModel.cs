@@ -55,5 +55,20 @@ namespace Maquillaje.WebUI.Models
         [Display(Name = "Sexo")]
         [Required(ErrorMessage = "*")]
         public string cli_Sexo { get; set; }
+
+
+        //AUDITORIA
+
+        [Display(Name = "Usuario Creación")]
+        public string cli_UsuarioCrea { get; set; }
+
+        [Display(Name = "Fecha Creacion")]
+        public DateTime? cli_FechaCrea { get; set; }
+
+        [Display(Name = "Usuario Modificación")]
+        public string cli_UsuarioModi { get; set; }
+
+        [Display(Name = "Fecha Modificación")]
+        public DateTime? cli_FechaModi { get; set; }
     }
 }

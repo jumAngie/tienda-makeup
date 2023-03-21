@@ -45,9 +45,9 @@
                                         @Html.DisplayFor(modelItem => item.cat_Descripcion)
                                     </td>
                                     <td>
-                                        <a class="btn btn-outline-secondary" data-toggle="modal" data-target="#EditCate" onclick="Editar('@item.cat_Id,@item.cat_Descripcion')">Editar</a> |
-                                        <a class="btn btn-outline-success" asp-action="Details" asp-route-id="@item.cat_Id">Detalles</a> |
-                                        <a class="btn btn-outline-danger" onclick="ShowModal(@item.cat_Id)" data-id="@item.cat_Id">Eliminar</a>
+                                        <a class="btn btn-primary" data-toggle="modal" data-target="#EditCate" onclick="Editar('@item.cat_Id,@item.cat_Descripcion')">Editar</a> |
+                                        <a class="btn btn-primary" style="color: black" asp-action="Details" asp-route-id="@item.cat_Id">Detalles</a> |
+                                        <a class="btn btn-primary" onclick="ShowModal(@item.cat_Id)" data-id="@item.cat_Id">Eliminar</a>
                                     </td>
                                 </tr>
                             }

@@ -64,6 +64,29 @@ namespace Maquillaje.DataAccess.Repositories.Gral
             return resultado;
         }
 
+
+        public dynamic[] Detalles(int est_Id)
+        {
+            using var db = new SqlConnection(TiendaContext.ConnectionString);
+            var parametro = new DynamicParameters();
+            parametro.Add("@ID", est_Id, DbType.Int32, ParameterDirection.Input);
+
+            var result = db.QueryFirst(ScriptsDataBase.EstadosCivilesDetalles, parametro, commandType: CommandType.StoredProcedure);
+            dynamic[] resultado = new dynamic[6];
+            resultado[0] = result.est_ID;
+            resultado[1] = result.est_Descripcion;
+            resultado[2] = result.est_UsuarioCrea;
+            resultado[3] = result.est_UsuarioModi;
+            resultado[4] = result.est_FechaCrea;
+            resultado[5] = result.est_FechaModi;
+
+
+
+            return resultado;
+        }
+
+
+
         IEnumerable<tbEstadosCiviles> IRepository<tbEstadosCiviles>.List()
         {
             throw new NotImplementedException();

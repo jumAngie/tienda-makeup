@@ -22,7 +22,43 @@ namespace Maquillaje.WebUI.Controllers
             _generalesService = generalesService;
             _mapper = mapper;
         }
+        #region Detalles
+        public IActionResult Details(int id)
+        {
 
+            var cates = _generalesService.DetallesProveedores(id);
+            ProveedoresViewModel model = new ProveedoresViewModel();
+
+            if (cates != null && cates.Length > 0)
+            {
+                model.prv_ID = cates[0];
+                model.prv_NombreCompañia = cates[1];
+                model.prv_NombreContacto = cates[2];
+                model.prv_TelefonoContacto = cates[3];
+                model.prv_DireccionEmpresa = cates[4];
+                model.prv_DireccionContacto = cates[5];
+                model.prv_SexoContacto = cates[6];
+                model.prv_UsuarioCrea = cates[7];
+                model.prv_UsuarioModi = cates[8];
+                model.prv_FechaCrea = Convert.ToDateTime(cates[9]);
+                model.prv_FechaModi = Convert.ToDateTime(cates[10]);
+
+
+
+            }
+            ViewBag.UsuCrea = model.prv_UsuarioCrea;
+            ViewBag.UsuModi = model.prv_UsuarioModi;
+
+            if (cates == null)
+            {
+                return RedirectToAction("Index"); // acá vamos a redireccionar a la pagina 404
+            }
+            return View(model);
+
+
+
+        }
+        #endregion
 
         #region Listado
         [HttpGet("/Proveedores/Listado")]

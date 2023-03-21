@@ -26,7 +26,47 @@ namespace Maquillaje.WebUI.Controllers
             _generalesService = generalesService;
             _mapper = mapper;
         }
+        #region Detalles
+        public IActionResult Details(int id)
+        {
 
+            var cates = _generalesService.DetallesEmpleados(id);
+            EmpleadosViewModel model = new EmpleadosViewModel();
+
+            if (cates != null && cates.Length > 0)
+            {
+                model.emp_ID = cates[0];
+                model.emp_Nombre = cates[1];
+                model.emp_Apellido = cates[2];
+                model.emp_DNI = cates[3];
+                model.emp_FechaNacimiento = cates[4];
+                model.emp_Sexo = cates[5];
+                model.emp_Telefono = cates[6];
+                model.emp_Municipio = cates[7];
+                model.emp_Correo = cates[8];
+                model.emp_EstadoCivil = cates[9];
+                model.emp_Sucursal = cates[10];
+                model.emp_UsuarioCrea = cates[11];
+                model.emp_UsuarioModi = cates[12];
+                model.emp_FechaCrea = Convert.ToDateTime(cates[13]);
+                model.emp_FechaModi = Convert.ToDateTime(cates[14]);
+
+
+
+            }
+            ViewBag.UsuCrea = model.emp_UsuarioCrea;
+            ViewBag.UsuModi = model.emp_UsuarioModi;
+
+            if (cates == null)
+            {
+                return RedirectToAction("Index"); // acá vamos a redireccionar a la pagina 404
+            }
+            return View(model);
+
+
+
+        }
+        #endregion
 
         #region Listado
         [HttpGet("/Empleado/Listado")]

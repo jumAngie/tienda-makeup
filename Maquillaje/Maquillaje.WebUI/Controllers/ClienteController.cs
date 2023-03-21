@@ -27,6 +27,47 @@ namespace Maquillaje.WebUI.Controllers
 
         }
 
+        #region Detalles
+        public IActionResult Details(int id)
+        {
+
+            var cates = _generalesService.DetallesCliente(id);
+            ClientesViewModel model = new ClientesViewModel();
+
+            if (cates != null && cates.Length > 0)
+            {
+                model.cli_ID = cates[0];
+                model.cli_Nombre = cates[1];
+                model.cli_Apellido = cates[2];
+                model.cli_DNI = cates[3];
+                model.cli_FechaNacimiento = Convert.ToDateTime(cates[4]);
+                model.cli_Sexo = cates[5];
+                model.cli_Telefono = cates[6];
+                model.cli_Municipio = cates[7];
+                model.cli_EstadoCivil = cates[8];
+                model.cli_UsuarioCrea = cates[9];
+                model.cli_UsuarioModi = cates[10];
+                model.cli_FechaCrea = Convert.ToDateTime(cates[12]);
+                model.cli_FechaModi = Convert.ToDateTime(cates[13]);
+
+
+
+
+            }
+            ViewBag.FechaCrea = model.cli_FechaCrea;
+            ViewBag.UsuCrea = model.cli_UsuarioCrea;
+            ViewBag.UsuModi = model.cli_UsuarioModi;
+
+            if (cates == null)
+            {
+                return RedirectToAction("Index"); // acá vamos a redireccionar a la pagina 404
+            }
+            return View(model);
+
+
+
+        }
+        #endregion
 
         #region Validaciones
         public bool ExisteDni(string dni)

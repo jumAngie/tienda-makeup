@@ -27,6 +27,35 @@ namespace Maquillaje.DataAccess.Repositories.Maqui
 
         }
 
+
+        public dynamic[] Detalles(int prv_Id)
+        {
+            using var db = new SqlConnection(TiendaContext.ConnectionString);
+            var parametro = new DynamicParameters();
+            parametro.Add("@ID", prv_Id, DbType.Int32, ParameterDirection.Input);
+
+            var result = db.QueryFirst(ScriptsDataBase.ProveedoresDetalles, parametro, commandType: CommandType.StoredProcedure);
+            dynamic[] resultado = new dynamic[12];
+            resultado[0] = result.prv_ID;
+            resultado[1] = result.prv_NombreCompañia;
+            resultado[2] = result.prv_NombreContacto;
+            resultado[3] = result.prv_TelefonoContacto;
+            resultado[4] = result.prv_DireccionEmpresa;
+            resultado[5] = result.prv_TelefonoContacto;
+            resultado[6] = result.prv_SexoContacto;
+            resultado[7] = result.prv_UsuarioCrea;
+            resultado[8] = result.prv_UsuarioModi;
+            resultado[9] = result.prv_FechaCrea;
+            resultado[10] = result.prv_FechaModi;
+
+            return resultado;
+        }
+
+
+
+
+
+
         public tbProveedores Find(int? id)
         {
             using var db = new TiendaContext();

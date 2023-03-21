@@ -60,6 +60,29 @@ namespace Maquillaje.DataAccess.Repositories.Gral
         {
             throw new NotImplementedException();
         }
+
+
+        public dynamic[] Detalles(int dep_Id)
+        {
+            using var db = new SqlConnection(TiendaContext.ConnectionString);
+            var parametro = new DynamicParameters();
+            parametro.Add("@ID", dep_Id, DbType.Int32, ParameterDirection.Input);
+
+            var result = db.QueryFirst(ScriptsDataBase.DepartamentosDetalles, parametro, commandType: CommandType.StoredProcedure);
+            dynamic[] resultado = new dynamic[6];
+            resultado[0] = result.dep_ID;
+            resultado[1] = result.dep_Descripcion;
+            resultado[2] = result.dep_UsuarioCrea;
+            resultado[3] = result.dep_UsuarioModi;
+            resultado[4] = result.dep_FechaCrea;
+            resultado[5] = result.dep_FechaModi;
+
+
+
+            return resultado;
+        }
+
+
     }
 }
 

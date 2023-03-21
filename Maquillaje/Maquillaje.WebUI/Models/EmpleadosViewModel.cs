@@ -58,5 +58,20 @@ namespace Maquillaje.WebUI.Models
         [Display(Name = "Departamento")]
         [Required(ErrorMessage = "*")]
         public string depto { get; set; }
+
+
+        //AUDITORIA
+
+        [Display(Name = "Usuario Creación")]
+        public string emp_UsuarioCrea { get; set; }
+
+        [Display(Name = "Fecha Creacion")]
+        public DateTime? emp_FechaCrea { get; set; }
+
+        [Display(Name = "Usuario Modificación")]
+        public string emp_UsuarioModi { get; set; }
+
+        [Display(Name = "Fecha Modificación")]
+        public DateTime? emp_FechaModi { get; set; }
     }
 }

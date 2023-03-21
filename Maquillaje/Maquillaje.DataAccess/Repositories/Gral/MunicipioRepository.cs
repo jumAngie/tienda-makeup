@@ -44,6 +44,31 @@ namespace Maquillaje.DataAccess.Repositories.Gral
             return db.Execute(ScriptsDataBase.MunicipiosCrear, parametros, commandType: CommandType.StoredProcedure);
         }
 
+        public dynamic[] Detalles(int mun_Id)
+        {
+            using var db = new SqlConnection(TiendaContext.ConnectionString);
+            var parametro = new DynamicParameters();
+            parametro.Add("@ID", mun_Id, DbType.Int32, ParameterDirection.Input);
+
+            var result = db.QueryFirst(ScriptsDataBase.MunicipiosDetalles, parametro, commandType: CommandType.StoredProcedure);
+            dynamic[] resultado = new dynamic[7];
+            resultado[0] = result.mun_ID;
+            resultado[1] = result.mun_depID;
+            resultado[2] = result.mun_Descripcion;
+            resultado[3] = result.mun_UsuarioCrea;
+            resultado[4] = result.mun_UsuarioModi;
+            resultado[5] = result.mun_FechaCrea;
+            resultado[6] = result.mun_FechaModi;
+
+
+
+            return resultado;
+        }
+
+
+
+
+
 
         //public tbMunicipios CargarMunicipios(string muni_Id)
         //{

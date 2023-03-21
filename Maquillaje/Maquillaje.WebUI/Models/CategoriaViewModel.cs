@@ -17,13 +17,13 @@ namespace Maquillaje.WebUI.Models
         //AUDITORIA
 
         [Display(Name = "Usuario Creación")]
-        public int? cat_UsuCrea { get; set; }
+        public string cat_UsuCrea { get; set; }
 
         [Display(Name = "Fecha Creacion")]
         public DateTime? cat_FechaCrea { get; set; }
 
         [Display(Name = "Usuario Modificación")]
-        public int? cat_UsuModi { get; set; }
+        public string cat_UsuModi { get; set; }
 
         [Display(Name = "Fecha Modificación")]
         public DateTime? cat_FechaModi { get; set; }

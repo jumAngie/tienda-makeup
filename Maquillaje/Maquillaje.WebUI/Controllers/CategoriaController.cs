@@ -59,46 +59,41 @@ namespace Maquillaje.WebUI.Controllers
             cat.cat_Id = cat_Id;
             cat.cat_Descripcion = cat_Descripcion;
             cat.cat_UsuModi = 1;
-            
+
             var categoria = _mapper.Map<tbCategorias>(cat);
             var result = _generalesService.EditCategoria(categoria);
 
             return RedirectToAction("Index");
         }
 
-        public IActionResult Details(int? id)
+        public IActionResult Details(int id)
         {
-            try
-            {
-                if (id == null)
-                {
-                    return RedirectToAction("Index");
-                }
+           
+                var cates = _generalesService.Detalles(id);
+                CategoriaViewModel model = new CategoriaViewModel();
 
-                tbCategorias catego = _generalesService.BuscarCategoria(id);
-                if (catego == null)
+                if (cates != null && cates.Length > 0)
+                {
+                    model.cat_Id = cates[0];
+                    model.cat_Descripcion = cates[1];
+                    model.cat_UsuCrea = cates[2];
+                    model.cat_UsuModi = cates[3];
+                    model.cat_FechaCrea = Convert.ToDateTime(cates[4]);
+                    model.cat_FechaModi = Convert.ToDateTime(cates[5]);
+
+                }
+                ViewBag.UsuCrea = model.cat_UsuCrea;
+                ViewBag.UsuModi = model.cat_UsuModi;
+
+                if (cates == null)
                 {
                     return RedirectToAction("Index"); // acá vamos a redireccionar a la pagina 404
                 }
-                CategoriaViewModel model = new CategoriaViewModel();
-                model.cat_Id = catego.cat_Id;
-                model.cat_Descripcion = catego.cat_Descripcion;
-                model.cat_FechaCrea = catego.cat_FechaCrea;
-                model.cat_FechaModi = catego.cat_FechaModi;
-                model.cat_UsuCrea = catego.cat_UsuCrea;
-                model.cat_UsuModi = catego.cat_UsuModi;
-                ViewBag.NombreCategoria = "Tabla de Productos por Categoría: " + catego.cat_Descripcion;
                 return View(model);
 
-            }
-            catch (Exception)
-            {
-                return RedirectToAction("Index"); // acá iria la pagina 404
+         
 
-            }
         }
-
-
 
 
         [HttpPost("/Categoria/Eliminar/")]
@@ -107,6 +102,7 @@ namespace Maquillaje.WebUI.Controllers
 
             tbCategorias cat = new tbCategorias();
             cat.cat_Id = cat_Id;
+            cat.cat_UsuModi = 1;
 
 
             var categoria = _mapper.Map<tbCategorias>(cat);

@@ -6,202 +6,209 @@
 }
 
 
+<br />
+<br />
 <div class="col-lg-12 mb-0 order-0">
     <div class="card" style="background-color: white">
         <div class="d-flex align-items-end row">
+            <div class="col-sm-12">
+                <div class="card-header" style="background-color:#ffd3d8">
+                    <div class="text-center">
+                        <img src="~/Content/iMG/giphy.gif" width="100" />
+                        <h3 style="color:black;font-family:'Segoe Print'">Listado Municipios</h3>
+                    </div>
+                </div>
+                <div class="card-body">
 
-
-            <div class="card-body">
-                <a class="btn btn-outline-primary" data-toggle="modal" data-target="#CreateMuni">Nuevo</a>
-                <br />
-                <br />
-
-                <table class="table table-report -mt-2" id="DataTable">
-                    <thead>
-                        <tr>
-                            <th>
-                                @Html.DisplayNameFor(model => model.mun_ID)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.mun_Descripcion)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.mun_depID)
-                            </th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model)
-                        {
+                    <a class="btn btn-primary" data-toggle="modal" data-target="#CreateMuni">Nuevo</a>
+                    <br />
+                    <br />
+                    <table class="table table-report -mt-2" id="DataTable">
+                        <thead>
                             <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.mun_ID)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.mun_Descripcion)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.mun_depID)
-                                </td>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.mun_ID)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.mun_Descripcion)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.mun_depID)
+                                </th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.mun_ID)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.mun_Descripcion)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.mun_depID)
+                                    </td>
 
-                                <td>
-                                    <a class="btn btn-outline-info" data-toggle="modal" data-target="#EditMuni" onclick="CargaEditar(@item.mun_ID)">Editar</a>
+                                    <td>
+                                        <a class="btn btn-outline-info" data-toggle="modal" data-target="#EditMuni" onclick="CargaEditar(@item.mun_ID)">Editar</a>
 
-                                    <Form action="@Url.Action("Edit","Municipio")" id="EditMun" method="post">
+                                        <Form action="@Url.Action("Edit","Municipio")" id="EditMun" method="post">
 
-                                        <div class="modal fade" id="EditMuni" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h4 class="modal-title" id="myLargeModalLabel">Edite una categoría</h4>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <br />
-
-                                                        <input type="hidden" id="mun_IdEdit" name="mun_Id" class="form-control" readonly />
-                                                        <div class="row">
-                                                            <div class="col-sm-6">
-                                                                <label>Departamento</label>
-                                                                <select id="mun_DepIdEdit" name="mun_DepIdEdit" class="form-control"></select>
-                                                            </div>
-
-                                                            <div class="col-sm-6">
-                                                                <label>Municipio</label>
-                                                                <input type="text" id="mun_DescripcionEdit" required name="mun_Descripcion" class="form-control" />
-                                                            </div>
+                                            <div class="modal fade" id="EditMuni" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title" id="myLargeModalLabel">Edite una categoría</h4>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                                         </div>
-                                                        <br />
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" data-dismiss="modal" class="btn btn-outline-danger">Cancelar</button>
-                                                        <button type="button" onclick="Editar()" class="btn btn-outline-success">Guardar</button>
+                                                        <div class="modal-body">
+                                                            <br />
+
+                                                            <input type="hidden" id="mun_IdEdit" name="mun_Id" class="form-control" readonly />
+                                                            <div class="row">
+                                                                <div class="col-sm-6">
+                                                                    <label>Departamento</label>
+                                                                    <select id="mun_DepIdEdit" name="mun_DepIdEdit" class="form-control"></select>
+                                                                </div>
+
+                                                                <div class="col-sm-6">
+                                                                    <label>Municipio</label>
+                                                                    <input type="text" id="mun_DescripcionEdit" required name="mun_Descripcion" class="form-control" />
+                                                                </div>
+                                                            </div>
+                                                            <br />
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" data-dismiss="modal" class="btn btn-outline-danger">Cancelar</button>
+                                                            <button type="button" onclick="Editar()" class="btn btn-outline-success">Guardar</button>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </Form>
+                                        </Form>
 
-                                </td>
-                                <td>
-                                    <a class="btn btn-outline-success" asp-action="Details" asp-route-id="@item.mun_ID">Detalles</a> |
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-outline-success" style="color: black" asp-action="Details" asp-route-id="@item.mun_ID">Detalles</a> |
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
             </div>
+
         </div>
-
     </div>
-</div>
 
 
-@Html.Partial("_Create");
-@*@Html.Partial("_Edit");*@
+    @Html.Partial("_Create");
+    @*@Html.Partial("_Edit");*@
 
 
 
-<script>
+    <script>
 
-    function CargaEditar(X) {
+        function CargaEditar(X) {
 
-        $('#Editar').modal('show');
-        var ID = X;
+            $('#Editar').modal('show');
+            var ID = X;
 
-        console.log(X)
-        console.log(ID)
+            console.log(X)
+            console.log(ID)
 
 
-        $.ajax({
-            url: "/Municipios/CargaPaEditar/" + ID,
-            method: "GET",
-            dataType: "json",
-            contentType: "application/json; charset=utf-8",
-            success: function (data) {
-                console.log(data);
+            $.ajax({
+                url: "/Municipios/CargaPaEditar/" + ID,
+                method: "GET",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    console.log(data);
 
-                $("#mun_DescripcionEdit").empty();
-                $("#mun_DepIdEdit").empty();
-
-                $.each(data, function (i, value) {
-
-                    $("#mun_DescripcionEdit").val(value.mun_Descripcion);
-                    $("#mun_IdEdit").val(value.mun_ID);
+                    $("#mun_DescripcionEdit").empty();
+                    $("#mun_DepIdEdit").empty();
 
                     $.each(data, function (i, value) {
-                        $("#mun_DepIdEdit").append("<option value='" + value.dep_ID + "'>" + value.dep_Descripcion + "</option>");
-                    })
 
-                })
-
-                $.ajax({
-                    url: "/Municipios/Cargar",
-                    method: "GET",
-                    dataType: "json",
-                    contentType: "application/json; charset=utf-8",
-
-                    success: function (data) {
-
-                        console.log(data);
+                        $("#mun_DescripcionEdit").val(value.mun_Descripcion);
+                        $("#mun_IdEdit").val(value.mun_ID);
 
                         $.each(data, function (i, value) {
                             $("#mun_DepIdEdit").append("<option value='" + value.dep_ID + "'>" + value.dep_Descripcion + "</option>");
                         })
 
+                    })
+
+                    $.ajax({
+                        url: "/Municipios/Cargar",
+                        method: "GET",
+                        dataType: "json",
+                        contentType: "application/json; charset=utf-8",
+
+                        success: function (data) {
+
+                            console.log(data);
+
+                            $.each(data, function (i, value) {
+                                $("#mun_DepIdEdit").append("<option value='" + value.dep_ID + "'>" + value.dep_Descripcion + "</option>");
+                            })
 
 
+
+                        }
+                    })
+
+                }
+
+            })
+
+
+        }
+
+
+
+    </script>
+
+    <script>
+
+        function Editar() {
+
+
+            var mun_Descripcion = $("#mun_DescripcionEdit").val();
+            var mun_Id = $("#mun_IdEdit").val();
+            var mun_DepId = $("#mun_DepIdEdit").val();
+
+
+            $.ajax({
+                url: "/Municipios/Editar/" + mun_Id + "/" + mun_Descripcion + "/" + mun_DepId,
+                method: "GET",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+
+                success: function (data) {
+
+                    if ($("#mun_DescripcionEdit").val() == "") {
+                        mostrarErrorToast("Campos requeridos.");
                     }
-                })
-
-            }
-
-        })
-
-
-    }
-
-
-
-</script>
-
-<script>
-
-    function Editar() {
-
-
-        var mun_Descripcion = $("#mun_DescripcionEdit").val();
-        var mun_Id = $("#mun_IdEdit").val();
-        var mun_DepId = $("#mun_DepIdEdit").val();
-
-
-        $.ajax({
-            url: "/Municipios/Editar/" + mun_Id + "/" + mun_Descripcion + "/" + mun_DepId,
-            method: "GET",
-            dataType: "json",
-            contentType: "application/json; charset=utf-8",
-
-            success: function (data) {
-
-                if ($("#mun_DescripcionEdit").val() == "") {
-                    mostrarErrorToast("Campos requeridos.");
+                    if ($("#mun_DepIdEdit").val() == 0 || $("#mun_DepIdEdit").val() == undefined) {
+                        mostrarErrorToast("Campos requeridos.");
+                    }
+                    else {
+                        $('#EditMun').submit();
+                        mostrarInfoToast("Se ha modificado el registro.")
+                    }
                 }
-                if ($("#mun_DepIdEdit").val() == 0 || $("#mun_DepIdEdit").val() == undefined) {
-                    mostrarErrorToast("Campos requeridos.");
-                }
-                else {
-                    $('#EditMun').submit();
-                    mostrarInfoToast("Se ha modificado el registro.")
-                }
-            }
 
-        })
+            })
 
 
-     
 
-    }
 
-</script>
+        }
+
+    </script>

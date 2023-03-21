@@ -47,7 +47,34 @@ namespace Maquillaje.WebUI.Controllers
         }
 
 
+        public IActionResult Details(int id)
+        {
 
+            var cates = _generalesService.DetallesEstados(id);
+            EstadosCivilesViewModel model = new EstadosCivilesViewModel();
+
+            if (cates != null && cates.Length > 0)
+            {
+                model.est_ID = cates[0];
+                model.est_Descripcion = cates[1];
+                model.est_UsuarioCrea = cates[2];
+                model.est_UsuarioModi = cates[3];
+                model.est_FechaCrea = Convert.ToDateTime(cates[4]);
+                model.est_FechaModi = Convert.ToDateTime(cates[5]);
+
+            }
+            ViewBag.UsuCrea = model.est_UsuarioCrea;
+            ViewBag.UsuModi = model.est_UsuarioModi;
+
+            if (cates == null)
+            {
+                return RedirectToAction("Index"); // acá vamos a redireccionar a la pagina 404
+            }
+            return View(model);
+
+
+
+        }
 
 
         [HttpGet("/EstadosCiviles/Editar/{id}")]

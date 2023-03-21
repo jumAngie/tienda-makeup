@@ -36,6 +36,36 @@ namespace Maquillaje.WebUI.Controllers
         }
 
 
+        public IActionResult Details(int id)
+        {
+
+            var cates = _generalesService.DetallesUsuarios(id);
+            UsuariosViewModel model = new UsuariosViewModel();
+
+            if (cates != null && cates.Length > 0)
+            {
+                model.usu_ID = cates[0];
+                model.usu_Usuario = cates[1];
+                model.Empleado = cates[2];
+                model.usu_Usuario = cates[3];
+                model.usu_UsuarioCrea = cates[4];
+                model.usu_UsuarioModi = cates[5];
+                model.usu_FechaCrea = Convert.ToDateTime(cates[6]);
+                model.usu_FechaModi = Convert.ToDateTime(cates[7]);
+
+            }
+            ViewBag.UsuCrea = model.usu_UsuarioCrea;
+            ViewBag.UsuModi = model.usu_UsuarioModi;
+
+            if (cates == null)
+            {
+                return RedirectToAction("Index"); // acá vamos a redireccionar a la pagina 404
+            }
+            return View(model);
+
+
+
+        }
 
 
 

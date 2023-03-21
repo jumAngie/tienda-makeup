@@ -50,7 +50,37 @@ namespace Maquillaje.DataAccess.Repositories.Gral
             return db.Execute(ScriptsDataBase.ClientesCrear, parametros, commandType: CommandType.StoredProcedure);
         }
 
-        
+
+
+        public dynamic[] Detalles(int cli_Id)
+        {
+            using var db = new SqlConnection(TiendaContext.ConnectionString);
+            var parametro = new DynamicParameters();
+            parametro.Add("@ID", cli_Id, DbType.Int32, ParameterDirection.Input);
+
+            var result = db.QueryFirst(ScriptsDataBase.ClientesDetalles, parametro, commandType: CommandType.StoredProcedure);
+            dynamic[] resultado = new dynamic[14];
+            resultado[0] = result.cli_ID;
+            resultado[1] = result.cli_Nombre;
+            resultado[2] = result.cli_Apellido;
+            resultado[3] = result.cli_DNI;
+            resultado[4] = result.cli_FechaNacimiento;
+            resultado[5] = result.cli_Sexo;
+            resultado[6] = result.cli_Telefono;
+            resultado[7] = result.cli_Municipio;
+            resultado[8] = result.cli_EstadoCivil;
+            resultado[9] = result.cli_UsuarioCrea;
+            resultado[10] = result.cli_UsuarioModi;
+            resultado[11] = result.cli_FechaCrea;
+            resultado[12] = result.cli_FechaModi;
+
+    
+
+
+            return resultado;
+        }
+
+
 
         public IEnumerable<Vw_Gral_tbClientes_LIST> List()
         {

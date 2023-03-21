@@ -5,16 +5,23 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<br />
+<br />
 <div class="col-lg-12 mb-0 order-0">
     <div class="card" style="background-color: white">
         <div class="d-flex align-items-end row">
             <div class="col-sm-12">
-
+                <div class="card-header" style="background-color:#ffd3d8">
+                    <div class="text-center">
+                        <img src="~/Content/iMG/giphy.gif" width="100" />
+                        <h3 style="color:black;font-family:'Segoe Print'">Listado Métodos de Pago</h3>
+                    </div>
+                </div>
                 <div class="card-body">
-                    <a class="btn btn-outline-primary" data-toggle="modal" data-target="#CreateMet">Nuevo</a>
-                    <br />
-                    <br />
 
+                    <a class="btn btn-primary" data-toggle="modal" data-target="#CreateMet">Nuevo</a>
+                    <br />
+                    <br />
                     <table class="table table-report -mt-2" id="DataTable">
                         <thead>
                             <tr>
@@ -40,9 +47,9 @@
                                     </td>
 
                                     <td>
-                                        <a class="btn btn-outline-info" data-toggle="modal" data-target="#EditMet" onclick="Editar('@item.met_Id,@item.met_Descripcion')">Editar</a> |
-                                        <a class="btn btn-outline-success" asp-action="Details" asp-route-id="@item.met_Id">Detalles</a> |
-                                        <a class="btn btn-outline-danger" onclick="ShowModal(@item.met_Id)" data-id="@item.met_Id">Eliminar</a>
+                                        <a class="btn btn-primary" data-toggle="modal" data-target="#EditMet" onclick="Editar('@item.met_Id,@item.met_Descripcion')">Editar</a> |
+                                        <a class="btn btn-primary" style="color: black" asp-action="Details" asp-route-id="@item.met_Id">Detalles</a> |
+                                        <a class="btn btn-primary" onclick="ShowModal(@item.met_Id)" data-id="@item.met_Id">Eliminar</a>
                                     </td>
                                 </tr>
                             }

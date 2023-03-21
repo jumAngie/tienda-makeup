@@ -113,6 +113,32 @@ namespace Maquillaje.DataAccess.Repositories.Gral
             throw new NotImplementedException();
         }
 
+
+        public dynamic[] Detalles(int usu_Id)
+        {
+            using var db = new SqlConnection(TiendaContext.ConnectionString);
+            var parametro = new DynamicParameters();
+            parametro.Add("@ID", usu_Id, DbType.Int32, ParameterDirection.Input);
+
+            var result = db.QueryFirst(ScriptsDataBase.UsuariosDetalles, parametro, commandType: CommandType.StoredProcedure);
+            dynamic[] resultado = new dynamic[9];
+            resultado[0] = result.usu_ID;
+            resultado[1] = result.usu_Usuario;
+            resultado[2] = result.usu_empID;
+            resultado[3] = result.usu_EsAdmin;
+            resultado[4] = result.usu_FechaCrea;
+            resultado[5] = result.usu_FechaModi;
+            resultado[6] = result.usu_UsuarioCrea;
+            resultado[7] = result.usu_UsuarioModi;
+
+
+
+
+            return resultado;
+        }
+
+
+
         IEnumerable<tbUsuarios> IRepository<tbUsuarios>.List()
         {
             throw new NotImplementedException();

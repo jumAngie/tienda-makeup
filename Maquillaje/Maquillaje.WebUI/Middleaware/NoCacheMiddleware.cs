@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 
-namespace TuProyecto.Middleware
+namespace Maquillaje.Middleware
 {
     public class NoCacheMiddleware
     {

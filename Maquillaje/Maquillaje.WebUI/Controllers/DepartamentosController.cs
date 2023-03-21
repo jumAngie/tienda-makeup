@@ -66,6 +66,37 @@ namespace Maquillaje.WebUI.Controllers
 
 
 
+
+        public IActionResult Details(int id)
+        {
+
+            var cates = _generalesService.DetallesDepto(id);
+            DepartamentosViewModel model = new DepartamentosViewModel();
+
+            if (cates != null && cates.Length > 0)
+            {
+                model.dep_ID = cates[0];
+                model.dep_Descripcion = cates[1];
+                model.dep_UsuarioCrea = cates[2];
+                model.dep_UsuarioModi = cates[3];
+                model.dep_FechaCrea = Convert.ToDateTime(cates[4]);
+                model.dep_FechaModi = Convert.ToDateTime(cates[5]);
+
+            }
+            ViewBag.UsuCrea = model.dep_UsuarioCrea;
+            ViewBag.UsuModi = model.dep_UsuarioModi;
+
+            if (cates == null)
+            {
+                return RedirectToAction("Index"); // acá vamos a redireccionar a la pagina 404
+            }
+            return View(model);
+
+
+
+        }
+
+
         [HttpPost("/Departamentos/Eliminar/")]
         public IActionResult Delete(int dep_Id)
         {

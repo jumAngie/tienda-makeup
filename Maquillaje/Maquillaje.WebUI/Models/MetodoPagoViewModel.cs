@@ -13,5 +13,19 @@ namespace Maquillaje.WebUI.Models
 
         [Display(Name = "Descripcion")]
         public string met_Descripcion { get; set; }
+
+        //AUDITORIA
+
+        [Display(Name = "Usuario Creación")]
+        public string met_UsuCrea { get; set; }
+
+        [Display(Name = "Fecha Creacion")]
+        public DateTime? met_FechaCrea { get; set; }
+
+        [Display(Name = "Usuario Modificación")]
+        public string met_UsuModi { get; set; }
+
+        [Display(Name = "Fecha Modificación")]
+        public DateTime? met_FechaModi { get; set; }
     }
 }

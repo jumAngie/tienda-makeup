@@ -19,5 +19,18 @@ namespace Maquillaje.WebUI.Models
 
         [Display(Name = "Admin")]
         public bool usu_EsAdmin { get; set; }
+
+
+        [Display(Name = "Usuario Creación")]
+        public string usu_UsuarioCrea { get; set; }
+
+        [Display(Name = "Fecha Creacion")]
+        public DateTime? usu_FechaCrea { get; set; }
+
+        [Display(Name = "Usuario Modificación")]
+        public string usu_UsuarioModi { get; set; }
+
+        [Display(Name = "Fecha Modificación")]
+        public DateTime? usu_FechaModi { get; set; }
     }
 }

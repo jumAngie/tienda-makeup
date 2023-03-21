@@ -74,6 +74,7 @@ namespace Maquillaje.WebUI.Controllers
 
             tbMetodoPago meto = new tbMetodoPago();
             meto.met_Id = met_Id;
+            meto.met_usuModi = 1;
 
 
             var met = _mapper.Map<tbMetodoPago>(meto);
@@ -83,6 +84,35 @@ namespace Maquillaje.WebUI.Controllers
             return RedirectToAction("Index");
         }
 
+
+        public IActionResult Details(int id)
+        {
+
+            var cates = _generalesService.DetallesMetodo(id);
+            MetodoPagoViewModel model = new MetodoPagoViewModel();
+
+            if (cates != null && cates.Length > 0)
+            {
+                model.met_Id = cates[0];
+                model.met_Descripcion = cates[1];
+                model.met_UsuCrea = cates[2];
+                model.met_UsuModi = cates[3];
+                model.met_FechaCrea = Convert.ToDateTime(cates[4]);
+                model.met_FechaModi = Convert.ToDateTime(cates[5]);
+
+            }
+            ViewBag.UsuCrea = model.met_UsuCrea;
+            ViewBag.UsuModi = model.met_UsuModi;
+
+            if (cates == null)
+            {
+                return RedirectToAction("Index"); // acá vamos a redireccionar a la pagina 404
+            }
+            return View(model);
+
+
+
+        }
 
 
 

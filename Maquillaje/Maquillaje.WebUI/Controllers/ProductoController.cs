@@ -51,6 +51,44 @@ namespace Maquillaje.WebUI.Controllers
         }
         #endregion
 
+        #region Detalles
+        public IActionResult Details(int id)
+        {
+
+
+            var cates = _generalesService.DetallesProductos(id);
+            ProductosViewModel model = new ProductosViewModel();
+
+            if (cates != null && cates.Length > 0)
+            {
+                model.pro_Id = cates[0];
+                model.pro_Codigo = cates[1];
+                model.pro_Nombre = cates[2];
+                model.pro_StockInicial = cates[3];
+                model.pro_PrecioUnitario = cates[4];
+                model.pro_Proveedor = cates[5];
+                model.cat_Descripcion = cates[6];
+                model.pro_usuCrea = cates[7];
+                model.pro_UsuModi = cates[8];
+                model.pro_FechaCrea = Convert.ToDateTime(cates[9]);
+                model.pro_FechaModi = Convert.ToDateTime(cates[10]);
+
+
+
+            }
+            ViewBag.UsuCrea = model.pro_usuCrea;
+            ViewBag.UsuModi = model.pro_UsuModi;
+
+            if (cates == null)
+            {
+                return RedirectToAction("Index"); // acá vamos a redireccionar a la pagina 404
+            }
+            return View(model);
+
+
+
+        }
+        #endregion
 
         #region Validaciones
         public bool ExisteCodigo(string codigo)

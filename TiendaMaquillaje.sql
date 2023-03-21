@@ -2239,16 +2239,223 @@ SELECT  usu_ID,
 END
 GO
 
-CREATE OR ALTER FUNCTION Maqui.UDF_tbCategorias_BuscarCategorias(@ID INT)
-RETURNS TABLE
-RETURN
+CREATE OR ALTER PROC UDP_tbCategorias_Detalles(@ID INT)
+AS BEGIN
 SELECT cat_Id, cat_Descripcion, cat_UsuCrea = usu.usu_Usuario, cat_UsuModi = usua.usu_Usuario, cat_FechaCrea, cat_FechaModi FROM Maqui.tbCategorias cate
 INNER JOIN  [Gral].[tbUsuarios] usu
 ON		cate.cat_UsuCrea = usu.usu_ID
 LEFT JOIN  [Gral].[tbUsuarios] usua
 ON		cate.cat_UsuModi = usua.usu_ID
 WHERE	cate.cat_Id = @ID
+END
 GO
-SELECT*FROM Maqui.UDF_tbCategorias_BuscarCategorias(1)
 
-SELECT * FROM Maqui.tbCategorias
+CREATE OR ALTER PROC UDP_tbDepartamentos_Detalles(@ID INT)
+AS BEGIN
+SELECT dep_ID, dep_Descripcion, dep_UsuarioCrea = usu.usu_Usuario, dep_UsuarioModi = usua.usu_Usuario, dep_FechaCrea, dep_FechaModi FROM Gral.tbDepartamentos dep
+INNER JOIN  [Gral].[tbUsuarios] usu
+ON		dep.dep_UsuarioCrea = usu.usu_ID
+LEFT JOIN  [Gral].[tbUsuarios] usua
+ON		dep.dep_UsuarioModi = usua.usu_ID
+WHERE	dep_ID = @ID
+END
+GO
+
+
+CREATE OR ALTER PROC UDP_tbEstadosCiviles_Detalles(@ID INT)
+AS BEGIN
+SELECT est_ID, est_Descripcion, est_UsuarioCrea = usu.usu_Usuario, est_UsuarioModi = usua.usu_Usuario, est_FechaCrea, est_FechaModi FROM Gral.tbEstadosCiviles est
+INNER JOIN  [Gral].[tbUsuarios] usu
+ON		est.est_UsuarioCrea = usu.usu_ID
+LEFT JOIN  [Gral].[tbUsuarios] usua
+ON		est.est_UsuarioModi = usua.usu_ID
+WHERE	est_ID = @ID
+END
+GO
+
+CREATE OR ALTER PROC UDP_tbMetodoPago_Detalles(@ID INT)
+AS BEGIN
+SELECT met_Id, met_Descripcion, met_UsuCrea = usu.usu_Usuario, met_UsuModi = usua.usu_Usuario, met_FechaCrea, met_FechaModi FROM Maqui.tbMetodoPago met
+INNER JOIN  [Gral].[tbUsuarios] usu
+ON		met.met_UsuCrea = usu.usu_ID
+LEFT JOIN  [Gral].[tbUsuarios] usua
+ON		met.met_UsuModi = usua.usu_ID
+WHERE	met_ID = @ID
+END
+GO
+
+
+CREATE OR ALTER PROC UDP_tbMunicipios_Detalles(@ID INT)
+AS BEGIN
+SELECT mun_ID, mun_Descripcion, mun_depID = dep_Descripcion, mun_UsuarioCrea = usu.usu_Usuario, mun_UsuarioModi = usua.usu_Usuario, mun_FechaCrea, mun_FechaModi FROM Gral.tbMunicipios mun
+INNER JOIN  [Gral].tbUsuarios usu
+ON		mun.mun_UsuarioCrea = usu.usu_ID
+LEFT JOIN  [Gral].[tbUsuarios] usua
+ON		mun.mun_UsuarioModi = usua.usu_ID
+INNER JOIN Gral.tbDepartamentos T3
+ON mun.mun_depID = T3.dep_ID
+WHERE	mun_ID = @ID
+END
+GO
+
+
+CREATE OR ALTER PROC UDP_tbSucursales_Detalles(@ID INT)
+AS BEGIN
+SELECT suc_Id, suc_Descripcion, suc_Municipio = mun_Descripcion, suc_UsuCrea = usu.usu_Usuario, 
+suc_UsuModi = usua.usu_Usuario, suc_FechaCrea, suc_FechaModi FROM Gral.tbSucursales suc
+INNER JOIN  [Gral].tbUsuarios usu
+ON		suc.suc_UsuCrea = usu.usu_ID
+LEFT JOIN  [Gral].[tbUsuarios] usua
+ON		suc.suc_UsuModi = usua.usu_ID
+INNER JOIN Gral.tbMunicipios T3
+ON suc.suc_Municipio = T3.mun_ID
+WHERE	suc_Id = @ID
+END
+GO
+
+
+CREATE OR ALTER PROC UDP_tbUsuarios_Detalles(@ID INT)
+AS BEGIN
+SELECT T1.usu_ID, T1.usu_Usuario, usu_empID = T4.emp_Nombre + ' ' + T4.emp_Apellido,
+T1.usu_EsAdmin,T2.usu_Usuario AS usu_UsuarioCrea, T3.usu_Usuario AS usu_UsuarioModi, T1.usu_FechaCrea, T1.usu_FechaModi FROM Gral.tbUsuarios T1
+JOIN Gral.tbUsuarios T2
+ON T1.usu_UsuarioCrea = T2.usu_ID
+LEFT JOIN Gral.tbUsuarios T3
+ON T1.usu_UsuarioModi = T3.usu_ID
+INNER JOIN Gral.tbEmpleados T4
+ON T1.usu_empID = T4.emp_ID
+WHERE T1.usu_ID = @ID
+END
+GO
+
+
+CREATE OR ALTER PROC UDP_tbClientes_Detalles(@ID INT)
+AS BEGIN
+SELECT  cli_ID, 
+		cli_Nombre,
+		cli_Apellido, 
+		cli_DNI, 
+		cli_FechaNacimiento, 
+		cli_Sexo,
+		cli_Telefono,
+		cli_Municipio = mun_Descripcion,
+		cli_EstadoCivil = est_Descripcion,
+		cli_UsuarioCrea = T2.usu_Usuario,
+		cli_UsuarioModi = T3.usu_Usuario,
+		cli_FechaCrea,
+		cli_FechaModi
+		FROM Gral.tbClientes T1
+		INNER JOIN Gral.tbUsuarios T2
+		ON T1.cli_UsuarioCrea = T2.usu_ID
+		LEFT JOIN Gral.tbUsuarios T3
+		ON T1.cli_UsuarioModi = T3.usu_ID
+		INNER JOIN Gral.tbMunicipios T4
+		ON T1.cli_Municipio = T4.mun_ID
+		INNER JOIN Gral.tbEstadosCiviles T5
+		ON T1.cli_EstadoCivil = T5.est_ID
+		WHERE cli_ID = @ID
+
+END
+GO
+
+
+
+
+
+CREATE OR ALTER PROC UDP_tbEmpleados_Detalles(@ID INT)
+AS BEGIN
+SELECT  emp_ID, 
+		emp_Nombre, 
+		emp_Apellido,
+		emp_DNI,
+		emp_FechaNacimiento, 
+		emp_Sexo,
+		emp_Telefono,
+		emp_Municipio = mun_Descripcion,
+		emp_Correo,
+		emp_EstadoCivil = est_Descripcion,
+		emp_Sucursal = suc_Descripcion,
+		emp_UsuarioCrea = T3.usu_Usuario,
+		emp_UsuarioModi = T4.usu_Usuario,
+		emp_FechaCrea,
+		emp_FechaModi
+
+		FROM Gral.tbEmpleados T1
+		INNER Join Gral.tbMunicipios T2
+		ON T1.emp_Municipio = T2.mun_ID
+		INNER JOIN Gral.tbUsuarios T3
+		ON T1.emp_UsuarioCrea = T3.usu_ID
+		LEFT JOIN Gral.tbUsuarios T4
+		ON T1.emp_UsuarioModi = T4.usu_ID
+		INNER JOIN Gral.tbEstadosCiviles T5
+		ON T1.emp_EstadoCivil = T5.est_ID
+		INNER JOIN Gral.tbSucursales T6
+		ON T1.emp_Sucursal = T6.suc_Id
+		WHERE emp_ID = @ID
+
+END
+GO
+
+
+
+
+CREATE OR ALTER PROC UDP_tbProductos_Detalles(@ID INT)
+AS BEGIN
+SELECT  pro_Id,
+		pro_Codigo,
+		pro_Nombre,
+		pro_StockInicial,
+		pro_PrecioUnitario,
+		pro_Proveedor = prv_NombreContacto,
+		pro_Categoria = cat_Descripcion,
+		pro_usuCrea = T2.usu_Usuario,
+		pro_UsuModi = T3.usu_Usuario,
+		pro_FechaCrea,
+		pro_FechaModi
+		FROM Maqui.tbProductos T1
+		INNER JOIN Gral.tbUsuarios T2
+		ON T1.pro_usuCrea = T2.usu_ID
+		LEFT JOIN Gral.tbUsuarios T3
+		ON T1.pro_UsuModi = T3.usu_ID
+		INNER JOIN Maqui.tbProveedores T4
+		ON T1.pro_Proveedor = T4.prv_ID
+		INNER JOIN Maqui.tbCategorias T5
+		ON T1.pro_Categoria = T5.cat_Id
+		WHERE pro_Id = @ID
+		
+END
+GO
+
+
+CREATE OR ALTER PROC UDP_tbProveedores_Detalles(@ID INT)
+AS BEGIN
+SELECT  prv_ID,
+		prv_NombreCompañia,
+		prv_NombreContacto,
+		prv_TelefonoContacto,
+		prv_DireccionEmpresa,
+		prv_DireccionContacto,
+		CASE prv_SexoContacto
+		WHEN 'F' THEN 'Femenino'
+		WHEN 'M' THEN 'Masculino'
+		END AS prv_SexoContacto,
+		prv_UsuarioCrea = T2.usu_Usuario,
+		prv_UsuarioModi = T3.usu_Usuario,
+		prv_FechaCrea,
+		prv_FechaModi
+		
+		FROM Maqui.tbProveedores T1
+		INNER JOIN Gral.tbUsuarios T2
+		ON T1.prv_UsuarioCrea = T2.usu_ID
+		LEFT JOIN Gral.tbUsuarios T3
+		ON T1.prv_UsuarioModi = T3.usu_ID
+		WHERE prv_ID= @ID
+		
+END
+GO
+
+
+
+
+select * from Maqui.tbProveedores
+exec UDP_tbProveedores_Detalles 5

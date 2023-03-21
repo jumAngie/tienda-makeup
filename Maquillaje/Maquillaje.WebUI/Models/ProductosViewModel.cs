@@ -43,5 +43,20 @@ namespace Maquillaje.WebUI.Models
 
         [Display(Name = "Proveedor")]
         public string pro_Proveedor { get; set; }
+
+
+        //AUDITORIA
+
+        [Display(Name = "Usuario Creación")]
+        public string pro_usuCrea { get; set; }
+
+        [Display(Name = "Fecha Creacion")]
+        public DateTime? pro_FechaCrea { get; set; }
+
+        [Display(Name = "Usuario Modificación")]
+        public string pro_UsuModi { get; set; }
+
+        [Display(Name = "Fecha Modificación")]
+        public DateTime? pro_FechaModi { get; set; }
     }
 }

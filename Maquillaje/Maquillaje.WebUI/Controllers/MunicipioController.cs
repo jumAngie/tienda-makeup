@@ -73,6 +73,41 @@ namespace Maquillaje.WebUI.Controllers
 
 
 
+
+
+        public IActionResult Details(int id)
+        {
+
+            var cates = _generalesService.DetallesMunis(id);
+            MunicipiosViewModel model = new MunicipiosViewModel();
+
+            if (cates != null && cates.Length > 0)
+            {
+                model.mun_ID = cates[0];
+                model.mun_depID = cates[1];
+                model.mun_Descripcion = cates[2];
+                model.mun_UsuarioCrea = cates[3];
+                model.mun_UsuarioModi = cates[4];
+                model.mun_FechaCrea = Convert.ToDateTime(cates[5]);
+                model.mun_FechaModi = Convert.ToDateTime(cates[6]);
+
+            }
+            ViewBag.UsuCrea = model.mun_UsuarioCrea;
+            ViewBag.UsuModi = model.mun_UsuarioModi;
+
+            if (cates == null)
+            {
+                return RedirectToAction("Index"); // acá vamos a redireccionar a la pagina 404
+            }
+            return View(model);
+
+
+
+        }
+
+
+
+
         //public ActionResult getDepartment()
         //{
         //    try

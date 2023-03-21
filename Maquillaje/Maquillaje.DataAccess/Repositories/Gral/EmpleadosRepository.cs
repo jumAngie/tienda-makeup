@@ -26,7 +26,35 @@ namespace Maquillaje.DataAccess.Repositories.Gral
             return result;
         }
 
-       
+        public dynamic[] Detalles(int emp_Id)
+        {
+            using var db = new SqlConnection(TiendaContext.ConnectionString);
+            var parametro = new DynamicParameters();
+            parametro.Add("@ID", emp_Id, DbType.Int32, ParameterDirection.Input);
+
+            var result = db.QueryFirst(ScriptsDataBase.EmpleadosDetalles, parametro, commandType: CommandType.StoredProcedure);
+            dynamic[] resultado = new dynamic[17];
+            resultado[0] = result.emp_ID;
+            resultado[1] = result.emp_Nombre;
+            resultado[2] = result.emp_Apellido;
+            resultado[3] = result.emp_DNI;
+            resultado[4] = result.emp_FechaNacimiento;
+            resultado[5] = result.emp_Sexo;
+            resultado[6] = result.emp_Telefono;
+            resultado[7] = result.emp_Municipio;
+            resultado[8] = result.emp_Correo;
+            resultado[9] = result.emp_EstadoCivil;
+            resultado[10] = result.emp_Sucursal;
+            resultado[11] = result.emp_UsuarioCrea;
+            resultado[12] = result.emp_UsuarioModi;
+            resultado[13] = result.emp_FechaCrea;
+            resultado[14] = result.emp_FechaModi;
+
+            return resultado;
+        }
+
+	
+
 
         public int Insertar( string emp_Nombre, string emp_Apellido, string emp_DNI , string emp_FechaNacimiento, string emp_Sexo  ,			
             int emp_Municipio , string emp_Telefono , string emp_Correo , int emp_EstadoCivil, int emp_Sucursal , int emp_UsuarioCrea)

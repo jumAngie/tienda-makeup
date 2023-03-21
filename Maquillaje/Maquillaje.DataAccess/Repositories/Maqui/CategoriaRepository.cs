@@ -18,6 +18,7 @@ namespace Maquillaje.DataAccess.Repositories
             using var db = new SqlConnection(TiendaContext.ConnectionString);
             var parametros = new DynamicParameters();
             parametros.Add("@cat_Id", item.cat_Id, DbType.Int32, ParameterDirection.Input);
+            parametros.Add("@cat_UsuModi", item.cat_UsuModi, DbType.Int32, ParameterDirection.Input);
 
             return db.Execute(ScriptsDataBase.CategoriasEliminar, parametros, commandType: CommandType.StoredProcedure);
 
@@ -72,8 +73,32 @@ namespace Maquillaje.DataAccess.Repositories
         {
             throw new NotImplementedException();
         }
+
+
+        public dynamic[] Detalles(int cat_Id)
+        {
+            using var db = new SqlConnection(TiendaContext.ConnectionString);
+            var parametro = new DynamicParameters();
+            parametro.Add("@ID", cat_Id, DbType.Int32, ParameterDirection.Input);
+
+            var result = db.QueryFirst(ScriptsDataBase.CategoriasDetalles, parametro, commandType: CommandType.StoredProcedure);
+            dynamic[] resultado = new dynamic[6];
+            resultado[0] = result.cat_Id;
+            resultado[1] = result.cat_Descripcion;
+            resultado[2] = result.cat_UsuCrea;
+            resultado[3] = result.cat_UsuModi;
+            resultado[4] = result.cat_FechaCrea;
+            resultado[5] = result.cat_FechaModi;
+
+
+
+            return resultado;
+        }
+
+
     }
 }
+
 
 
 //////using var db = new TiendaContext();

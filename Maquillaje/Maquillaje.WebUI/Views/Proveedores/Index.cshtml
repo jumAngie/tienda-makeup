@@ -11,20 +11,26 @@
 {
     @Html.Raw(ViewBag.SuccessMessageScript)
 }
-<h1>Proveedores</h1>
-
+<br />
+<br />
 <div class="col-lg-12 mb-0 order-0">
     <div class="card" style="background-color: white">
         <div class="d-flex align-items-end row">
             <div class="col-sm-12">
-                <div class="card-header">
+                <div class="card-header" style="background-color:#ffd3d8">
+                    <div class="text-center">
+                        <img src="~/Content/iMG/giphy.gif" width="100" />
+                        <h3 style="color:black;font-family:'Segoe Print'">Listado Categorías</h3>
+                    </div>
+                </div>
+                <div class="card-body">
+
                     <a class="btn btn-primary btn-icon-text" asp-action="Create">
                         <i class="mdi mdi-file-check btn-icon-prepend"></i>Nuevo
                     </a>
-
-                </div>
-                <div class="card-body">
-                    <table class="table table-responsive-sm table-light" id="DataTable">
+                    <br />
+                    <br />
+                    <table class="table table-report -mt-2" id="DataTable">
                         <thead>
                             <tr>
                                 <th>
@@ -65,11 +71,11 @@
                                         @Html.DisplayFor(modelItem => item.prv_DireccionEmpresa)
                                     </td>
                                     <td>
-                                        <a class="btn btn-warning btn-icon-text" asp-action="Edit" asp-route-id="@item.prv_ID">
+                                        <a class="btn btn-primary  btn-icon-text" asp-action="Edit" asp-route-id="@item.prv_ID">
                                             <i class="mdi mdi-reload btn-icon-prepend"></i>Editar
                                         </a> |
-                                        <a class="btn  btn-success" asp-action="Details" asp-route-id="@item.prv_ID">Detalles</a> |
-                                        <a class="btn-delete btn btn-danger" onclick="ShowModal(@item.prv_ID)" data-id="@item.prv_ID">Eliminar</a>
+                                        <a class="btn btn-primary " asp-action="Details" asp-route-id="@item.prv_ID">Detalles</a> |
+                                        <a class="btn btn-primary " onclick="ShowModal(@item.prv_ID)" data-id="@item.prv_ID">Eliminar</a>
 
                                     </td>
                                 </tr>

@@ -57,6 +57,39 @@ namespace Maquillaje.WebUI.Controllers
 
 
 
+
+        public IActionResult Details(int id)
+        {
+
+            var cates = _generalesService.DetallesSucu(id);
+            SucursalesViewModel model = new SucursalesViewModel();
+
+            if (cates != null && cates.Length > 0)
+            {
+                model.suc_Id = cates[0];
+                model.suc_Municipio = cates[1];
+                model.suc_Descripcion = cates[2];
+                model.suc_UsuCrea = cates[3];
+                model.suc_UsuModi = cates[4];
+                model.suc_FechaCrea = Convert.ToDateTime(cates[5]);
+                model.suc_FechaModi = Convert.ToDateTime(cates[6]);
+
+            }
+            ViewBag.UsuCrea = model.suc_UsuCrea;
+            ViewBag.UsuModi = model.suc_UsuModi;
+
+            if (cates == null)
+            {
+                return RedirectToAction("Index"); // acá vamos a redireccionar a la pagina 404
+            }
+            return View(model);
+
+
+
+        }
+
+
+
         [HttpPost("/Sucursal/Create")]
         public IActionResult Create(string suc_Descripcion, int suc_MunicipioCrea)
         {

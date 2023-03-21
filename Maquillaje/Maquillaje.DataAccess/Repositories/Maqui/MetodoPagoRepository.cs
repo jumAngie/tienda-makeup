@@ -21,6 +21,7 @@ namespace Maquillaje.DataAccess.Repositories.Maqui
             using var db = new SqlConnection(TiendaContext.ConnectionString);
             var parametros = new DynamicParameters();
             parametros.Add("@met_Id", item.met_Id, DbType.Int32, ParameterDirection.Input);
+            parametros.Add("@met_UsuModi", item.met_usuModi, DbType.Int32, ParameterDirection.Input);
 
             return db.Execute(ScriptsDataBase.MetodoPagoEliminar, parametros, commandType: CommandType.StoredProcedure);
         }
@@ -69,6 +70,36 @@ namespace Maquillaje.DataAccess.Repositories.Maqui
 
             return resultado;
         }
+
+
+        public dynamic[] Detalles(int met_Id)
+        {
+            using var db = new SqlConnection(TiendaContext.ConnectionString);
+            var parametro = new DynamicParameters();
+            parametro.Add("@ID", met_Id, DbType.Int32, ParameterDirection.Input);
+
+            var result = db.QueryFirst(ScriptsDataBase.MetodoPagoDetalles, parametro, commandType: CommandType.StoredProcedure);
+            dynamic[] resultado = new dynamic[6];
+            resultado[0] = result.met_Id;
+            resultado[1] = result.met_Descripcion;
+            resultado[2] = result.met_UsuCrea;
+            resultado[3] = result.met_UsuModi;
+            resultado[4] = result.met_FechaCrea;
+            resultado[5] = result.met_FechaModi;
+
+
+
+            return resultado;
+        }
+
+
+
+
+
+
+
+
+
         IEnumerable<tbMetodoPago> IRepository<tbMetodoPago>.List()
         {
             throw new NotImplementedException();
