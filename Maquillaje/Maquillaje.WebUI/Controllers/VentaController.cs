@@ -46,8 +46,8 @@ namespace Maquillaje.WebUI.Controllers
             var detalles = _generalesService.ListadoVentaDetalles(item.vde_VentaId);
 
             ViewBag.cate = new SelectList(ddlCategoria, "cat_Id", "cat_Descripcion");
-            ViewBag.clie_Id = new SelectList(ddlCliente, "cli_ID", "cli_Nombre");
-            ViewBag.meto_Id = new SelectList(ddlMetodo, "met_Id", "met_Descripcion");
+            ViewBag.ven_Cliente = new SelectList(ddlCliente, "cli_ID", "cli_Nombre");
+            ViewBag.ven_MetodoPago = new SelectList(ddlMetodo, "met_Id", "met_Descripcion");
             ViewBag.detalles = detalles;
             ViewBag.fact_Id = item.vde_VentaId;
             ViewBag.esEditar = false;
