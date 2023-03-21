@@ -44,6 +44,21 @@ namespace Maquillaje.BusinessLogic.Services
         }
 
         #region Categorias
+        public IEnumerable<Vw_Maqui_tbCategorias_LIST> ListadoCategorias(out string error)
+        {
+            error = string.Empty;
+            try
+            {
+                return _categoriaRepository.Lista();
+            }
+            catch (Exception e)
+            {
+                error = e.Message;
+                return Enumerable.Empty<Vw_Maqui_tbCategorias_LIST>();
+            }
+        }
+
+
         public IEnumerable<Vw_Maqui_tbCategorias_LIST> ListadoCategorias()
         {
             try
@@ -643,6 +658,18 @@ namespace Maquillaje.BusinessLogic.Services
         #endregion
 
         #region MetodoPago
+
+        public IEnumerable<tbMetodoPago> ListadoMetodosPago()
+        {
+            try
+            {
+                return _metodoPagoRepository.Lista();
+            }
+            catch
+            {
+                return Enumerable.Empty<tbMetodoPago>();
+            }
+        }
 
         public IEnumerable<Vw_Maqui_tbMetodoPago_LIST> ListadoMetodoPago()
         {

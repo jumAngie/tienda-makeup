@@ -95,6 +95,14 @@ namespace Maquillaje.DataAccess.Repositories
             return resultado;
         }
 
+        public IEnumerable<Vw_Maqui_tbCategorias_LIST> Lista()
+        {
+
+            using var db = new SqlConnection(TiendaContext.ConnectionString);
+
+            return db.Query<Vw_Maqui_tbCategorias_LIST>(ScriptsDataBase.UDP_Listar_Categorias, null, commandType: CommandType.StoredProcedure);
+        }
+
 
     }
 }

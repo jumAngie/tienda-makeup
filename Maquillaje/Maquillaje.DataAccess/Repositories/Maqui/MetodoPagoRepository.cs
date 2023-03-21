@@ -95,7 +95,12 @@ namespace Maquillaje.DataAccess.Repositories.Maqui
 
 
 
+        public IEnumerable<tbMetodoPago> Lista()
+        {
+            using var db = new SqlConnection(TiendaContext.ConnectionString);
 
+            return db.Query<tbMetodoPago>(ScriptsDataBase.UDP_Listar_MetodosPago, null, commandType: CommandType.StoredProcedure);
+        }
 
 
 
