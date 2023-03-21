@@ -2568,3 +2568,4 @@ AS
 BEGIN
 SELECT * FROM Maqui.tbCategorias WHERE cat_Id = @cat_Id AND cat_Estado = 1
 END
+
