@@ -129,23 +129,23 @@ namespace Maquillaje.WebUI.Controllers
                     ViewBag.usu_Id = HttpContext.Session.GetString("usu_ID");
                     ViewBag.suc_Id = HttpContext.Session.GetString("suc_Id");
 
-                    var listado = _generalesService.ListadoClientes();
-                    var ListadoMapeado = _mapper.Map<IEnumerable<ClientesViewModel>>(listado);
-                    if (TempData.ContainsKey("SuccessMessage"))
-                    {
-                        // Obtener el mensaje de éxito y eliminarlo de TempData
-                        string successMessage = TempData["SuccessMessage"].ToString();
-                        TempData.Remove("SuccessMessage");
+                        var listado = _generalesService.ListadoClientes();
+                        var ListadoMapeado = _mapper.Map<IEnumerable<ClientesViewModel>>(listado);
+                        if (TempData.ContainsKey("SuccessMessage"))
+                        {
+                            // Obtener el mensaje de éxito y eliminarlo de TempData
+                            string successMessage = TempData["SuccessMessage"].ToString();
+                            TempData.Remove("SuccessMessage");
 
-                        // Generar el código JavaScript para mostrar el Toast de Success
-                        string script = $"<script>toastr.success('{successMessage}', 'Éxito');</script>";
-                        ViewBag.SuccessMessageScript = script;
-                    }
-                    else
-                    {
-                        ViewBag.SuccessMessageScript = null;
-                    }
-                    return View(ListadoMapeado);
+                            // Generar el código JavaScript para mostrar el Toast de Success
+                            string script = $"<script>toastr.success('{successMessage}', 'Éxito');</script>";
+                            ViewBag.SuccessMessageScript = script;
+                        }
+                        else
+                        {
+                            ViewBag.SuccessMessageScript = null;
+                        }
+                        return View(ListadoMapeado);
 
                 }
 
@@ -178,16 +178,16 @@ namespace Maquillaje.WebUI.Controllers
                     ViewBag.suc_Id = HttpContext.Session.GetString("suc_Id");
                     int? usumodi = int.Parse(HttpContext.Session.GetString("usu_ID"));
 
-                    tbClientes cli = new tbClientes();
-                    cli.cli_ID = cli_Id;
-                    cli.cli_UsuarioModi = usumodi;
+                        tbClientes cli = new tbClientes();
+                        cli.cli_ID = cli_Id;
+                        cli.cli_UsuarioModi = usumodi;
 
 
-                    var clie = _mapper.Map<tbClientes>(cli);
-                    var result = _generalesService.DeleteCliente(clie);
+                        var clie = _mapper.Map<tbClientes>(cli);
+                        var result = _generalesService.DeleteCliente(clie);
 
 
-                    return RedirectToAction("Index");
+                        return RedirectToAction("Index");
 
 
                 }
@@ -219,9 +219,9 @@ namespace Maquillaje.WebUI.Controllers
                     ViewBag.usu_Id = HttpContext.Session.GetString("usu_ID");
                     ViewBag.suc_Id = HttpContext.Session.GetString("suc_Id");
 
-                    ViewBag.cli_EstadoCivil = new SelectList(db.Vw_Gral_tbEstadosCiviles_DDL, "est_ID", "est_Descripcion");
-                    ViewBag.depto = new SelectList(db.Vw_Gral_tbDepartamentos_DDL, "depto", "dep_Descripcion");
-                    return View();
+            ViewBag.cli_EstadoCivil = new SelectList(db.Vw_Gral_tbEstadosCiviles_DDL, "est_ID", "est_Descripcion");
+            ViewBag.depto = new SelectList(db.Vw_Gral_tbDepartamentos_DDL, "depto", "dep_Descripcion");
+            return View();
 
 
                 }
@@ -251,6 +251,7 @@ namespace Maquillaje.WebUI.Controllers
                     ViewBag.usu_Id = HttpContext.Session.GetString("usu_ID");
                     ViewBag.suc_Id = HttpContext.Session.GetString("suc_Id");
 
+                    int usucrea = int.Parse(HttpContext.Session.GetString("usu_ID"));
 
                     var fechas = item.cli_FechaNacimiento.ToString();
                     if (ModelState.IsValid)
@@ -285,7 +286,7 @@ namespace Maquillaje.WebUI.Controllers
                             {
                                 /// CAMBIAR EL USUARIO MODIFICACION ///
 
-                                _generalesService.CreateClientes(Nombre, Apellido, DNI, FechaValida, Sexo, Telefono, Int32.Parse(Municipio), Int32.Parse(Civil), 1);
+                                _generalesService.CreateClientes(Nombre, Apellido, DNI, FechaValida, Sexo, Telefono, Int32.Parse(Municipio), Int32.Parse(Civil), usucrea);
                                 TempData["SuccessMessage"] = "El proceso se completó correctamente";
                                 MostrarToastDeExito();
                                 return RedirectToAction("Index");
@@ -420,7 +421,6 @@ namespace Maquillaje.WebUI.Controllers
         [HttpPost]
         public IActionResult Edit(ClientesViewModel item)
         {
-
             try
             {
                 if (HttpContext.Session.GetString("usu_Nombre") != null)
@@ -430,6 +430,71 @@ namespace Maquillaje.WebUI.Controllers
                     ViewBag.usu_Id = HttpContext.Session.GetString("usu_ID");
                     ViewBag.suc_Id = HttpContext.Session.GetString("suc_Id");
 
+                    int usucrea = int.Parse(HttpContext.Session.GetString("usu_ID"));
+
+
+
+                    var fechas = item.cli_FechaNacimiento.ToString();
+                    if (ModelState.IsValid)
+                    {
+
+                        if (item.cli_Nombre != null && item.cli_Apellido != null && item.cli_DNI != null && item.cli_EstadoCivil != "0" &&
+                            fechas != "01/01/0001 0:00:00" && item.cli_Sexo != null && item.cli_Telefono != null && item.depto != "0" &&
+                           (item.cli_Municipio != null && item.cli_Municipio != "0"))
+                        {
+                            int id = item.cli_ID;
+                            string[] f = fechas.Split('/');
+                            string[] año = f[2].Split(' ');
+                            string FechaValida = año[0] + "/" + f[1] + "/" + f[0];
+
+                            string Nombre = item.cli_Nombre;
+                            string Sexo = item.cli_Sexo;
+                            string Municipio = item.cli_Municipio;
+                            string Telefono = item.cli_Telefono;
+                            string Apellido = item.cli_Apellido;
+                            string DNI = item.cli_DNI;
+                            string Civil = item.cli_EstadoCivil;
+                            string depto = item.depto;
+                            // CAMBIAR EL USUARIO MODIFICACION ///
+                            var registrosConMismoDNI = db.tbClientes.Where(r => r.cli_ID != id && r.cli_DNI == DNI).ToList();
+                            if (registrosConMismoDNI.Any())
+                            {
+                                ModelState.AddModelError("DNI", "* El DNI ingresado ya existe.");
+                                if (item.depto == "0") { ModelState.AddModelError("ValidarDep", "*"); }
+                                if (item.cli_EstadoCivil == "0") { ModelState.AddModelError("ValidarCivil", "*"); }
+                                ViewBag.cli_EstadoCivil = new SelectList(db.Vw_Gral_tbEstadosCiviles_DDL, "est_ID", "est_Descripcion");
+                                ViewBag.depto = new SelectList(db.Vw_Gral_tbDepartamentos_DDL, "depto", "dep_Descripcion");
+                                return View(item);
+                            }
+                            else
+                            {
+                                _generalesService.UpdateClientes(id, Nombre, Apellido, DNI, FechaValida, Sexo, Telefono, Int32.Parse(Municipio), Int32.Parse(Civil), usucrea);
+                                TempData["SuccessMessage"] = "El proceso se completó correctamente";
+                                MostrarToastDeExito();
+                                return RedirectToAction("Index");
+                            }
+
+                        }
+                        else
+                        {
+                            if (item.depto == "0") { ModelState.AddModelError("ValidarDep", "*"); }
+                            if (item.cli_EstadoCivil == "0") { ModelState.AddModelError("ValidarCivil", "*"); }
+                            ViewBag.cli_EstadoCivil = new SelectList(db.Vw_Gral_tbEstadosCiviles_DDL, "est_ID", "est_Descripcion");
+                            ViewBag.depto = new SelectList(db.Vw_Gral_tbDepartamentos_DDL, "depto", "dep_Descripcion");
+                            ViewBag.Municipio = new SelectList(db.tbMunicipios, "mun_ID", "mun_Descripcion");
+                            return View(item);
+                        }
+
+
+                    }
+                    else
+                    {
+                        if (item.depto == "0") { ModelState.AddModelError("ValidarDep", "*"); }
+                        if (item.cli_EstadoCivil == "0") { ModelState.AddModelError("ValidarCivil", "*"); }
+                        ViewBag.cli_EstadoCivil = new SelectList(db.Vw_Gral_tbEstadosCiviles_DDL, "est_ID", "est_Descripcion");
+                        ViewBag.depto = new SelectList(db.Vw_Gral_tbDepartamentos_DDL, "depto", "dep_Descripcion");
+                        return View(item);
+                    }
 
 
                 }
@@ -443,11 +508,11 @@ namespace Maquillaje.WebUI.Controllers
                 return RedirectToAction("Index", "Home");
                 throw;
             }
-
-
         }
-        #endregion
+    #endregion
+
     }
+
 
     
 

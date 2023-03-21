@@ -34,7 +34,7 @@ namespace Maquillaje.WebUI.Controllers
                 {
                     ViewBag.usu_Nombre = HttpContext.Session.GetString("usu_Nombre");
                     ViewBag.suc_Descripcion = HttpContext.Session.GetString("suc_Descripcion");
-                    ViewBag.usu_Id = HttpContext.Session.GetString("usu_Id");
+                    ViewBag.usu_Id = HttpContext.Session.GetString("usu_ID");
                     ViewBag.suc_Id = HttpContext.Session.GetString("suc_Id");
 
                     var listado = _generalesService.ListadoCategorias();
@@ -71,6 +71,8 @@ namespace Maquillaje.WebUI.Controllers
                     ViewBag.usu_Id = HttpContext.Session.GetString("usu_ID");
                     ViewBag.suc_Id = HttpContext.Session.GetString("suc_Id");
                     int? usucrea = int.Parse(HttpContext.Session.GetString("usu_ID"));
+
+
                     tbCategorias cate = new tbCategorias();
                     cate.cat_Descripcion = cat_Descripcion;
                     cate.cat_UsuCrea = usucrea;
@@ -156,7 +158,7 @@ namespace Maquillaje.WebUI.Controllers
                 {
                     ViewBag.usu_Nombre = HttpContext.Session.GetString("usu_Nombre");
                     ViewBag.suc_Descripcion = HttpContext.Session.GetString("suc_Descripcion");
-                    ViewBag.usu_Id = HttpContext.Session.GetString("usu_Id");
+                    ViewBag.usu_Id = HttpContext.Session.GetString("usu_ID");
                     ViewBag.suc_Id = HttpContext.Session.GetString("suc_Id");
 
 
@@ -207,12 +209,13 @@ namespace Maquillaje.WebUI.Controllers
                 {
                     ViewBag.usu_Nombre = HttpContext.Session.GetString("usu_Nombre");
                     ViewBag.suc_Descripcion = HttpContext.Session.GetString("suc_Descripcion");
-                    ViewBag.usu_Id = HttpContext.Session.GetString("usu_Id");
+                    ViewBag.usu_Id = HttpContext.Session.GetString("usu_ID");
                     ViewBag.suc_Id = HttpContext.Session.GetString("suc_Id");
 
+                    int usumodi = int.Parse(HttpContext.Session.GetString("usu_ID"));
                         tbCategorias cat = new tbCategorias();
                         cat.cat_Id = cat_Id;
-                        cat.cat_UsuModi = ViewBag.usu_Id;
+                        cat.cat_UsuModi = usumodi;
 
 
                         var categoria = _mapper.Map<tbCategorias>(cat);
