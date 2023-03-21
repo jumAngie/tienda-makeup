@@ -74,6 +74,15 @@ namespace Maquillaje.BusinessLogic.Services
         }
 
 
+        public dynamic[] Detalles(int cat_Id)
+        {
+
+            var result = _categoriaRepository.Detalles(cat_Id);
+            return result;
+
+        }
+
+
         public int EditCategoria(tbCategorias categorias)
         {
 
@@ -99,6 +108,9 @@ namespace Maquillaje.BusinessLogic.Services
                 return 1;
             }
         }
+
+
+
 
         #endregion
 
@@ -133,6 +145,14 @@ namespace Maquillaje.BusinessLogic.Services
             }
         }
 
+        public dynamic[] DetallesProductos(int pro_Id)
+        {
+
+            var result = _productosRepository.Detalles(pro_Id);
+            return result;
+
+        }
+
         public tbProductos ObtenerProducto(int? id)
         {
             return _productosRepository.Find(id);
@@ -156,7 +176,7 @@ namespace Maquillaje.BusinessLogic.Services
 
         public int DeleteProductos(tbProductos productos)
         {
-               return _productosRepository.Delete(productos);
+            return _productosRepository.Delete(productos);
         }
 
 
@@ -207,6 +227,17 @@ namespace Maquillaje.BusinessLogic.Services
             }
         }
 
+
+        public dynamic[] DetallesCliente(int cli_Id)
+        {
+
+            var result = _clientesRepository.Detalles(cli_Id);
+            return result;
+
+        }
+
+
+
         public void CreateClientes(string cli_Nombre, string cli_Apellido, string cli_DNI, string cli_FechaNacimiento, string cli_Sexo, string Telefono,
                           int cli_Municipio, int cli_EstadoCivil, int cli_UsuarioCrea)
         {
@@ -234,7 +265,7 @@ namespace Maquillaje.BusinessLogic.Services
 
 
 
-        public int DeleteCliente (tbClientes clientes)
+        public int DeleteCliente(tbClientes clientes)
         {
             try
             {
@@ -275,6 +306,16 @@ namespace Maquillaje.BusinessLogic.Services
 
         }
 
+
+        public dynamic[] DetallesEmpleados(int emp_Id)
+        {
+
+            var result = _empleadosRepository.Detalles(emp_Id);
+            return result;
+
+        }
+
+
         public tbEmpleados ObtenerEmpleado(int? id)
         {
 
@@ -290,7 +331,7 @@ namespace Maquillaje.BusinessLogic.Services
                 emp_Correo, emp_EstadoCivil, emp_Sucursal, emp_UsuarioCrea);
         }
 
-        public int DeleteEmpleado (tbEmpleados empleados)
+        public int DeleteEmpleado(tbEmpleados empleados)
         {
             try
             {
@@ -365,6 +406,17 @@ namespace Maquillaje.BusinessLogic.Services
         }
 
 
+
+        public dynamic[] DetallesSucu(int suc_Id)
+        {
+
+            var result = _sucursalesRepository.Detalles(suc_Id);
+            return result;
+
+        }
+
+
+
         public tbSucursales BuscarSucursal(int? id)
         {
             return _sucursalesRepository.Find(id);
@@ -387,6 +439,17 @@ namespace Maquillaje.BusinessLogic.Services
                 return Enumerable.Empty<Vw_Gral_tbMunicipios_LIST>();
             }
         }
+
+
+        public dynamic[] DetallesMunis(int mun_Id)
+        {
+
+            var result = _municipiosRepository.Detalles(mun_Id);
+            return result;
+
+        }
+
+
 
         public int CreateMuni(tbMunicipios municipios)
         {
@@ -421,7 +484,7 @@ namespace Maquillaje.BusinessLogic.Services
 
         }
 
- 
+
 
         #endregion
 
@@ -453,6 +516,16 @@ namespace Maquillaje.BusinessLogic.Services
                 return 1;
             }
         }
+
+
+        public dynamic[] DetallesDepto(int dep_Id)
+        {
+
+            var result = _departamentosRepository.Detalles(dep_Id);
+            return result;
+
+        }
+
 
         public int EditDepto(tbDepartamentos departamentos)
         {
@@ -531,6 +604,15 @@ namespace Maquillaje.BusinessLogic.Services
             }
         }
 
+
+        public dynamic[] DetallesEstados(int est_Id)
+        {
+
+            var result = _estadosCivilesRepository.Detalles(est_Id);
+            return result;
+
+        }
+
         public tbEstadosCiviles BuscarEstado(int? id)
         {
             return _estadosCivilesRepository.Find(id);
@@ -577,6 +659,16 @@ namespace Maquillaje.BusinessLogic.Services
         }
 
 
+
+        public dynamic[] DetallesMetodo(int met_Id)
+        {
+
+            var result = _metodoPagoRepository.Detalles(met_Id);
+            return result;
+
+        }
+
+
         public int EditMetodoPago(tbMetodoPago metodoPago)
         {
 
@@ -620,19 +712,26 @@ namespace Maquillaje.BusinessLogic.Services
             }
         }
 
+        public dynamic[] DetallesProveedores(int prv_Id)
+        {
+
+            var result = _proveedoresRepository.Detalles(prv_Id);
+            return result;
+
+        }
 
         public void CreateProveedor(string prv_NombreCompañia, string prv_NombreContacto, string prv_TelefonoContacto,
                             string prv_DireccionEmpresa, string prv_DireccionContacto, string prv_SexoContacto, int prv_UsuarioCrea)
         {
-            _proveedoresRepository.Insertar(prv_NombreCompañia,prv_NombreContacto,prv_TelefonoContacto,prv_DireccionEmpresa, prv_DireccionContacto,
+            _proveedoresRepository.Insertar(prv_NombreCompañia, prv_NombreContacto, prv_TelefonoContacto, prv_DireccionEmpresa, prv_DireccionContacto,
                 prv_SexoContacto, prv_UsuarioCrea);
         }
 
         public void UpdateProveedor(int prv_ID, string prv_NombreCompañia, string prv_NombreContacto, string prv_TelefonoContacto,
                             string prv_DireccionEmpresa, string prv_DireccionContacto, string prv_SexoContacto, int prv_UsuarioCrea)
         {
-            _proveedoresRepository.Actualizar(prv_ID, prv_NombreCompañia, prv_NombreContacto, 
-                prv_TelefonoContacto,prv_DireccionEmpresa,prv_DireccionContacto,prv_SexoContacto,prv_UsuarioCrea);
+            _proveedoresRepository.Actualizar(prv_ID, prv_NombreCompañia, prv_NombreContacto,
+                prv_TelefonoContacto, prv_DireccionEmpresa, prv_DireccionContacto, prv_SexoContacto, prv_UsuarioCrea);
         }
 
 
@@ -669,7 +768,7 @@ namespace Maquillaje.BusinessLogic.Services
 
             return result;
         }
-            public int ActualizarDetalleVenta(int? @vde_Id, int? @vde_Producto, int? @vde_Cantidad, int @vde_UsuModi)
+        public int ActualizarDetalleVenta(int? @vde_Id, int? @vde_Producto, int? @vde_Cantidad, int @vde_UsuModi)
         {
             var result = _ventasRepository.ActualizarDetalleVenta(vde_Id, vde_Producto, vde_Cantidad, vde_UsuModi);
 
@@ -679,7 +778,7 @@ namespace Maquillaje.BusinessLogic.Services
 
         public int IdVentaReciente()
         {
-           var IdVentaReciente = _ventasRepository.IdVentaReciente();
+            var IdVentaReciente = _ventasRepository.IdVentaReciente();
 
             return IdVentaReciente;
         }
@@ -692,7 +791,7 @@ namespace Maquillaje.BusinessLogic.Services
 
         public int IngresarNuevoDetalleVenta(int? @vde_VentaId, int? @vde_Producto, int? @vde_Cantidad, int @vde_UsuCrea)
         {
-           var result = _ventasRepository.IngresarNuevoDetalleVenta(vde_VentaId, vde_Producto, vde_Cantidad, vde_UsuCrea);
+            var result = _ventasRepository.IngresarNuevoDetalleVenta(vde_VentaId, vde_Producto, vde_Cantidad, vde_UsuCrea);
 
             return result;
         }
@@ -752,6 +851,17 @@ namespace Maquillaje.BusinessLogic.Services
 
 
         }
+
+
+
+        public dynamic[] DetallesUsuarios(int usu_Id)
+        {
+
+            var result = _usuariosRepository.Detalles(usu_Id);
+            return result;
+
+        }
+
 
         public int EditUsuario(tbUsuarios usuarios)
         {
