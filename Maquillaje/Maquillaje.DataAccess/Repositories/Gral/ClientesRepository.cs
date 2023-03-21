@@ -80,7 +80,11 @@ namespace Maquillaje.DataAccess.Repositories.Gral
             return resultado;
         }
 
-
+        public IEnumerable<tbClientes> Lista()
+        {
+            using var db = new SqlConnection(TiendaContext.ConnectionString);
+            return db.Query<tbClientes>(ScriptsDataBase.UDP_Listar_Clientes, null, commandType: CommandType.StoredProcedure);
+        }
 
         public IEnumerable<Vw_Gral_tbClientes_LIST> List()
         {

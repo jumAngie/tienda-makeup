@@ -227,6 +227,21 @@ namespace Maquillaje.BusinessLogic.Services
             }
         }
 
+        public IEnumerable<tbClientes> ListadoClientes(out string error)
+        {
+            error = string.Empty;
+
+            try
+            {
+                return _clientesRepository.Lista();
+            }
+            catch (Exception e)
+            {
+                error = e.Message;
+                return Enumerable.Empty<tbClientes>();
+            }
+        }
+
 
         public dynamic[] DetallesCliente(int cli_Id)
         {
@@ -760,7 +775,17 @@ namespace Maquillaje.BusinessLogic.Services
 
         #region Ventas
 
-
+        public IEnumerable<VW_tbVentas_List> ListadoFacturas()
+        {
+            try
+            {
+                return _ventasRepository.ListView();
+            }
+            catch
+            {
+                return Enumerable.Empty<VW_tbVentas_List>();
+            }
+        }
 
         public int EliminarDetalleVenta(int? @vde_Id)
         {
@@ -902,6 +927,20 @@ namespace Maquillaje.BusinessLogic.Services
 
         }
 
+        #endregion
+
+        #region VentasDetalles
+        public IEnumerable<VW_tbVentasDetalles_List> ListadoVentaDetalles(int id)
+        {
+            try
+            {
+                return _ventasRepository.ListView(id);
+            }
+            catch
+            {
+                return Enumerable.Empty<VW_tbVentasDetalles_List>();
+            }
+        }
         #endregion
     }
 }

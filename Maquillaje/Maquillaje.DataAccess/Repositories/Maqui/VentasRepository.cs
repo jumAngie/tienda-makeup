@@ -81,6 +81,24 @@ namespace Maquillaje.DataAccess.Repositories.Maqui
 
         }
 
+        ///
+        public IEnumerable<VW_tbVentas_List> ListView()
+        {
+            using var db = new SqlConnection(TiendaContext.ConnectionString);
+
+            return db.Query<VW_tbVentas_List>(ScriptsDataBase.UDP_Listar_Facturas, null, commandType: CommandType.StoredProcedure);
+        }
+
+        public IEnumerable<VW_tbVentasDetalles_List> ListView(int id)
+        {
+            var db = new SqlConnection(TiendaContext.ConnectionString);
+
+            var parametros = new DynamicParameters();
+            parametros.Add("@vde_VentaId", id, DbType.Int32, ParameterDirection.Input);
+
+            return db.Query<VW_tbVentasDetalles_List>(ScriptsDataBase.UDP_Listar_VentasDetalles, parametros, commandType: CommandType.StoredProcedure);
+        }
+
         public tbVentas Find(int? id)
         {
             using var db = new TiendaContext();

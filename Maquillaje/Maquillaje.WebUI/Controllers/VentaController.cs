@@ -1,7 +1,8 @@
 ﻿using AutoMapper;
 using Maquillaje.BusinessLogic.Services;
-using Maquillaje.DataAccess;
+using Maquillaje.WebUI.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,171 +14,52 @@ namespace Maquillaje.WebUI.Controllers
     {
         private readonly GeneralesService _generalesService;
         private readonly IMapper _mapper;
-        public TiendaContext db = new TiendaContext();
 
         public VentaController(GeneralesService generalesService, IMapper mapper)
         {
             _generalesService = generalesService;
             _mapper = mapper;
-
         }
 
+
+        [HttpGet("/Venta/Listado")]
         public IActionResult Index()
         {
-            // meter try catch
-            // meter count de sesión
-            var IdUltimaVentaReciente = _generalesService.IdVentaReciente();
-            int idVenta = 0;
 
-            if(IdUltimaVentaReciente != 0)
+            var listado = _generalesService.ListadoFacturas();
+
+            if (TempData["Script"] is string script)
             {
-                idVenta = IdUltimaVentaReciente;
+                TempData.Remove("Script");
+                ViewBag.Script = script;
             }
 
-            var Detalles = db.UDF_tbVentas_ListarDetallesPorIdVenta(idVenta);
-
-            if (Detalles != null)
-            {
-                return View(Detalles);
-            }
-            else
-            {
-                // error
-                return RedirectToAction("Index", "Home");
-            }
-
-
+            return View(listado);
         }
 
-        //[HttpPost, ActionName("CargarDdl")]
-        //public ActionResult CargarDdlClientes(string cargar)
-        //{
-        //    try
-        //    {
-        //        if (cargar != null && cargar != "")
-        //        {
-        //            //var DdlClientes = db.UDF_Gral_tbClientes_DDL();
-        //            //var Ddlproductos = db.UDF_Maqui_tbProductos_DDL();
-        //            return Json(new { DdlClientes, Ddlproductos });
-        //        }
-        //        else
-        //        {
-        //            return RedirectToAction("Index");
-        //        }
-
-
-        //    }
-        //    catch (Exception)
-        //    {
-        //        // cambiar a pagina de error.
-        //        return RedirectToAction("Index");
-        //        throw;
-        //    }
-        //}
-
-        [HttpPost, ActionName("Guardar")]
-        public ActionResult Guardar(int? clie_id)
+        [HttpGet("/Venta/Create")]
+        public IActionResult Create(VentaDetallesViewModel item, VentaViewModel item2)
         {
-            try
+            var ddlCliente = _generalesService.ListadoClientes(out string error).ToList();
+            var ddlMetodo = _generalesService.ListadoMetodosPago().ToList();
+            var ddlCategoria = _generalesService.ListadoCategorias(out string error1).ToList();
+            var detalles = _generalesService.ListadoVentaDetalles(item.vde_VentaId);
+
+            ViewBag.cate = new SelectList(ddlCategoria, "cate_Id", "cate_Nombre");
+            ViewBag.clie_Id = new SelectList(ddlCliente, "clie_Id", "clie_Nombres");
+            ViewBag.meto_Id = new SelectList(ddlMetodo, "meto_Id", "meto_Nombre");
+            ViewBag.detalles = detalles;
+            ViewBag.fact_Id = item.vde_VentaId;
+            ViewBag.esEditar = false;
+
+            if (TempData["Script"] is string script)
             {
-                if (clie_id != null && clie_id != 0)
-                {
-                    int empleado = 1;
-                    int sucursal = 1;
-                    int usuario = 1;
-                    int metodo = 1;
-                    var resultado = _generalesService.IngresarNuevaVenta(clie_id, empleado, sucursal, metodo, usuario);
-
-                    if (resultado > 0)
-                    {
-                        var IdUltimaVentaReciente = _generalesService.IdVentaReciente();
-                        var Ddlproductos = db.Vw_Maqui_tbProductos_DDL;
-                        return Json(new { success = true, IdUltimaVentaReciente, Ddlproductos });
-                    }
-                    return Json(new { success = false });
-                }
-                //Colocar la página de Error
-                return RedirectToAction("Index", "Home");
-
+                TempData.Remove("Script");
+                ViewBag.Script = script;
             }
-            catch (Exception)
-            {
-                //Colocar la página de Error
-                return RedirectToAction("Index", "Home");
-                throw;
-            }
-        }
 
-        [HttpPost, ActionName("ObtenerPrecio")]
-        public ActionResult ListarproductoPorId(int? id)
-        {
-            try
-            {
-                if (id != null && id != 0)
-                {
-                    var producto = db.UDF_tbProductos_ListarProductoPorId(id);
-
-                    if (producto != null)
-                    {
-                        return Json(new { success = true, producto });
-                    }
-                }
-                return RedirectToAction("Index", "Home");
-            }
-            catch (Exception)
-            {
-                return RedirectToAction("Index", "Home");
-                throw;
-            }
-        }
-
-        [HttpPost, ActionName("CargarStock")]
-        public ActionResult CargarStockProductoPorId(int? id)
-        {
-            try
-            {
-
-                if (id != null && id != 0)
-                {
-                    var stock = db.UDF_tbProductos_CargarStockProductoPorId(id);
-
-                    if (stock != null)
-                    {
-                        return Json(new { success = true, stock });
-                    }
-                }
-                return RedirectToAction("Index", "Home");
-            }
-            catch (Exception)
-            {
-                return RedirectToAction("Index", "Home");
-                throw;
-            }
-        }
-
-
-        [HttpPost, ActionName("preEditarDetalle")]
-        public ActionResult CargarDetalleVentaPorId(int? DeVe_Id)
-        {
-            try
-            {
-                
-                    if (DeVe_Id != null && DeVe_Id != 0)
-                    {
-                        var DetalleVenta = db.UDF_tbDetallesVentas_CargarDetalleVentaPorId(DeVe_Id);
-
-                        if (DetalleVenta != null)
-                        {
-                            return Json(new { success = true, DetalleVenta });
-                        }
-                    }
-                    return RedirectToAction("Index", "Home");
-            }
-            catch (Exception)
-            {
-                return RedirectToAction("Index", "Home");
-                throw;
-            }
+            return View(item2);
         }
     }
 }
+
