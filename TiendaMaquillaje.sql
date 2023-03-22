@@ -2631,7 +2631,25 @@ SELECT  prv_ID,
 		
 END
 GO
+CREATE OR ALTER PROC UDP_tbVentas_Detalles(@ID INT)
+AS BEGIN
+SELECT ven_Id, client.cli_Nombre + ' ' + client.cli_Apellido as ven_Cliente, 
+emple.emp_Nombre + ' ' + emple.emp_Apellido as ven_Empleado, met.met_Descripcion, ven_UsuCrea = usu.usu_Usuario, ven_UsuModi = usua.usu_Usuario, ven_Fecha, ven_FechaCrea, ven_FechaModi FROM Maqui.tbVentas vent
+INNER JOIN  [Gral].[tbUsuarios] usu
+ON			 ven_UsuCrea = usu.usu_ID
+INNER JOIN  Maqui.tbMetodoPago met
+ON			ven_MetodoPago = met_Id
+INNER JOIN	Gral.tbClientes client
+ON			ven_Cliente = client.cli_ID
+INNER JOIN  Gral.tbEmpleados emple
+ON			ven_Empleado = emple.emp_ID
+LEFT JOIN  [Gral].[tbUsuarios] usua
+ON			ven_UsuModi = usua.usu_ID
+WHERE		ven_Id = @ID
+END
+GO
 
+EXEC UDP_tbVentas_Detalles 2
 
 
 select * from Maqui.tbProveedores
