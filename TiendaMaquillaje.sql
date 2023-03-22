@@ -1636,6 +1636,20 @@ WHERE emp_ID = @id
 )
 GO
 
+CREATE OR ALTER FUNCTION UDF_Gral_tbSucursalesInfo_DDL(@id INT)
+RETURNS TABLE
+AS
+RETURN
+(
+SELECT suc_Id, suc_Descripcion, suc_Municipio,deptos.dep_ID  FROM Gral.tbSucursales sucu
+INNER JOIN Gral.tbMunicipios muni
+ON sucu.suc_Municipio = muni.mun_ID 
+INNER JOIN Gral.tbDepartamentos deptos
+ON muni.mun_depID = deptos.dep_ID
+WHERE suc_Id = @id
+)
+GO
+
 
 
 
