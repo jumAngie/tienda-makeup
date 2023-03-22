@@ -36,6 +36,10 @@
                     <input asp-for="vde_Cantidad" class="form-control" />
                     <label id="factdeta_CantidadValidation" name="factdeta_CantidadValidation" class="text-danger control-label" hidden>Tiene que ingresar una cantidad válida</label>
                 </div>
+                <div class="form-group col-6 mt-2">
+                    <label asp-for="pro.pro_PrecioUnitario" class="control-label"></label>
+                    <input asp-for="pro.pro_PrecioUnitario" class="form-control" disabled />
+                </div>
                 <div class="form-group mt-3">
                     <input type="button" value="Continuar" id="btnContinuar" class="btn btn-info" />
                     <a asp-action="Index" class="btn btn-danger">Finalizar compra</a>
@@ -44,4 +48,5 @@
         </form>
     </div>
 </div>
-<script src="~/js/app/maqu/FacturasDetalleCreate.js"></script>
+
+<script src="~/js/Detalles/VentaDetalleCreate.js"></script>

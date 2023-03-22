@@ -2569,3 +2569,41 @@ BEGIN
 SELECT * FROM Maqui.tbCategorias WHERE cat_Id = @cat_Id AND cat_Estado = 1
 END
 
+-- *** ¡¡ STOCK *** ¡¡ --
+GO
+CREATE OR ALTER PROCEDURE Maqui.UDP_tbVentas_RevisarStock 
+	@inv_Cantidad	INT,
+	@inv_Producto	INT
+AS
+BEGIN
+	DECLARE @stockRestante INT = (SELECT inv_Cantidad FROM Maqui.tbInventario WHERE inv_Producto = @inv_Producto) - @inv_Cantidad
+
+	IF @stockRestante < 0
+		SELECT 0
+	ELSE
+		SELECT 1
+END
+
+
+/*Precio de producto*/
+GO
+CREATE OR ALTER PROCEDURE Maqui.UDP_tbProductos_Precios 
+	@pro_Id	INT
+AS
+BEGIN
+	SELECT pro_Id, pro_Nombre, pro_PrecioUnitario
+	FROM	Maqui.tbProductos
+	WHERE	pro_Id = @pro_Id
+END
+
+/*Listado prod_Id x cate_Id*/
+GO
+CREATE OR ALTER PROCEDURE Maqui.UDP_tbProductos_ListDDL
+	@pro_Categoria	INT
+AS
+BEGIN
+	SELECT  pro_Id, pro_Nombre, pro_PrecioUnitario
+	FROM	Maqui.tbProductos
+	WHERE   pro_Categoria = @pro_Categoria
+	AND		pro_Estado = 1
+END

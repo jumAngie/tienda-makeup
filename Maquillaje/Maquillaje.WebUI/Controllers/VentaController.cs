@@ -60,6 +60,28 @@ namespace Maquillaje.WebUI.Controllers
 
             return View(item2);
         }
+        //JSONS
+
+
+
+
+        public IActionResult CargarProductos(int id)
+        {
+            var productos = _generalesService.ListadoProductos(id);
+            return Json(productos);
+        }
+
+        public IActionResult PrecioProductos(int id)
+        {
+            var precio = _generalesService.PrecioProducto(id);
+            return Json(precio);
+        }
+
+        public IActionResult RevisarStock(int id, int cantidad)
+        {
+            var stock = _generalesService.RevisarStock(id, cantidad);
+            return Json(stock);
+        }
     }
 }
 

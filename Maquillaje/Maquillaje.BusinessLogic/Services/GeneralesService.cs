@@ -131,6 +131,23 @@ namespace Maquillaje.BusinessLogic.Services
 
         #region Productos
 
+        public IEnumerable<tbProductos> PrecioProducto(int id)
+        {
+            return _productosRepository.PrecioProducto(id);
+        }
+
+        public IEnumerable<tbProductos> ListadoProductos(int id)
+        {
+            try
+            {
+                return _productosRepository.ListDDL(id);
+            }
+            catch
+            {
+                return Enumerable.Empty<tbProductos>();
+            }
+        }
+
         public IEnumerable<Vw_Maqui_tbProductos_LIST> ListadoProductos()
         {
             try
@@ -957,6 +974,11 @@ namespace Maquillaje.BusinessLogic.Services
         #endregion
 
         #region VentasDetalles
+
+        public int RevisarStock(int id, int cantidad)
+        {
+            return _ventasRepository.RevisarStock(id, cantidad);
+        }
         public IEnumerable<VW_tbVentasDetalles_List> ListadoVentaDetalles(int id)
         {
             try

@@ -83,6 +83,17 @@ namespace Maquillaje.DataAccess.Repositories.Maqui
 
         /// 
 
+        public int RevisarStock(int id, int cantidad)
+        {
+            var db = new SqlConnection(TiendaContext.ConnectionString);
+
+            var parametros = new DynamicParameters();
+            parametros.Add("@inv_Cantidad", cantidad, DbType.Int32, ParameterDirection.Input);
+            parametros.Add("@inv_Producto", id, DbType.Int32, ParameterDirection.Input);
+
+            return db.QueryFirst<int>(ScriptsDataBase.UDP_RevisarStock, parametros, commandType: CommandType.StoredProcedure);
+        }
+
         public IEnumerable<VW_tbVentas_List> ListView()
         {
             using var db = new SqlConnection(TiendaContext.ConnectionString);
