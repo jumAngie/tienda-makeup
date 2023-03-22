@@ -33,6 +33,8 @@ namespace Maquillaje.WebUI.Models
         [Display(Name = "Categoría")]
         public virtual tbCategorias cate { get; set; }
 
+        public virtual tbProductos pro { get; set; }
+
         [NotMapped]
         public string esEditar { get; set; }
     }

@@ -2569,3 +2569,97 @@ BEGIN
 SELECT * FROM Maqui.tbCategorias WHERE cat_Id = @cat_Id AND cat_Estado = 1
 END
 
+-- *** 　 STOCK *** 　 --
+GO
+CREATE OR ALTER PROCEDURE Maqui.UDP_tbVentas_RevisarStock 
+	@inv_Cantidad	INT,
+	@inv_Producto	INT
+AS
+BEGIN
+	DECLARE @stockRestante INT = (SELECT inv_Cantidad FROM Maqui.tbInventario WHERE inv_Producto = @inv_Producto) - @inv_Cantidad
+
+	IF @stockRestante < 0
+		SELECT 0
+	ELSE
+		SELECT 1
+END
+
+
+/*Precio de producto*/
+GO
+CREATE OR ALTER PROCEDURE Maqui.UDP_tbProductos_Precios 
+	@pro_Id	INT
+AS
+BEGIN
+	SELECT pro_Id, pro_Nombre, pro_PrecioUnitario
+	FROM	Maqui.tbProductos
+	WHERE	pro_Id = @pro_Id
+END
+-- 　Listado pro_Id POR pro_Categoria 　--
+GO
+CREATE OR ALTER PROCEDURE Maqui.UDP_tbProductos_ListDDL
+	@pro_Categoria	INT
+AS
+BEGIN
+	SELECT  pro_Id, pro_Nombre, pro_PrecioUnitario
+	FROM	Maqui.tbProductos
+	WHERE   pro_Categoria = @pro_Categoria
+	AND		pro_Estado = 1
+END
+
+GO
+CREATE OR ALTER PROCEDURE Maqui.UDP_tbFacturas_Insert
+	@ven_Cliente INT,
+	@ven_Empleado INT,
+	@ven_Sucursal INT,
+	@ven_MetodoPago INT,
+	@ven_UsuCrea INT
+AS
+BEGIN
+	BEGIN TRY
+		INSERT INTO Maqui.tbVentas (ven_Cliente, ven_Empleado, ven_Fecha, ven_Sucursal, ven_MetodoPago, 
+									ven_UsuCrea, ven_FechaCrea, ven_UsuModi, ven_FechaModi, ven_Estado)
+		VALUES						(@ven_Cliente, @ven_Empleado, GETDATE(),@ven_Sucursal, @ven_MetodoPago,
+									@ven_UsuCrea, GETDATE(), NULL, NULL, 1)
+
+		SELECT SCOPE_IDENTITY()
+	END TRY
+	BEGIN CATCH
+		SELECT 0
+	END CATCH
+END
+
+/*Insertar factura detalles*/
+GO
+CREATE OR ALTER PROCEDURE Maqui.UDP_maqu_tbFacturasDetalles_Insert 
+	@vde_VentaId				INT,
+	@vde_Producto				INT,
+	@vde_Cantidad				INT,
+	@vde_UsuCrea				INT
+AS
+BEGIN
+	BEGIN TRY
+		--DECLARE @factdeta_Precio DECIMAL(18,2) = (SELECT [prod_PrecioUni] FROM [maqu].[tbProductos] WHERE prod_Id = @prod_Id)
+
+		INSERT INTO Maqui.tbVentasDetalle(vde_VentaId, 
+										  vde_Producto, 
+										  vde_Cantidad, 
+										  vde_UsuCrea, 
+										  vde_FechaCrea, 
+										  vde_UsuModi, 
+										  vde_FechaModi, 
+										  vde_Estado)
+		VALUES							(@vde_VentaId,
+										@vde_Producto,
+										@vde_Cantidad,
+										@vde_UsuCrea,
+										GETDATE(),
+										null,
+										null,
+										1)
+		SELECT 1
+	END TRY
+	BEGIN CATCH
+		SELECT 0
+	END CATCH
+END

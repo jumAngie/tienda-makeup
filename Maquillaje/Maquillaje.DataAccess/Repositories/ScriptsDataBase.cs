@@ -19,6 +19,8 @@ namespace Maquillaje.DataAccess.Repositories
         public static string ProductosEditar = "UDP_Maqui_tbProductos_UPDATE";
         public static string ProductosDetalles = "UDP_tbProductos_Detalles";
         public static string ProductosEliminar = "UDP_Gral_tbProductos_ELIMINAR";
+        public static string UDP_Precio_Producto = "Maqui.UDP_tbProductos_Precios";
+        public static string UDP_Listar_Productos_DDL = "Maqui.UDP_tbProductos_ListDDL";
         #endregion
 
         #region Empleados
@@ -96,6 +98,8 @@ namespace Maquillaje.DataAccess.Repositories
         public static string IdVentaReciente = "Maqui.UDP_tbVentas_IdVentaReciente";
         public static string IngresarNuevaVenta = "Maqui.UDP_tbVentas_IngresarNuevaVenta";
         public static string UDP_Listar_Facturas = "Maqui.UDP_tbVentas_Listado";
+
+        public static string UDP_Insertar_Facturas = "Maqui.UDP_tbFacturas_Insert";
         #endregion
 
         #region VentasDetalles
@@ -103,7 +107,11 @@ namespace Maquillaje.DataAccess.Repositories
         public static string IngresarNuevoDetalleVenta = "Maqui.UDP_tbVentas_IngresarNuevoDetalleVenta";
         public static string ActualizarDetalleVenta = "Maqui.UDP_tbDetallesVentas_ActualizarDetalleVenta";
         public static string EliminarDetalleVenta = "Maqui.UDP_tbDetallesVentas_EliminarDetalleVenta";
+        //
         public static string UDP_Listar_VentasDetalles = "Maqui.UDP_maqu_tbVentasDetalles_Listado";
+        public static string UDP_RevisarStock = "Maqui.UDP_tbVentas_RevisarStock";
+        public static string UDP_Insertar_FacturasDetalles = "Maqui.UDP_maqu_tbFacturasDetalles_Insert";
+
         #endregion
 
         #region Inventario

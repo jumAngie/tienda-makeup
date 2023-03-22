@@ -27,7 +27,27 @@ namespace Maquillaje.DataAccess.Repositories
 
 
         }
-   
+
+        public IEnumerable<tbProductos> PrecioProducto(int id)
+        {
+            var db = new SqlConnection(TiendaContext.ConnectionString);
+
+            var parametros = new DynamicParameters();
+            parametros.Add("@pro_Id", id, DbType.Int32, ParameterDirection.Input);
+
+            return db.Query<tbProductos>(ScriptsDataBase.UDP_Precio_Producto, parametros, commandType: CommandType.StoredProcedure);
+        }
+
+        public IEnumerable<tbProductos> ListDDL(int id)
+        {
+            var db = new SqlConnection(TiendaContext.ConnectionString);
+
+            var parametros = new DynamicParameters();
+            parametros.Add("@pro_Categoria", id, DbType.Int32, ParameterDirection.Input);
+
+            return db.Query<tbProductos>(ScriptsDataBase.UDP_Listar_Productos_DDL, parametros, commandType: CommandType.StoredProcedure);
+        }
+
         public dynamic[] Detalles(int pro_Id)
         {
             using var db = new SqlConnection(TiendaContext.ConnectionString);
