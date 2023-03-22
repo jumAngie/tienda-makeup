@@ -1,122 +1,132 @@
 ﻿
-<form method="post">
-    <div id="editar-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="primary-header-modalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header modal-colored-header bg-primary">
-                    <h4 class="modal-title" id="primary-header-modalLabel">Editar Sucursal</h4>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <label>Sucursal</label>
-                            <input type="text" id="txtSucursal2" name="txtSucursal2" class="form-control" />
-                            <label style="color:red" id="esucu2" name="esucu2">Debe llenar este campo</label>
-                        </div>
-                        <div class="col-sm-4">
-                            <label>Departamento</label>
-                            <select id="ddlDepto2" name="ddlDepto2" class="form-control"></select>
-                            <label style="color:red" id="edep2" name="edep2">Debe llenar este campo</label>
-                        </div>
-                        <div class="col-sm-4">
-                            <label>Municipio</label>
-                            <select id="ddlMuni2" name="ddlMuni2" class="form-control"></select>
-                            <label style="color:red" id="emuni2" name="emuni2">Debe llenar este campo</label>
+            <form method="post">
+                <div class="modal fade" id="editar-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="card-header" style="background-color:#ffd3d8">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+
+                                <div class="text-center">
+                                    <img src="~/Content/iMG/giphy.gif" width="100" />
+                                    <h3 style="color:black;font-family:'Segoe Print'">Editar Sucursal</h3>
+                                </div>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <label>Municipio</label>
+                                        <select id="ddlMuni2" name="ddlMuni2" class="form-control"></select>
+                                        <label style="color:red" id="emuni2" name="emuni2" hidden>Debe llenar este campo</label>
+                                        
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label>Departamento</label>
+                                        <select id="ddlDepto2" name="ddlDepto2" class="form-control">@ViewBag.deptoCrea</select>
+                                        <label style="color:red" id="edep2" name="edep2" hidden>Debe llenar este campo</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+
+                                        <label>Sucursal</label>
+                                        <input type="text" id="txtSucursal2" name="txtSucursal2" class="form-control" />
+                                        <label style="color:red" id="esucu2" name="esucu2" hidden>Debe llenar este campo</label>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-light" data-dismiss="modal">Cerrar</button>
+                                <button type="button" id="btnEditar" name="btnEditar" class="btn btn-primary">Guardar</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-light" data-dismiss="modal">Cerrar</button>
-                    <button type="button" id="btnEditar" name="btnEditar" class="btn btn-primary">Guardar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</form>
-    <script>
+            </form>
+            <script src="~/js/Sucursales/EditarSucursales.js"></script>
+            @*<script>*@
 
 
 
-        function Editar(sucu_ID) {
-            $("#editar-modal").modal('show');
-            var sucu_ID = sucu_ID;
-            var sucursalID = sucu_ID;
-            console.log(sucu_ID);
-            $.ajax({
-                url: "/Sucursales/Cargar",
-                method: "POST",
-                data: { sucu_ID: sucu_ID },
-                success: function (data) {
-                    $.each(data, function (i, value) {
-                        $("#txtSucursal2").val(value.suc_Descripcion);
-                        $("#ddlDepto2").val(value.dep_ID);
-                        console.log(value.dep_ID);
-                        console.log(value.mun_ID);
-                        var ciudad = value.mun_ID;
+                @*function Editar(sucu_ID) {
+                    $("#editar-modal").modal('show');
+                    var sucu_ID = sucu_ID;
+                    var sucursalID = sucu_ID;
+                    console.log(sucu_ID);
+                    $.ajax({
+                        url: "/Sucursales/Cargar",
+                        method: "POST",
+                        data: { sucu_ID: sucu_ID },
+                        success: function (data) {
+                            $.each(data, function (i, value) {
+                                $("#txtSucursal2").val(value.suc_Descripcion);
+                                $("#ddlDepto2").val(value.dep_ID);
+                                console.log(value.dep_ID);
+                                console.log(value.mun_ID);
+                                var ciudad = value.mun_ID;
 
 
 
+                                var dep_ID = $("#ddlDepto2").val();
+                                console.log(value.dep_ID);
+
+                                $.ajax({
+                                    url: "/Sucursales/CargarMunicipio/" + dep_ID,
+                                    method: "POST",
+                                    dataType: "json",
+                                    contentType: "application/json; charset=utf-8",
+                                    data: { dep_ID: dep_ID },
+
+
+                                    success: function (data) {
+                                        $("#ddlMuni2").empty();
+                                        $.each(data, function (i, value) {
+                                            $("#ddlMuni2").append("<option value='" + value.mun_ID + "'>" + value.mun_Descripcion + "</option>")
+                                        })
+                                        $("#ddlMuni2").val(ciudad);
+                                    }
+                                })
+
+                            })
+                        }
+                    })
+                    $("#ddlDepto2").change(function () {
                         var dep_ID = $("#ddlDepto2").val();
-                        console.log(value.dep_ID);
-
                         $.ajax({
                             url: "/Sucursales/CargarMunicipio/" + dep_ID,
                             method: "POST",
                             dataType: "json",
                             contentType: "application/json; charset=utf-8",
                             data: { dep_ID: dep_ID },
-
-
                             success: function (data) {
                                 $("#ddlMuni2").empty();
                                 $.each(data, function (i, value) {
                                     $("#ddlMuni2").append("<option value='" + value.mun_ID + "'>" + value.mun_Descripcion + "</option>")
                                 })
-                                $("#ddlMuni2").val(ciudad);
                             }
                         })
-
                     })
-                }
-            })
-            $("#ddlDepto2").change(function () {
-                var dep_ID = $("#ddlDepto2").val();
-                $.ajax({
-                    url: "/Sucursales/CargarMunicipio/" + dep_ID,
-                    method: "POST",
-                    dataType: "json",
-                    contentType: "application/json; charset=utf-8",
-                    data: { dep_ID: dep_ID },
-                    success: function (data) {
-                        $("#ddlMuni2").empty();
-                        $.each(data, function (i, value) {
-                            $("#ddlMuni2").append("<option value='" + value.mun_ID + "'>" + value.mun_Descripcion + "</option>")
-                        })
-                    }
-                })
-            })
-            $("#btnEditar").click(function () {
-                var sucursal = $("#txtSucursal2").val();
-                console.log(sucursal);
-                var muni = $("#ddlMuni2").val();
-                console.log(muni);
+                    $("#btnEditar").click(function () {
+                        var sucursal = $("#txtSucursal2").val();
+                        console.log(sucursal);
+                        var muni = $("#ddlMuni2").val();
+                        console.log(muni);
 
-                if (sucursal == "") {
-                    $("#esucu2").show();
-                }
-                else {
-                    $("#esucu2").hide();
-                    $.ajax({
-                        url: "/Sucursales/Editar",
-                        method: "POST",
-                        data: { suc_Descripcion: sucursal, mun_ID: muni, suc_ID: sucu_ID },
-                        success: function (data) {
-                            window.location.reload();
+                        if (sucursal == "") {
+                            $("#esucu2").show();
+                        }
+                        else {
+                            $("#esucu2").hide();
+                            $.ajax({
+                                url: "/Sucursales/Editar",
+                                method: "POST",
+                                data: { suc_Descripcion: sucursal, mun_ID: muni, suc_ID: sucu_ID },
+                                success: function (data) {
+                                    window.location.reload();
+                                }
+                            })
                         }
                     })
                 }
-            })
-        }
 
-</script>
+            </script>*@

@@ -88,15 +88,15 @@ namespace Maquillaje.WebUI.Controllers
 
 
 
-        [HttpGet("/Sucursal/CargarMunicipios/{depto}")]
-        public JsonResult CargarMunicipios(int depto)
-        {
+        //[HttpGet("/Sucursal/CargarMunicipios/{depto}")]
+        //public JsonResult CargarMunicipios(int depto)
+        //{
 
-            var ddl = db.UDF_Gral_tbMunicipio_DDL(depto).ToList();
+        //    var ddl = db.UDF_Gral_tbMunicipio_DDL(depto).ToList();
 
-            return Json(ddl);
+        //    return Json(ddl);
 
-        }
+        //}
 
 
 
@@ -188,6 +188,27 @@ namespace Maquillaje.WebUI.Controllers
 
         }
 
+        #region Cargar Info
+
+        [HttpGet("/Sucursal/CargarMunicipios/{depto}")]
+        public JsonResult CargarMunicipios(int depto)
+        {
+
+            var ddl = db.UDF_Gral_tbMunicipio_DDL(depto).ToList();
+            return Json(ddl);
+
+        }
+
+        [HttpGet("/Sucursal/CargarInfo/{sucu_ID}")]
+        public JsonResult CargarInfo(int sucu_ID)
+        {
+
+            var ddl = db.UDF_Gral_tbSucursalesInfo_DDL(sucu_ID).ToList();
+
+            return Json(ddl);
+
+        }
+        #endregion
 
 
         [HttpPost("/Sucursales/Cargar")]
@@ -227,8 +248,8 @@ namespace Maquillaje.WebUI.Controllers
         public ActionResult EditarSucursales(tbSucursales tbSucursales)
         {
             _generalesService.EditarSucursal(tbSucursales);
+            
             return RedirectToAction("Index");
-
         }
 
 

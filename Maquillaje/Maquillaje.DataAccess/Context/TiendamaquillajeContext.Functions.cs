@@ -39,6 +39,12 @@ namespace Maquillaje.DataAccess.Context
             return FromExpression(() => UDF_Gral_tbSucursales_DDL(id));
         }
 
+        [DbFunction("UDF_Gral_tbSucursalesInfo_DDL", "dbo")]
+        public IQueryable<UDF_Gral_tbSucursalesInfo_DDLResult> UDF_Gral_tbSucursalesInfo_DDL(int? id)
+        {
+            return FromExpression(() => UDF_Gral_tbSucursalesInfo_DDL(id));
+        }
+
         [DbFunction("UDF_tbCategorias_BuscarCategorias", "Maqui")]
         public IQueryable<UDF_tbCategorias_BuscarCategoriasResult> UDF_tbCategorias_BuscarCategorias(int? ID)
         {
@@ -76,6 +82,7 @@ namespace Maquillaje.DataAccess.Context
             modelBuilder.Entity<UDF_Gral_tbMunicipio_DDLResult>().HasNoKey();
             modelBuilder.Entity<UDF_Gral_tbMunicipios_CARGARResult>().HasNoKey();
             modelBuilder.Entity<UDF_Gral_tbSucursales_DDLResult>().HasNoKey();
+            modelBuilder.Entity<UDF_Gral_tbSucursalesInfo_DDLResult>().HasNoKey();
             modelBuilder.Entity<UDF_tbCategorias_BuscarCategoriasResult>().HasNoKey();
             modelBuilder.Entity<UDF_tbDetallesVentas_CargarDetalleVentaPorIdResult>().HasNoKey();
             modelBuilder.Entity<UDF_tbProductos_CargarStockProductoPorIdResult>().HasNoKey();
