@@ -21,7 +21,7 @@
                                     </div>
                                     <div class="col-sm-6">
                                         <label>Departamento</label>
-                                        <select id="ddlDepto2" name="ddlDepto2" class="form-control">@ViewBag.deptoCrea</select>
+                                        <select id="ddlDepto2" name="ddlDepto2" class="form-control"></select>
                                         <label style="color:red" id="edep2" name="edep2" hidden>Debe llenar este campo</label>
                                     </div>
                                 </div>
@@ -43,12 +43,12 @@
                     </div>
                 </div>
             </form>
-            <script src="~/js/Sucursales/EditarSucursales.js"></script>
-            @*<script>*@
+            @*<script src="~/js/Sucursales/EditarSucursales.js"></script>*@
+            <script>
 
 
 
-                @*function Editar(sucu_ID) {
+                function Editar(sucu_ID) {
                     $("#editar-modal").modal('show');
                     var sucu_ID = sucu_ID;
                     var sucursalID = sucu_ID;
@@ -129,4 +129,4 @@
                     })
                 }
 
-            </script>*@
+            </script>

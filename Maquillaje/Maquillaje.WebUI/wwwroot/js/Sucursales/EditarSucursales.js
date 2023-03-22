@@ -1,4 +1,6 @@
 ﻿
+
+
 function Editar(sucu_ID) {
     $("#editar-modal").modal('show');
     alert(sucu_ID);
@@ -21,16 +23,6 @@ function Editar(sucu_ID) {
         }
     })
 }
-
-
-
-
-
-
-
-
-
-
 
 
 $("#ddlDepto2").change(function () {
