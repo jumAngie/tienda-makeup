@@ -163,6 +163,44 @@ namespace Maquillaje.WebUI.Controllers
 
 
 
+        [HttpPost("/Usuario/Editar")]
+        public IActionResult Edit(int usua_IdEdit, int RdbAdminEd, int ddlempl_IdEdit)
+        {
+            try
+            {
+                if (HttpContext.Session.GetString("usu_Nombre") != null)
+                {
+                    ViewBag.usu_Nombre = HttpContext.Session.GetString("usu_Nombre");
+                    ViewBag.suc_Descripcion = HttpContext.Session.GetString("suc_Descripcion");
+                    ViewBag.usu_Id = HttpContext.Session.GetString("usu_ID");
+                    ViewBag.suc_Id = HttpContext.Session.GetString("suc_Id");
+                    int usumodi = int.Parse(HttpContext.Session.GetString("usu_ID"));
+
+                        tbUsuarios usua = new tbUsuarios();
+
+                        usua.usu_ID = usua_IdEdit;
+                        usua.usu_EsAdmin = Convert.ToBoolean(RdbAdminEd);
+                        usua.usu_empID = ddlempl_IdEdit;
+                        usua.usu_UsuarioModi = usumodi;
+
+                        var usuario = _mapper.Map<tbUsuarios>(usua);
+                        var result = _generalesService.EditUsuario(usuario);
+
+                        return RedirectToAction("Index");
+                }
+
+                return RedirectToAction("Index", "Login");
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+
+
 
         [HttpPost("/Usuarios/Eliminar/")]
         public IActionResult Delete(int usu_Id)

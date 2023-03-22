@@ -112,7 +112,6 @@ namespace Maquillaje.DataAccess.Repositories.Gral
             var parametros = new DynamicParameters();
             parametros.Add("@usu_Id", item.usu_ID, DbType.String, ParameterDirection.Input);
             parametros.Add("@usu_empID", item.usu_empID, DbType.Int32, ParameterDirection.Input);
-            parametros.Add("@usu_Usuario", item.usu_Usuario, DbType.Int32, ParameterDirection.Input);
             parametros.Add("@usu_EsAdmin", item.usu_EsAdmin, DbType.Int32, ParameterDirection.Input);
             parametros.Add("@usu_UsuModi", item.usu_UsuarioModi, DbType.Int32, ParameterDirection.Input);
 

@@ -1,4 +1,124 @@
-﻿
-@*
-    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿<!-- Editar Usuarios -->
+<form id="EditForm" action="@Url.Action("Edit","Usuarios")" method="post">
+    <div class="modal fade" id="EditarUsuarios" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="card-header" style="background-color:#ffd3d8">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+
+                    <div class="text-center">
+                        <img src="~/Content/iMG/giphy.gif" width="100" />
+                        <h3 style="color:black;font-family:'Segoe Print'">Cree un Usuario</h3>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="usua_IdEdit" name="usua_IdEdit" class="form-control" />
+
+                    <div class="row">
+                        <div class="col-12">
+                            <label class="mt-3">Nombre Usuario</label>
+                            <input type="text" id="txtNombreUsuaEdit" disabled name="txtNombreUsuaEdit" class="form-control" />
+                            <label id="validarNombreEdit" hidden class="text-danger">Campo Requerido</label>
+                        </div>
+
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label class="mt-3">Empleado</label>
+                            <select name="ddlempl_IdEdit" id="ddlempl_IdEdit" class="form-control" asp-items="ViewBag.usuario">
+                                <option value="">Seleccione una Opcion</option>
+                            </select>
+                            <label id="validarddlEdite" hidden class="text-danger">Campo Requerido</label>
+                        </div>
+
+
+                        <div class="col-sm-6">
+                            <label class="mt-3">Es Admin?</label>
+                            <br />
+                            <input type="radio" id="S" name="RdbAdminEd" class="" value="1" />Si
+                            <input type="radio" id="N" name="RdbAdminEd" class="" value="0" />No
+                            <label id="validarAdminEdit" hidden class="text-danger">Campo Requerido</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" onclick="CerrarEditar()" data-dismiss="modal" class="btn btn-primary"><i class="icon-copy fa fa-remove" aria-hidden="true"></i> Cancelar</button>
+                    <button type="button" onclick="GuardarDatos()" class="btn btn-outline-secondary"> <i class="icon-copy fa fa-floppy-o" aria-hidden="true"></i> Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+
+<script>
+
+
+
+    function GuardarDatos() {
+
+        var canInsert = true;
+
+        $("#validarNombreEdit").attr("hidden", true);
+        $("#validarContraEdit").attr("hidden", true);
+        $("#validarAdminEdit").attr("hidden", true);
+        $("#validarddlEdite").attr("hidden", true);
+        $("#validarddlEditr").attr("hidden", true);
+        $("#unouotro2").attr("hidden", true);
+
+
+
+        if ($('input[name=RdbAdminEd]:checked').val() == null || $('input[name=RdbAdminEd]:checked').val() == "") {
+            mostrarErrorToast("Campos requeridos.")
+
+            canInsert = false;
+        }
+
+        if ($("#ddlempl_IdEdit").val == "") {
+            mostrarErrorToast("Campos requeridos.")
+
+            canInsert = false;
+        }
+
+
+        console.log(canInsert);
+        if (canInsert) {
+            sessionStorage.setItem("val1", 2);
+            $("#EditForm").submit();
+        }
+
+    };
+
+
+    function Editar(cadena) {
+        var datastring = cadena;
+        console.log(cadena)
+        var data = datastring.split(',');
+        $("#usua_IdEdit").val(data[0]);
+        $("#txtNombreUsuaEdit").val(data[1]);
+
+
+        if (data[2] == "True") {
+            $("#S").prop("checked", true);
+        }
+        else {
+            $("#N").prop("checked", true);
+        }
+
+        $("#ddlempl_IdEdit").val(data[3]);
+
+
+        $("#validarNombreEdit").attr("hidden", true);
+        $("#validarContraEdit").attr("hidden", true);
+        $("#validarAdminEdit").attr("hidden", true);
+        $("#validarddlEdite").attr("hidden", true);
+        $("#validarddlEditr").attr("hidden", true);
+        $("#unouotro2").attr("hidden", true);
+
+        $("#EditarUsuarios").modal('show');
+
+    };
+
+</script>
