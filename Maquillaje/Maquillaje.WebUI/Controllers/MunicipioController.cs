@@ -210,13 +210,13 @@ namespace Maquillaje.WebUI.Controllers
 
 
 
-        ////public ActionResult Edit(int? id)
-        ////{
+        //public ActionResult Edit(int? id)
+        //{
 
-        ////    var tbMunicipios = db.UDF_Gral_tbMunicipios_CARGAR(id).ToList();
-        ////    return Json(new { success = true, mun_Id = tbMunicipios[0].mun_ID, mun_Descripcion = tbMunicipios[0].mun_Descripcion, mun_DepId = tbMunicipios[0].mun_depID });
+        //    var tbMunicipios = db.UDF_Gral_tbMunicipios_CARGAR(id).ToList();
+        //    return Json(new { success = true, mun_Id = tbMunicipios[0].mun_ID, mun_Descripcion = tbMunicipios[0].mun_Descripcion, mun_DepId = tbMunicipios[0].mun_depID });
 
-        ////}
+        //}
 
 
 
