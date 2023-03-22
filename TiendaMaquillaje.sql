@@ -2663,3 +2663,44 @@ BEGIN
 		SELECT 0
 	END CATCH
 END
+
+/*Eliminar factura detalles*/
+GO
+CREATE OR ALTER PROCEDURE Maqui.UDP_tbVentasDetalles_Delete 
+	@vde_Id	INT
+AS
+BEGIN
+	BEGIN TRY
+		DELETE 
+		FROM  Maqui.tbVentasDetalle
+		WHERE vde_Id = @vde_Id
+		SELECT 1
+	END TRY
+	BEGIN CATCH
+		SELECT 0
+	END CATCH
+END
+-- ¡¡¡ EDITAR EL DETALLE ¡¡ --
+CREATE OR ALTER PROCEDURE Maqui.UDP_tbVentasDetalles_Update 
+	@vde_Id						INT,
+	@vde_Producto				INT,
+	@vde_Cantidad				INT,
+	@vde_UsuModi	INT
+AS
+BEGIN
+	BEGIN TRY
+		--DECLARE @factdeta_Precio DECIMAL(18,2) = (SELECT [prod_PrecioUni] FROM [maqu].[tbProductos] WHERE prod_Id = @prod_Id)
+
+		UPDATE Maqui.tbVentasDetalle
+		SET vde_Producto = @vde_Producto,
+			vde_Cantidad= @vde_Cantidad,
+			vde_UsuModi = @vde_UsuModi,
+			vde_FechaModi = GETDATE()
+		WHERE vde_Id = @vde_Id
+
+		SELECT 1
+	END TRY
+	BEGIN CATCH
+		SELECT 0
+	END CATCH
+END

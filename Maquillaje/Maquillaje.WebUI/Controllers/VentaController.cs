@@ -148,7 +148,7 @@ namespace Maquillaje.WebUI.Controllers
             var ddlCategoria = _generalesService.ListadoCategorias(out string error1).ToList();
 
             ViewBag.cate = new SelectList(ddlCategoria, "cat_Id", "cat_Descripcion");
-            ViewBag.fact_Id = item.vde_VentaId;
+            ViewBag.vde_VentaId = item.vde_VentaId;
             ViewBag.detalles = detalles;
             ViewBag.ven_Cliente = new SelectList(ddlCliente, "cli_ID", "cli_Nombre");
             ViewBag.ven_MetodoPago = new SelectList(ddlMetodo, "met_Id", "met_Descripcion");
@@ -177,7 +177,89 @@ namespace Maquillaje.WebUI.Controllers
             }
         }
 
+        [HttpPost]
+        public IActionResult Delete(int id, int idFactura, string esEditar2, VentaDetallesViewModel item, VentaViewModel item2)
+        {
+            var delete = _generalesService.DeleteFacturasDetalles(id);
+            var detalles = _generalesService.ListadoVentaDetalles(idFactura);
 
+            ViewBag.detalles = detalles;
+            ViewBag.vde_VentaId = idFactura;
+            item2.ven_Id = idFactura;
+
+            if (esEditar2 == "no")
+            {
+                if (delete == 1)
+                {
+                    string script = $"MostrarMensajeSuccess('El registro ha sido eliminado con éxito');";
+                    TempData["Script"] = script;
+                    return RedirectToAction("Create", item2);
+                }
+                else
+                {
+                    string script = "MostrarMensajeDanger('Ha ocurrido un error');";
+                    TempData["Script"] = script;
+                    return RedirectToAction("Create", item2);
+                }
+            }
+            else
+            {
+                if (delete == 1)
+                {
+                    string script = $"MostrarMensajeSuccess('El registro ha sido eliminado con éxito');";
+                    TempData["Script"] = script;
+                    return RedirectToAction("Update", new { id = ViewBag.vde_VentaId });
+                }
+                else
+                {
+                    string script = "MostrarMensajeDanger('Ha ocurrido un error');";
+                    TempData["Script"] = script;
+                    return RedirectToAction("Update", new { id = ViewBag.vde_VentaId });
+                }
+            }
+        }
+
+        [HttpPost]
+        public IActionResult Edit(VentaDetallesViewModel item)
+        {
+            var facdetalle = _mapper.Map<tbVentasDetalle>(item);
+            var update = _generalesService.UpdateFacturasDetalles(facdetalle);
+            var ddlCategoria = _generalesService.ListadoCategorias(out string error1).ToList();
+            var detalles = _generalesService.ListadoVentaDetalles(item.vde_VentaId);
+
+            ViewBag.vde_VentaId = item.vde_VentaId;
+            ViewBag.detalles = detalles;
+            ViewBag.cate = new SelectList(ddlCategoria, "cat_Id", "cat_Descripcion");
+
+            if (item.esEditar == "no")
+            {
+                if (update == 1)
+                {
+                    string script = $"MostrarMensajeSuccess('El registro ha sido editado con éxito');";
+                    TempData["Script"] = script;
+                    return RedirectToAction("Create", item);
+                }
+                else
+                {
+                    return RedirectToAction("Create", item);
+                }
+            }
+            else
+            {
+                if (update == 1)
+                {
+                    string script = $"MostrarMensajeSuccess('El registro ha sido editado con éxito');";
+                    TempData["Script"] = script;
+                    return RedirectToAction("Update", new { id = ViewBag.vde_VentaId });
+                }
+                else
+                {
+                    string script = "MostrarMensajeDanger('Ha ocurrido un error');";
+                    TempData["Script"] = script;
+                    return RedirectToAction("Update", new { id = ViewBag.vde_VentaId });
+                }
+            }
+        }
 
         //JSONS
         public IActionResult CargarProductos(int id)

@@ -11,15 +11,7 @@ namespace Maquillaje.DataAccess.Repositories.Maqui
 {
     public class VentasRepository : IRepository<tbVentas>
     {
-        public int IdVentaReciente()
-        {
-            using var db = new SqlConnection(TiendaContext.ConnectionString);
-            var registro = db.ExecuteScalar<int>(ScriptsDataBase.IdVentaReciente, null, commandType: CommandType.StoredProcedure);
-            
-            return registro;
-        }
-
-
+        
         public int EliminarDetalleVenta(int? @vde_Id)
         {
             using var db = new SqlConnection(TiendaContext.ConnectionString);
@@ -29,42 +21,7 @@ namespace Maquillaje.DataAccess.Repositories.Maqui
             return db.Execute(ScriptsDataBase.EliminarDetalleVenta, parametros, commandType: CommandType.StoredProcedure);
 
         }
-        public int ActualizarDetalleVenta(int? @vde_Id, int? @vde_Producto , int? @vde_Cantidad , int @vde_UsuModi )
-        {
-            using var db = new SqlConnection(TiendaContext.ConnectionString);
-            var parametros = new DynamicParameters();
-            parametros.Add("@vde_Id", @vde_Id, DbType.Int32, ParameterDirection.Input);
-            parametros.Add("@vde_Producto", @vde_Producto, DbType.Int32, ParameterDirection.Input);
-            parametros.Add("@vde_Cantidad", @vde_Cantidad, DbType.Int32, ParameterDirection.Input);
-            parametros.Add("@vde_UsuModi", @vde_UsuModi, DbType.Int32, ParameterDirection.Input);
 
-            return db.Execute(ScriptsDataBase.ActualizarDetalleVenta, parametros, commandType: CommandType.StoredProcedure);
-        }
-
-        public int IngresarNuevoDetalleVenta(int? @vde_VentaId, int? @vde_Producto, int? @vde_Cantidad, int @vde_UsuCrea)
-        {
-            using var db = new SqlConnection(TiendaContext.ConnectionString);
-            var parametros = new DynamicParameters();
-            parametros.Add("@vde_VentaId", @vde_VentaId, DbType.Int32, ParameterDirection.Input);
-            parametros.Add("@vde_Producto", @vde_Producto, DbType.Int32, ParameterDirection.Input);
-            parametros.Add("@vde_Cantidad", @vde_Cantidad, DbType.Int32, ParameterDirection.Input);
-            parametros.Add("@vde_UsuCrea", @vde_UsuCrea, DbType.Int32, ParameterDirection.Input);
-
-            return db.Execute(ScriptsDataBase.IngresarNuevoDetalleVenta, parametros, commandType: CommandType.StoredProcedure);
-        }
-
-        public int IngresarNuevaVenta(int? clie_id, int empleado, int sucursal, int MetodoPago, int UsuarioCrea)
-        {
-            using var db = new SqlConnection(TiendaContext.ConnectionString);
-            var parametros = new DynamicParameters();
-            parametros.Add("@ven_Cliente",      clie_id,     DbType.Int32, ParameterDirection.Input);
-            parametros.Add("@ven_Empleado",     empleado,   DbType.Int32, ParameterDirection.Input);
-            parametros.Add("@ven_Sucursal",     sucursal, DbType.Int32, ParameterDirection.Input);
-            parametros.Add("@ven_MetodoPago",   MetodoPago, DbType.Int32, ParameterDirection.Input);
-            parametros.Add("@ven_UsuCrea",      UsuarioCrea, DbType.Int32, ParameterDirection.Input);
-
-            return db.Execute(ScriptsDataBase.IngresarNuevaVenta, parametros, commandType: CommandType.StoredProcedure);
-        }
         public int Delete(int? id)
         {
             throw new NotImplementedException();
@@ -83,7 +40,30 @@ namespace Maquillaje.DataAccess.Repositories.Maqui
 
         /// 
 
-        
+        public int Update(tbVentasDetalle item)
+        {
+            var db = new SqlConnection(TiendaContext.ConnectionString);
+
+            var parametros = new DynamicParameters();
+            parametros.Add("@vde_Id",                   item.vde_Id,        DbType.Int32, ParameterDirection.Input);
+            parametros.Add("@vde_Producto",             item.vde_Producto,  DbType.Int32, ParameterDirection.Input);
+            parametros.Add("@vde_Cantidad",             item.vde_Cantidad,  DbType.Int32, ParameterDirection.Input);
+            parametros.Add("@vde_UsuModi",             item.vde_UsuModi,    DbType.Int32, ParameterDirection.Input);
+
+            return db.QueryFirst<int>(ScriptsDataBase.UDP_Editar_FacturasDetalles, parametros, commandType: CommandType.StoredProcedure);
+        }
+
+        public int DeleteConfirmed(int id)
+        {
+            var db = new SqlConnection(TiendaContext.ConnectionString);
+
+            var parametros = new DynamicParameters();
+            parametros.Add("@vde_Id", id, DbType.Int32, ParameterDirection.Input);
+
+            return db.QueryFirst<int>(ScriptsDataBase.UDP_Eliminar_FacturasDetalles, parametros, commandType: CommandType.StoredProcedure);
+        }
+
+
         public int Insert(tbVentasDetalle item)
         {
             var db = new SqlConnection(TiendaContext.ConnectionString);

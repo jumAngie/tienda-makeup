@@ -111,7 +111,8 @@ namespace Maquillaje.DataAccess.Repositories
         public static string UDP_Listar_VentasDetalles = "Maqui.UDP_maqu_tbVentasDetalles_Listado";
         public static string UDP_RevisarStock = "Maqui.UDP_tbVentas_RevisarStock";
         public static string UDP_Insertar_FacturasDetalles = "Maqui.UDP_maqu_tbFacturasDetalles_Insert";
-
+        public static string UDP_Eliminar_FacturasDetalles = "Maqui.UDP_tbVentasDetalles_Delete";
+        public static string UDP_Editar_FacturasDetalles = "Maqui.UDP_tbVentasDetalles_Update";
         #endregion
 
         #region Inventario
