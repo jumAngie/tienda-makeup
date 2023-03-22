@@ -2007,17 +2007,18 @@ GO
 
 CREATE OR ALTER PROC UDP_Gral_tbUsuarios_EDITAR(
 @usu_Id INT,
-@usu_Usuario NVARCHAR(100),
-@usu_EsAdmin BIT
-,  @usu_UsuModi INT)
+@usu_empID INT,
+@usu_EsAdmin BIT,
+@usu_UsuModi INT)
 AS BEGIN
 
 DECLARE @usu_FechaModi DATETIME = GETDATE();
 
-UPDATE Gral.tbUsuarios SET usu_Usuario = @usu_Usuario,
+UPDATE Gral.tbUsuarios SET 
 						   usu_EsAdmin = @usu_EsAdmin,
 						   usu_FechaModi = @usu_FechaModi, 
-						   usu_UsuarioModi = @usu_UsuModi
+						   usu_UsuarioModi = @usu_UsuModi,
+						   usu_empID = @usu_empID 
 						   WHERE usu_Id = @usu_Id
 
 END
