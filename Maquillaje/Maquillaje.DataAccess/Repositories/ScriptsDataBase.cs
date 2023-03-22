@@ -50,6 +50,9 @@ namespace Maquillaje.DataAccess.Repositories
         public static string SucursalesEditar = "UDP_Gral_tbSucurusales_EDITAR";
         public static string SucursalesEliminar = "UDP_Gral_tbSucursales_ELIMINAR";
         public static string SucursalesDetalles = "UDP_tbSucursales_Detalles";
+        public static string SucursalesCargarMuni = "UDP_tbSucursales_CargarMuni";
+        public static string SucursalesCargarDepto = "UDP_tbSucursales_CargarDeptos";
+        public static string SucursalesCargar = "UDP_tbSucursales_Cargar";
         #endregion
 
         #region Departamentos

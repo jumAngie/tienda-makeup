@@ -53,7 +53,7 @@
                                         @Html.DisplayFor(modelItem => item.suc_Municipio)
                                     </td>
                                     <td>
-                                        <a class="btn btn-primary" data-toggle="modal" data-target="#EditSuc" onclick="Editar('@item.suc_Id,@item.suc_Descripcion')"><i class="icon-copy fa fa-pencil-square-o" aria-hidden="true"></i> Editar</a> |
+                                        <a class="btn btn-primary" data-toggle="modal" data-target="#editar-modal" onclick="Editar(@item.suc_Id)"><i class="icon-copy fa fa-pencil-square-o" aria-hidden="true"></i> Editar</a> |
                                         <a class="btn btn-outline-secondary" style="color: black" asp-action="Details" asp-route-id="@item.suc_Id">
                                             <i class="icon-copy fa fa-file-text-o" aria-hidden="true"></i> Detalles
                                         </a> |

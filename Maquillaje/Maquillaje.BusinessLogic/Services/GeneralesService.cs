@@ -439,6 +439,65 @@ namespace Maquillaje.BusinessLogic.Services
         }
 
 
+
+        public IEnumerable<tbDepartamentos> CargaDep()
+        {
+
+            var result = _sucursalesRepository.CargaDepartamentos();
+            return result;
+
+
+        }
+
+        public IEnumerable<tbMunicipios> CargaMuni(int dep_ID)
+        {
+
+            var result = _sucursalesRepository.CargaMunicipios(dep_ID);
+            return result;
+
+
+        }
+        public IEnumerable<tbSucursales> LlenarSucursal(int id)
+        {
+
+            var result = _sucursalesRepository.Find(id);
+            return result;
+
+        }
+
+        public int EditarSucursal(tbSucursales item)
+        {
+
+            var result = _sucursalesRepository.Update(item);
+            return result;
+
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         public int DeleteSucursales(tbSucursales sucursales)
         {
             try

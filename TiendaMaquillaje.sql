@@ -2024,6 +2024,70 @@ UPDATE Gral.tbUsuarios SET
 END
 GO
 
+CREATE OR ALTER PROCEDURE UDP_tbSucursales_CargarMuni(
+@dep_ID INT)
+AS
+BEGIN
+SELECT	mun_ID, mun_Descripcion 
+FROM	Gral.tbMunicipios
+WHERE	mun_depID = @dep_ID
+END
+GO
+
+
+
+GO
+CREATE OR ALTER PROCEDURE UDP_tbSucursales_CargarDeptos
+AS
+BEGIN
+SELECT	dep_ID, dep_Descripcion 
+FROM	Gral.tbDepartamentos
+END
+GO
+
+
+
+
+
+
+
+
+
+
+
+
+CREATE OR ALTER PROCEDURE UDP_tbSucursales_Cargar(
+@sucu_ID INT)
+AS
+BEGIN
+SELECT	suc_Id, 
+		dep_ID, 
+		dep_Descripcion, 
+		mun_ID, 
+		mun_Descripcion, 
+		suc_Descripcion 
+		FROM	Gral.tbSucursales sucu 
+		INNER JOIN Gral.tbMunicipios ciu
+		ON	sucu.suc_Municipio = ciu.mun_ID 
+		INNER JOIN Gral.tbDepartamentos dep
+		ON ciu.mun_depID = dep.dep_ID
+WHERE	suc_Id = @sucu_ID
+END
+GO
+
+
+exec UDP_tbSucursales_Cargar 2
+select * from Gral.tbMunicipios
+
+
+
+
+
+
+
+
+
+
 
 
 CREATE OR ALTER PROC UDP_Gral_tbProveedores_ELIMINAR(@prv_Id INT, @prv_UsuModi INT)

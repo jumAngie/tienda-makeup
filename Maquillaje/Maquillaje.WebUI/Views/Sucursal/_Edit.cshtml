@@ -1,71 +1,122 @@
-﻿<!-- The Modal -->
-<Form action="@Url.Action("Edit","Sucursal")" method="post" id="sucu">
-    <div class="modal" id="EditSucu">
+﻿
+<form method="post">
+    <div id="editar-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="primary-header-modalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title">Crea una Sucursal</h4>
+                <div class="modal-header modal-colored-header bg-primary">
+                    <h4 class="modal-title" id="primary-header-modalLabel">Editar Sucursal</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-
-                <!-- Modal body -->
                 <div class="modal-body">
-                    <input type="hidden" class="form-control" id="suc_Id" name="suc_Id" />
-
                     <div class="row">
-                        <div class="col-sm-6">
-                            <label class="form-text">Departamento</label>
-                            <select id="depto" name="depto" class="form-control" asp-items="ViewBag.depto"></select>
+                        <div class="col-sm-4">
+                            <label>Sucursal</label>
+                            <input type="text" id="txtSucursal2" name="txtSucursal2" class="form-control" />
+                            <label style="color:red" id="esucu2" name="esucu2">Debe llenar este campo</label>
                         </div>
-
-                        <div class="col-sm-6">
-                            <label class="form-text">Ciudad</label>
-                            <select id="suc_Municipio" name="suc_Municipio" class="form-control"></select>
+                        <div class="col-sm-4">
+                            <label>Departamento</label>
+                            <select id="ddlDepto2" name="ddlDepto2" class="form-control"></select>
+                            <label style="color:red" id="edep2" name="edep2">Debe llenar este campo</label>
+                        </div>
+                        <div class="col-sm-4">
+                            <label>Municipio</label>
+                            <select id="ddlMuni2" name="ddlMuni2" class="form-control"></select>
+                            <label style="color:red" id="emuni2" name="emuni2">Debe llenar este campo</label>
                         </div>
                     </div>
-
-                    <div class="col-sm-12">
-                        <label class="form-text">Descripcion</label>
-                        <input type="text" class="form-control" id="txtSucu" name="suc_Descripcion" />
-                        <label id="ValidateSucu" hidden class="text-danger">Campo Requerido</label>
-
-                    </div>
-
                 </div>
-
-                <!-- Modal footer -->
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-warning" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-outline-success" onclick="GuardarDatos()">Guardar</button>
+                    <button type="button" class="btn btn-light" data-dismiss="modal">Cerrar</button>
+                    <button type="button" id="btnEditar" name="btnEditar" class="btn btn-primary">Guardar</button>
                 </div>
-
             </div>
         </div>
     </div>
-</Form>
-
+</form>
     <script>
 
-        function Editar(cadena) {
-        var datastring = cadena;
-        var data = datastring.split(',');
-            $("#suc_Id").val(data[0]);
-        $("#txtSucu").val(data[1]);
-            $("#EditSucu").modal('show');
-        };
 
 
-        function GuardarDatos() {
+        function Editar(sucu_ID) {
+            $("#editar-modal").modal('show');
+            var sucu_ID = sucu_ID;
+            var sucursalID = sucu_ID;
+            console.log(sucu_ID);
+            $.ajax({
+                url: "/Sucursales/Cargar",
+                method: "POST",
+                data: { sucu_ID: sucu_ID },
+                success: function (data) {
+                    $.each(data, function (i, value) {
+                        $("#txtSucursal2").val(value.suc_Descripcion);
+                        $("#ddlDepto2").val(value.dep_ID);
+                        console.log(value.dep_ID);
+                        console.log(value.mun_ID);
+                        var ciudad = value.mun_ID;
 
-            if ($("#txtSucu").val() == "") {
-            $("#ValidateSucu").attr("hidden", false);
-        stop();
+
+
+                        var dep_ID = $("#ddlDepto2").val();
+                        console.log(value.dep_ID);
+
+                        $.ajax({
+                            url: "/Sucursales/CargarMunicipio/" + dep_ID,
+                            method: "POST",
+                            dataType: "json",
+                            contentType: "application/json; charset=utf-8",
+                            data: { dep_ID: dep_ID },
+
+
+                            success: function (data) {
+                                $("#ddlMuni2").empty();
+                                $.each(data, function (i, value) {
+                                    $("#ddlMuni2").append("<option value='" + value.mun_ID + "'>" + value.mun_Descripcion + "</option>")
+                                })
+                                $("#ddlMuni2").val(ciudad);
+                            }
+                        })
+
+                    })
+                }
+            })
+            $("#ddlDepto2").change(function () {
+                var dep_ID = $("#ddlDepto2").val();
+                $.ajax({
+                    url: "/Sucursales/CargarMunicipio/" + dep_ID,
+                    method: "POST",
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    data: { dep_ID: dep_ID },
+                    success: function (data) {
+                        $("#ddlMuni2").empty();
+                        $.each(data, function (i, value) {
+                            $("#ddlMuni2").append("<option value='" + value.mun_ID + "'>" + value.mun_Descripcion + "</option>")
+                        })
+                    }
+                })
+            })
+            $("#btnEditar").click(function () {
+                var sucursal = $("#txtSucursal2").val();
+                console.log(sucursal);
+                var muni = $("#ddlMuni2").val();
+                console.log(muni);
+
+                if (sucursal == "") {
+                    $("#esucu2").show();
+                }
+                else {
+                    $("#esucu2").hide();
+                    $.ajax({
+                        url: "/Sucursales/Editar",
+                        method: "POST",
+                        data: { suc_Descripcion: sucursal, mun_ID: muni, suc_ID: sucu_ID },
+                        success: function (data) {
+                            window.location.reload();
+                        }
+                    })
+                }
+            })
         }
-        else {
-            $("#ValidateSucu").attr("hidden", true);
-            $('#sucu').submit();
-        }
-    };
 
 </script>

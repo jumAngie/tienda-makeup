@@ -77,6 +77,37 @@ namespace Maquillaje.DataAccess.Repositories.Gral
         }
 
 
+        public IEnumerable<tbMunicipios> CargaMunicipios(int dep_ID)
+        {
+            using var db = new SqlConnection(TiendaContext.ConnectionString);
+
+            var parametros = new DynamicParameters();
+            parametros.Add("@dep_ID", dep_ID, DbType.String, ParameterDirection.Input);
+
+            return db.Query<tbMunicipios>(ScriptsDataBase.SucursalesCargarMuni, parametros, commandType: CommandType.StoredProcedure);
+
+        }
+
+        public IEnumerable<tbSucursales> Find(int id)
+        {
+            using var db = new SqlConnection(TiendaContext.ConnectionString);
+            var parametros = new DynamicParameters();
+            parametros.Add("@sucu_Id", id, DbType.Int32, ParameterDirection.Input);
+
+            return db.Query<tbSucursales>(ScriptsDataBase.SucursalesCargar, parametros, commandType: CommandType.StoredProcedure);
+
+        }
+
+
+
+        public IEnumerable<tbDepartamentos> CargaDepartamentos()
+        {
+            using var db = new SqlConnection(TiendaContext.ConnectionString);
+            return db.Query<tbDepartamentos>(ScriptsDataBase.SucursalesCargarDepto, commandType: CommandType.StoredProcedure);
+
+        }
+
+
         public int Update(tbSucursales item)
         {
             using var db = new SqlConnection(TiendaContext.ConnectionString);
@@ -84,9 +115,17 @@ namespace Maquillaje.DataAccess.Repositories.Gral
             parametros.Add("@suc_Id", item.suc_Id, DbType.Int32, ParameterDirection.Input);
             parametros.Add("@suc_Descripcion", item.suc_Descripcion, DbType.String, ParameterDirection.Input);
             parametros.Add("@suc_Municipio", item.suc_Municipio, DbType.Int32, ParameterDirection.Input);
-            parametros.Add("@suc_UsuCrea", item.suc_UsuCrea, DbType.Int32, ParameterDirection.Input);
+            parametros.Add("@suc_UsuModi", item.suc_usuModi, DbType.Int32, ParameterDirection.Input);
 
-            return db.Execute(ScriptsDataBase.SucursalesEditar, parametros, commandType: CommandType.StoredProcedure);
+            var lis = db.Query<tbSucursales>(ScriptsDataBase.SucursalesEditar, parametros, commandType: CommandType.StoredProcedure);
+
+            int result = 0;
+            if (lis.Count() == 1)
+            {
+                result = 1;
+            }
+
+            return result;
         }
 
         IEnumerable<tbSucursales> IRepository<tbSucursales>.List()

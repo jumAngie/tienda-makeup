@@ -190,51 +190,44 @@ namespace Maquillaje.WebUI.Controllers
 
 
 
-        [HttpGet("/Sucursales/CargarInfo/{depto}")]
-        public JsonResult CargarInfo(int depto)
+        [HttpPost("/Sucursales/Cargar")]
+        public JsonResult Cargar(int sucu_ID)
         {
-            ViewBag.deptoCrea = new SelectList(db.Vw_Gral_tbDepartamentos_DDL, "depto", "dep_Descripcion");
-            var ddl = db.UDF_Gral_tbSucursales_DDL(depto).ToList();
 
-            return Json(ddl);
+            var tbSucursales = _generalesService.LlenarSucursal(sucu_ID);
 
+            return Json(tbSucursales);
         }
 
 
-        [HttpPost("/Sucursal/Editar")]
-        public IActionResult Edit(int suc_Id, string suc_Descripcion, int suc_Municipio)
+
+        [HttpGet("/Sucursales/CargarDepartamento")]
+        public JsonResult CargarDDLdepto()
         {
-            try
-            {
-                if (HttpContext.Session.GetString("usu_Nombre") != null)
-                {
-                    ViewBag.usu_Nombre = HttpContext.Session.GetString("usu_Nombre");
-                    ViewBag.suc_Descripcion = HttpContext.Session.GetString("suc_Descripcion");
-                    ViewBag.usu_Id = HttpContext.Session.GetString("usu_ID");
-                    ViewBag.suc_Id = HttpContext.Session.GetString("suc_Id");
-                    int usumodi = int.Parse(HttpContext.Session.GetString("usu_ID"));
-            tbSucursales suc = new tbSucursales();
-            suc.suc_Municipio = suc_Municipio;
-            suc.suc_Id = suc_Id;
-            suc.suc_Descripcion = suc_Descripcion;
-            suc.suc_usuModi = usumodi;
-            ViewBag.deptoCrea = new SelectList(db.Vw_Gral_tbDepartamentos_DDL, "depto", "dep_Descripcion");
 
-            var sucu = _mapper.Map<tbSucursales>(suc);
-            var result = _generalesService.EditSucursales(sucu);
+            var tbSucursales = _generalesService.CargaDep();
 
+            return Json(tbSucursales);
+        }
+
+
+
+        [HttpPost("/Sucursales/CargarMunicipio/{dep_ID}")]
+        public JsonResult CargarDdlmuni(int dep_ID)
+        {
+
+            var tbSucursales = _generalesService.CargaMuni(dep_ID);
+
+            return Json(tbSucursales);
+        }
+
+
+
+        [HttpPost("/Sucursales/Editar")]
+        public ActionResult EditarSucursales(tbSucursales tbSucursales)
+        {
+            _generalesService.EditarSucursal(tbSucursales);
             return RedirectToAction("Index");
-                }
-
-                return RedirectToAction("Index", "Login");
-
-
-            }
-            catch (Exception)
-            {
-                return RedirectToAction("Index", "Home");
-                throw;
-            }
 
         }
 
