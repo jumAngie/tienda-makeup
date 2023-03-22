@@ -228,7 +228,7 @@ namespace Maquillaje.WebUI.Controllers
                     if (ModelState.IsValid)
             {
                 if (item.pro_Codigo != null && item.pro_Nombre != null && item.pro_PrecioUnitario != null && item.pro_Proveedor != "0"
-                    && item.pro_StockInicial != null && item.cat_Descripcion != "0")
+                    && (item.pro_StockInicial != null || item.pro_StockInicial != "0") && item.cat_Descripcion != "0")
                 {
                         if (ExisteCodigo(item.pro_Codigo))
                         {
@@ -249,6 +249,7 @@ namespace Maquillaje.WebUI.Controllers
                 }
                 else
                 {
+                    if(item.pro_StockInicial == "0" || item.pro_StockInicial == null) { ModelState.AddModelError("StockCero", "*"); }
                     if (item.cat_Descripcion == "0") { ModelState.AddModelError("ValidarCategoria", "*"); }
                     if (item.pro_Proveedor == "0") { ModelState.AddModelError("ValidarProveedor", "*"); }
                     ViewBag.cat_Id = new SelectList(db.Vw_Maqui_tbCategorias_DDL, "cat_Id", "cat_Descripcion");
@@ -259,8 +260,9 @@ namespace Maquillaje.WebUI.Controllers
             }
             else
             {
-                if (item.cat_Descripcion == "0") { ModelState.AddModelError("ValidarCategoria", "*"); }
-                if (item.pro_Proveedor == "0") { ModelState.AddModelError("ValidarProveedor", "*"); }
+                        if (item.pro_StockInicial == "0" || item.pro_StockInicial == null) { ModelState.AddModelError("StockCero", "*"); }
+                        if (item.cat_Descripcion == "0") { ModelState.AddModelError("ValidarCategoria", "*"); }
+                        if (item.pro_Proveedor == "0") { ModelState.AddModelError("ValidarProveedor", "*"); }
                 ViewBag.cat_Id = new SelectList(db.Vw_Maqui_tbCategorias_DDL, "cat_Id", "cat_Descripcion");
                 ViewBag.pro_Proveedor = new SelectList(db.Vw_Maqui_tbProveedores_DDL, "prv_ID", "prv_NombreCompañia");
                 return View(item);
