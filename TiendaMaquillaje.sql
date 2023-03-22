@@ -2143,6 +2143,18 @@ BEGIN
 END;
 GO
 
+--****************************************** TG PARA INSERTAR EN INVENTARIO ****************************************************--
+GO
+CREATE OR ALTER TRIGGER Maqui.tg_InsertInventario ON Maqui.tbProductos
+AFTER INSERT
+AS
+BEGIN
+		SET NOCOUNT ON;
+		INSERT INTO  tbInventario(inv_Cantidad, inv_Producto, inv_UsuCrea, inv_FechaCrea, inv_Estado)
+		SELECT pro_StockInicial, pro_Id, pro_usuCrea, pro_FechaCrea, pro_Estado FROM inserted
+END
+GO
+
 --****************************************** PANTALLA DETALLES ****************************************************--
 
 --CREATE PROCEDURE 'UDP_tbVentas_IdVentaReciente'
