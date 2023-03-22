@@ -2187,6 +2187,25 @@ END
 
 go
 
+---    TRIGGER PARA ELIMINAR PRODUCTOS DEL INVENTARIO ----
+go
+CREATE OR ALTER TRIGGER tg_EliminarProductosInventario
+ON Maqui.tbProductos
+AFTER UPDATE
+AS
+BEGIN
+	SET NOCOUNT ON;
+	IF UPDATE(pro_Estado)
+	BEGIN
+		
+		UPDATE	tbInventario
+		SET		inv_Estado = 0, inv_usuModi = (SELECT pro_UsuModi FROM inserted),  inv_FechaModi= GETDATE()
+		WHERE	inv_Producto IN (SELECT pro_Id FROM inserted WHERE pro_Estado = 0) 
+	END
+END
+
+go
+
 --****************************************** PANTALLA DETALLES ****************************************************--
 
 --CREATE PROCEDURE 'UDP_tbVentas_IdVentaReciente'
@@ -2335,6 +2354,7 @@ SELECT  usu_ID,
 		INNER JOIN Gral.tbSucursales T3
 		ON T2.emp_Sucursal = T3.suc_Id
 		WHERE [usu_Clave] = @usu_Clave
+		AND	  usu_Usuario = @usu_Usuario
 
 
 
