@@ -2595,8 +2595,7 @@ BEGIN
 	FROM	Maqui.tbProductos
 	WHERE	pro_Id = @pro_Id
 END
-
-/*Listado prod_Id x cate_Id*/
+-- ¡¡Listado pro_Id POR pro_Categoria ¡¡--
 GO
 CREATE OR ALTER PROCEDURE Maqui.UDP_tbProductos_ListDDL
 	@pro_Categoria	INT
@@ -2607,3 +2606,27 @@ BEGIN
 	WHERE   pro_Categoria = @pro_Categoria
 	AND		pro_Estado = 1
 END
+
+GO
+CREATE OR ALTER PROCEDURE Maqui.UDP_tbFacturas_Insert
+	@ven_Cliente INT,
+	@ven_Empleado INT,
+	@ven_Sucursal INT,
+	@ven_MetodoPago INT,
+	@ven_UsuCrea INT
+AS
+BEGIN
+	BEGIN TRY
+		INSERT INTO Maqui.tbVentas (ven_Cliente, ven_Empleado, ven_Fecha, ven_Sucursal, ven_MetodoPago, 
+									ven_UsuCrea, ven_FechaCrea, ven_UsuModi, ven_FechaModi, ven_Estado)
+		VALUES						(@ven_Cliente, @ven_Empleado, GETDATE(),@ven_Sucursal, @ven_MetodoPago,
+									@ven_UsuCrea, GETDATE(), NULL, NULL, 1)
+
+		SELECT SCOPE_IDENTITY()
+	END TRY
+	BEGIN CATCH
+		SELECT 0
+	END CATCH
+END
+
+

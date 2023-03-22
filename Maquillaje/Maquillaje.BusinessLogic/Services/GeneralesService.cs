@@ -975,6 +975,10 @@ namespace Maquillaje.BusinessLogic.Services
 
         #region VentasDetalles
 
+        public int InsertFacturas(tbVentas  item)
+        {
+            return _ventasRepository.Insert(item);
+        }
         public int RevisarStock(int id, int cantidad)
         {
             return _ventasRepository.RevisarStock(id, cantidad);

@@ -84,8 +84,8 @@ $("#vde_Producto").change(function () {
     $.getJSON('/Venta/PrecioProductos', { id: prod_Id })
         .done(function (productos) {
             $.each(productos, function (index, item) {
-                $("#pro_PrecioUnitario").val(item.pro_PrecioUnitario);
-                $("#pro_PrecioUnitarioShow").val(item.prod_PrecioUni);
+                $("#precio_unitario").val(item.pro_pro_PrecioUnitario);
+                $("#precio_unitario").val(item.pro_pro_PrecioUnitario);
             });
             console.log(productos);
         })

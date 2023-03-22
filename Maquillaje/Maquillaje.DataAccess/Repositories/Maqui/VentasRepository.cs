@@ -83,6 +83,22 @@ namespace Maquillaje.DataAccess.Repositories.Maqui
 
         /// 
 
+        public int Insert(tbVentas item)
+        {
+            using var db = new SqlConnection(TiendaContext.ConnectionString);
+            
+            var parametros = new DynamicParameters();
+
+            parametros.Add("@ven_Cliente", item.ven_Cliente, DbType.Int32, ParameterDirection.Input);
+            parametros.Add("@ven_Empleado", item.ven_Empleado, DbType.Int32, ParameterDirection.Input);
+            parametros.Add("@ven_Sucursal", item.ven_Sucursal, DbType.Int32, ParameterDirection.Input);
+            parametros.Add("@ven_MetodoPago", item.ven_MetodoPago, DbType.Int32, ParameterDirection.Input);
+            parametros.Add("@ven_UsuCrea", item.ven_UsuCrea, DbType.Int32, ParameterDirection.Input);
+
+            return db.QueryFirst<int>(ScriptsDataBase.UDP_Insertar_Facturas, parametros, commandType: CommandType.StoredProcedure);
+
+        }
+
         public int RevisarStock(int id, int cantidad)
         {
             var db = new SqlConnection(TiendaContext.ConnectionString);
@@ -119,7 +135,7 @@ namespace Maquillaje.DataAccess.Repositories.Maqui
             return result;
         }
 
-        public int Insert(tbVentas item)
+        public int Insertar(tbVentas item)
         {
             throw new NotImplementedException();
         }
