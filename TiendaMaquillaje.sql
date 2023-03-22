@@ -2081,15 +2081,7 @@ select * from Gral.tbMunicipios
 
 
 
-
-
-
-
-
-
-
-
-
+GO
 CREATE OR ALTER PROC UDP_Gral_tbProveedores_ELIMINAR(@prv_Id INT, @prv_UsuModi INT)
 AS BEGIN
 
