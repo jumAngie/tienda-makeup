@@ -1,5 +1,46 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿
+@model Maquillaje.WebUI.Models.VentaDetallesViewModel
+<!-- Modal -->
+<div class="modal fade" id="EditarDetalles" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <form method="post" asp-controller="Factura" asp-action="Edit" id="formEdit">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Editar</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input asp-for="vde_Id" class="form-control" id="factdeta_IdEdit" name="factdeta_Id" hidden />
+                            <input asp-for="vde_VentaId" class="form-control" id="fact_IdEdit" name="fact_Id" hidden />
+                            <input type="hidden" id="esEditar" asp-for="esEditar" />
+                            <div class="form-group">
+                                <label asp-for="cate" class="control-label"></label>
+                                <select class="form-control" id="cateEditar" asp-for="cate" asp-items="ViewBag.cate">
+                                    <option>--Seleccione una categoría--</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="vde_Producto" class="control-label"></label>
+                                <select class="form-control" id="prodIdEditar" asp-for="vde_Producto" asp-items="ViewBag.prod_Id">
+                                </select>
+                                <label name="prod_IdEditError" id="prod_IdEditError" class="control-label text-danger" hidden">Este campo es requerido</label>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="vde_Cantidad" class="control-label"></label>
+                                <input class="form-control" id="factdeta_CantidadEditar" asp-for="vde_Cantidad" />
+                                <label name="factdeta_CantidadEditError" id="factdeta_CantidadEditError" class="control-label text-danger" hidden">Este campo es requerido</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" onclick="GuardarModalEdit()" class="btn btn-success">Editar</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<script src="~/js/Detalles/VentaDetalleCreate.js"></script>
