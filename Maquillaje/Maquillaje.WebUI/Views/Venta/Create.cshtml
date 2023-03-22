@@ -11,7 +11,7 @@
 
 
 <div class="row">
-    <div class="col-4">
+    <div class="col-12">
         <div class="card">
             <div class="card-header" style="background-color:#ffd3d8">
 
@@ -25,7 +25,7 @@
 
 
                         <div class="row">
-                            <div class="col-sm-12">
+                            <div class="col-sm-6">
                                 <div class="form-group">
                                     <label asp-for="ven_Cliente" class="control-label"></label>
                                     <select asp-for="ven_Cliente" id="ven_Cliente" class="form-control" asp-items="ViewBag.ven_Cliente">
@@ -34,7 +34,7 @@
                                     <label id="clie_IdValidation" name="clie_IdValidation" class="text-danger control-label" hidden>El campo Cliente es obligatorio</label>
                                 </div>
                             </div>
-                            <div class="col-sm-12">
+                            <div class="col-sm-6">
                                 <div class="form-group">
                                     <label asp-for="ven_MetodoPago" class="control-label"></label>
                                     <select asp-for="ven_MetodoPago" id="ven_MetodoPago" class="form-control" asp-items="ViewBag.ven_MetodoPago">
@@ -49,7 +49,7 @@
 
 
                         <div class="card-footer">
-                            <center><input type="button" style="align-content: end" value="Continuar" id="btnSiguiente" class="btn btn-outline-secondary" /></center>
+                            <center><input type="button" style="align-content: end" icon="icon-copy fa fa-arrow-down" value="Continuar" id="btnSiguiente" class="btn btn-outline-secondary" /></center>
                         </div>
 
                     </form>
@@ -61,7 +61,7 @@
     </div>
 
 
-    <div class="col-8">
+    <div class="col-12">
         @Html.Partial("_CreateDetalles", new Maquillaje.WebUI.Models.VentaDetallesViewModel())
         @Html.Partial("_Edit", new Maquillaje.WebUI.Models.VentaDetallesViewModel())
         @Html.Partial("_Delete", new Maquillaje.WebUI.Models.VentaDetallesViewModel())
@@ -113,14 +113,24 @@
                                 <div class="col-sm-8 "></div>
                                 <div class="col-sm-4 ">
                                     <br />
-                                    <label>Subtotal:</label>
+                                    <label>Subtotal de compra:</label>
                                     <input class="form-control" disabled value="@subtotal" />
                                     <br />
-                                    <label>IVA:</label>
+                                    <label>Impuesto sobre venta:</label>
                                     <input class="form-control" disabled value="@(Math.Round(IVA, 2))" />
                                     <br />
-                                    <label>Total:</label>
+                                    <label>Total a Pagar:</label>
                                     <input class="form-control" disabled value="@(Math.Round(total, 2))" />
+                                    <br />
+                                    <br />
+
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-8"></div>
+                                <div class="col-sm-4">
+                                    <a asp-action="Index" disabled id="btnFinalizar" class="btn btn-outline-success btn-lg"><i class="icon-copy fa fa-credit-card" aria-hidden="true"></i> Pagar</a>
                                 </div>
                             </div>
                         }

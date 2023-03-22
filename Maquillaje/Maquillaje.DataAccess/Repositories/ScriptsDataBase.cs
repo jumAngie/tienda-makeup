@@ -101,7 +101,7 @@ namespace Maquillaje.DataAccess.Repositories
         public static string IdVentaReciente = "Maqui.UDP_tbVentas_IdVentaReciente";
         public static string IngresarNuevaVenta = "Maqui.UDP_tbVentas_IngresarNuevaVenta";
         public static string UDP_Listar_Facturas = "Maqui.UDP_tbVentas_Listado";
-
+        public static string VentasDetalles = "UDP_tbVentas_Detalles";
         public static string UDP_Insertar_Facturas = "Maqui.UDP_tbFacturas_Insert";
         #endregion
 

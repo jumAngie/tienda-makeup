@@ -121,6 +121,32 @@ namespace Maquillaje.DataAccess.Repositories.Maqui
             return db.Query<VW_tbVentasDetalles_List>(ScriptsDataBase.UDP_Listar_VentasDetalles, parametros, commandType: CommandType.StoredProcedure);
         }
 
+        public dynamic[] Detalles(int vde_Id)
+        {
+            using var db = new SqlConnection(TiendaContext.ConnectionString);
+            var parametro = new DynamicParameters();
+            parametro.Add("@ID", vde_Id, DbType.Int32, ParameterDirection.Input);
+
+            var result = db.QueryFirst(ScriptsDataBase.VentasDetalles, parametro, commandType: CommandType.StoredProcedure);
+            dynamic[] resultado = new dynamic[9];
+            resultado[0] = result.ven_Id;
+            resultado[1] = result.ven_Cliente.ToString();
+            resultado[2] = result.ven_Empleado.ToString();
+            resultado[3] = result.ven_Fecha;
+            resultado[4] = result.ven_UsuCrea;
+            resultado[5] = result.ven_UsuModi;
+            resultado[6] = result.ven_FechaCrea;
+            resultado[7] = result.ven_FechaModi;
+            resultado[8] = result.met_Descripcion;
+
+
+
+
+            return resultado;
+        }
+
+
+
         public tbVentas Find(int? id)
         {
             using var db = new TiendaContext();

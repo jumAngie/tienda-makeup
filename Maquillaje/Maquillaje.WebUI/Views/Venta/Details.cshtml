@@ -1,0 +1,131 @@
+﻿
+
+@model Maquillaje.WebUI.Models.VentaViewModel
+
+@{
+    ViewData["Title"] = "Detalles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="text-center">
+    <img src="~/Content/iMG/giphy.gif" width="100" />
+    <h1 style="color:black;font-family:'Segoe Print'">Detalles de las Ventas</h1>
+</div>
+<div>
+    <hr />
+
+
+
+    <center>
+        <dl class="dl-horizontal">
+
+            <div class="row">
+                <div class="col-sm-2"></div>
+
+                <div class="col-sm-4">
+            <dt>
+                Id de la Venta
+            </dt>
+
+            <dd class="form-control">
+                @Html.DisplayFor(model => model.ven_Id)
+            </dd>
+</div>
+
+
+<div class="col-sm-4">
+    <dt>
+        Empleado
+    </dt>
+
+    <dd class="form-control">
+        @Html.DisplayFor(model => model.empleado)
+    </dd>
+</div>
+ </div>
+
+
+<br />
+
+
+<div class="row">
+    <div class="col-sm-2"></div>
+
+    <div class="col-sm-4">
+        <dt>
+            Cliente Atendido
+        </dt>
+
+        <dd class="form-control">
+            @Html.DisplayFor(model => model.cliente)
+        </dd>
+    </div>
+
+
+    <div class="col-sm-4">
+        <dt>
+            Método de Pago
+        </dt>
+
+        <dd class="form-control">
+            @Html.DisplayFor(model => model.metodo)
+        </dd>
+    </div>
+</div>
+
+<br />
+
+
+<div class="row">
+    <div class="col-sm-2"></div>
+
+    <div class="col-sm-8">
+        <dt>
+            Fecha de la venta
+        </dt>
+
+        <dd class="form-control">
+            @Html.DisplayFor(model => model.ven_Fecha)
+        </dd>
+    </div>
+
+
+
+</div>
+
+
+                        </dl>
+                        </center>
+<br />
+<div class="card">
+    <div class="text-center">
+        <div class="card-header" style="background-color: #ffd3d8">
+            <h4 style="color:black;font-family:'Segoe Print'">Auditoria</h4>
+        </div>
+
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th><strong>Acción</strong></th>
+                    <th><strong>Usuario</strong></th>
+                    <th><strong>Fecha</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Hecha por:</td>
+                    <td>@ViewBag.UsuCrea</td>
+                    <td>@Html.DisplayFor(model => model.ven_FechaCrea)</td>
+                </tr>
+
+
+            </tbody>
+        </table>
+
+    </div>
+    <div class="card-footer" style="background-color: #ffd3d8">
+        <div class="text-center">
+            <a class="btn btn-outline-secondary" asp-action="Index"><i class="icon-copy fa fa-reply" aria-hidden="true"></i> Volver</a>
+        </div>
+    </div>
+</div>

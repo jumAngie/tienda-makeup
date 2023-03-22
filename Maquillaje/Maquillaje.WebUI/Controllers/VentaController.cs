@@ -24,9 +24,73 @@ namespace Maquillaje.WebUI.Controllers
         }
 
 
+
+
+        public IActionResult Details(int id)
+        {
+
+
+            if (HttpContext.Session.GetString("usu_Nombre") != null)
+            {
+                ViewBag.usu_Nombre = HttpContext.Session.GetString("usu_Nombre");
+                ViewBag.suc_Descripcion = HttpContext.Session.GetString("suc_Descripcion");
+                ViewBag.usu_Id = HttpContext.Session.GetString("usu_ID");
+                ViewBag.suc_Id = HttpContext.Session.GetString("suc_Id");
+
+
+
+                var cates = _generalesService.DetallesVenta(id);
+                VentaViewModel model = new VentaViewModel();
+
+                if (cates != null && cates.Length > 0)
+                {
+                    model.ven_Id = cates[0];
+                    model.cliente = cates[1];
+                    model.empleado = cates[2];
+                    model.ven_Fecha = cates[3];
+                    model.crea = cates[4];
+                    model.modi = cates[5];
+                    model.ven_FechaCrea = Convert.ToDateTime(cates[6]);
+                    model.ven_FechaModi = Convert.ToDateTime(cates[7]);
+                    model.metodo = cates[8];
+
+
+                }
+                ViewBag.UsuCrea = model.crea;
+                ViewBag.UsuModi = model.modi;
+
+                if (cates == null)
+                {
+                    return RedirectToAction("Index"); // acá vamos a redireccionar a la pagina 404
+                }
+                return View(model);
+            }
+
+            return RedirectToAction("Index", "Login");
+
+
+
+
+
+
+
+
+
+        }
+
+
+
         [HttpGet("/Venta/Listado")]
         public IActionResult Index()
         {
+            try
+            {
+                if (HttpContext.Session.GetString("usu_Nombre") != null)
+                {
+                    ViewBag.usu_Nombre = HttpContext.Session.GetString("usu_Nombre");
+                    ViewBag.suc_Descripcion = HttpContext.Session.GetString("suc_Descripcion");
+                    ViewBag.usu_Id = HttpContext.Session.GetString("usu_ID");
+                    ViewBag.suc_Id = HttpContext.Session.GetString("suc_Id");
 
             var listado = _generalesService.ListadoFacturas();
 
@@ -37,11 +101,32 @@ namespace Maquillaje.WebUI.Controllers
             }
 
             return View(listado);
+                }
+
+                return RedirectToAction("Index", "Login");
+
+
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Index", "Home");
+                throw;
+            }
+
         }
 
         [HttpGet("/Venta/Create")]
         public IActionResult Create(VentaDetallesViewModel item, VentaViewModel item2)
         {
+            try
+            {
+                if (HttpContext.Session.GetString("usu_Nombre") != null)
+                {
+                    ViewBag.usu_Nombre = HttpContext.Session.GetString("usu_Nombre");
+                    ViewBag.suc_Descripcion = HttpContext.Session.GetString("suc_Descripcion");
+                    ViewBag.usu_Id = HttpContext.Session.GetString("usu_ID");
+                    ViewBag.suc_Id = HttpContext.Session.GetString("suc_Id");
+
             if (item.vde_VentaId == 0)
             {
                 item.vde_VentaId = item2.ven_Id;
@@ -65,12 +150,32 @@ namespace Maquillaje.WebUI.Controllers
             }
 
             return View(item2);
+                }
+
+                return RedirectToAction("Index", "Login");
+
+
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Index", "Home");
+                throw;
+            }
+
         }
 
         [HttpPost("/Venta/Create")]
         [ValidateAntiForgeryToken]
         public IActionResult Create(VentaViewModel item, int prod_Id)
         {
+            try
+            {
+                if (HttpContext.Session.GetString("usu_Nombre") != null)
+                {
+                    ViewBag.usu_Nombre = HttpContext.Session.GetString("usu_Nombre");
+                    ViewBag.suc_Descripcion = HttpContext.Session.GetString("suc_Descripcion");
+                    ViewBag.usu_Id = HttpContext.Session.GetString("usu_ID");
+                    ViewBag.suc_Id = HttpContext.Session.GetString("suc_Id");
             item.ven_UsuCrea = ViewBag.usu_Id = Int32.Parse(HttpContext.Session.GetString("usu_ID"));
             item.ven_Sucursal = ViewBag.suc_Id = Int32.Parse(HttpContext.Session.GetString("suc_Id"));
             item.ven_Empleado = 1;
@@ -100,11 +205,34 @@ namespace Maquillaje.WebUI.Controllers
             }
 
             return View(item);
+
+                }
+
+                return RedirectToAction("Index", "Login");
+
+
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Index", "Home");
+                throw;
+            }
+
         }
 
         [HttpGet("/Venta/Update")]
         public IActionResult Update(int id)
         {
+
+            try
+            {
+                if (HttpContext.Session.GetString("usu_Nombre") != null)
+                {
+                    ViewBag.usu_Nombre = HttpContext.Session.GetString("usu_Nombre");
+                    ViewBag.suc_Descripcion = HttpContext.Session.GetString("suc_Descripcion");
+                    ViewBag.usu_Id = HttpContext.Session.GetString("usu_ID");
+                    ViewBag.suc_Id = HttpContext.Session.GetString("suc_Id");
+
             var factura = _generalesService.ObtenerIDFactura(id);
 
             if (factura == null)
@@ -130,12 +258,35 @@ namespace Maquillaje.WebUI.Controllers
             ViewBag.vde_VentaId = id;
 
             return View(factura);
+                }
+
+                return RedirectToAction("Index", "Login");
+
+
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Index", "Home");
+                throw;
+            }
+
+
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult CreateDetalles(VentaDetallesViewModel item, VentaViewModel item2, tbVentas factura)
         {
+
+            try
+            {
+                if (HttpContext.Session.GetString("usu_Nombre") != null)
+                {
+                    ViewBag.usu_Nombre = HttpContext.Session.GetString("usu_Nombre");
+                    ViewBag.suc_Descripcion = HttpContext.Session.GetString("suc_Descripcion");
+                    ViewBag.usu_Id = HttpContext.Session.GetString("usu_ID");
+                    ViewBag.suc_Id = HttpContext.Session.GetString("suc_Id");
+
             if (item.vde_VentaId < 1)
             {
                 string script = "MostrarMensajeDanger('No se ha encontrado la factura');";
@@ -179,11 +330,32 @@ namespace Maquillaje.WebUI.Controllers
                     return RedirectToAction("Update", new { id = ViewBag.vde_VentaId });
                 }
             }
+                }
+
+                return RedirectToAction("Index", "Login");
+
+
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Index", "Home");
+                throw;
+            }
+
+
         }
 
         [HttpPost]
         public IActionResult Delete(int id, int idFactura, string esEditar2, VentaDetallesViewModel item, VentaViewModel item2)
         {
+            try
+            {
+                if (HttpContext.Session.GetString("usu_Nombre") != null)
+                {
+                    ViewBag.usu_Nombre = HttpContext.Session.GetString("usu_Nombre");
+                    ViewBag.suc_Descripcion = HttpContext.Session.GetString("suc_Descripcion");
+                    ViewBag.usu_Id = HttpContext.Session.GetString("usu_ID");
+                    ViewBag.suc_Id = HttpContext.Session.GetString("suc_Id");
             var delete = _generalesService.DeleteFacturasDetalles(id);
             var detalles = _generalesService.ListadoVentaDetalles(idFactura);
 
@@ -221,11 +393,32 @@ namespace Maquillaje.WebUI.Controllers
                     return RedirectToAction("Update", new { id = ViewBag.vde_VentaId });
                 }
             }
+
+                }
+
+                return RedirectToAction("Index", "Login");
+
+
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Index", "Home");
+                throw;
+            }
+
         }
 
         [HttpPost]
         public IActionResult Edit(VentaDetallesViewModel item)
         {
+            try
+            {
+                if (HttpContext.Session.GetString("usu_Nombre") != null)
+                {
+                    ViewBag.usu_Nombre = HttpContext.Session.GetString("usu_Nombre");
+                    ViewBag.suc_Descripcion = HttpContext.Session.GetString("suc_Descripcion");
+                    ViewBag.usu_Id = HttpContext.Session.GetString("usu_ID");
+                    ViewBag.suc_Id = HttpContext.Session.GetString("suc_Id");
             var facdetalle = _mapper.Map<tbVentasDetalle>(item);
             var update = _generalesService.UpdateFacturasDetalles(facdetalle);
             var ddlCategoria = _generalesService.ListadoCategorias(out string error1).ToList();
@@ -263,25 +456,101 @@ namespace Maquillaje.WebUI.Controllers
                     return RedirectToAction("Update", new { id = ViewBag.vde_VentaId });
                 }
             }
+
+                }
+
+                return RedirectToAction("Index", "Login");
+
+
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Index", "Home");
+                throw;
+            }
+
         }
 
         //JSONS
         public IActionResult CargarProductos(int id)
         {
+            try
+            {
+                if (HttpContext.Session.GetString("usu_Nombre") != null)
+                {
+                    ViewBag.usu_Nombre = HttpContext.Session.GetString("usu_Nombre");
+                    ViewBag.suc_Descripcion = HttpContext.Session.GetString("suc_Descripcion");
+                    ViewBag.usu_Id = HttpContext.Session.GetString("usu_ID");
+                    ViewBag.suc_Id = HttpContext.Session.GetString("suc_Id");
+
             var productos = _generalesService.ListadoProductos(id);
             return Json(productos);
+
+                }
+
+                return RedirectToAction("Index", "Login");
+
+
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Index", "Home");
+                throw;
+            }
         }
 
         public IActionResult PrecioProductos(int id)
         {
+            try
+            {
+                if (HttpContext.Session.GetString("usu_Nombre") != null)
+                {
+                    ViewBag.usu_Nombre = HttpContext.Session.GetString("usu_Nombre");
+                    ViewBag.suc_Descripcion = HttpContext.Session.GetString("suc_Descripcion");
+                    ViewBag.usu_Id = HttpContext.Session.GetString("usu_ID");
+                    ViewBag.suc_Id = HttpContext.Session.GetString("suc_Id");
+
             var precio = _generalesService.PrecioProducto(id);
             return Json(precio);
+
+                }
+
+                return RedirectToAction("Index", "Login");
+
+
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Index", "Home");
+                throw;
+            }
         }
 
         public IActionResult RevisarStock(int id, int cantidad)
         {
+            try
+            {
+                if (HttpContext.Session.GetString("usu_Nombre") != null)
+                {
+                    ViewBag.usu_Nombre = HttpContext.Session.GetString("usu_Nombre");
+                    ViewBag.suc_Descripcion = HttpContext.Session.GetString("suc_Descripcion");
+                    ViewBag.usu_Id = HttpContext.Session.GetString("usu_ID");
+                    ViewBag.suc_Id = HttpContext.Session.GetString("suc_Id");
+
             var stock = _generalesService.RevisarStock(id, cantidad);
             return Json(stock);
+
+                }
+
+                return RedirectToAction("Index", "Login");
+
+
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Index", "Home");
+                throw;
+            }
         }
     }
 }

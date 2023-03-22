@@ -15,10 +15,17 @@ namespace Maquillaje.WebUI.Models
         [Display(Name = "Cliente")]
         [Required(ErrorMessage = "*")]
         public int ven_Cliente { get; set; }
+        [Display(Name = "Cliente")]
+        [Required(ErrorMessage = "*")]
+        public string cliente { get; set; }
 
         [Display(Name = "Empleado")]
         [Required(ErrorMessage = "*")]
         public int ven_Empleado { get; set; }
+
+        [Display(Name = "Empleado")]
+        [Required(ErrorMessage = "*")]
+        public string empleado { get; set; }
 
         [Display(Name = "Fecha")]
         [Required(ErrorMessage = "*")]
@@ -30,12 +37,35 @@ namespace Maquillaje.WebUI.Models
         [Display(Name = "Método de pago")]
         [Required(ErrorMessage = "*")]
         public int ven_MetodoPago { get; set; }
+        [Display(Name = "Método de pago")]
+        [Required(ErrorMessage = "*")]
+        public string metodo { get; set; }
+
+        [Display(Name = "Usuario Creación")]
         public int? ven_UsuCrea { get; set; }
 
 
+        [Display(Name = "Usuario Creación")]
+        public string crea { get; set; }
+
+
+        [Display(Name = "Fecha Creación")]
         public DateTime? ven_FechaCrea { get; set; }
+
+
+        [Display(Name = "Usuario Modificación")]
         public int? ven_UsuModi { get; set; }
+
+
+        [Display(Name = "Usuario Modificación")]
+        public string modi { get; set; }
+
+
+        [Display(Name = "Fecha Modficación")]
         public DateTime? ven_FechaModi { get; set; }
+
+
+        [Display(Name = "Estado")]
         public bool? ven_Estado { get; set; }
 
         public virtual tbClientes clie { get; set; }
