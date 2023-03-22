@@ -83,6 +83,20 @@ namespace Maquillaje.DataAccess.Repositories.Maqui
 
         /// 
 
+        
+        public int Insert(tbVentasDetalle item)
+        {
+            var db = new SqlConnection(TiendaContext.ConnectionString);
+
+            var parametros = new DynamicParameters();
+            parametros.Add("@vde_VentaId",  item.vde_VentaId, DbType.Int32, ParameterDirection.Input);
+            parametros.Add("@vde_Producto", item.vde_Producto, DbType.Int32, ParameterDirection.Input);
+            parametros.Add("@vde_Cantidad", item.vde_Cantidad, DbType.Int32, ParameterDirection.Input);
+            parametros.Add("@vde_UsuCrea",  item.vde_UsuCrea, DbType.Int32, ParameterDirection.Input);
+
+            return db.QueryFirst<int>(ScriptsDataBase.UDP_Insertar_FacturasDetalles, parametros, commandType: CommandType.StoredProcedure);
+        }
+
         public int Insert(tbVentas item)
         {
             using var db = new SqlConnection(TiendaContext.ConnectionString);

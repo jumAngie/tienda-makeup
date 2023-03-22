@@ -2629,4 +2629,37 @@ BEGIN
 	END CATCH
 END
 
+/*Insertar factura detalles*/
+GO
+CREATE OR ALTER PROCEDURE Maqui.UDP_maqu_tbFacturasDetalles_Insert 
+	@vde_VentaId				INT,
+	@vde_Producto				INT,
+	@vde_Cantidad				INT,
+	@vde_UsuCrea				INT
+AS
+BEGIN
+	BEGIN TRY
+		--DECLARE @factdeta_Precio DECIMAL(18,2) = (SELECT [prod_PrecioUni] FROM [maqu].[tbProductos] WHERE prod_Id = @prod_Id)
 
+		INSERT INTO Maqui.tbVentasDetalle(vde_VentaId, 
+										  vde_Producto, 
+										  vde_Cantidad, 
+										  vde_UsuCrea, 
+										  vde_FechaCrea, 
+										  vde_UsuModi, 
+										  vde_FechaModi, 
+										  vde_Estado)
+		VALUES							(@vde_VentaId,
+										@vde_Producto,
+										@vde_Cantidad,
+										@vde_UsuCrea,
+										GETDATE(),
+										null,
+										null,
+										1)
+		SELECT 1
+	END TRY
+	BEGIN CATCH
+		SELECT 0
+	END CATCH
+END

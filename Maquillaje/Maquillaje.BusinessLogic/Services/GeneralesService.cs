@@ -818,7 +818,10 @@ namespace Maquillaje.BusinessLogic.Services
         #endregion
 
         #region Ventas
-
+        public tbVentas ObtenerIDFactura(int id)
+        {
+            return _ventasRepository.Find(id);
+        }
         public IEnumerable<VW_tbVentas_List> ListadoFacturas()
         {
             try
@@ -974,6 +977,11 @@ namespace Maquillaje.BusinessLogic.Services
         #endregion
 
         #region VentasDetalles
+
+        public int InsertFacturasDetalles(tbVentasDetalle item)
+        {
+            return _ventasRepository.Insert(item);
+        }
 
         public int InsertFacturas(tbVentas  item)
         {

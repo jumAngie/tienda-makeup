@@ -98,37 +98,84 @@ namespace Maquillaje.WebUI.Controllers
             return View(item);
         }
 
-        //[HttpGet("/Facturas/Update")]
-        //public IActionResult Update(int id)
-        //{
-        //    var factura = _maquService.ObtenerIDFactura(id);
+        [HttpGet("/Venta/Update")]
+        public IActionResult Update(int id)
+        {
+            var factura = _generalesService.ObtenerIDFactura(id);
 
-        //    if (factura == null)
-        //    {
-        //        return RedirectToAction("Index");
-        //    }
+            if (factura == null)
+            {
+                return RedirectToAction("Index");
+            }
 
-        //    if (TempData["Script"] is string script)
-        //    {
-        //        TempData.Remove("Script");
-        //        ViewBag.Script = script;
-        //    }
+            if (TempData["Script"] is string script)
+            {
+                TempData.Remove("Script");
+                ViewBag.Script = script;
+            }
 
-        //    var ddlCliente = _maquService.ListadoClientes(out string error).ToList();
-        //    var ddlMetodo = _maquService.ListadoMetodosPago().ToList();
-        //    var ddlCategoria = _maquService.ListadoCategorias(out string error1).ToList();
-        //    var detalles = _maquService.ListadoFacturasDetalles(id);
+            var ddlCliente = _generalesService.ListadoClientes(out string error).ToList();
+            var ddlMetodo = _generalesService.ListadoMetodosPago().ToList();
+            var ddlCategoria = _generalesService.ListadoCategorias(out string error1).ToList();
+            var detalles = _generalesService.ListadoVentaDetalles(id);
 
-        //    ViewBag.cate = new SelectList(ddlCategoria, "cate_Id", "cate_Nombre");
-        //    ViewBag.clie_Id = new SelectList(ddlCliente, "clie_Id", $"clie_Nombres");
-        //    ViewBag.meto_Id = new SelectList(ddlMetodo, "meto_Id", "meto_Nombre");
-        //    ViewBag.detalles = detalles;
-        //    ViewBag.fact_Id = id;
+            ViewBag.cate = new SelectList(ddlCategoria, "cat_Id", "cat_Descripcion");
+            ViewBag.ven_Cliente = new SelectList(ddlCliente, "cli_ID", "cli_Nombre");
+            ViewBag.ven_MetodoPago = new SelectList(ddlMetodo, "met_Id", "met_Descripcion");
+            ViewBag.detalles = detalles;
+            ViewBag.vde_VentaId = id;
 
-        //    return View(factura);
-        //}
+            return View(factura);
+        }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult CreateDetalles(VentaDetallesViewModel item, VentaViewModel item2, tbVentas factura)
+        {
+            if (item.vde_VentaId < 1)
+            {
+                string script = "MostrarMensajeDanger('No se ha encontrado la factura');";
+                TempData["Script"] = script;
+                return RedirectToAction("Index");
+            }
 
+            item.vde_UsuCrea = ViewBag.usu_Id = Int32.Parse(HttpContext.Session.GetString("usu_ID"));
+            var facturaDetalle = _mapper.Map<tbVentasDetalle>(item);
+            var create = _generalesService.InsertFacturasDetalles(facturaDetalle);
+            var detalles = _generalesService.ListadoVentaDetalles(item.vde_VentaId);
+            var ddlCliente = _generalesService.ListadoClientes(out string error).ToList();
+            var ddlMetodo = _generalesService.ListadoMetodosPago().ToList();
+            var ddlCategoria = _generalesService.ListadoCategorias(out string error1).ToList();
+
+            ViewBag.cate = new SelectList(ddlCategoria, "cat_Id", "cat_Descripcion");
+            ViewBag.fact_Id = item.vde_VentaId;
+            ViewBag.detalles = detalles;
+            ViewBag.ven_Cliente = new SelectList(ddlCliente, "cli_ID", "cli_Nombre");
+            ViewBag.ven_MetodoPago = new SelectList(ddlMetodo, "met_Id", "met_Descripcion");
+
+            if (item.esEditar == "no")
+            {
+                if (create == 1)
+                {
+                    return RedirectToAction("Create", item);
+                }
+                else
+                {
+                    return RedirectToAction("Create", item);
+                }
+            }
+            else
+            {
+                if (create == 1)
+                {
+                    return RedirectToAction("Update", new { id = ViewBag.vde_VentaId });
+                }
+                else
+                {
+                    return RedirectToAction("Update", new { id = ViewBag.vde_VentaId });
+                }
+            }
+        }
 
 
 
