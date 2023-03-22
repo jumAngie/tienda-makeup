@@ -2154,6 +2154,24 @@ BEGIN
 		SELECT pro_StockInicial, pro_Id, pro_usuCrea, pro_FechaCrea, pro_Estado FROM inserted
 END
 GO
+---    TRIGGER PARA ELIMINAR PRODUCTOS POR CATE ----
+go
+CREATE OR ALTER TRIGGER tg_EliminarProductos
+ON Maqui.tbCategorias
+AFTER UPDATE
+AS
+BEGIN
+	SET NOCOUNT ON;
+	IF UPDATE(cat_Estado)
+	BEGIN
+		
+		UPDATE	tbProductos
+		SET		pro_Estado = 0, pro_UsuModi = (SELECT cat_UsuModi FROM inserted),  pro_FechaModi= GETDATE()
+		WHERE	pro_Categoria IN (SELECT cat_Id FROM inserted WHERE cat_Estado = 0) 
+	END
+END
+
+go
 
 --****************************************** PANTALLA DETALLES ****************************************************--
 
