@@ -42,7 +42,7 @@ namespace Maquillaje.DataAccess.Repositories
             var db = new SqlConnection(TiendaContext.ConnectionString);
 
             var parametros = new DynamicParameters();
-            parametros.Add("@cate_Id", id, DbType.Int32, ParameterDirection.Input);
+            parametros.Add("@pro_Categoria", id, DbType.Int32, ParameterDirection.Input);
 
             return db.Query<tbProductos>(ScriptsDataBase.UDP_Listar_Productos_DDL, parametros, commandType: CommandType.StoredProcedure);
         }
