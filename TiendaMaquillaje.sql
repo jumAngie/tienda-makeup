@@ -2745,6 +2745,7 @@ BEGIN
 		SELECT 0
 	END CATCH
 END
+GO
 -- ¡¡¡ EDITAR EL DETALLE ¡¡ --
 CREATE OR ALTER PROCEDURE Maqui.UDP_tbVentasDetalles_Update 
 	@vde_Id						INT,
