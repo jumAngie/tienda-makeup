@@ -82,7 +82,7 @@ namespace Maquillaje.DataAccess.Repositories.Gral
             parametro.Add("@usu_Clave", txtPass, DbType.String, ParameterDirection.Input);
 
             var result = db.QueryFirst(ScriptsDataBase.ValidarLogin, parametro, commandType: CommandType.StoredProcedure);
-            string[] resultado = new string[6];
+            string[] resultado = new string[8];
 
 
             string admin;
@@ -102,6 +102,8 @@ namespace Maquillaje.DataAccess.Repositories.Gral
             resultado[3] = result.emp_Sucursal.ToString();
             resultado[4] = result.suc_Descripcion;
             resultado[5] = result.suc_Id.ToString();
+            resultado[6] = result.usu_Usuario;
+            resultado[7] = result.usu_Clave;
 
 
             return resultado;

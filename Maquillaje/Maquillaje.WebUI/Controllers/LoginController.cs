@@ -30,48 +30,63 @@ namespace Maquillaje.WebUI.Controllers
         [HttpPost]
         public IActionResult Index(string txtUsername, string txtPass)
         {
-            ViewBag.usu_Nombre = txtUsername;
-            ViewBag.usu_Clave = txtPass;
-
-
-            if ((txtUsername != "" && txtUsername != null) && (txtPass != "" && txtPass != null))
+            try
             {
-                var usuario = _generalesService.ValidarLogin(txtUsername, txtPass);
-                if (usuario != null && usuario.Length > 0)
+                ViewBag.usu_Nombre = txtUsername;
+                ViewBag.usu_Clave = txtPass;
+
+
+                if ((txtUsername != "" && txtUsername != null) && (txtPass != "" && txtPass != null))
                 {
-                    HttpContext.Session.SetString("usu_ID", usuario[0]);
-                    HttpContext.Session.SetString("usu_Nombre", usuario[1]);
-                    HttpContext.Session.SetString("usu_EsAdmin", usuario[2]);
-                    HttpContext.Session.SetString("emp_Sucursal", usuario[3]);
-                    HttpContext.Session.SetString("sucu_Descripcion", usuario[4]);
-                    HttpContext.Session.SetString("suc_Id", usuario[5]);
-
-
-                    if (usuario[2] == "admin")
+                    var usuario = _generalesService.ValidarLogin(txtUsername, txtPass);
+                    if (usuario != null && usuario.Length > 0)
                     {
-                        ViewBag.EsAdmin = "admin";
-                        return View();
-                    }
-                    else
-                    {
-                        return RedirectToAction("Index", "Home");
-                    }
+                        HttpContext.Session.SetString("usu_ID", usuario[0]);
+                        HttpContext.Session.SetString("usu_Nombre", usuario[1]);
+                        HttpContext.Session.SetString("usu_EsAdmin", usuario[2]);
+                        HttpContext.Session.SetString("emp_Sucursal", usuario[3]);
+                        HttpContext.Session.SetString("sucu_Descripcion", usuario[4]);
+                        HttpContext.Session.SetString("suc_Id", usuario[5]);
+                        HttpContext.Session.SetString("usu_Usuario", usuario[6]);
+                        HttpContext.Session.SetString("usu_Clave", usuario[7]);
 
+
+                        if (usuario[2] == "admin")
+                        {
+                            ViewBag.EsAdmin = "admin";
+                            return View();
+                        }
+                        if (txtUsername == "" || txtUsername == null || txtUsername != usuario[6])
+                        {
+                            ModelState.AddModelError("username", "El campo usuario es obligatorio.");
+                        }
+
+                        if (txtPass == "" || txtPass == null || txtPass != usuario[7])
+                        {
+                            ModelState.AddModelError("password", "El campo clave es obligatorio.");
+                        }
+                        else
+                        {
+                            return RedirectToAction("Index", "Home");
+                        }
+
+
+
+                    }
+                    ModelState.AddModelError("General", "Los campos son obligatorios.");
+                    return View();
                 }
-                ModelState.AddModelError("General", "Los campos son obligatorios.");
+
+
                 return View();
             }
-
-            if (txtUsername == "" || txtUsername == null)
+            catch (Exception)
             {
-                ModelState.AddModelError("username", "El campo usuario es obligatorio.");
-            }
 
-            if (txtPass == "" || txtPass == null)
-            {
-                ModelState.AddModelError("password", "El campo clave es obligatorio.");
+         ModelState.AddModelError("password", "El campo clave es obligatorio.");
+                return RedirectToAction("Index", "Login");
+
             }
-            return View();
         }
          
 

@@ -31,6 +31,15 @@ namespace Maquillaje.WebUI.Controllers
         #region Detalles
         public IActionResult Details(int id)
         {
+            try
+            {
+                if (HttpContext.Session.GetString("usu_Nombre") != null)
+                {
+                    ViewBag.usu_Nombre = HttpContext.Session.GetString("usu_Nombre");
+                    ViewBag.suc_Descripcion = HttpContext.Session.GetString("suc_Descripcion");
+                    ViewBag.usu_Id = HttpContext.Session.GetString("usu_ID");
+                    ViewBag.suc_Id = HttpContext.Session.GetString("suc_Id");
+
 
             var cates = _generalesService.DetallesEmpleados(id);
             EmpleadosViewModel model = new EmpleadosViewModel();
@@ -65,6 +74,20 @@ namespace Maquillaje.WebUI.Controllers
             }
             return View(model);
 
+                }
+
+                return RedirectToAction("Index", "Login");
+
+
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Index", "Home");
+                throw;
+            }
+
+
+
 
 
         }
@@ -74,6 +97,15 @@ namespace Maquillaje.WebUI.Controllers
         [HttpGet("/Empleado/Listado")]
         public IActionResult Index()
         {
+            try
+            {
+                if (HttpContext.Session.GetString("usu_Nombre") != null)
+                {
+                    ViewBag.usu_Nombre = HttpContext.Session.GetString("usu_Nombre");
+                    ViewBag.suc_Descripcion = HttpContext.Session.GetString("suc_Descripcion");
+                    ViewBag.usu_Id = HttpContext.Session.GetString("usu_ID");
+                    ViewBag.suc_Id = HttpContext.Session.GetString("suc_Id");
+
             var listado = _generalesService.ListadoEmpleados();
             var ListadoMapeado = _mapper.Map<IEnumerable<EmpleadosViewModel>>(listado);
             if (TempData.ContainsKey("SuccessMessage"))
@@ -91,6 +123,19 @@ namespace Maquillaje.WebUI.Controllers
                 ViewBag.SuccessMessageScript = null;
             }
             return View(ListadoMapeado);
+                }
+
+                return RedirectToAction("Index", "Login");
+
+
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Index", "Home");
+                throw;
+            }
+
+
         }
         #endregion
 
@@ -134,18 +179,47 @@ namespace Maquillaje.WebUI.Controllers
 
         public IActionResult Create()
         {
+            try
+            {
+                if (HttpContext.Session.GetString("usu_Nombre") != null)
+                {
+                    ViewBag.usu_Nombre = HttpContext.Session.GetString("usu_Nombre");
+                    ViewBag.suc_Descripcion = HttpContext.Session.GetString("suc_Descripcion");
+                    ViewBag.usu_Id = HttpContext.Session.GetString("usu_ID");
+                    ViewBag.suc_Id = HttpContext.Session.GetString("suc_Id");
+
+
             ViewBag.emp_EstadoCivil = new SelectList(db.Vw_Gral_tbEstadosCiviles_DDL, "est_ID", "est_Descripcion");
             ViewBag.depto = new SelectList(db.Vw_Gral_tbDepartamentos_DDL, "depto", "dep_Descripcion");
             ViewBag.emp_Sucursal = new SelectList(db.Vw_Gral_tbSucursales_DDL, "suc_Id", "suc_Descripcion");
             return View();
+                }
+
+                return RedirectToAction("Index", "Login");
+
+
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Index", "Home");
+                throw;
+            }
+
         }
 
         [HttpPost("/Empleado/Create")]
 
         public IActionResult Create(EmpleadosViewModel item)
         {
-
-            
+            try
+            {
+                if (HttpContext.Session.GetString("usu_Nombre") != null)
+                {
+                    ViewBag.usu_Nombre = HttpContext.Session.GetString("usu_Nombre");
+                    ViewBag.suc_Descripcion = HttpContext.Session.GetString("suc_Descripcion");
+                    ViewBag.usu_Id = HttpContext.Session.GetString("usu_ID");
+                    ViewBag.suc_Id = HttpContext.Session.GetString("suc_Id");
+                    int usucrea = int.Parse(HttpContext.Session.GetString("usu_ID"));
             var fechas = item.emp_FechaNacimiento.ToString();
             if (ModelState.IsValid)
             {
@@ -170,7 +244,7 @@ namespace Maquillaje.WebUI.Controllers
 
                         // QUITAR EL CAMPO DE AUDIOTRIA //
                         _generalesService.CreateEmpleados(item.emp_Nombre, item.emp_Apellido, item.emp_DNI, FechaValida, item.emp_Sexo,
-                            Int32.Parse(item.emp_Municipio), item.emp_Telefono, item.emp_Correo, Int32.Parse(item.emp_EstadoCivil), Int32.Parse(item.emp_Sucursal), 1);
+                            Int32.Parse(item.emp_Municipio), item.emp_Telefono, item.emp_Correo, Int32.Parse(item.emp_EstadoCivil), Int32.Parse(item.emp_Sucursal), usucrea);
                         TempData["SuccessMessage"] = "El proceso se completó correctamente";
                         MostrarToastDeExito();
                         return RedirectToAction("Index");
@@ -202,6 +276,20 @@ namespace Maquillaje.WebUI.Controllers
                 ViewBag.emp_Sucursal = new SelectList(db.Vw_Gral_tbSucursales_DDL, "suc_Id", "suc_Descripcion");
                 return View(item);
             }
+                }
+
+                return RedirectToAction("Index", "Login");
+
+
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Index", "Home");
+                throw;
+            }
+
+
+
         }
 
         [HttpGet("/Empleado/CargarMunicipios/{depto}")]
@@ -219,6 +307,14 @@ namespace Maquillaje.WebUI.Controllers
         [HttpGet]
         public IActionResult Edit(int? id)
         {
+            try
+            {
+                if (HttpContext.Session.GetString("usu_Nombre") != null)
+                {
+                    ViewBag.usu_Nombre = HttpContext.Session.GetString("usu_Nombre");
+                    ViewBag.suc_Descripcion = HttpContext.Session.GetString("suc_Descripcion");
+                    ViewBag.usu_Id = HttpContext.Session.GetString("usu_ID");
+                    ViewBag.suc_Id = HttpContext.Session.GetString("suc_Id");
             var empleado = _generalesService.ObtenerEmpleado(id);
             if (empleado == null)
             {
@@ -248,11 +344,34 @@ namespace Maquillaje.WebUI.Controllers
                 ViewBag.emp_Sucursal = new SelectList(db.Vw_Gral_tbSucursales_DDL, "suc_Id", "suc_Descripcion");
                 return View(emple);
             }
+
+                }
+
+                return RedirectToAction("Index", "Login");
+
+
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Index", "Home");
+                throw;
+            }
+
+
         }
 
         [HttpPost]
         public IActionResult Edit(EmpleadosViewModel item)
         {
+            try
+            {
+                if (HttpContext.Session.GetString("usu_Nombre") != null)
+                {
+                    ViewBag.usu_Nombre = HttpContext.Session.GetString("usu_Nombre");
+                    ViewBag.suc_Descripcion = HttpContext.Session.GetString("suc_Descripcion");
+                    ViewBag.usu_Id = HttpContext.Session.GetString("usu_ID");
+                    ViewBag.suc_Id = HttpContext.Session.GetString("suc_Id");
+                    int usumodi = int.Parse(HttpContext.Session.GetString("usu_ID"));
             var fechas = item.emp_FechaNacimiento.ToString();
             if (ModelState.IsValid)
             {
@@ -280,7 +399,7 @@ namespace Maquillaje.WebUI.Controllers
 
                         // CAMBIAR EL CAMPO DE AUDITORIA ESTÁ EN DURO  // 
                         _generalesService.UpdateEmpleados(item.emp_ID, item.emp_Nombre, item.emp_Apellido, item.emp_DNI, FechaValida, item.emp_Sexo,
-                        Int32.Parse(item.emp_Municipio), item.emp_Telefono, item.emp_Correo, Int32.Parse(item.emp_EstadoCivil), Int32.Parse(item.emp_Sucursal), 1);
+                        Int32.Parse(item.emp_Municipio), item.emp_Telefono, item.emp_Correo, Int32.Parse(item.emp_EstadoCivil), Int32.Parse(item.emp_Sucursal), usumodi);
                         TempData["SuccessMessage"] = "El proceso se completó correctamente";
                         MostrarToastDeExito();
                         return RedirectToAction("Index");
@@ -314,6 +433,19 @@ namespace Maquillaje.WebUI.Controllers
                 ViewBag.emp_Sucursal = new SelectList(db.Vw_Gral_tbSucursales_DDL, "suc_Id", "suc_Descripcion");
                 return View(item);
             }
+                }
+
+                return RedirectToAction("Index", "Login");
+
+
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Index", "Home");
+                throw;
+            }
+
+
         }
 
         #endregion
