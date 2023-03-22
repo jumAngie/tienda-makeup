@@ -42,14 +42,15 @@ namespace Maquillaje.WebUI.Controllers
         [HttpGet("/Venta/Create")]
         public IActionResult Create(VentaDetallesViewModel item, VentaViewModel item2)
         {
+            if (item.vde_VentaId == 0)
+            {
+                item.vde_VentaId = item2.ven_Id;
+            }
             var ddlCliente = _generalesService.ListadoClientes(out string error).ToList();
             var ddlMetodo = _generalesService.ListadoMetodosPago().ToList();
             var ddlCategoria = _generalesService.ListadoCategorias(out string error1).ToList();
             var detalles = _generalesService.ListadoVentaDetalles(item.vde_VentaId);
-            if(item.vde_VentaId == 0)
-            {
-                item.vde_VentaId = item2.ven_Id;
-            }
+            
             ViewBag.cate = new SelectList(ddlCategoria, "cat_Id", "cat_Descripcion");
             ViewBag.ven_Cliente = new SelectList(ddlCliente, "cli_ID", "cli_Nombre");
             ViewBag.ven_MetodoPago = new SelectList(ddlMetodo, "met_Id", "met_Descripcion");
@@ -202,7 +203,7 @@ namespace Maquillaje.WebUI.Controllers
                 {
                     string script = "MostrarMensajeDanger('Ha ocurrido un error');";
                     TempData["Script"] = script;
-                    return RedirectToAction("Update", new { id = ViewBag.vde_VentaId });
+                    return RedirectToAction("Create", item2);
                 }
             }
             else
