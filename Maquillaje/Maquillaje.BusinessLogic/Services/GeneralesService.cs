@@ -840,33 +840,7 @@ namespace Maquillaje.BusinessLogic.Services
 
             return result;
         }
-        public int ActualizarDetalleVenta(int? @vde_Id, int? @vde_Producto, int? @vde_Cantidad, int @vde_UsuModi)
-        {
-            var result = _ventasRepository.ActualizarDetalleVenta(vde_Id, vde_Producto, vde_Cantidad, vde_UsuModi);
 
-            return result;
-        }
-
-
-        public int IdVentaReciente()
-        {
-            var IdVentaReciente = _ventasRepository.IdVentaReciente();
-
-            return IdVentaReciente;
-        }
-
-        public int IngresarNuevaVenta(int? clie_id, int empleado, int sucursal, int MetodoPago, int UsuarioCrea)
-        {
-            var Resultado = _ventasRepository.IngresarNuevaVenta(clie_id, empleado, sucursal, MetodoPago, UsuarioCrea);
-            return Resultado;
-        }
-
-        public int IngresarNuevoDetalleVenta(int? @vde_VentaId, int? @vde_Producto, int? @vde_Cantidad, int @vde_UsuCrea)
-        {
-            var result = _ventasRepository.IngresarNuevoDetalleVenta(vde_VentaId, vde_Producto, vde_Cantidad, vde_UsuCrea);
-
-            return result;
-        }
 
 
         public IEnumerable<Vw_Maqui_tbVentas_LIST> ListadoVentas()
@@ -977,6 +951,15 @@ namespace Maquillaje.BusinessLogic.Services
         #endregion
 
         #region VentasDetalles
+
+        public int UpdateFacturasDetalles(tbVentasDetalle item)
+        {
+            return _ventasRepository.Update(item);
+        }
+        public int DeleteFacturasDetalles(int id)
+        {
+            return _ventasRepository.DeleteConfirmed(id);
+        }
 
         public int InsertFacturasDetalles(tbVentasDetalle item)
         {
