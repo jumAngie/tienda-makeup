@@ -5,61 +5,76 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Listado de Ventas</h1>
+<div class="col-lg-12 mb-0 order-0">
+    <div class="card" style="background-color: white">
+        <div class="d-flex align-items-end row">
+            <div class="col-sm-12">
+                <div class="card-header" style="background-color:#ffd3d8">
+                    <div class="text-center">
+                        <img src="~/Content/iMG/giphy.gif" width="100" />
+                        <h3 style="color:black;font-family:'Segoe Print'">Listado de Ventas</h3>
+                    </div>
+                </div>
+                <div class="card-body">
 
-<br />
-<p>
-    <a class="btn btn-secondary" asp-action="Create">Nueva Venta</a>
-</p>
-<table class="table table-report -mt-2" id="DataTable">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ven_Id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.cli_Nombres)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.emp_Nombres)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.met_Descripcion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ven_Fecha)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ven_Id)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.cli_Nombres)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.emp_Nombres)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.met_Descripcion)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ven_Fecha)
-                </td>
-                <td>
-                    <a class="btn btn-secondary" asp-action="Details" asp-route-id="@item.ven_Id">Details</a> |
-                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.ven_Id">Delete</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+                    <a class="btn btn-primary"  asp-action="Create"><i class="icon-copy fa fa-plus" aria-hidden="true"></i> Nuevo</a>
+                    <br />
+                    <br />
+                    <table class="table table-report -mt-2" id="DataTable">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.ven_Id)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.cli_Nombres)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.emp_Nombres)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.met_Descripcion)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.ven_Fecha)
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ven_Id)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.cli_Nombres)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.emp_Nombres)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.met_Descripcion)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ven_Fecha)
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-outline-secondary" style="color: black" asp-action="Details" asp-route-id="@item.ven_Id">
+                                            <i class="icon-copy fa fa-file-text-o" aria-hidden="true"></i> Detalles
+                                        </a> 
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
 
+        </div>
+    </div>
+</div>
 @if (ViewBag.Script != null)
 {
     <script>

@@ -1,21 +1,22 @@
 ﻿@model Maquillaje.WebUI.Models.VentaDetallesViewModel
 <!-- Modal -->
-<div class="modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <form method="post" asp-controller="Venta" asp-action="Delete">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Eliminar</h5>
-                </div>
-                <div class="modal-body">
+        <div class="modal-dialog modal-sm modal-dialog-centered">
+            <div class="modal-content bg-danger text-white">
+                <div class="modal-body text-center">
+                    <h3 class="text-white mb-15"><i class="fa fa-exclamation-triangle"></i> Alert</h3>
                     <input type="text" id="id" name="id" hidden />
                     <input type="text" id="idFactura" name="idFactura" hidden />
                     <input type="text" id="esEditar2" name="esEditar2" hidden />
-                    <span>¿Realmente desea eliminar este detalle?</span>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" id="btncerrar" onclick="Cerrarr()" data-bs-dismiss="modal">No</button>
-                    <button type="submit" class="btn btn-success">Sí</button>
+
+                    <div class="text-gray-600 mt-2">
+                        ¿Está seguro de eliminar el detalle de venta?
+                        <br />
+                        <br />
+                        <button type="button" class="btn btn-light" id="btncerrar" onclick="Cerrarr()" data-dismiss="modal">Salir</button>
+                        <button type="submit" class="btn btn-light">OK</button>
+                    </div>
                 </div>
             </div>
         </div>
