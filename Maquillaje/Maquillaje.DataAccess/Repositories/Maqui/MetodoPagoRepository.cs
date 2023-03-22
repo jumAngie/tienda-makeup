@@ -40,7 +40,7 @@ namespace Maquillaje.DataAccess.Repositories.Maqui
             using var db = new SqlConnection(TiendaContext.ConnectionString);
             var parametros = new DynamicParameters();
             parametros.Add("@met_Descripcion", item.met_Descripcion, DbType.String, ParameterDirection.Input);
-            parametros.Add("@met_UsuCrea", item.met_FechaCrea, DbType.Int32, ParameterDirection.Input);
+            parametros.Add("@met_UsuCrea", item.met_UsuCrea, DbType.Int32, ParameterDirection.Input);
 
             return db.QueryFirst<int>(ScriptsDataBase.MetodoPagoCrear, parametros, commandType: CommandType.StoredProcedure);
 

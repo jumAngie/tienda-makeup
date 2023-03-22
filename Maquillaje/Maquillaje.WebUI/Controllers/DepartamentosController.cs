@@ -2,6 +2,7 @@
 using Maquillaje.BusinessLogic.Services;
 using Maquillaje.Entities.Entities;
 using Maquillaje.WebUI.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -25,21 +26,63 @@ namespace Maquillaje.WebUI.Controllers
         [HttpGet("/Departamentos/Listado")]
         public IActionResult Index()
         {
+           try
+            {
+                if (HttpContext.Session.GetString("usu_Nombre") != null)
+                {
+                    ViewBag.usu_Nombre = HttpContext.Session.GetString("usu_Nombre");
+                    ViewBag.suc_Descripcion = HttpContext.Session.GetString("suc_Descripcion");
+                    ViewBag.usu_Id = HttpContext.Session.GetString("usu_ID");
+                    ViewBag.suc_Id = HttpContext.Session.GetString("suc_Id");
+
             var listado = _generalesService.ListadoDepartamentos();
             var listadoMapeado = _mapper.Map<IEnumerable<DepartamentosViewModel>>(listado);
             return View(listadoMapeado);
+                }
+
+                return RedirectToAction("Index", "Login");
+
+
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Index", "Home");
+                throw;
+            }
+
         }
 
         [HttpPost("/Departamentos/Create")]
         public IActionResult Create(string dep_Descripcion)
         {
+            try
+            {
+                if (HttpContext.Session.GetString("usu_Nombre") != null)
+                {
+                    ViewBag.usu_Nombre = HttpContext.Session.GetString("usu_Nombre");
+                    ViewBag.suc_Descripcion = HttpContext.Session.GetString("suc_Descripcion");
+                    ViewBag.usu_Id = HttpContext.Session.GetString("usu_ID");
+                    ViewBag.suc_Id = HttpContext.Session.GetString("suc_Id");
+                    int usucrea = int.Parse(HttpContext.Session.GetString("usu_ID"));
             tbDepartamentos depto = new tbDepartamentos();
             depto.dep_Descripcion = dep_Descripcion;
-            depto.dep_UsuarioCrea = 1;
+            depto.dep_UsuarioCrea = usucrea;
             var dep = _mapper.Map<tbDepartamentos>(depto);
             var result = _generalesService.CreateDepto(dep);
 
             return RedirectToAction("Index");
+                }
+
+                return RedirectToAction("Index", "Login");
+
+
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Index", "Home");
+                throw;
+            }
+
 
         }
 
@@ -47,21 +90,63 @@ namespace Maquillaje.WebUI.Controllers
         [HttpGet("/Departamentos/Editar/{id}")]
         public IActionResult Edit(int? id)
         {
+            try
+            {
+                if (HttpContext.Session.GetString("usu_Nombre") != null)
+                {
+                    ViewBag.usu_Nombre = HttpContext.Session.GetString("usu_Nombre");
+                    ViewBag.suc_Descripcion = HttpContext.Session.GetString("suc_Descripcion");
+                    ViewBag.usu_Id = HttpContext.Session.GetString("usu_ID");
+                    ViewBag.suc_Id = HttpContext.Session.GetString("suc_Id");
+
             var listado = _generalesService.BuscarDepto(id);
             return View(listado);
+
+                }
+
+                return RedirectToAction("Index", "Login");
+
+
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Index", "Home");
+                throw;
+            }
         }
 
         [HttpPost("/Departamentos/Editar")]
         public IActionResult Edit(int dep_Id, string dep_Descripcion)
         {
+            try
+            {
+                if (HttpContext.Session.GetString("usu_Nombre") != null)
+                {
+                    ViewBag.usu_Nombre = HttpContext.Session.GetString("usu_Nombre");
+                    ViewBag.suc_Descripcion = HttpContext.Session.GetString("suc_Descripcion");
+                    ViewBag.usu_Id = HttpContext.Session.GetString("usu_ID");
+                    ViewBag.suc_Id = HttpContext.Session.GetString("suc_Id");
+                    int usumodi = int.Parse(HttpContext.Session.GetString("usu_ID"));
             tbDepartamentos depto = new tbDepartamentos();
             depto.dep_ID = dep_Id;
             depto.dep_Descripcion = dep_Descripcion;
-            depto.dep_UsuarioCrea = 1;
+            depto.dep_UsuarioCrea = usumodi;
             var dep = _mapper.Map<tbDepartamentos>(depto);
             var result = _generalesService.EditDepto(dep);
 
             return RedirectToAction("Index");
+                }
+
+                return RedirectToAction("Index", "Login");
+
+
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Index", "Home");
+                throw;
+            }
+
         }
 
 
@@ -69,7 +154,14 @@ namespace Maquillaje.WebUI.Controllers
 
         public IActionResult Details(int id)
         {
-
+            try
+            {
+                if (HttpContext.Session.GetString("usu_Nombre") != null)
+                {
+                    ViewBag.usu_Nombre = HttpContext.Session.GetString("usu_Nombre");
+                    ViewBag.suc_Descripcion = HttpContext.Session.GetString("suc_Descripcion");
+                    ViewBag.usu_Id = HttpContext.Session.GetString("usu_ID");
+                    ViewBag.suc_Id = HttpContext.Session.GetString("suc_Id");
             var cates = _generalesService.DetallesDepto(id);
             DepartamentosViewModel model = new DepartamentosViewModel();
 
@@ -91,6 +183,19 @@ namespace Maquillaje.WebUI.Controllers
                 return RedirectToAction("Index"); // acá vamos a redireccionar a la pagina 404
             }
             return View(model);
+
+
+                }
+
+                return RedirectToAction("Index", "Login");
+
+
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Index", "Home");
+                throw;
+            }
 
 
 

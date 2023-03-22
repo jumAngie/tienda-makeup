@@ -15,7 +15,12 @@ namespace Maquillaje.DataAccess.Repositories.Gral
 
         public int Delete(tbEmpleados item)
         {
-            throw new NotImplementedException();
+            using var db = new SqlConnection(TiendaContext.ConnectionString);
+            var parametros = new DynamicParameters();
+            parametros.Add("@emp_Id", item.emp_ID, DbType.Int32, ParameterDirection.Input);
+            parametros.Add("@emp_UsuModi", item.emp_UsuarioModi, DbType.Int32, ParameterDirection.Input);
+
+            return db.Execute(ScriptsDataBase.EmpleadosEliminar, parametros, commandType: CommandType.StoredProcedure);
         }
 
         public tbEmpleados Find(int? id)

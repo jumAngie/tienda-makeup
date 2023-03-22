@@ -21,6 +21,7 @@ namespace Maquillaje.DataAccess.Repositories.Maqui
             using var db = new SqlConnection(TiendaContext.ConnectionString);
             var parametros = new DynamicParameters();
             parametros.Add("@prv_Id", item.prv_ID, DbType.Int32, ParameterDirection.Input);
+            parametros.Add("@prv_UsuModi", item.prv_UsuarioModi, DbType.Int32, ParameterDirection.Input);
 
             return db.Execute(ScriptsDataBase.ProveedoresEliminar, parametros, commandType: CommandType.StoredProcedure);
 

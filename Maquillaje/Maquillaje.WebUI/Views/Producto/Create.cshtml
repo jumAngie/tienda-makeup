@@ -6,67 +6,102 @@
 }
 
 
-<div class="card">
-    <div class="card-header">
-        <h1>Create</h1>
+<div class="col-lg-12 mb-0 order-0">
+    <div class="card" style="background-color: white">
+        <div class="d-flex align-items-end row">
+            <div class="col-sm-12">
+                <div class="card-header" style="background-color:#ffd3d8">
+                    <div class="text-center">
+                        <img src="~/Content/iMG/giphy.gif" width="100" />
+                        <h3 style="color:black;font-family:'Segoe Print'">Cree un Producto</h3>
+                    </div>
+                </div>
+                <div class="card-body">
 
-        <h4>tbProductos</h4>
+                    <form asp-action="Create">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                    <div class="form-group">
+                                        <span asp-validation-for="pro_Codigo" class="text-danger"></span>
+                                        <label asp-for="pro_Codigo" class="control-label"></label>
+                                        <input asp-for="pro_Codigo" class="form-control" />
+                                        <label class="text-danger">@Html.ValidationMessage("Codigo")</label>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+
+                                    <div class="form-group">
+                                        <label asp-for="pro_Nombre" class="control-label"></label>
+                                        <input asp-for="pro_Nombre" class="form-control" />
+                                        <span asp-validation-for="pro_Nombre" class="text-danger"></span>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="text-danger">@Html.ValidationMessage("StockCero")</label>
+                                        <label asp-validation-for="pro_StockInicial" class="text-danger"></label>
+                                        <label asp-for="pro_StockInicial" class="control-label"></label>
+                                        <input type="number" asp-for="pro_StockInicial" class="form-control" />
+
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <span asp-validation-for="pro_PrecioUnitario" class="text-danger"></span>
+                                        <label asp-for="pro_PrecioUnitario" class="control-label"></label>
+                                        <input type="number" asp-for="pro_PrecioUnitario" class="form-control" />
+                                        <span asp-validation-for="pro_PrecioUnitario" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="text-danger">@Html.ValidationMessage("ValidarProveedor")</label>
+                                        <label asp-for="pro_Proveedor" class="control-label"></label>
+                                        <select asp-for="pro_Proveedor" class="form-control" asp-items="ViewBag.pro_Proveedor"></select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="text-danger">@Html.ValidationMessage("ValidarCategoria")</label>
+                                        <label asp-for="cat_Descripcion" class="control-label"></label>
+                                        <select asp-for="cat_Descripcion" class="form-control" asp-items="ViewBag.cat_Id"></select>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+
+                        <div class="card-footer">
+                            <div class="text-center">
+                                <button class="btn btn-primary" style="color: black" type="submit"> <i class="icon-copy fa fa-floppy-o" aria-hidden="true"></i> Guardar</button>
+                                <a class="btn btn-outline-secondary" style="color: black" asp-action="Index"><i class="icon-copy fa fa-reply" aria-hidden="true"></i> Volver</a>
+                            </div>
+                        </div>
+
+
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
     </div>
-    <form asp-action="Create">
-        <div class="card-body">
-            <div class="row">
-                <div class="col-md-6">
-
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    <div class="form-group">
-                        <span asp-validation-for="pro_Codigo" class="text-danger"></span>
-                        <label asp-for="pro_Codigo" class="control-label"></label>
-                        <input asp-for="pro_Codigo" class="form-control" />
-                        <label class="text-danger">@Html.ValidationMessage("Codigo")</label>
-
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="pro_Nombre" class="control-label"></label>
-                        <input asp-for="pro_Nombre" class="form-control" />
-                        <span asp-validation-for="pro_Nombre" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-validation-for="pro_StockInicial" class="text-danger"></label>
-                        <label asp-for="pro_StockInicial" class="control-label"></label>
-                        <input type="number" asp-for="pro_StockInicial" class="form-control" />
-                        <label class="text-danger">@Html.ValidationMessage("StockCero")</label>
-
-                    </div>
-                    <div class="form-group">
-                        <span asp-validation-for="pro_PrecioUnitario" class="text-danger"></span>
-                        <label asp-for="pro_PrecioUnitario" class="control-label"></label>
-                        <input type="number" asp-for="pro_PrecioUnitario" class="form-control" />
-                        <span asp-validation-for="pro_PrecioUnitario" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label class="text-danger">@Html.ValidationMessage("ValidarProveedor")</label>
-                        <label asp-for="pro_Proveedor" class="control-label"></label>
-                        <select asp-for="pro_Proveedor" class="form-control" asp-items="ViewBag.pro_Proveedor"></select>
-                    </div>
-                    <div class="form-group">
-                        <label class="text-danger">@Html.ValidationMessage("ValidarCategoria")</label>
-                        <label asp-for="cat_Descripcion" class="control-label"></label>
-                        <select asp-for="cat_Descripcion" class="form-control" asp-items="ViewBag.cat_Id"></select>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card-footer">
-            <div class="text-center">
-                <input class="btn btn-primary" type="submit" value="Guardar" />
-                <a class="btn btn-dark" asp-action="Index">Back to List</a>
-            </div>
-        </div>
-    </form>
 </div>
-
 
 
 

@@ -19,7 +19,7 @@
                 </div>
                 <div class="card-body">
 
-                    <a class="btn btn-primary" data-toggle="modal" data-target="#CreateMet">Nuevo</a>
+                    <a class="btn btn-primary" data-toggle="modal" data-target="#CreateMet"><i class="icon-copy fa fa-plus" aria-hidden="true"></i> Nuevo</a>
                     <br />
                     <br />
                     <table class="table table-report -mt-2" id="DataTable">
@@ -47,9 +47,13 @@
                                     </td>
 
                                     <td>
-                                        <a class="btn btn-primary" data-toggle="modal" data-target="#EditMet" onclick="Editar('@item.met_Id,@item.met_Descripcion')">Editar</a> |
-                                        <a class="btn btn-primary" style="color: black" asp-action="Details" asp-route-id="@item.met_Id">Detalles</a> |
-                                        <a class="btn btn-primary" onclick="ShowModal(@item.met_Id)" data-id="@item.met_Id">Eliminar</a>
+                                        <a class="btn btn-primary" data-toggle="modal" data-target="#EditMet" onclick="Editar('@item.met_Id,@item.met_Descripcion')"><i class="icon-copy fa fa-pencil-square-o" aria-hidden="true"></i> Editar</a> |
+                                        <a class="btn btn-outline-secondary" style="color: black" asp-action="Details" asp-route-id="@item.met_Id">
+                                            <i class="icon-copy fa fa-file-text-o" aria-hidden="true"></i> Detalles
+                                        </a> |
+                                        <a class="btn btn-outline-success" onclick="ShowModal(@item.met_Id)" data-id="@item.met_Id">
+                                            <i class="icon-copy fa fa-trash" aria-hidden="true"></i> Eliminar
+                                        </a>
                                     </td>
                                 </tr>
                             }

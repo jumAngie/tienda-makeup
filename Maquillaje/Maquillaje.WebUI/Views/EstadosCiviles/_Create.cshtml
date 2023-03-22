@@ -1,29 +1,33 @@
 ﻿
+
 <Form action="@Url.Action("Create","EstadosCiviles")" method="post" id="createestado">
 
     <div class="modal fade" id="CreateEst" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="myLargeModalLabel">Cree un Estado Civil</h4>
+                <div class="card-header" style="background-color:#ffd3d8">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+
+                    <div class="text-center">
+                        <img src="~/Content/iMG/giphy.gif" width="100" />
+                        <h3 style="color:black;font-family:'Segoe Print'">Cree una categoría</h3>
+                    </div>
                 </div>
                 <div class="modal-body">
+                    <br />
                     <br />
                     <label>Descripcion</label>
                     <input type="text" id="txtEstado" name="est_Descripcion" class="form-control" />
                     <br />
                 </div>
                 <div class="modal-footer">
-                    <button type="button" data-dismiss="modal" class="btn btn-outline-danger">Cancelar</button>
-                    <button type="button" onclick="GuardarInsert()" class="btn btn-outline-success">Guardar</button>
+                    <button type="button" data-dismiss="modal" style="color: black" class="btn btn-primary"><i class="icon-copy fa fa-remove" aria-hidden="true"></i> Cancelar</button>
+                    <button type="button" onclick="GuardarInsert()" class="btn btn-outline-secondary"> <i class="icon-copy fa fa-floppy-o" aria-hidden="true"></i> Guardar</button>
                 </div>
             </div>
         </div>
     </div>
 </Form>
-
-
 <script>
 
     function GuardarInsert() {

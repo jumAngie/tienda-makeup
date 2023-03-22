@@ -20,7 +20,8 @@
                 </div>
                 <div class="card-body">
 
-                    <a class="btn btn-primary" data-toggle="modal" data-target="#CreateUsu">Nuevo</a>
+
+                    <a class="btn btn-primary" data-toggle="modal" data-target="#CreateUsu"><i class="icon-copy fa fa-plus" aria-hidden="true"></i> Nuevo</a>
                     <br />
                     <br />
                     <table class="table table-report -mt-2" id="DataTable">
@@ -58,9 +59,13 @@
                                         @Html.DisplayFor(modelItem => item.usu_EsAdmin)
                                     </td>
                                     <td>
-                                        <a class="btn btn-primary" data-toggle="modal" data-target="#EditUsu" onclick="Editar('@item.usu_ID,@item.usu_Usuario')">Editar</a> |
-                                        <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.usu_ID">Detalles</a> |
-                                        <a class="btn btn-primary" onclick="ShowModal(@item.usu_ID)" data-id="@item.usu_ID">Eliminar</a>
+                                        <a class="btn btn-primary" style="color: black" asp-action="Edit" asp-route-id="@item.usu_ID">
+                                            <i class="icon-copy fa fa-pencil-square-o" aria-hidden="true"></i> Editar
+                                        </a> |
+                                        <a class="btn btn-outline-secondary" style="color: black" asp-action="Details" asp-route-id="@item.usu_ID"> <i class="icon-copy fa fa-file-text-o" aria-hidden="true"></i> Detalles</a> |
+                                        <a class="btn btn-outline-success" onclick="ShowModal(@item.usu_ID)" data-id="@item.usu_ID">
+                                            <i class="icon-copy fa fa-trash" aria-hidden="true"></i> Eliminar
+                                        </a>
                                     </td>
                                 </tr>
                             }

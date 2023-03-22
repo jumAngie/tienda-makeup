@@ -19,13 +19,13 @@
                 <div class="card-header" style="background-color:#ffd3d8">
                     <div class="text-center">
                         <img src="~/Content/iMG/giphy.gif" width="100" />
-                        <h3 style="color:black;font-family:'Segoe Print'">Listado Categorías</h3>
+                        <h3 style="color:black;font-family:'Segoe Print'">Listado Productos</h3>
                     </div>
                 </div>
                 <div class="card-body">
 
-                    <a class="btn btn-primary btn-icon-text" asp-action="Create">
-                        <i class="mdi mdi-file-check btn-icon-prepend"></i>Nuevo
+                    <a class="btn btn-primary btn-icon-text"  style="color: black"  asp-action="Create">
+                        <i class="icon-copy fa fa-plus" aria-hidden="true"></i> Nuevo
                     </a>
                     <br />
                     <br />
@@ -67,14 +67,13 @@
                                         @Html.DisplayFor(modelItem => item.pro_PrecioUnitario)
                                     </td>
                                     <td>
-                                        <span class="badge bg-label-primary">
                                             @Html.DisplayFor(modelItem => item.cat_Descripcion)
-                                        </span>
+                                     
                                     </td>
                                     <td>
-                                        <a class="btn btn-primary " asp-action="Edit" asp-route-id="@item.pro_Id">Editar</a> |
-                                        <a class="btn btn-primary " asp-action="Details" asp-route-id="@item.pro_Id">Detalles</a> |
-                                        <a class="btn btn-primary " style="color: black" onclick="ShowModal(@item.pro_Id)" data-id="@item.pro_Id">Eliminar</a>
+                                        <a class="btn btn-primary " style="color: black" asp-action="Edit" asp-route-id="@item.pro_Id"><i class="icon-copy fa fa-pencil-square-o" aria-hidden="true"></i> Editar</a> |
+                                        <a class="btn btn-outline-secondary" asp-action="Details" asp-route-id="@item.pro_Id"><i class="icon-copy fa fa-file-text-o" aria-hidden="true"></i> Detalles</a> |
+                                        <a class="btn btn-outline-success"   style="color: black" onclick="ShowModal(@item.pro_Id)" data-id="@item.pro_Id"><i class="icon-copy fa fa-trash" aria-hidden="true"></i> Eliminar</a>
                                     </td>
                                 </tr>
                             }

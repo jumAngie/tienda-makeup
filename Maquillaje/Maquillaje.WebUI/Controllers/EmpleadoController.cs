@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using Maquillaje.BusinessLogic.Services;
 using Maquillaje.DataAccess;
+using Maquillaje.Entities.Entities;
 using Maquillaje.WebUI.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
@@ -315,6 +317,46 @@ namespace Maquillaje.WebUI.Controllers
 
         #endregion
 
+        #region Eliminar Empleado
+        [HttpPost("/Empleado/Eliminar/")]
+        public IActionResult Delete(int emp_Id)
+        {
+            try
+            {
+                if (HttpContext.Session.GetString("usu_Nombre") != null)
+                {
+                    ViewBag.usu_Nombre = HttpContext.Session.GetString("usu_Nombre");
+                    ViewBag.suc_Descripcion = HttpContext.Session.GetString("suc_Descripcion");
+                    ViewBag.usu_Id = HttpContext.Session.GetString("usu_ID");
+                    ViewBag.suc_Id = HttpContext.Session.GetString("suc_Id");
+                    int? usumodi = int.Parse(HttpContext.Session.GetString("usu_ID"));
+
+                    tbEmpleados emp = new tbEmpleados();
+                    emp.emp_ID = emp_Id;
+                    emp.emp_UsuarioModi = usumodi;
+
+
+                    var empl = _mapper.Map<tbEmpleados>(emp);
+                    var result = _generalesService.DeleteEmpleado(empl);
+
+
+                    return RedirectToAction("Index");
+
+
+                }
+
+                return RedirectToAction("Index", "Login");
+
+
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Index", "Home");
+                throw;
+            }
+
+        }
+        #endregion
 
 
 

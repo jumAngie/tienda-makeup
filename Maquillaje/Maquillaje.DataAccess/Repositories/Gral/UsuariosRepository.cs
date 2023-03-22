@@ -21,6 +21,7 @@ namespace Maquillaje.DataAccess.Repositories.Gral
             using var db = new SqlConnection(TiendaContext.ConnectionString);
             var parametros = new DynamicParameters();
             parametros.Add("@usu_Id", item.usu_ID, DbType.Int32, ParameterDirection.Input);
+            parametros.Add("@usu_UsuModi", item.usu_UsuarioModi, DbType.Int32, ParameterDirection.Input);
 
             return db.Execute(ScriptsDataBase.UsuariosEliminar, parametros, commandType: CommandType.StoredProcedure);
 
@@ -107,7 +108,20 @@ namespace Maquillaje.DataAccess.Repositories.Gral
         }
         public int Update(tbUsuarios item)
         {
-            throw new NotImplementedException();
+            using var db = new SqlConnection(TiendaContext.ConnectionString);
+            var parametros = new DynamicParameters();
+            parametros.Add("@usu_Id", item.usu_ID, DbType.String, ParameterDirection.Input);
+            parametros.Add("@usu_empID", item.usu_empID, DbType.Int32, ParameterDirection.Input);
+            parametros.Add("@usu_Usuario", item.usu_Usuario, DbType.Int32, ParameterDirection.Input);
+            parametros.Add("@usu_EsAdmin", item.usu_EsAdmin, DbType.Int32, ParameterDirection.Input);
+            parametros.Add("@usu_UsuModi", item.usu_UsuarioModi, DbType.Int32, ParameterDirection.Input);
+
+
+            db.Query<tbUsuarios>(ScriptsDataBase.UsuariosEditar, parametros, commandType: System.Data.CommandType.StoredProcedure);
+
+            int resultado = 1;
+
+            return resultado;
         }
         int IRepository<tbUsuarios>.Insert(tbUsuarios item)
         {

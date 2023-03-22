@@ -4,9 +4,13 @@
     <div class="modal fade" id="CreateUsu" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="myLargeModalLabel">Cree un Usuario</h4>
+                <div class="card-header" style="background-color:#ffd3d8">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+
+                    <div class="text-center">
+                        <img src="~/Content/iMG/giphy.gif" width="100" />
+                        <h3 style="color:black;font-family:'Segoe Print'">Cree un Usuario</h3>
+                    </div>
                 </div>
                 <div class="modal-body">
                     <br />
@@ -30,14 +34,14 @@
 
                         <div class="col-sm-6">
                             <label class="form-text">Es Admin</label>
-                            <input type="checkbox" id="usu_EsAdmin" value="true" name="usu_EsAdmin" class="form-control"/>
+                            <input type="checkbox" id="usu_EsAdmin" value="true" name="usu_EsAdmin" class="form-control" />
                         </div>
                     </div>
                     <br />
                 </div>
                 <div class="modal-footer">
-                    <button type="button" data-dismiss="modal" class="btn btn-outline-danger">Cancelar</button>
-                    <button type="button" onclick="GuardarInsert()" class="btn btn-outline-success">Guardar</button>
+                    <button type="button" data-dismiss="modal" class="btn btn-primary"><i class="icon-copy fa fa-remove" aria-hidden="true"></i> Cancelar</button>
+                    <button type="button" onclick="GuardarInsert()" class="btn btn-outline-secondary"> <i class="icon-copy fa fa-floppy-o" aria-hidden="true"></i> Guardar</button>
                 </div>
             </div>
         </div>

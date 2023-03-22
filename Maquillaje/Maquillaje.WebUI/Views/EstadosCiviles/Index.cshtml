@@ -19,7 +19,7 @@
                 </div>
                 <div class="card-body">
 
-                    <a class="btn btn-primary" data-toggle="modal" data-target="#CreateCate">Nuevo</a>
+                    <a class="btn btn-primary" data-toggle="modal" data-target="#CreateEst"><i class="icon-copy fa fa-plus" aria-hidden="true"></i> Nuevo</a>
                     <br />
                     <br />
                     <table class="table table-report -mt-2" id="DataTable">
@@ -49,8 +49,10 @@
 
 
                                     <td>
-                                        <a class="btn btn-outline-info" data-toggle="modal" data-target="#EditEsta" onclick="Editar('@item.est_ID,@item.est_Descripcion')">Editar</a> |
-                                        <a class="btn btn-outline-success" style="color: black" asp-action="Details" asp-route-id="@item.est_ID">Detalles</a> 
+                                        <a class="btn btn-primary" data-toggle="modal" data-target="#EditCate" onclick="Editar('@item.est_ID,@item.est_Descripcion')"><i class="icon-copy fa fa-pencil-square-o" aria-hidden="true"></i> Editar</a> |
+                                        <a class="btn btn-outline-secondary" style="color: black" asp-action="Details" asp-route-id="@item.est_ID">
+                                            <i class="icon-copy fa fa-file-text-o" aria-hidden="true"></i> Detalles
+                                        </a> 
                                     </td>
                                 </tr>
                             }

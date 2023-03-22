@@ -21,6 +21,7 @@ namespace Maquillaje.DataAccess.Repositories
             using var db = new SqlConnection(TiendaContext.ConnectionString);
             var parametros = new DynamicParameters();
             parametros.Add("@pro_Id", item.pro_Id, DbType.Int32, ParameterDirection.Input);
+            parametros.Add("@pro_UsuModi", item.pro_UsuModi, DbType.Int32, ParameterDirection.Input);
 
             return db.Execute(ScriptsDataBase.ProductosEliminar, parametros, commandType: CommandType.StoredProcedure);
 

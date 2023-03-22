@@ -20,7 +20,7 @@
                 </div>
                 <div class="card-body">
 
-                    <a class="btn btn-primary" data-toggle="modal" data-target="#CreateMuni">Nuevo</a>
+                    <a class="btn btn-primary" data-toggle="modal" data-target="#CreateMuni"><i class="icon-copy fa fa-plus" aria-hidden="true"></i> Nuevo</a>
                     <br />
                     <br />
                     <table class="table table-report -mt-2" id="DataTable">
@@ -54,16 +54,20 @@
                                     </td>
 
                                     <td>
-                                        <a class="btn btn-outline-info" data-toggle="modal" data-target="#EditMuni" onclick="CargaEditar(@item.mun_ID)">Editar</a>
+                                        <a class="btn btn-primary" data-toggle="modal" data-target="#EditMuni" onclick="CargaEditar(@item.mun_ID)"><i class="icon-copy fa fa-pencil-square-o" aria-hidden="true"></i> Editar</a>
 
                                         <Form action="@Url.Action("Edit","Municipio")" id="EditMun" method="post">
 
                                             <div class="modal fade" id="EditMuni" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog modal-dialog-centered">
                                                     <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h4 class="modal-title" id="myLargeModalLabel">Edite una categoría</h4>
+                                                        <div class="card-header" style="background-color:#ffd3d8">
                                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+
+                                                            <div class="text-center">
+                                                                <img src="~/Content/iMG/giphy.gif" width="100" />
+                                                                <h3 style="color:black;font-family:'Segoe Print'">Edite un Municipio</h3>
+                                                            </div>
                                                         </div>
                                                         <div class="modal-body">
                                                             <br />
@@ -83,8 +87,8 @@
                                                             <br />
                                                         </div>
                                                         <div class="modal-footer">
-                                                            <button type="button" data-dismiss="modal" class="btn btn-outline-danger">Cancelar</button>
-                                                            <button type="button" onclick="Editar()" class="btn btn-outline-success">Guardar</button>
+                                                            <button type="button" data-dismiss="modal" style="color: black" class="btn btn-primary"><i class="icon-copy fa fa-remove" aria-hidden="true"></i> Cancelar</button>
+                                                            <button type="button" onclick="Editar()" class="btn btn-outline-secondary"> <i class="icon-copy fa fa-floppy-o" aria-hidden="true"></i> Guardar</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -93,7 +97,9 @@
 
                                     </td>
                                     <td>
-                                        <a class="btn btn-outline-success" style="color: black" asp-action="Details" asp-route-id="@item.mun_ID">Detalles</a> |
+                                        <a class="btn btn-outline-success" style="color: black" asp-action="Details" asp-route-id="@item.mun_ID">
+                                            <i class="icon-copy fa fa-file-text-o" aria-hidden="true"></i> Detalles
+                                        </a>
                                     </td>
                                 </tr>
                             }

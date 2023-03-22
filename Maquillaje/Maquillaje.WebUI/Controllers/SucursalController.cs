@@ -3,6 +3,7 @@ using Maquillaje.BusinessLogic.Services;
 using Maquillaje.DataAccess;
 using Maquillaje.Entities.Entities;
 using Maquillaje.WebUI.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
@@ -28,10 +29,31 @@ namespace Maquillaje.WebUI.Controllers
         [HttpGet("/Sucursal/Listado")]
         public IActionResult Index()
         {
+            try
+            {
+                if (HttpContext.Session.GetString("usu_Nombre") != null)
+                {
+                    ViewBag.usu_Nombre = HttpContext.Session.GetString("usu_Nombre");
+                    ViewBag.suc_Descripcion = HttpContext.Session.GetString("suc_Descripcion");
+                    ViewBag.usu_Id = HttpContext.Session.GetString("usu_ID");
+                    ViewBag.suc_Id = HttpContext.Session.GetString("suc_Id");
+
             ViewBag.deptoCrea = new SelectList(db.Vw_Gral_tbDepartamentos_DDL, "depto", "dep_Descripcion");
             var listado = _generalesService.ListadoSucursales();
             var ListadoMapeado = _mapper.Map<IEnumerable<SucursalesViewModel>>(listado);
             return View(ListadoMapeado);
+                }
+
+                return RedirectToAction("Index", "Login");
+
+
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Index", "Home");
+                throw;
+            }
+
         }
 
 
@@ -39,8 +61,29 @@ namespace Maquillaje.WebUI.Controllers
 
         public IActionResult Create()
         {
+            try
+            {
+                if (HttpContext.Session.GetString("usu_Nombre") != null)
+                {
+                    ViewBag.usu_Nombre = HttpContext.Session.GetString("usu_Nombre");
+                    ViewBag.suc_Descripcion = HttpContext.Session.GetString("suc_Descripcion");
+                    ViewBag.usu_Id = HttpContext.Session.GetString("usu_ID");
+                    ViewBag.suc_Id = HttpContext.Session.GetString("suc_Id");
+
             ViewBag.deptoCrea = new SelectList(db.Vw_Gral_tbDepartamentos_DDL, "depto", "dep_Descripcion");
             return View();
+                }
+
+                return RedirectToAction("Index", "Login");
+
+
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Index", "Home");
+                throw;
+            }
+
         }
 
 
@@ -60,6 +103,14 @@ namespace Maquillaje.WebUI.Controllers
 
         public IActionResult Details(int id)
         {
+            try
+            {
+                if (HttpContext.Session.GetString("usu_Nombre") != null)
+                {
+                    ViewBag.usu_Nombre = HttpContext.Session.GetString("usu_Nombre");
+                    ViewBag.suc_Descripcion = HttpContext.Session.GetString("suc_Descripcion");
+                    ViewBag.usu_Id = HttpContext.Session.GetString("usu_ID");
+                    ViewBag.suc_Id = HttpContext.Session.GetString("suc_Id");
 
             var cates = _generalesService.DetallesSucu(id);
             SucursalesViewModel model = new SucursalesViewModel();
@@ -83,6 +134,18 @@ namespace Maquillaje.WebUI.Controllers
                 return RedirectToAction("Index"); // acá vamos a redireccionar a la pagina 404
             }
             return View(model);
+                }
+
+                return RedirectToAction("Index", "Login");
+
+
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Index", "Home");
+                throw;
+            }
+
 
 
 
@@ -93,14 +156,35 @@ namespace Maquillaje.WebUI.Controllers
         [HttpPost("/Sucursal/Create")]
         public IActionResult Create(string suc_Descripcion, int suc_MunicipioCrea)
         {
+            try
+            {
+                if (HttpContext.Session.GetString("usu_Nombre") != null)
+                {
+                    ViewBag.usu_Nombre = HttpContext.Session.GetString("usu_Nombre");
+                    ViewBag.suc_Descripcion = HttpContext.Session.GetString("suc_Descripcion");
+                    ViewBag.usu_Id = HttpContext.Session.GetString("usu_ID");
+                    ViewBag.suc_Id = HttpContext.Session.GetString("suc_Id");
+                    int usucrea = int.Parse(HttpContext.Session.GetString("usu_ID"));
             tbSucursales sucu = new tbSucursales();
             sucu.suc_Descripcion = suc_Descripcion;
             sucu.suc_Municipio = suc_MunicipioCrea;
-            sucu.suc_UsuCrea = 1;
+            sucu.suc_UsuCrea = usucrea;
             var suc = _mapper.Map<tbSucursales>(sucu);
             var result = _generalesService.CreateSucursales(suc);
 
             return RedirectToAction("Index");
+                }
+
+                return RedirectToAction("Index", "Login");
+
+
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Index", "Home");
+                throw;
+            }
+
 
         }
 
@@ -120,17 +204,38 @@ namespace Maquillaje.WebUI.Controllers
         [HttpPost("/Sucursal/Editar")]
         public IActionResult Edit(int suc_Id, string suc_Descripcion, int suc_Municipio)
         {
+            try
+            {
+                if (HttpContext.Session.GetString("usu_Nombre") != null)
+                {
+                    ViewBag.usu_Nombre = HttpContext.Session.GetString("usu_Nombre");
+                    ViewBag.suc_Descripcion = HttpContext.Session.GetString("suc_Descripcion");
+                    ViewBag.usu_Id = HttpContext.Session.GetString("usu_ID");
+                    ViewBag.suc_Id = HttpContext.Session.GetString("suc_Id");
+                    int usumodi = int.Parse(HttpContext.Session.GetString("usu_ID"));
             tbSucursales suc = new tbSucursales();
             suc.suc_Municipio = suc_Municipio;
             suc.suc_Id = suc_Id;
             suc.suc_Descripcion = suc_Descripcion;
-            suc.suc_usuModi = 1;
+            suc.suc_usuModi = usumodi;
             ViewBag.deptoCrea = new SelectList(db.Vw_Gral_tbDepartamentos_DDL, "depto", "dep_Descripcion");
 
             var sucu = _mapper.Map<tbSucursales>(suc);
             var result = _generalesService.EditSucursales(sucu);
 
             return RedirectToAction("Index");
+                }
+
+                return RedirectToAction("Index", "Login");
+
+
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Index", "Home");
+                throw;
+            }
+
         }
 
 
@@ -139,9 +244,18 @@ namespace Maquillaje.WebUI.Controllers
         [HttpPost("/Sucursal/Eliminar/")]
         public IActionResult Delete(int suc_Id)
         {
-
+            try
+            {
+                if (HttpContext.Session.GetString("usu_Nombre") != null)
+                {
+                    ViewBag.usu_Nombre = HttpContext.Session.GetString("usu_Nombre");
+                    ViewBag.suc_Descripcion = HttpContext.Session.GetString("suc_Descripcion");
+                    ViewBag.usu_Id = HttpContext.Session.GetString("usu_ID");
+                    ViewBag.suc_Id = HttpContext.Session.GetString("suc_Id");
+                    int usumodi = int.Parse(HttpContext.Session.GetString("usu_ID"));
             tbSucursales suc = new tbSucursales();
             suc.suc_Id = suc_Id;
+                    suc.suc_usuModi = usumodi;
 
 
             var sucu = _mapper.Map<tbSucursales>(suc);
@@ -149,6 +263,19 @@ namespace Maquillaje.WebUI.Controllers
 
 
             return RedirectToAction("Index");
+
+                }
+
+                return RedirectToAction("Index", "Login");
+
+
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Index", "Home");
+                throw;
+            }
+
         }
 
 
