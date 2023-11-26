@@ -80,10 +80,11 @@ namespace Maquillaje.WebUI.Controllers
 
                 return View();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
          ModelState.AddModelError("password", "El campo clave es obligatorio.");
+                Console.WriteLine(ex);
                 return RedirectToAction("Index", "Login");
 
             }

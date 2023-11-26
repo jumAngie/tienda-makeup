@@ -26,57 +26,57 @@ namespace Maquillaje.WebUI.Controllers
 
 
 
-        public IActionResult Details(int id)
-        {
+        //public IActionResult Details(int id)
+        //{
 
 
-            if (HttpContext.Session.GetString("usu_Nombre") != null)
-            {
-                ViewBag.usu_Nombre = HttpContext.Session.GetString("usu_Nombre");
-                ViewBag.suc_Descripcion = HttpContext.Session.GetString("suc_Descripcion");
-                ViewBag.usu_Id = HttpContext.Session.GetString("usu_ID");
-                ViewBag.suc_Id = HttpContext.Session.GetString("suc_Id");
-
-
-
-                var cates = _generalesService.DetallesVenta(id);
-                VentaViewModel model = new VentaViewModel();
-
-                if (cates != null && cates.Length > 0)
-                {
-                    model.ven_Id = cates[0];
-                    model.cliente = cates[1];
-                    model.empleado = cates[2];
-                    model.ven_Fecha = cates[3];
-                    model.crea = cates[4];
-                    model.modi = cates[5];
-                    model.ven_FechaCrea = Convert.ToDateTime(cates[6]);
-                    model.ven_FechaModi = Convert.ToDateTime(cates[7]);
-                    model.metodo = cates[8];
-
-
-                }
-                ViewBag.UsuCrea = model.crea;
-                ViewBag.UsuModi = model.modi;
-
-                if (cates == null)
-                {
-                    return RedirectToAction("Index"); // acá vamos a redireccionar a la pagina 404
-                }
-                return View(model);
-            }
-
-            return RedirectToAction("Index", "Login");
+        //    if (HttpContext.Session.GetString("usu_Nombre") != null)
+        //    {
+        //        ViewBag.usu_Nombre = HttpContext.Session.GetString("usu_Nombre");
+        //        ViewBag.suc_Descripcion = HttpContext.Session.GetString("suc_Descripcion");
+        //        ViewBag.usu_Id = HttpContext.Session.GetString("usu_ID");
+        //        ViewBag.suc_Id = HttpContext.Session.GetString("suc_Id");
 
 
 
+        //        var cates = _generalesService.DetallesVenta(id);
+        //        VentaViewModel model = new VentaViewModel();
+
+        //        if (cates != null && cates.Length > 0)
+        //        {
+        //            model.ven_Id = cates[0];
+        //            model.cliente = cates[1];
+        //            model.empleado = cates[2];
+        //            model.ven_Fecha = cates[3];
+        //            model.crea = cates[4];
+        //            model.modi = cates[5];
+        //            model.ven_FechaCrea = Convert.ToDateTime(cates[6]);
+        //            model.ven_FechaModi = Convert.ToDateTime(cates[7]);
+        //            model.metodo = cates[8];
+
+
+        //        }
+        //        ViewBag.UsuCrea = model.crea;
+        //        ViewBag.UsuModi = model.modi;
+
+        //        if (cates == null)
+        //        {
+        //            return RedirectToAction("Index"); // acá vamos a redireccionar a la pagina 404
+        //        }
+        //        return View(model);
+        //    }
+
+        //    return RedirectToAction("Index", "Login");
 
 
 
 
 
 
-        }
+
+
+
+        //}
 
 
 
